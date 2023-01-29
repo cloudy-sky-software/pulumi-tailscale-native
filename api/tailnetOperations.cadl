@@ -1,6 +1,8 @@
 import "@cadl-lang/rest";
 
 import "./models/acl.cadl";
+import "./models/device.cadl";
+import "./models/authKeys.cadl";
 
 using Cadl.Http;
 using Cadl.Rest;
@@ -25,9 +27,28 @@ namespace TailnetEndpoints {
         tailnet: "-" | string;
     }
 
-    @route("/acl")
+    @route("/{tailnet}/acl")
     @get
-    op getAcl(...CommonParameters, @header accept: "application/json"): Acl;
+    op getAcl(
+        @path tailnet: "-" | string,
+        @header accept: "application/json"
+    ): Acl;
 
     // TODO: add the POST operation for setting the ACL for the tailnet.
+
+    @route("/{tailnet}/devices")
+    @get
+    op listDevices(@path tailnet: "-" | string): Device[];
+
+    @route("/{tailnet}/keys")
+    @get
+    op listKeys(@path tailnet: "-" | string, @body key: AuthKey): AuthKey;
+
+    @route("/{tailnet}/keys/{id}")
+    @get
+    op getKey(@path tailnet: "-" | string, @path id: string): AuthKey;
+
+    @route("/{tailnet}/keys/{id}")
+    @delete
+    op deleteKey(@path tailnet: "-" | string, @path id: string): Response<200>;
 }
