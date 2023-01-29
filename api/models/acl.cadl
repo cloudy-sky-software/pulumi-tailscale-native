@@ -1,0 +1,12 @@
+model AclRule {
+    action: string;
+    ports: string[];
+    users: string[];
+}
+
+model Acl {
+    tests: string;
+    groups: Record<string[]>;
+    hosts: Record<string>;
+    acls: AclRule[];
+}

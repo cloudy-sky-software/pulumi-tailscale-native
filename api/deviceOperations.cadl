@@ -1,6 +1,7 @@
 import "@cadl-lang/rest";
 
 import "./models/device.cadl";
+import "./models/deviceRoutes.cadl";
 
 using Cadl.Http;
 using Cadl.Rest;
@@ -11,8 +12,8 @@ using Cadl.Rest;
 })
 @server("https://api.tailscale.com/api/v2", "Tailscale API")
 @doc("This namespace contains operations that can be performed on a Tailscale-connected device.")
-@autoRoute
-namespace DeviceRoutes {
+@route("/device")
+namespace DeviceEndpoints {
     model CommonParameters {
         @path
         @segment("device")
@@ -25,5 +26,35 @@ namespace DeviceRoutes {
     }
 
     @get op getDevice(...CommonParameters): Device;
+
     @delete op deleteDevice(...CommonParameters): Response<200> | Error;
+
+    @route("/{id}/authorized")
+    @post
+    op authorizeDevice(
+        @path id: string,
+        @body setAuthorized: SetAuthorized
+    ): Response<200>;
+
+    @route("/{id}/tags")
+    @post
+    op setTags(@path id: string, @body setTags: SetTags): Response<200>;
+
+    @route("/{id}/routes")
+    @get
+    op getDeviceRoutes(@path id: string): DeviceRoutes;
+
+    @route("/{id}/routes")
+    @post
+    op setRoutes(
+        @path id: string,
+        @body setRoutes: SetDeviceRoutes
+    ): DeviceRoutes;
+
+    @route("/{id}/key")
+    @post
+    op setKeyExpiry(
+        @path id: string,
+        @body setKeyExpiry: SetKeyExpiry
+    ): Response<200>;
 }
