@@ -1,0 +1,29 @@
+import "@cadl-lang/rest";
+
+import "./models/device.cadl";
+
+using Cadl.Http;
+using Cadl.Rest;
+
+@service({
+    title: "Tailscale API",
+    version: "2023-01-01",
+})
+@server("https://api.tailscale.com/api/v2", "Tailscale API")
+@doc("This namespace contains operations that can be performed on a Tailscale-connected device.")
+@autoRoute
+namespace DeviceRoutes {
+    model CommonParameters {
+        @path
+        @segment("device")
+        id: string;
+    }
+
+    @error
+    model Error {
+        message: string;
+    }
+
+    @get op getDevice(...CommonParameters): Device;
+    @delete op deleteDevice(...CommonParameters): Response<200> | Error;
+}

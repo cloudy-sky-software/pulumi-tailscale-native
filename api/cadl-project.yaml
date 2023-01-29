@@ -1,0 +1,7 @@
+output-dir: "{cwd}"
+emit:
+  - "@cadl-lang/openapi3"
+options:
+  "@cadl-lang/openapi3":
+    emitter-output-dir: "{output-dir}/../provider/cmd/pulumi-gen-tailscale"
+    output-file: "openapi.yml"
