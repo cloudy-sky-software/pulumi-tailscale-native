@@ -14,6 +14,7 @@ using Cadl.Rest;
     version: "2023-01-01",
 })
 @server("https://api.tailscale.com/api/v2", "Tailscale API")
+@useAuth(BasicAuth)
 @doc("This namespace contains operations that can be performed on a Tailscale-connected device.")
 namespace Operations {
     @error
