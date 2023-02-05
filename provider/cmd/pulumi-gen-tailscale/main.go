@@ -11,8 +11,8 @@ import (
 	"os"
 	"path/filepath"
 
-	providerSchemaGen "github.com/cloudy-sky-software/pulumi-xyz/provider/pkg/gen"
-	providerVersion "github.com/cloudy-sky-software/pulumi-xyz/provider/pkg/version"
+	providerSchemaGen "github.com/cloudy-sky-software/pulumi-tailscale/provider/pkg/gen"
+	providerVersion "github.com/cloudy-sky-software/pulumi-tailscale/provider/pkg/version"
 
 	"github.com/cloudy-sky-software/pulumi-provider-framework/openapi"
 
@@ -49,7 +49,7 @@ const (
 
 func main() {
 	flag.Usage = func() {
-		const usageFormat = "Usage: %s <language> <schema-file> <root-pulumi-xyz-dir>"
+		const usageFormat = "Usage: %s <language> <schema-file> <root-pulumi-tailscale-dir>"
 		_, err := fmt.Fprintf(flag.CommandLine.Output(), usageFormat, os.Args[0])
 		contract.IgnoreError(err)
 		flag.PrintDefaults()
@@ -88,7 +88,7 @@ func main() {
 	case Schema:
 		openapiDoc := openapi.GetOpenAPISpec(openapiDocBytes)
 		schemaSpec, metadata := providerSchemaGen.PulumiSchema(*openapiDoc)
-		providerDir := filepath.Join(".", "provider", "cmd", "pulumi-resource-xyz")
+		providerDir := filepath.Join(".", "provider", "cmd", "pulumi-resource-tailscale")
 		mustWritePulumiSchema(schemaSpec, providerDir)
 
 		// Write the metadata.json file as well.

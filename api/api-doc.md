@@ -919,7 +919,7 @@ Response:
 ```
 {
 	"id":           "k123456CNTRL",
-	"key":          "tskey-k123456CNTRL-abcdefghijklmnopqrstuvwxyz",
+	"key":          "tskey-k123456CNTRL-abcdefghijklmnopqrstuvwtailscale",
 	"created":      "2021-12-09T23:22:39Z",
 	"expires":      "2022-03-09T23:22:39Z",
 	"capabilities": {"devices": {"create": {"reusable": false, "ephemeral": false, "preauthorized": false, "tags": [ "tag:example" ]}}}

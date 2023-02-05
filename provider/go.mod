@@ -1,4 +1,4 @@
-module github.com/cloudy-sky-software/pulumi-xyz/provider
+module github.com/cloudy-sky-software/pulumi-tailscale/provider
 
 go 1.18
 
@@ -202,3 +202,5 @@ require (
 )
 
 replace github.com/Azure/azure-sdk-for-go/sdk/storage/azblob => github.com/Azure/azure-sdk-for-go/sdk/storage/azblob v0.4.1
+
+replace github.com/cloudy-sky-software/pulschema => ../pulschema
