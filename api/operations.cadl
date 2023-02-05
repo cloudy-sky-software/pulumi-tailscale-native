@@ -37,7 +37,12 @@ namespace Operations {
             @header accept: "application/json"
         ): Acl;
 
-        // TODO: add the POST operation for setting the ACL for the tailnet.
+        @route("/acl")
+        @post
+        op createAcl(
+            @path tailnet: "-" | string,
+            @header accept: "application/json"
+        ): Acl;
 
         @route("/devices")
         @get

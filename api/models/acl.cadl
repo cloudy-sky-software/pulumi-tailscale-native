@@ -1,12 +1,43 @@
+/**
+ * Tailscale ACL rules are "default deny".
+ * So the only possible value for an ACL
+ * rule is `accept`.
+ */
+enum AclRuleAction {
+    accept,
+}
+
 model AclRule {
-    action: string;
+    action: AclRuleAction;
     ports: string[];
     users: string[];
 }
 
+enum SshRuleAction {
+    check,
+    accept,
+}
+
+model SshRule {
+    action: SshRuleAction;
+    src: string[];
+    dst: string[];
+    users: string[];
+    checkPeriod: string;
+}
+
+model NodeAttrs {
+    target: string[];
+    attr: string[];
+}
+
 model Acl {
-    tests: string;
+    acls: AclRule[];
+    autoApprovers: Record<string[]>;
     groups: Record<string[]>;
     hosts: Record<string>;
-    acls: AclRule[];
+    nodeAttrs: NodeAttrs[];
+    ssh: SshRule[];
+    tagOwners: Record<string[]>;
+    tests: string;
 }
