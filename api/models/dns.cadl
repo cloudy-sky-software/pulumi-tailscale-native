@@ -1,11 +1,11 @@
-model NameServerPreference {
+model NameServersPreference {
     magicDNS: boolean;
 }
 
-model NameServers extends NameServerPreference {
+model NameServers extends NameServersPreference {
     dns: string[];
 }
 
-model SearchPaths {
+model DnsSearchPaths {
     searchPaths: string[];
 }

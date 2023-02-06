@@ -71,29 +71,34 @@ namespace Operations {
 
         @route("/dns/nameservers")
         @post
-        op replaceNameServers(@path tailnet: "-" | string): NameServers;
+        op replaceNameServers(
+            @path tailnet: "-" | string,
+            @body nameServer: NameServers
+        ): NameServers;
 
         @route("/dns/preferences")
         @get
-        op getDNSPreferences(@path tailnet: "-" | string): NameServerPreference;
+        op getDNSPreferences(
+            @path tailnet: "-" | string
+        ): NameServersPreference;
 
         @route("/dns/preferences")
         @post
         op replaceDNSPreferences(
             @path tailnet: "-" | string,
-            @body prefs: NameServerPreference
-        ): NameServerPreference;
+            @body prefs: NameServersPreference
+        ): NameServersPreference;
 
         @route("/dns/searchpaths")
         @get
-        op listSearchPaths(@path tailnet: "-" | string): SearchPaths;
+        op listSearchPaths(@path tailnet: "-" | string): DnsSearchPaths;
 
         @route("/dns/searchpaths")
         @post
         op replaceSearchPaths(
             @path tailnet: "-" | string,
-            @body searchPaths: SearchPaths
-        ): SearchPaths;
+            @body searchPaths: DnsSearchPaths
+        ): DnsSearchPaths;
     }
 
     @route("/device/{id}")

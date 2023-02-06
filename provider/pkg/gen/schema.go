@@ -83,7 +83,7 @@ func PulumiSchema(openapiDoc openapi3.T) (pschema.PackageSpec, openapigen.Provid
 	}
 
 	csharpNamespaces := map[string]string{
-		"tailscale": "TAILSCALE",
+		"tailscale": "Tailscale",
 		// TODO: Is this needed?
 		"": "Provider",
 	}
