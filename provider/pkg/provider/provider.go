@@ -2,6 +2,7 @@ package provider
 
 import (
 	"context"
+	"encoding/base64"
 	"fmt"
 	"net/http"
 	"os"
@@ -47,11 +48,16 @@ func makeProvider(host *provider.HostClient, name, version string, pulumiSchemaB
 }
 
 func (p *tailscaleProvider) GetAuthorizationHeader() string {
-	return fmt.Sprintf("%s %s", authSchemePrefix, p.apiKey)
+	basicAuth := base64.URLEncoding.EncodeToString([]byte(p.apiKey + ":"))
+	return fmt.Sprintf("%s %s", authSchemePrefix, basicAuth)
 }
 
-func (p *tailscaleProvider) OnInvoke(ctx context.Context, req *pulumirpc.InvokeRequest) (*pulumirpc.InvokeResponse, error) {
-	return nil, nil
+func (p *tailscaleProvider) OnPreInvoke(ctx context.Context, req *pulumirpc.InvokeRequest, httpReq *http.Request) error {
+	return nil
+}
+
+func (p *tailscaleProvider) OnPostInvoke(ctx context.Context, req *pulumirpc.InvokeRequest, outputs interface{}) (map[string]interface{}, error) {
+	return outputs.(map[string]interface{}), nil
 }
 
 // OnConfigure is called by the provider framework when Pulumi calls Configure on

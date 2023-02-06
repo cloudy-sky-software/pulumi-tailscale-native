@@ -33,7 +33,7 @@ var openapiDocBytes []byte
 // TemplateDir is the path to the base directory for code generator templates.
 var TemplateDir string
 
-// BaseDir is the path to the base pulumi-provider-template directory.
+// BaseDir is the path to the base pulumi-tailscale directory.
 var BaseDir string
 
 // Language is the SDK language.

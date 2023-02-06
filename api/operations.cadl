@@ -42,7 +42,8 @@ namespace Operations {
         @post
         op createAcl(
             @path tailnet: "-" | string,
-            @header accept: "application/json"
+            @header accept: "application/json",
+            @body acl: Acl
         ): Acl;
 
         @route("/devices")
