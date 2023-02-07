@@ -1,5 +1,0 @@
-{
-  "resource": true,
-  "name": "tailscale",
-  "server": "github://api.github.com/cloudy-sky-software/pulumi-tailscale"
-}
