@@ -76,7 +76,7 @@ paths:
               $ref: '#/components/schemas/SetKeyExpiry'
   /device/{id}/routes:
     get:
-      operationId: DeviceEndpoints_getDeviceRoutes
+      operationId: DeviceEndpoints_getRoutes
       parameters:
         - name: id
           in: path
@@ -359,12 +359,34 @@ paths:
           content:
             application/json:
               schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/AuthKeyReadItem'
+                x-cadl-name: AuthKey[]
+    post:
+      operationId: TailnetEndpoints_createKey
+      parameters:
+        - name: tailnet
+          in: path
+          required: true
+          schema:
+            anyOf:
+              - type: string
+                enum:
+                  - '-'
+              - type: string
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
                 $ref: '#/components/schemas/AuthKeyRead'
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/AuthKeyQuery'
+              $ref: '#/components/schemas/AuthKey'
   /tailnet/{tailnet}/keys/{id}:
     get:
       operationId: TailnetEndpoints_getKey
@@ -495,15 +517,31 @@ components:
       type: string
       enum:
         - accept
-    AuthKeyQuery:
+    AuthKey:
       type: object
-      properties: {}
+      properties:
+        key:
+          type: string
+          readOnly: true
+        created:
+          type: string
+          readOnly: true
+        expires:
+          type: string
+          readOnly: true
+        capabilities:
+          $ref: '#/components/schemas/KeyCapabilities'
+        expirySeconds:
+          type: integer
+          format: int64
+      required:
+        - key
+        - expires
+        - capabilities
+        - expirySeconds
     AuthKeyRead:
       type: object
       properties:
-        id:
-          type: string
-          readOnly: true
         key:
           type: string
           readOnly: true
@@ -514,7 +552,21 @@ components:
           type: string
           readOnly: true
       required:
-        - id
+        - key
+        - expires
+    AuthKeyReadItem:
+      type: object
+      properties:
+        key:
+          type: string
+          readOnly: true
+        created:
+          type: string
+          readOnly: true
+        expires:
+          type: string
+          readOnly: true
+      required:
         - key
         - expires
     ClientConnectivity:
@@ -561,6 +613,25 @@ components:
         - pmp
         - udp
         - upnp
+    CreateKey:
+      type: object
+      properties:
+        reusable:
+          type: boolean
+        ephemeral:
+          type: boolean
+        preauthorized:
+          type: boolean
+        tags:
+          type: array
+          items:
+            type: string
+          x-cadl-name: string[]
+      required:
+        - reusable
+        - ephemeral
+        - preauthorized
+        - tags
     Device:
       type: object
       properties:
@@ -634,6 +705,13 @@ components:
         - enabledRoutes
         - advertisedRoutes
         - clientConnectivity
+    DeviceKeyCapabilities:
+      type: object
+      properties:
+        create:
+          $ref: '#/components/schemas/CreateKey'
+      required:
+        - create
     DeviceRoutes:
       type: object
       properties:
@@ -667,6 +745,13 @@ components:
           type: string
       required:
         - message
+    KeyCapabilities:
+      type: object
+      properties:
+        devices:
+          $ref: '#/components/schemas/DeviceKeyCapabilities'
+      required:
+        - devices
     Latency:
       type: object
       properties:

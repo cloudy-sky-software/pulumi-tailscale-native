@@ -334,7 +334,22 @@
                 "expires": {
                     "type": "string"
                 },
-                "id": {
+                "key": {
+                    "type": "string"
+                }
+            },
+            "type": "object",
+            "required": [
+                "expires",
+                "key"
+            ]
+        },
+        "tailscale:tailnet:AuthKeyReadItem": {
+            "properties": {
+                "created": {
+                    "type": "string"
+                },
+                "expires": {
                     "type": "string"
                 },
                 "key": {
@@ -344,7 +359,6 @@
             "type": "object",
             "required": [
                 "expires",
-                "id",
                 "key"
             ]
         },
@@ -404,6 +418,32 @@
                 "pmp",
                 "udp",
                 "upnp"
+            ]
+        },
+        "tailscale:tailnet:CreateKey": {
+            "properties": {
+                "ephemeral": {
+                    "type": "boolean"
+                },
+                "preauthorized": {
+                    "type": "boolean"
+                },
+                "reusable": {
+                    "type": "boolean"
+                },
+                "tags": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "ephemeral",
+                "preauthorized",
+                "reusable",
+                "tags"
             ]
         },
         "tailscale:tailnet:Device": {
@@ -502,6 +542,17 @@
                 "user"
             ]
         },
+        "tailscale:tailnet:DeviceKeyCapabilities": {
+            "properties": {
+                "create": {
+                    "$ref": "#/types/tailscale:tailnet:CreateKey"
+                }
+            },
+            "type": "object",
+            "required": [
+                "create"
+            ]
+        },
         "tailscale:tailnet:DnsSearchPaths": {
             "properties": {
                 "searchPaths": {
@@ -516,18 +567,18 @@
                 "searchPaths"
             ]
         },
-        "tailscale:tailnet:NameServers": {
+        "tailscale:tailnet:KeyCapabilities": {
             "properties": {
-                "magicDNS": {
-                    "type": "boolean"
+                "devices": {
+                    "$ref": "#/types/tailscale:tailnet:DeviceKeyCapabilities"
                 }
             },
             "type": "object",
             "required": [
-                "magicDNS"
+                "devices"
             ]
         },
-        "tailscale:tailnet:NameServersPreference": {
+        "tailscale:tailnet:NameServers": {
             "properties": {
                 "magicDNS": {
                     "type": "boolean"
@@ -631,29 +682,7 @@
         }
     },
     "resources": {
-        "tailscale:device:DeviceEndpoints_authorizeDevice": {
-            "properties": {
-                "authorized": {
-                    "type": "boolean"
-                }
-            },
-            "type": "object",
-            "required": [
-                "authorized"
-            ],
-            "inputProperties": {
-                "authorized": {
-                    "type": "boolean"
-                },
-                "id": {
-                    "type": "string"
-                }
-            },
-            "requiredInputs": [
-                "authorized"
-            ]
-        },
-        "tailscale:device:DeviceEndpoints_setKeyExpiry": {
+        "tailscale:device:KeyExpiry": {
             "properties": {
                 "keyExpiryDisabled": {
                     "type": "boolean"
@@ -675,12 +704,17 @@
                 "keyExpiryDisabled"
             ]
         },
-        "tailscale:device:DeviceEndpoints_setRoutes": {
+        "tailscale:device:Routes": {
             "properties": {
                 "routes": {
                     "type": "array",
                     "items": {
                         "type": "string"
+                    },
+                    "language": {
+                        "csharp": {
+                            "name": "RoutesValue"
+                        }
                     }
                 }
             },
@@ -696,6 +730,11 @@
                     "type": "array",
                     "items": {
                         "type": "string"
+                    },
+                    "language": {
+                        "csharp": {
+                            "name": "RoutesValue"
+                        }
                     }
                 }
             },
@@ -703,12 +742,17 @@
                 "routes"
             ]
         },
-        "tailscale:device:DeviceEndpoints_setTags": {
+        "tailscale:device:Tags": {
             "properties": {
                 "tags": {
                     "type": "array",
                     "items": {
                         "type": "string"
+                    },
+                    "language": {
+                        "csharp": {
+                            "name": "TagsValue"
+                        }
                     }
                 }
             },
@@ -724,11 +768,38 @@
                     "type": "array",
                     "items": {
                         "type": "string"
+                    },
+                    "language": {
+                        "csharp": {
+                            "name": "TagsValue"
+                        }
                     }
                 }
             },
             "requiredInputs": [
                 "tags"
+            ]
+        },
+        "tailscale:device:authorizeDevice": {
+            "properties": {
+                "authorized": {
+                    "type": "boolean"
+                }
+            },
+            "type": "object",
+            "required": [
+                "authorized"
+            ],
+            "inputProperties": {
+                "authorized": {
+                    "type": "boolean"
+                },
+                "id": {
+                    "type": "string"
+                }
+            },
+            "requiredInputs": [
+                "authorized"
             ]
         },
         "tailscale:tailnet:Acl": {
@@ -849,6 +920,52 @@
                 "magicDNS"
             ]
         },
+        "tailscale:tailnet:Key": {
+            "properties": {
+                "capabilities": {
+                    "$ref": "#/types/tailscale:tailnet:KeyCapabilities"
+                },
+                "created": {
+                    "type": "string"
+                },
+                "expires": {
+                    "type": "string"
+                },
+                "expirySeconds": {
+                    "type": "integer"
+                },
+                "key": {
+                    "type": "string",
+                    "language": {
+                        "csharp": {
+                            "name": "KeyValue"
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "key",
+                "expires",
+                "capabilities",
+                "expirySeconds"
+            ],
+            "inputProperties": {
+                "capabilities": {
+                    "$ref": "#/types/tailscale:tailnet:KeyCapabilities"
+                },
+                "expirySeconds": {
+                    "type": "integer"
+                },
+                "tailnet": {
+                    "type": "string"
+                }
+            },
+            "requiredInputs": [
+                "capabilities",
+                "expirySeconds"
+            ]
+        },
         "tailscale:tailnet:NameServers": {
             "properties": {
                 "dns": {
@@ -884,7 +1001,7 @@
                 "magicDNS"
             ]
         },
-        "tailscale:tailnet:TailnetEndpoints_replaceSearchPaths": {
+        "tailscale:tailnet:replaceSearchPaths": {
             "properties": {
                 "searchPaths": {
                     "type": "array",
@@ -936,7 +1053,7 @@
                 ]
             }
         },
-        "tailscale:device:getDeviceRoutes": {
+        "tailscale:device:getRoutes": {
             "inputs": {
                 "properties": {
                     "id": {
@@ -1089,7 +1206,10 @@
             "outputs": {
                 "properties": {
                     "items": {
-                        "$ref": "#/types/tailscale:tailnet:AuthKeyRead"
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/tailscale:tailnet:AuthKeyReadItem"
+                        }
                     }
                 },
                 "required": [
