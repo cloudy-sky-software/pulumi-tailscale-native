@@ -14,10 +14,9 @@ model KeyCapabilities {
 }
 
 model AuthKey {
-    @visibility("read") id: string;
     @visibility("read") key: string;
     @visibility("read") created?: string;
     @visibility("read") expires: string;
     @visibility("create") capabilities: KeyCapabilities;
-    @visibility("create") expirySeconds: numeric;
+    @visibility("create") expirySeconds: int64;
 }

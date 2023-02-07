@@ -52,11 +52,18 @@ namespace Operations {
 
         @route("/keys")
         @get
-        op listKeys(@path tailnet: "-" | string, @body key: AuthKey): AuthKey;
+        op listKeys(@path tailnet: "-" | string): AuthKey[];
 
         @route("/keys/{id}")
         @get
         op getKey(@path tailnet: "-" | string, @path id: string): AuthKey;
+
+        @route("/keys")
+        @post
+        op createKey(
+            @path tailnet: "-" | string,
+            @body authKey: AuthKey
+        ): AuthKey;
 
         @route("/keys/{id}")
         @delete
@@ -120,7 +127,7 @@ namespace Operations {
 
         @route("/routes")
         @get
-        op getDeviceRoutes(@path id: string): DeviceRoutes;
+        op getRoutes(@path id: string): DeviceRoutes;
 
         @route("/routes")
         @post
