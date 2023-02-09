@@ -3,9 +3,9 @@
   "version": "0.1.0",
   "type": "module",
   "dependencies": {
-    "@cadl-lang/compiler": "latest",
-    "@cadl-lang/openapi3": "^0.40.0-dev.6",
-    "@cadl-lang/rest": "^0.39.0"
+    "@cadl-lang/compiler": "^0.40.0",
+    "@cadl-lang/openapi3": "^0.40.0",
+    "@cadl-lang/rest": "^0.40.0"
   },
   "private": true
 }
