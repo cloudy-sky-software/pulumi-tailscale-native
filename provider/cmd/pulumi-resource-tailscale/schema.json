@@ -580,6 +580,24 @@
         },
         "tailscale:tailnet:NameServers": {
             "properties": {
+                "dns": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "magicDNS": {
+                    "type": "boolean"
+                }
+            },
+            "type": "object",
+            "required": [
+                "dns",
+                "magicDNS"
+            ]
+        },
+        "tailscale:tailnet:NameServersPreference": {
+            "properties": {
                 "magicDNS": {
                     "type": "boolean"
                 }
@@ -980,7 +998,8 @@
             },
             "type": "object",
             "required": [
-                "dns"
+                "dns",
+                "magicDNS"
             ],
             "inputProperties": {
                 "dns": {
