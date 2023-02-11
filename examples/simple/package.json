@@ -1,11 +1,11 @@
 {
-  "name": "render-typescript",
+  "name": "tailscale-typescript",
   "version": "0.1.0",
   "devDependencies": {
     "@types/node": "latest"
   },
   "dependencies": {
-    "@cloudyskysoftware/render": "latest",
-    "@pulumi/pulumi": "latest"
+    "@cloudyskysoftware/pulumi-tailscale": "latest",
+    "@pulumi/pulumi": "^3.54.0"
   }
 }
