@@ -769,10 +769,11 @@ components:
           items:
             type: string
           x-cadl-name: string[]
+        magicDNS:
+          type: boolean
       required:
         - dns
-      allOf:
-        - $ref: '#/components/schemas/NameServersPreference'
+        - magicDNS
     NameServersPreference:
       type: object
       properties:
