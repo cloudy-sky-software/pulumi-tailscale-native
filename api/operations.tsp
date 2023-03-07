@@ -1,13 +1,13 @@
-import "@cadl-lang/rest";
+import "@typespec/rest";
 
-import "./models/acl.cadl";
-import "./models/authKeys.cadl";
-import "./models/device.cadl";
-import "./models/deviceRoutes.cadl";
-import "./models/dns.cadl";
+import "./models/acl.tsp";
+import "./models/authKeys.tsp";
+import "./models/device.tsp";
+import "./models/deviceRoutes.tsp";
+import "./models/dns.tsp";
 
-using Cadl.Http;
-using Cadl.Rest;
+using TypeSpec.Http;
+using TypeSpec.Rest;
 
 @service({
     title: "Tailscale API",
