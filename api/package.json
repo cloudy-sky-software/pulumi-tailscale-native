@@ -2,10 +2,10 @@
   "name": "tailscale-api",
   "version": "0.1.0",
   "type": "module",
+  "private": true,
   "dependencies": {
-    "@cadl-lang/compiler": "^0.40.0",
-    "@cadl-lang/openapi3": "^0.40.0",
-    "@cadl-lang/rest": "^0.40.0"
-  },
-  "private": true
+    "@typespec/compiler": "^0.41.0",
+    "@typespec/openapi3": "^0.41.0",
+    "@typespec/rest": "^0.41.0"
+  }
 }
