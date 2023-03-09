@@ -89,11 +89,11 @@ func PulumiSchema(openapiDoc openapi3.T) (pschema.PackageSpec, openapigen.Provid
 	}
 
 	openAPICtx := &openapigen.OpenAPIContext{
-		Doc:                           openapiDoc,
-		Pkg:                           &pkg,
-		ExcludedPaths:                 []string{},
-		OperationIdsHaveCADLNamespace: true,
-		CADLNamespaceSeparator:        "_",
+		Doc:                               openapiDoc,
+		Pkg:                               &pkg,
+		ExcludedPaths:                     []string{},
+		OperationIdsHaveTypeSpecNamespace: true,
+		TypeSpecNamespaceSeparator:        "_",
 	}
 
 	providerMetadata, err := openAPICtx.GatherResourcesFromAPI(csharpNamespaces)
@@ -120,7 +120,7 @@ func PulumiSchema(openapiDoc openapi3.T) (pschema.PackageSpec, openapigen.Provid
 	})
 
 	pkg.Language["go"] = rawMessage(map[string]interface{}{
-		"importBasePath": "github.com/cloudy-sky-software/pulumi-tailscale/sdk/go/render",
+		"importBasePath": "github.com/cloudy-sky-software/pulumi-tailscale/sdk/go/tailscale",
 	})
 	pkg.Language["nodejs"] = rawMessage(map[string]interface{}{
 		"packageName": "@cloudyskysoftware/pulumi-tailscale",
