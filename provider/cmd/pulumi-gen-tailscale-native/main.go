@@ -11,8 +11,8 @@ import (
 	"os"
 	"path/filepath"
 
-	providerSchemaGen "github.com/cloudy-sky-software/pulumi-tailscale/provider/pkg/gen"
-	providerVersion "github.com/cloudy-sky-software/pulumi-tailscale/provider/pkg/version"
+	providerSchemaGen "github.com/cloudy-sky-software/pulumi-tailscale-native/provider/pkg/gen"
+	providerVersion "github.com/cloudy-sky-software/pulumi-tailscale-native/provider/pkg/version"
 
 	"github.com/cloudy-sky-software/pulumi-provider-framework/openapi"
 
