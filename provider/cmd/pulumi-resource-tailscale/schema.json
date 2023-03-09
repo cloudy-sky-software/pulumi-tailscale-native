@@ -27,7 +27,7 @@
             "rootNamespace": "Pulumi"
         },
         "go": {
-            "importBasePath": "github.com/cloudy-sky-software/pulumi-tailscale/sdk/go/render"
+            "importBasePath": "github.com/cloudy-sky-software/pulumi-tailscale/sdk/go/tailscale"
         },
         "nodejs": {
             "dependencies": {
