@@ -141,7 +141,7 @@ func PulumiSchema(openapiDoc openapi3.T) (pschema.PackageSpec, openapigen.Provid
 		},
 	})
 	pkg.Language["python"] = rawMessage(map[string]interface{}{
-		"packageName": "pulumi_tailscale",
+		"packageName": "pulumi_tailscale_native",
 		"requires": map[string]string{
 			"pulumi": ">=3.0.0,<4.0.0",
 		},

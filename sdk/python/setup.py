@@ -37,7 +37,7 @@ def readme():
         return "tailscale Pulumi Package - Development Version"
 
 
-setup(name='pulumi_tailscale',
+setup(name='pulumi_tailscale_native',
       version=VERSION,
       description="A Pulumi package for creating and managing Tailscale resources.",
       long_description=readme(),
@@ -53,7 +53,7 @@ setup(name='pulumi_tailscale',
       license='Apache-2.0',
       packages=find_packages(),
       package_data={
-          'pulumi_tailscale': [
+          'pulumi_tailscale_native': [
               'py.typed',
               'pulumi-plugin.json',
           ]

@@ -9,16 +9,16 @@ from .provider import *
 
 # Make subpackages available:
 if typing.TYPE_CHECKING:
-    import pulumi_tailscale.config as __config
+    import pulumi_tailscale_native.config as __config
     config = __config
-    import pulumi_tailscale.device as __device
+    import pulumi_tailscale_native.device as __device
     device = __device
-    import pulumi_tailscale.tailnet as __tailnet
+    import pulumi_tailscale_native.tailnet as __tailnet
     tailnet = __tailnet
 else:
-    config = _utilities.lazy_import('pulumi_tailscale.config')
-    device = _utilities.lazy_import('pulumi_tailscale.device')
-    tailnet = _utilities.lazy_import('pulumi_tailscale.tailnet')
+    config = _utilities.lazy_import('pulumi_tailscale_native.config')
+    device = _utilities.lazy_import('pulumi_tailscale_native.device')
+    tailnet = _utilities.lazy_import('pulumi_tailscale_native.tailnet')
 
 _utilities.register(
     resource_modules="""
@@ -26,7 +26,7 @@ _utilities.register(
  {
   "pkg": "tailscale",
   "mod": "device",
-  "fqn": "pulumi_tailscale.device",
+  "fqn": "pulumi_tailscale_native.device",
   "classes": {
    "tailscale:device:KeyExpiry": "KeyExpiry",
    "tailscale:device:Routes": "Routes",
@@ -37,7 +37,7 @@ _utilities.register(
  {
   "pkg": "tailscale",
   "mod": "tailnet",
-  "fqn": "pulumi_tailscale.tailnet",
+  "fqn": "pulumi_tailscale_native.tailnet",
   "classes": {
    "tailscale:tailnet:Acl": "Acl",
    "tailscale:tailnet:DNSPreferences": "DNSPreferences",
@@ -53,7 +53,7 @@ _utilities.register(
  {
   "pkg": "tailscale",
   "token": "pulumi:providers:tailscale",
-  "fqn": "pulumi_tailscale",
+  "fqn": "pulumi_tailscale_native",
   "class": "Provider"
  }
 ]
