@@ -9,5 +9,11 @@
   "ignorePaths": [
     "sdk/**",
     "examples/**"
+  ],
+  "customEnvVariables": {
+    "GOPRIVATE": "github.com/cloudy-sky-software/*"
+  },
+  "postUpdateOptions": [
+    "gomodTidy"
   ]
 }
