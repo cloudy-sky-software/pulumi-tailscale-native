@@ -48,7 +48,7 @@
             "packageName": "@cloudyskysoftware/pulumi-tailscale"
         },
         "python": {
-            "packageName": "pulumi_tailscale",
+            "packageName": "pulumi_tailscale_native",
             "requires": {
                 "pulumi": "\u003e=3.0.0,\u003c4.0.0"
             }
