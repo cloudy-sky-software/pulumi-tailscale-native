@@ -13,7 +13,7 @@ import (
 func ListSearchPaths(ctx *pulumi.Context, args *ListSearchPathsArgs, opts ...pulumi.InvokeOption) (*ListSearchPathsResult, error) {
 	opts = pkgInvokeDefaultOpts(opts)
 	var rv ListSearchPathsResult
-	err := ctx.Invoke("tailscale:tailnet:listSearchPaths", args, &rv, opts...)
+	err := ctx.Invoke("tailscale-native:tailnet:listSearchPaths", args, &rv, opts...)
 	if err != nil {
 		return nil, err
 	}

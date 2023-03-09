@@ -10,7 +10,7 @@ import * as utilities from "../utilities";
 export function listSearchPaths(args: ListSearchPathsArgs, opts?: pulumi.InvokeOptions): Promise<ListSearchPathsResult> {
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
-    return pulumi.runtime.invoke("tailscale:tailnet:listSearchPaths", {
+    return pulumi.runtime.invoke("tailscale-native:tailnet:listSearchPaths", {
         "tailnet": args.tailnet,
     }, opts);
 }

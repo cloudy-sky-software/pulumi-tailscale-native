@@ -5,7 +5,7 @@ using System;
 using System.ComponentModel;
 using Pulumi;
 
-namespace Pulumi.Tailscale.Tailnet
+namespace Pulumi.TailscaleNative.Tailnet
 {
     [EnumType]
     public readonly struct AclRuleAction : IEquatable<AclRuleAction>

@@ -13,7 +13,7 @@ import (
 func LookupDNSPreferences(ctx *pulumi.Context, args *LookupDNSPreferencesArgs, opts ...pulumi.InvokeOption) (*LookupDNSPreferencesResult, error) {
 	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupDNSPreferencesResult
-	err := ctx.Invoke("tailscale:tailnet:getDNSPreferences", args, &rv, opts...)
+	err := ctx.Invoke("tailscale-native:tailnet:getDNSPreferences", args, &rv, opts...)
 	if err != nil {
 		return nil, err
 	}

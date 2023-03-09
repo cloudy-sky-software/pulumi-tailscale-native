@@ -94,7 +94,7 @@ class Routes(pulumi.CustomResource):
                 raise TypeError("Missing required property 'routes'")
             __props__.__dict__["routes"] = routes
         super(Routes, __self__).__init__(
-            'tailscale:device:Routes',
+            'tailscale-native:device:Routes',
             resource_name,
             __props__,
             opts)

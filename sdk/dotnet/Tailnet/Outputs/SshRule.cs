@@ -7,13 +7,13 @@ using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
 
-namespace Pulumi.Tailscale.Tailnet.Outputs
+namespace Pulumi.TailscaleNative.Tailnet.Outputs
 {
 
     [OutputType]
     public sealed class SshRule
     {
-        public readonly Pulumi.Tailscale.Tailnet.SshRuleAction Action;
+        public readonly Pulumi.TailscaleNative.Tailnet.SshRuleAction Action;
         public readonly string CheckPeriod;
         public readonly ImmutableArray<string> Dst;
         public readonly ImmutableArray<string> Src;
@@ -21,7 +21,7 @@ namespace Pulumi.Tailscale.Tailnet.Outputs
 
         [OutputConstructor]
         private SshRule(
-            Pulumi.Tailscale.Tailnet.SshRuleAction action,
+            Pulumi.TailscaleNative.Tailnet.SshRuleAction action,
 
             string checkPeriod,
 

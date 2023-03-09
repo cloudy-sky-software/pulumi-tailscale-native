@@ -40,17 +40,17 @@ const _module = {
     version: utilities.getVersion(),
     construct: (name: string, type: string, urn: string): pulumi.Resource => {
         switch (type) {
-            case "tailscale:device:KeyExpiry":
+            case "tailscale-native:device:KeyExpiry":
                 return new KeyExpiry(name, <any>undefined, { urn })
-            case "tailscale:device:Routes":
+            case "tailscale-native:device:Routes":
                 return new Routes(name, <any>undefined, { urn })
-            case "tailscale:device:Tags":
+            case "tailscale-native:device:Tags":
                 return new Tags(name, <any>undefined, { urn })
-            case "tailscale:device:authorizeDevice":
+            case "tailscale-native:device:authorizeDevice":
                 return new AuthorizeDevice(name, <any>undefined, { urn })
             default:
                 throw new Error(`unknown resource type ${type}`);
         }
     },
 };
-pulumi.runtime.registerResourceModule("tailscale", "device", _module)
+pulumi.runtime.registerResourceModule("tailscale-native", "device", _module)

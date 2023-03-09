@@ -7,7 +7,7 @@ import (
 	"fmt"
 
 	"github.com/blang/semver"
-	"github.com/cloudy-sky-software/pulumi-tailscale/sdk/go/tailscale"
+	tailscale "github.com/cloudy-sky-software/pulumi-tailscale-native/sdk/go/tailscale"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -21,15 +21,15 @@ func (m *module) Version() semver.Version {
 
 func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi.Resource, err error) {
 	switch typ {
-	case "tailscale:tailnet:Acl":
+	case "tailscale-native:tailnet:Acl":
 		r = &Acl{}
-	case "tailscale:tailnet:DNSPreferences":
+	case "tailscale-native:tailnet:DNSPreferences":
 		r = &DNSPreferences{}
-	case "tailscale:tailnet:Key":
+	case "tailscale-native:tailnet:Key":
 		r = &Key{}
-	case "tailscale:tailnet:NameServers":
+	case "tailscale-native:tailnet:NameServers":
 		r = &NameServers{}
-	case "tailscale:tailnet:replaceSearchPaths":
+	case "tailscale-native:tailnet:replaceSearchPaths":
 		r = &ReplaceSearchPaths{}
 	default:
 		return nil, fmt.Errorf("unknown resource type: %s", typ)
@@ -45,7 +45,7 @@ func init() {
 		version = semver.Version{Major: 1}
 	}
 	pulumi.RegisterResourceModule(
-		"tailscale",
+		"tailscale-native",
 		"tailnet",
 		&module{version},
 	)

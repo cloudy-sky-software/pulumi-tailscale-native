@@ -11,7 +11,7 @@ from .. import _utilities
 
 import types
 
-__config__ = pulumi.Config('tailscale')
+__config__ = pulumi.Config('tailscale-native')
 
 
 class _ExportableConfig(types.ModuleType):

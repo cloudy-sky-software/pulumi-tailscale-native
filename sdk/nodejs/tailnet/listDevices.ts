@@ -10,7 +10,7 @@ import * as utilities from "../utilities";
 export function listDevices(args: ListDevicesArgs, opts?: pulumi.InvokeOptions): Promise<ListDevicesResult> {
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
-    return pulumi.runtime.invoke("tailscale:tailnet:listDevices", {
+    return pulumi.runtime.invoke("tailscale-native:tailnet:listDevices", {
         "tailnet": args.tailnet,
     }, opts);
 }

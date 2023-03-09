@@ -13,7 +13,7 @@ import (
 func LookupRoutes(ctx *pulumi.Context, args *LookupRoutesArgs, opts ...pulumi.InvokeOption) (*LookupRoutesResult, error) {
 	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupRoutesResult
-	err := ctx.Invoke("tailscale:device:getRoutes", args, &rv, opts...)
+	err := ctx.Invoke("tailscale-native:device:getRoutes", args, &rv, opts...)
 	if err != nil {
 		return nil, err
 	}

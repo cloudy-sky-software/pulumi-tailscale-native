@@ -7,15 +7,15 @@ using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
 
-namespace Pulumi.Tailscale.Tailnet
+namespace Pulumi.TailscaleNative.Tailnet
 {
     public static class GetNameServers
     {
         public static Task<GetNameServersResult> InvokeAsync(GetNameServersArgs args, InvokeOptions? options = null)
-            => global::Pulumi.Deployment.Instance.InvokeAsync<GetNameServersResult>("tailscale:tailnet:getNameServers", args ?? new GetNameServersArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GetNameServersResult>("tailscale-native:tailnet:getNameServers", args ?? new GetNameServersArgs(), options.WithDefaults());
 
         public static Output<GetNameServersResult> Invoke(GetNameServersInvokeArgs args, InvokeOptions? options = null)
-            => global::Pulumi.Deployment.Instance.Invoke<GetNameServersResult>("tailscale:tailnet:getNameServers", args ?? new GetNameServersInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<GetNameServersResult>("tailscale-native:tailnet:getNameServers", args ?? new GetNameServersInvokeArgs(), options.WithDefaults());
     }
 
 

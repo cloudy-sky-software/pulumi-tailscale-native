@@ -19,7 +19,7 @@ func (p *pkg) Version() semver.Version {
 }
 
 func (p *pkg) ConstructProvider(ctx *pulumi.Context, name, typ, urn string) (pulumi.ProviderResource, error) {
-	if typ != "pulumi:providers:tailscale" {
+	if typ != "pulumi:providers:tailscale-native" {
 		return nil, fmt.Errorf("unknown provider type: %s", typ)
 	}
 
@@ -31,7 +31,7 @@ func (p *pkg) ConstructProvider(ctx *pulumi.Context, name, typ, urn string) (pul
 func init() {
 	version, _ := PkgVersion()
 	pulumi.RegisterResourcePackage(
-		"tailscale",
+		"tailscale-native",
 		&pkg{version},
 	)
 }

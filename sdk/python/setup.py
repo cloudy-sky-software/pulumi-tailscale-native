@@ -15,15 +15,15 @@ class InstallPluginCommand(install):
     def run(self):
         install.run(self)
         try:
-            check_call(['pulumi', 'plugin', 'install', 'resource', 'tailscale', PLUGIN_VERSION, '--server', 'github://api.github.com/cloudy-sky-software/pulumi-tailscale'])
+            check_call(['pulumi', 'plugin', 'install', 'resource', 'tailscale-native', PLUGIN_VERSION, '--server', 'github://api.github.com/cloudy-sky-software/pulumi-tailscale-native'])
         except OSError as error:
             if error.errno == errno.ENOENT:
                 print(f"""
-                There was an error installing the tailscale resource provider plugin.
+                There was an error installing the tailscale-native resource provider plugin.
                 It looks like `pulumi` is not installed on your system.
                 Please visit https://pulumi.com/ to install the Pulumi CLI.
                 You may try manually installing the plugin by running
-                `pulumi plugin install resource tailscale {PLUGIN_VERSION}`
+                `pulumi plugin install resource tailscale-native {PLUGIN_VERSION}`
                 """)
             else:
                 raise
@@ -34,21 +34,21 @@ def readme():
         with open('README.md', encoding='utf-8') as f:
             return f.read()
     except FileNotFoundError:
-        return "tailscale Pulumi Package - Development Version"
+        return "tailscale-native Pulumi Package - Development Version"
 
 
 setup(name='pulumi_tailscale_native',
       version=VERSION,
-      description="A Pulumi package for creating and managing Tailscale resources.",
+      description="A native Pulumi package for creating and managing Tailscale resources.",
       long_description=readme(),
       long_description_content_type='text/markdown',
       cmdclass={
           'install': InstallPluginCommand,
       },
-      keywords='pulumi tailscale category/cloud kind/native',
+      keywords='pulumi tailscale-native category/cloud kind/native',
       url='https://cloudysky.software',
       project_urls={
-          'Repository': 'https://github.com/cloudy-sky-software/pulumi-tailscale'
+          'Repository': 'https://github.com/cloudy-sky-software/pulumi-tailscale-native'
       },
       license='Apache-2.0',
       packages=find_packages(),

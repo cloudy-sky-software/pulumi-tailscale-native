@@ -89,7 +89,7 @@ class Provider(pulumi.ProviderResource):
                 api_key = _utilities.get_env('TAILSCALE_APIKEY')
             __props__.__dict__["api_key"] = None if api_key is None else pulumi.Output.secret(api_key)
         super(Provider, __self__).__init__(
-            'tailscale',
+            'tailscale-native',
             resource_name,
             __props__,
             opts)

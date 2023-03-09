@@ -7,7 +7,7 @@ using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
 
-namespace Pulumi.Tailscale.Tailnet.Inputs
+namespace Pulumi.TailscaleNative.Tailnet.Inputs
 {
 
     public sealed class NodeAttrsArgs : global::Pulumi.ResourceArgs

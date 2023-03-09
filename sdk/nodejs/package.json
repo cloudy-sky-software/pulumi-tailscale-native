@@ -1,18 +1,18 @@
 {
-    "name": "@cloudyskysoftware/pulumi-tailscale",
+    "name": "@cloudyskysoftware/pulumi-tailscale-native",
     "version": "${VERSION}",
     "keywords": [
         "pulumi",
-        "tailscale",
+        "tailscale-native",
         "category/cloud",
         "kind/native"
     ],
     "homepage": "https://cloudysky.software",
-    "repository": "https://github.com/cloudy-sky-software/pulumi-tailscale",
+    "repository": "https://github.com/cloudy-sky-software/pulumi-tailscale-native",
     "license": "Apache-2.0",
     "scripts": {
         "build": "tsc",
-        "install": "node scripts/install-pulumi-plugin.js resource tailscale ${VERSION}"
+        "install": "node scripts/install-pulumi-plugin.js resource tailscale-native ${VERSION}"
     },
     "dependencies": {
         "@pulumi/pulumi": "^3.0.0",
@@ -33,7 +33,7 @@
     },
     "pulumi": {
         "resource": true,
-        "name": "tailscale",
-        "server": "github://api.github.com/cloudy-sky-software/pulumi-tailscale"
+        "name": "tailscale-native",
+        "server": "github://api.github.com/cloudy-sky-software/pulumi-tailscale-native"
     }
 }

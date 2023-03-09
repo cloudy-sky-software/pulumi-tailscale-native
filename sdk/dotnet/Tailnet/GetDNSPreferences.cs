@@ -7,15 +7,15 @@ using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
 
-namespace Pulumi.Tailscale.Tailnet
+namespace Pulumi.TailscaleNative.Tailnet
 {
     public static class GetDNSPreferences
     {
         public static Task<GetDNSPreferencesResult> InvokeAsync(GetDNSPreferencesArgs args, InvokeOptions? options = null)
-            => global::Pulumi.Deployment.Instance.InvokeAsync<GetDNSPreferencesResult>("tailscale:tailnet:getDNSPreferences", args ?? new GetDNSPreferencesArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GetDNSPreferencesResult>("tailscale-native:tailnet:getDNSPreferences", args ?? new GetDNSPreferencesArgs(), options.WithDefaults());
 
         public static Output<GetDNSPreferencesResult> Invoke(GetDNSPreferencesInvokeArgs args, InvokeOptions? options = null)
-            => global::Pulumi.Deployment.Instance.Invoke<GetDNSPreferencesResult>("tailscale:tailnet:getDNSPreferences", args ?? new GetDNSPreferencesInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<GetDNSPreferencesResult>("tailscale-native:tailnet:getDNSPreferences", args ?? new GetDNSPreferencesInvokeArgs(), options.WithDefaults());
     }
 
 

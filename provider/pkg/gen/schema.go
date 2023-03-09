@@ -120,7 +120,10 @@ func PulumiSchema(openapiDoc openapi3.T) (pschema.PackageSpec, openapigen.Provid
 	})
 
 	pkg.Language["go"] = rawMessage(map[string]interface{}{
-		"importBasePath": "github.com/cloudy-sky-software/pulumi-tailscale-native/sdk/go/tailscale-native",
+		"importBasePath": "github.com/cloudy-sky-software/pulumi-tailscale-native/sdk/go/tailscale",
+		"packageImportAliases": map[string]string{
+			"github.com/cloudy-sky-software/pulumi-tailscale-native/sdk/go/tailscale": "tailscale",
+		},
 	})
 	pkg.Language["nodejs"] = rawMessage(map[string]interface{}{
 		"packageName": "@cloudyskysoftware/pulumi-tailscale-native",

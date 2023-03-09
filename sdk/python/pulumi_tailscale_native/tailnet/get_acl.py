@@ -48,7 +48,7 @@ def get_acl(tailnet: Optional[str] = None,
     __args__ = dict()
     __args__['tailnet'] = tailnet
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('tailscale:tailnet:getAcl', __args__, opts=opts, typ=GetAclResult).value
+    __ret__ = pulumi.runtime.invoke('tailscale-native:tailnet:getAcl', __args__, opts=opts, typ=GetAclResult).value
 
     return AwaitableGetAclResult(
         items=__ret__.items)

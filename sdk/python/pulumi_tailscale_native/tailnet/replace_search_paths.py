@@ -94,7 +94,7 @@ class ReplaceSearchPaths(pulumi.CustomResource):
             __props__.__dict__["search_paths"] = search_paths
             __props__.__dict__["tailnet"] = tailnet
         super(ReplaceSearchPaths, __self__).__init__(
-            'tailscale:tailnet:replaceSearchPaths',
+            'tailscale-native:tailnet:replaceSearchPaths',
             resource_name,
             __props__,
             opts)

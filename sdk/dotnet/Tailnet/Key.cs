@@ -7,9 +7,9 @@ using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
 
-namespace Pulumi.Tailscale.Tailnet
+namespace Pulumi.TailscaleNative.Tailnet
 {
-    [TailscaleResourceType("tailscale:tailnet:Key")]
+    [TailscaleNativeResourceType("tailscale-native:tailnet:Key")]
     public partial class Key : global::Pulumi.CustomResource
     {
         [Output("capabilities")]
@@ -36,12 +36,12 @@ namespace Pulumi.Tailscale.Tailnet
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
         public Key(string name, KeyArgs args, CustomResourceOptions? options = null)
-            : base("tailscale:tailnet:Key", name, args ?? new KeyArgs(), MakeResourceOptions(options, ""))
+            : base("tailscale-native:tailnet:Key", name, args ?? new KeyArgs(), MakeResourceOptions(options, ""))
         {
         }
 
         private Key(string name, Input<string> id, CustomResourceOptions? options = null)
-            : base("tailscale:tailnet:Key", name, null, MakeResourceOptions(options, id))
+            : base("tailscale-native:tailnet:Key", name, null, MakeResourceOptions(options, id))
         {
         }
 
@@ -50,7 +50,7 @@ namespace Pulumi.Tailscale.Tailnet
             var defaultOptions = new CustomResourceOptions
             {
                 Version = Utilities.Version,
-                PluginDownloadURL = "github://api.github.com/cloudy-sky-software/pulumi-tailscale",
+                PluginDownloadURL = "github://api.github.com/cloudy-sky-software/pulumi-tailscale-native",
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.

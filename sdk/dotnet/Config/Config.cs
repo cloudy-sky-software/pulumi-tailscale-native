@@ -4,7 +4,7 @@
 using System;
 using System.Collections.Immutable;
 
-namespace Pulumi.Tailscale
+namespace Pulumi.TailscaleNative
 {
     public static class Config
     {
@@ -30,7 +30,7 @@ namespace Pulumi.Tailscale
             }
         }
 
-        private static readonly global::Pulumi.Config __config = new global::Pulumi.Config("tailscale");
+        private static readonly global::Pulumi.Config __config = new global::Pulumi.Config("tailscale-native");
 
         private static readonly __Value<string?> _apiKey = new __Value<string?>(() => __config.Get("apiKey"));
         /// <summary>

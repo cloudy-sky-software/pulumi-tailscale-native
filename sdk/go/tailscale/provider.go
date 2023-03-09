@@ -30,7 +30,7 @@ func NewProvider(ctx *pulumi.Context,
 	}
 	opts = pkgResourceDefaultOpts(opts)
 	var resource Provider
-	err := ctx.RegisterResource("pulumi:providers:tailscale", name, args, &resource, opts...)
+	err := ctx.RegisterResource("pulumi:providers:tailscale-native", name, args, &resource, opts...)
 	if err != nil {
 		return nil, err
 	}

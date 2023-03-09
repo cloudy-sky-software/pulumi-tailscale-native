@@ -94,7 +94,7 @@ class DNSPreferences(pulumi.CustomResource):
             __props__.__dict__["magic_dns"] = magic_dns
             __props__.__dict__["tailnet"] = tailnet
         super(DNSPreferences, __self__).__init__(
-            'tailscale:tailnet:DNSPreferences',
+            'tailscale-native:tailnet:DNSPreferences',
             resource_name,
             __props__,
             opts)

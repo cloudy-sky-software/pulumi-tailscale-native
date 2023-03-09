@@ -7,9 +7,9 @@ using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
 
-namespace Pulumi.Tailscale.Tailnet
+namespace Pulumi.TailscaleNative.Tailnet
 {
-    [TailscaleResourceType("tailscale:tailnet:replaceSearchPaths")]
+    [TailscaleNativeResourceType("tailscale-native:tailnet:replaceSearchPaths")]
     public partial class ReplaceSearchPaths : global::Pulumi.CustomResource
     {
         [Output("searchPaths")]
@@ -24,12 +24,12 @@ namespace Pulumi.Tailscale.Tailnet
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
         public ReplaceSearchPaths(string name, ReplaceSearchPathsArgs args, CustomResourceOptions? options = null)
-            : base("tailscale:tailnet:replaceSearchPaths", name, args ?? new ReplaceSearchPathsArgs(), MakeResourceOptions(options, ""))
+            : base("tailscale-native:tailnet:replaceSearchPaths", name, args ?? new ReplaceSearchPathsArgs(), MakeResourceOptions(options, ""))
         {
         }
 
         private ReplaceSearchPaths(string name, Input<string> id, CustomResourceOptions? options = null)
-            : base("tailscale:tailnet:replaceSearchPaths", name, null, MakeResourceOptions(options, id))
+            : base("tailscale-native:tailnet:replaceSearchPaths", name, null, MakeResourceOptions(options, id))
         {
         }
 
@@ -38,7 +38,7 @@ namespace Pulumi.Tailscale.Tailnet
             var defaultOptions = new CustomResourceOptions
             {
                 Version = Utilities.Version,
-                PluginDownloadURL = "github://api.github.com/cloudy-sky-software/pulumi-tailscale",
+                PluginDownloadURL = "github://api.github.com/cloudy-sky-software/pulumi-tailscale-native",
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.
