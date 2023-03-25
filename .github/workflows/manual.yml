@@ -26,6 +26,14 @@ jobs:
         with:
           go-version: ${{matrix.goversion}}
 
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16.x
+
+      - name: Install @typespec/compiler
+        run: npm i -g @typespec/compiler
+
       - name: Install pulumictl
         uses: jaxxstorm/action-install-gh-release@v1.10.0
         with:

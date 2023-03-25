@@ -51,10 +51,10 @@ namespace Pulumi.TailscaleNative.Tailnet
     [OutputType]
     public sealed class GetKeyResult
     {
-        public readonly Outputs.AuthKeyRead Items;
+        public readonly Outputs.AuthKey Items;
 
         [OutputConstructor]
-        private GetKeyResult(Outputs.AuthKeyRead items)
+        private GetKeyResult(Outputs.AuthKey items)
         {
             Items = items;
         }

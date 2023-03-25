@@ -45,10 +45,10 @@ namespace Pulumi.TailscaleNative.Tailnet
     [OutputType]
     public sealed class ListKeysResult
     {
-        public readonly ImmutableArray<Outputs.AuthKeyReadItem> Items;
+        public readonly ImmutableArray<Outputs.AuthKey> Items;
 
         [OutputConstructor]
-        private ListKeysResult(ImmutableArray<Outputs.AuthKeyReadItem> items)
+        private ListKeysResult(ImmutableArray<Outputs.AuthKey> items)
         {
             Items = items;
         }

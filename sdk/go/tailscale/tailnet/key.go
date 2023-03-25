@@ -14,11 +14,8 @@ import (
 type Key struct {
 	pulumi.CustomResourceState
 
-	Capabilities  KeyCapabilitiesOutput  `pulumi:"capabilities"`
-	Created       pulumi.StringPtrOutput `pulumi:"created"`
-	Expires       pulumi.StringOutput    `pulumi:"expires"`
-	ExpirySeconds pulumi.IntOutput       `pulumi:"expirySeconds"`
-	Key           pulumi.StringOutput    `pulumi:"key"`
+	Capabilities  KeyCapabilitiesOutput `pulumi:"capabilities"`
+	ExpirySeconds pulumi.IntOutput      `pulumi:"expirySeconds"`
 }
 
 // NewKey registers a new resource with the given unique name, arguments, and options.
@@ -120,20 +117,8 @@ func (o KeyOutput) Capabilities() KeyCapabilitiesOutput {
 	return o.ApplyT(func(v *Key) KeyCapabilitiesOutput { return v.Capabilities }).(KeyCapabilitiesOutput)
 }
 
-func (o KeyOutput) Created() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Key) pulumi.StringPtrOutput { return v.Created }).(pulumi.StringPtrOutput)
-}
-
-func (o KeyOutput) Expires() pulumi.StringOutput {
-	return o.ApplyT(func(v *Key) pulumi.StringOutput { return v.Expires }).(pulumi.StringOutput)
-}
-
 func (o KeyOutput) ExpirySeconds() pulumi.IntOutput {
 	return o.ApplyT(func(v *Key) pulumi.IntOutput { return v.ExpirySeconds }).(pulumi.IntOutput)
-}
-
-func (o KeyOutput) Key() pulumi.StringOutput {
-	return o.ApplyT(func(v *Key) pulumi.StringOutput { return v.Key }).(pulumi.StringOutput)
 }
 
 func init() {

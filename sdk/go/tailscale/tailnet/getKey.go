@@ -26,7 +26,7 @@ type LookupKeyArgs struct {
 }
 
 type LookupKeyResult struct {
-	Items AuthKeyRead `pulumi:"items"`
+	Items AuthKey `pulumi:"items"`
 }
 
 func LookupKeyOutput(ctx *pulumi.Context, args LookupKeyOutputArgs, opts ...pulumi.InvokeOption) LookupKeyResultOutput {
@@ -65,8 +65,8 @@ func (o LookupKeyResultOutput) ToLookupKeyResultOutputWithContext(ctx context.Co
 	return o
 }
 
-func (o LookupKeyResultOutput) Items() AuthKeyReadOutput {
-	return o.ApplyT(func(v LookupKeyResult) AuthKeyRead { return v.Items }).(AuthKeyReadOutput)
+func (o LookupKeyResultOutput) Items() AuthKeyOutput {
+	return o.ApplyT(func(v LookupKeyResult) AuthKey { return v.Items }).(AuthKeyOutput)
 }
 
 func init() {

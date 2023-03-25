@@ -32,6 +32,14 @@ jobs:
         with:
           go-version: 1.19.x
 
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16.x
+
+      - name: Install @typespec/compiler
+        run: npm i -g @typespec/compiler
+
       - run: |
           git config --global url."https://praneetloke:${GH_REPO_PAT}@github.com/".insteadOf "https://github.com/"
         env:
@@ -140,6 +148,12 @@ jobs:
         uses: actions/setup-python@v4
         with:
           python-version: ${{matrix.pythonversion}}
+
+      - name: Install @typespec/compiler
+        run: |
+          npm i -g @typespec/compiler
+          cd api
+          npm ci
 
       - name: Generate SDK
         run: make gen ${{ matrix.language }}_sdk

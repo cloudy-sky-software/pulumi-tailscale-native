@@ -26,7 +26,7 @@ class GetKeyResult:
 
     @property
     @pulumi.getter
-    def items(self) -> 'outputs.AuthKeyRead':
+    def items(self) -> 'outputs.AuthKey':
         return pulumi.get(self, "items")
 
 

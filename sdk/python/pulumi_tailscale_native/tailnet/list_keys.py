@@ -26,7 +26,7 @@ class ListKeysResult:
 
     @property
     @pulumi.getter
-    def items(self) -> Sequence['outputs.AuthKeyReadItem']:
+    def items(self) -> Sequence['outputs.AuthKey']:
         return pulumi.get(self, "items")
 
 
