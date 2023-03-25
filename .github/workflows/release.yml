@@ -149,6 +149,12 @@ jobs:
         with:
           python-version: ${{matrix.pythonversion}}
 
+      - name: Install @typespec/compiler
+        run: |
+          npm i -g @typespec/compiler
+          cd api
+          npm ci
+
       - name: Generate SDK
         run: make gen ${{ matrix.language }}_sdk
 
