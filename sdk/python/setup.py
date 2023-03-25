@@ -15,7 +15,7 @@ class InstallPluginCommand(install):
     def run(self):
         install.run(self)
         try:
-            check_call(['pulumi', 'plugin', 'install', 'resource', 'tailscale-native', PLUGIN_VERSION, '--server', 'github://api.github.com/cloudy-sky-software/pulumi-tailscale-native'])
+            check_call(['pulumi', 'plugin', 'install', 'resource', 'tailscale-native', PLUGIN_VERSION, '--server', 'github://api.github.com/cloudy-sky-software/pulumi-tailscale'])
         except OSError as error:
             if error.errno == errno.ENOENT:
                 print(f"""
@@ -48,7 +48,7 @@ setup(name='pulumi_tailscale_native',
       keywords='pulumi tailscale-native category/cloud kind/native',
       url='https://cloudysky.software',
       project_urls={
-          'Repository': 'https://github.com/cloudy-sky-software/pulumi-tailscale-native'
+          'Repository': 'https://github.com/cloudy-sky-software/pulumi-tailscale'
       },
       license='Apache-2.0',
       packages=find_packages(),

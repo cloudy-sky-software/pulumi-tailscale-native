@@ -7,7 +7,7 @@ import (
 	"fmt"
 
 	"github.com/blang/semver"
-	tailscale "github.com/cloudy-sky-software/pulumi-tailscale-native/sdk/go/tailscale"
+	tailscale "github.com/cloudy-sky-software/pulumi-tailscale/sdk/go/tailscale"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
