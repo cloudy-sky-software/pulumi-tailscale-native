@@ -14,7 +14,7 @@ import (
 
 	openapigen "github.com/cloudy-sky-software/pulschema/pkg"
 
-	"github.com/cloudy-sky-software/pulumi-tailscale-native/provider/pkg/gen/examples"
+	"github.com/cloudy-sky-software/pulumi-tailscale/provider/pkg/gen/examples"
 )
 
 const packageName = "tailscale-native"

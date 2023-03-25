@@ -1,4 +1,4 @@
-module github.com/cloudy-sky-software/pulumi-tailscale-native/provider
+module github.com/cloudy-sky-software/pulumi-tailscale/provider
 
 go 1.18
 
