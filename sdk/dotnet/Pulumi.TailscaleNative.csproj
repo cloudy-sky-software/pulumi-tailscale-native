@@ -7,7 +7,7 @@
     <Description>A native Pulumi package for creating and managing Tailscale resources.</Description>
     <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
     <PackageProjectUrl>https://cloudysky.software</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/cloudy-sky-software/pulumi-tailscale</RepositoryUrl>
+    <RepositoryUrl>https://github.com/cloudy-sky-software/pulumi-tailscale-native</RepositoryUrl>
     <PackageIcon>logo.png</PackageIcon>
 
     <TargetFramework>net6.0</TargetFramework>

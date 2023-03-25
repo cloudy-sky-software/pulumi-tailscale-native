@@ -53,7 +53,7 @@ namespace Pulumi.TailscaleNative
         {
             var dst = src ?? new global::Pulumi.InvokeOptions{};
             dst.Version = src?.Version ?? Version;
-            dst.PluginDownloadURL = src?.PluginDownloadURL ?? "github://api.github.com/cloudy-sky-software/pulumi-tailscale";
+            dst.PluginDownloadURL = src?.PluginDownloadURL ?? "github://api.github.com/cloudy-sky-software/pulumi-tailscale-native";
             return dst;
         }
 

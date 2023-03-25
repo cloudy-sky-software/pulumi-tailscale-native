@@ -1,6 +1,6 @@
 {
     "name": "tailscale-native",
-    "displayName": "Tailscale",
+    "displayName": "Tailscale Native",
     "description": "A native Pulumi package for creating and managing Tailscale resources.",
     "keywords": [
         "pulumi",
@@ -10,8 +10,8 @@
     ],
     "homepage": "https://cloudysky.software",
     "license": "Apache-2.0",
-    "repository": "https://github.com/cloudy-sky-software/pulumi-tailscale",
-    "pluginDownloadURL": "github://api.github.com/cloudy-sky-software/pulumi-tailscale",
+    "repository": "https://github.com/cloudy-sky-software/pulumi-tailscale-native",
+    "pluginDownloadURL": "github://api.github.com/cloudy-sky-software/pulumi-tailscale-native",
     "publisher": "Cloudy Sky Software",
     "language": {
         "csharp": {
@@ -27,9 +27,9 @@
             "rootNamespace": "Pulumi"
         },
         "go": {
-            "importBasePath": "github.com/cloudy-sky-software/pulumi-tailscale/sdk/go/tailscale",
+            "importBasePath": "github.com/cloudy-sky-software/pulumi-tailscale-native/sdk/go/tailscale",
             "packageImportAliases": {
-                "github.com/cloudy-sky-software/pulumi-tailscale/sdk/go/tailscale": "tailscale"
+                "github.com/cloudy-sky-software/pulumi-tailscale-native/sdk/go/tailscale": "tailscale"
             }
         },
         "nodejs": {
@@ -48,7 +48,7 @@
                 "@types/shell-quote": "^1.6.0",
                 "mocha": "^5.2.0"
             },
-            "packageName": "@cloudyskysoftware/pulumi-tailscale"
+            "packageName": "@cloudyskysoftware/pulumi-tailscale-native"
         },
         "python": {
             "packageName": "pulumi_tailscale_native",
