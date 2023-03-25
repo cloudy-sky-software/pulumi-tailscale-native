@@ -110,7 +110,7 @@ class NameServers(pulumi.CustomResource):
             __props__.__dict__["magic_dns"] = magic_dns
             __props__.__dict__["tailnet"] = tailnet
         super(NameServers, __self__).__init__(
-            'tailscale:tailnet:NameServers',
+            'tailscale-native:tailnet:NameServers',
             resource_name,
             __props__,
             opts)

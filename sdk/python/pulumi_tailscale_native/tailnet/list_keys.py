@@ -47,7 +47,7 @@ def list_keys(tailnet: Optional[str] = None,
     __args__ = dict()
     __args__['tailnet'] = tailnet
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('tailscale:tailnet:listKeys', __args__, opts=opts, typ=ListKeysResult).value
+    __ret__ = pulumi.runtime.invoke('tailscale-native:tailnet:listKeys', __args__, opts=opts, typ=ListKeysResult).value
 
     return AwaitableListKeysResult(
         items=__ret__.items)

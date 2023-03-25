@@ -18,7 +18,7 @@ export class AuthorizeDevice extends pulumi.CustomResource {
     }
 
     /** @internal */
-    public static readonly __pulumiType = 'tailscale:device:authorizeDevice';
+    public static readonly __pulumiType = 'tailscale-native:device:authorizeDevice';
 
     /**
      * Returns true if the given object is an instance of AuthorizeDevice.  This is designed to work even

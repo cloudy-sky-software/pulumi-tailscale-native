@@ -9,7 +9,7 @@ import * as utilities from "./utilities";
  */
 export class Provider extends pulumi.ProviderResource {
     /** @internal */
-    public static readonly __pulumiType = 'tailscale';
+    public static readonly __pulumiType = 'tailscale-native';
 
     /**
      * Returns true if the given object is an instance of Provider.  This is designed to work even
@@ -34,7 +34,7 @@ export class Provider extends pulumi.ProviderResource {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         {
-            resourceInputs["apiKey"] = (args?.apiKey ? pulumi.secret(args.apiKey) : undefined) ?? utilities.getEnv("TAILSCALE_APIKEY");
+            resourceInputs["apiKey"] = (args?.apiKey ? pulumi.secret(args.apiKey) : undefined) ?? utilities.getEnv("TAILSCALE_NATIVE_APIKEY", "TAILSCALE_APIKEY");
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(Provider.__pulumiType, name, resourceInputs, opts);

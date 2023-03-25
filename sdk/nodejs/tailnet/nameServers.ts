@@ -18,7 +18,7 @@ export class NameServers extends pulumi.CustomResource {
     }
 
     /** @internal */
-    public static readonly __pulumiType = 'tailscale:tailnet:NameServers';
+    public static readonly __pulumiType = 'tailscale-native:tailnet:NameServers';
 
     /**
      * Returns true if the given object is an instance of NameServers.  This is designed to work even

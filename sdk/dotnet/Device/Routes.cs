@@ -7,9 +7,9 @@ using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
 
-namespace Pulumi.Tailscale.Device
+namespace Pulumi.TailscaleNative.Device
 {
-    [TailscaleResourceType("tailscale:device:Routes")]
+    [TailscaleNativeResourceType("tailscale-native:device:Routes")]
     public partial class Routes : global::Pulumi.CustomResource
     {
         [Output("routes")]
@@ -24,12 +24,12 @@ namespace Pulumi.Tailscale.Device
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
         public Routes(string name, RoutesArgs args, CustomResourceOptions? options = null)
-            : base("tailscale:device:Routes", name, args ?? new RoutesArgs(), MakeResourceOptions(options, ""))
+            : base("tailscale-native:device:Routes", name, args ?? new RoutesArgs(), MakeResourceOptions(options, ""))
         {
         }
 
         private Routes(string name, Input<string> id, CustomResourceOptions? options = null)
-            : base("tailscale:device:Routes", name, null, MakeResourceOptions(options, id))
+            : base("tailscale-native:device:Routes", name, null, MakeResourceOptions(options, id))
         {
         }
 
@@ -38,7 +38,7 @@ namespace Pulumi.Tailscale.Device
             var defaultOptions = new CustomResourceOptions
             {
                 Version = Utilities.Version,
-                PluginDownloadURL = "github://api.github.com/cloudy-sky-software/pulumi-tailscale",
+                PluginDownloadURL = "github://api.github.com/cloudy-sky-software/pulumi-tailscale-native",
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.

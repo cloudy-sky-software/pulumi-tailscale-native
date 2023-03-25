@@ -7,15 +7,15 @@ using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
 
-namespace Pulumi.Tailscale.Tailnet
+namespace Pulumi.TailscaleNative.Tailnet
 {
     public static class GetKey
     {
         public static Task<GetKeyResult> InvokeAsync(GetKeyArgs args, InvokeOptions? options = null)
-            => global::Pulumi.Deployment.Instance.InvokeAsync<GetKeyResult>("tailscale:tailnet:getKey", args ?? new GetKeyArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GetKeyResult>("tailscale-native:tailnet:getKey", args ?? new GetKeyArgs(), options.WithDefaults());
 
         public static Output<GetKeyResult> Invoke(GetKeyInvokeArgs args, InvokeOptions? options = null)
-            => global::Pulumi.Deployment.Instance.Invoke<GetKeyResult>("tailscale:tailnet:getKey", args ?? new GetKeyInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<GetKeyResult>("tailscale-native:tailnet:getKey", args ?? new GetKeyInvokeArgs(), options.WithDefaults());
     }
 
 

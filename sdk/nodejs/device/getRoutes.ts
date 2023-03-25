@@ -10,7 +10,7 @@ import * as utilities from "../utilities";
 export function getRoutes(args: GetRoutesArgs, opts?: pulumi.InvokeOptions): Promise<GetRoutesResult> {
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
-    return pulumi.runtime.invoke("tailscale:device:getRoutes", {
+    return pulumi.runtime.invoke("tailscale-native:device:getRoutes", {
         "id": args.id,
     }, opts);
 }

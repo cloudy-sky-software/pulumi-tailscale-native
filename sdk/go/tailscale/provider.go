@@ -23,14 +23,14 @@ func NewProvider(ctx *pulumi.Context,
 	}
 
 	if args.ApiKey == nil {
-		args.ApiKey = pulumi.StringPtr(getEnvOrDefault("", nil, "TAILSCALE_APIKEY").(string))
+		args.ApiKey = pulumi.StringPtr(getEnvOrDefault("", nil, "TAILSCALE_NATIVE_APIKEY", "TAILSCALE_APIKEY").(string))
 	}
 	if args.ApiKey != nil {
 		args.ApiKey = pulumi.ToSecret(args.ApiKey).(pulumi.StringPtrInput)
 	}
 	opts = pkgResourceDefaultOpts(opts)
 	var resource Provider
-	err := ctx.RegisterResource("pulumi:providers:tailscale", name, args, &resource, opts...)
+	err := ctx.RegisterResource("pulumi:providers:tailscale-native", name, args, &resource, opts...)
 	if err != nil {
 		return nil, err
 	}

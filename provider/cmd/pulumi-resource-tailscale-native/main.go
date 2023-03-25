@@ -5,11 +5,11 @@ package main
 import (
 	_ "embed"
 
-	"github.com/cloudy-sky-software/pulumi-tailscale/provider/pkg/provider"
-	"github.com/cloudy-sky-software/pulumi-tailscale/provider/pkg/version"
+	"github.com/cloudy-sky-software/pulumi-tailscale-native/provider/pkg/provider"
+	"github.com/cloudy-sky-software/pulumi-tailscale-native/provider/pkg/version"
 )
 
-var providerName = "tailscale"
+var providerName = "tailscale-native"
 
 //go:embed schema.json
 var pulumiSchema []byte

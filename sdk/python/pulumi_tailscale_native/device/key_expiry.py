@@ -94,7 +94,7 @@ class KeyExpiry(pulumi.CustomResource):
                 raise TypeError("Missing required property 'key_expiry_disabled'")
             __props__.__dict__["key_expiry_disabled"] = key_expiry_disabled
         super(KeyExpiry, __self__).__init__(
-            'tailscale:device:KeyExpiry',
+            'tailscale-native:device:KeyExpiry',
             resource_name,
             __props__,
             opts)

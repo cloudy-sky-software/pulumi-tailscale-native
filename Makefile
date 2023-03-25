@@ -2,11 +2,11 @@ PROJECT_NAME := Pulumi Tailscale Resource Provider
 
 SHELL = /bin/bash
 
-PACK             := tailscale
+PACK             := tailscale-native
 PACKDIR          := sdk
-PROJECT          := github.com/cloudy-sky-software/pulumi-tailscale
-NODE_MODULE_NAME := @cloudyskysoftware/pulumi-tailscale
-NUGET_PKG_NAME   := Pulumi.Tailscale
+PROJECT          := github.com/cloudy-sky-software/pulumi-tailscale-native
+NODE_MODULE_NAME := @cloudyskysoftware/pulumi-tailscale-native
+NUGET_PKG_NAME   := Pulumi.TailscaleNative
 
 PROVIDER        := pulumi-resource-${PACK}
 CODEGEN         := pulumi-gen-${PACK}
@@ -14,7 +14,7 @@ VERSION         ?= $(shell pulumictl get version)
 PROVIDER_PATH   := provider
 VERSION_PATH     := ${PROVIDER_PATH}/pkg/version.Version
 
-SCHEMA_FILE     := provider/cmd/pulumi-resource-tailscale/schema.json
+SCHEMA_FILE     := provider/cmd/pulumi-resource-tailscale-native/schema.json
 GOPATH			:= $(shell go env GOPATH)
 
 WORKING_DIR     := $(shell pwd)

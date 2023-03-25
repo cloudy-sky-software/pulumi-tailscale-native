@@ -29,7 +29,7 @@ func NewAuthorizeDevice(ctx *pulumi.Context,
 	}
 	opts = pkgResourceDefaultOpts(opts)
 	var resource AuthorizeDevice
-	err := ctx.RegisterResource("tailscale:device:authorizeDevice", name, args, &resource, opts...)
+	err := ctx.RegisterResource("tailscale-native:device:authorizeDevice", name, args, &resource, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -41,7 +41,7 @@ func NewAuthorizeDevice(ctx *pulumi.Context,
 func GetAuthorizeDevice(ctx *pulumi.Context,
 	name string, id pulumi.IDInput, state *AuthorizeDeviceState, opts ...pulumi.ResourceOption) (*AuthorizeDevice, error) {
 	var resource AuthorizeDevice
-	err := ctx.ReadResource("tailscale:device:authorizeDevice", name, id, state, &resource, opts...)
+	err := ctx.ReadResource("tailscale-native:device:authorizeDevice", name, id, state, &resource, opts...)
 	if err != nil {
 		return nil, err
 	}

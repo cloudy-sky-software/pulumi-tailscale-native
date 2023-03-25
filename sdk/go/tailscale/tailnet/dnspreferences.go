@@ -29,7 +29,7 @@ func NewDNSPreferences(ctx *pulumi.Context,
 	}
 	opts = pkgResourceDefaultOpts(opts)
 	var resource DNSPreferences
-	err := ctx.RegisterResource("tailscale:tailnet:DNSPreferences", name, args, &resource, opts...)
+	err := ctx.RegisterResource("tailscale-native:tailnet:DNSPreferences", name, args, &resource, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -41,7 +41,7 @@ func NewDNSPreferences(ctx *pulumi.Context,
 func GetDNSPreferences(ctx *pulumi.Context,
 	name string, id pulumi.IDInput, state *DNSPreferencesState, opts ...pulumi.ResourceOption) (*DNSPreferences, error) {
 	var resource DNSPreferences
-	err := ctx.ReadResource("tailscale:tailnet:DNSPreferences", name, id, state, &resource, opts...)
+	err := ctx.ReadResource("tailscale-native:tailnet:DNSPreferences", name, id, state, &resource, opts...)
 	if err != nil {
 		return nil, err
 	}

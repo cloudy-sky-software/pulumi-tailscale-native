@@ -29,7 +29,7 @@ func NewRoutes(ctx *pulumi.Context,
 	}
 	opts = pkgResourceDefaultOpts(opts)
 	var resource Routes
-	err := ctx.RegisterResource("tailscale:device:Routes", name, args, &resource, opts...)
+	err := ctx.RegisterResource("tailscale-native:device:Routes", name, args, &resource, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -41,7 +41,7 @@ func NewRoutes(ctx *pulumi.Context,
 func GetRoutes(ctx *pulumi.Context,
 	name string, id pulumi.IDInput, state *RoutesState, opts ...pulumi.ResourceOption) (*Routes, error) {
 	var resource Routes
-	err := ctx.ReadResource("tailscale:device:Routes", name, id, state, &resource, opts...)
+	err := ctx.ReadResource("tailscale-native:device:Routes", name, id, state, &resource, opts...)
 	if err != nil {
 		return nil, err
 	}

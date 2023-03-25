@@ -13,7 +13,7 @@ import (
 func LookupAcl(ctx *pulumi.Context, args *LookupAclArgs, opts ...pulumi.InvokeOption) (*LookupAclResult, error) {
 	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupAclResult
-	err := ctx.Invoke("tailscale:tailnet:getAcl", args, &rv, opts...)
+	err := ctx.Invoke("tailscale-native:tailnet:getAcl", args, &rv, opts...)
 	if err != nil {
 		return nil, err
 	}

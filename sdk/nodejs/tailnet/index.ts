@@ -73,19 +73,19 @@ const _module = {
     version: utilities.getVersion(),
     construct: (name: string, type: string, urn: string): pulumi.Resource => {
         switch (type) {
-            case "tailscale:tailnet:Acl":
+            case "tailscale-native:tailnet:Acl":
                 return new Acl(name, <any>undefined, { urn })
-            case "tailscale:tailnet:DNSPreferences":
+            case "tailscale-native:tailnet:DNSPreferences":
                 return new DNSPreferences(name, <any>undefined, { urn })
-            case "tailscale:tailnet:Key":
+            case "tailscale-native:tailnet:Key":
                 return new Key(name, <any>undefined, { urn })
-            case "tailscale:tailnet:NameServers":
+            case "tailscale-native:tailnet:NameServers":
                 return new NameServers(name, <any>undefined, { urn })
-            case "tailscale:tailnet:replaceSearchPaths":
+            case "tailscale-native:tailnet:replaceSearchPaths":
                 return new ReplaceSearchPaths(name, <any>undefined, { urn })
             default:
                 throw new Error(`unknown resource type ${type}`);
         }
     },
 };
-pulumi.runtime.registerResourceModule("tailscale", "tailnet", _module)
+pulumi.runtime.registerResourceModule("tailscale-native", "tailnet", _module)

@@ -29,7 +29,7 @@ func NewReplaceSearchPaths(ctx *pulumi.Context,
 	}
 	opts = pkgResourceDefaultOpts(opts)
 	var resource ReplaceSearchPaths
-	err := ctx.RegisterResource("tailscale:tailnet:replaceSearchPaths", name, args, &resource, opts...)
+	err := ctx.RegisterResource("tailscale-native:tailnet:replaceSearchPaths", name, args, &resource, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -41,7 +41,7 @@ func NewReplaceSearchPaths(ctx *pulumi.Context,
 func GetReplaceSearchPaths(ctx *pulumi.Context,
 	name string, id pulumi.IDInput, state *ReplaceSearchPathsState, opts ...pulumi.ResourceOption) (*ReplaceSearchPaths, error) {
 	var resource ReplaceSearchPaths
-	err := ctx.ReadResource("tailscale:tailnet:replaceSearchPaths", name, id, state, &resource, opts...)
+	err := ctx.ReadResource("tailscale-native:tailnet:replaceSearchPaths", name, id, state, &resource, opts...)
 	if err != nil {
 		return nil, err
 	}

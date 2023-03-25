@@ -7,19 +7,19 @@ using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
 
-namespace Pulumi.Tailscale.Tailnet.Outputs
+namespace Pulumi.TailscaleNative.Tailnet.Outputs
 {
 
     [OutputType]
     public sealed class AclRule
     {
-        public readonly Pulumi.Tailscale.Tailnet.AclRuleAction Action;
+        public readonly Pulumi.TailscaleNative.Tailnet.AclRuleAction Action;
         public readonly ImmutableArray<string> Ports;
         public readonly ImmutableArray<string> Users;
 
         [OutputConstructor]
         private AclRule(
-            Pulumi.Tailscale.Tailnet.AclRuleAction action,
+            Pulumi.TailscaleNative.Tailnet.AclRuleAction action,
 
             ImmutableArray<string> ports,
 

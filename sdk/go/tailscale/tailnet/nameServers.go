@@ -33,7 +33,7 @@ func NewNameServers(ctx *pulumi.Context,
 	}
 	opts = pkgResourceDefaultOpts(opts)
 	var resource NameServers
-	err := ctx.RegisterResource("tailscale:tailnet:NameServers", name, args, &resource, opts...)
+	err := ctx.RegisterResource("tailscale-native:tailnet:NameServers", name, args, &resource, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -45,7 +45,7 @@ func NewNameServers(ctx *pulumi.Context,
 func GetNameServers(ctx *pulumi.Context,
 	name string, id pulumi.IDInput, state *NameServersState, opts ...pulumi.ResourceOption) (*NameServers, error) {
 	var resource NameServers
-	err := ctx.ReadResource("tailscale:tailnet:NameServers", name, id, state, &resource, opts...)
+	err := ctx.ReadResource("tailscale-native:tailnet:NameServers", name, id, state, &resource, opts...)
 	if err != nil {
 		return nil, err
 	}

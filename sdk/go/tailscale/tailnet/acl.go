@@ -57,7 +57,7 @@ func NewAcl(ctx *pulumi.Context,
 	}
 	opts = pkgResourceDefaultOpts(opts)
 	var resource Acl
-	err := ctx.RegisterResource("tailscale:tailnet:Acl", name, args, &resource, opts...)
+	err := ctx.RegisterResource("tailscale-native:tailnet:Acl", name, args, &resource, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -69,7 +69,7 @@ func NewAcl(ctx *pulumi.Context,
 func GetAcl(ctx *pulumi.Context,
 	name string, id pulumi.IDInput, state *AclState, opts ...pulumi.ResourceOption) (*Acl, error) {
 	var resource Acl
-	err := ctx.ReadResource("tailscale:tailnet:Acl", name, id, state, &resource, opts...)
+	err := ctx.ReadResource("tailscale-native:tailnet:Acl", name, id, state, &resource, opts...)
 	if err != nil {
 		return nil, err
 	}

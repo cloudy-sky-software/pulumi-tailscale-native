@@ -10,5 +10,5 @@ import (
 
 // The API key
 func GetApiKey(ctx *pulumi.Context) string {
-	return config.Get(ctx, "tailscale:apiKey")
+	return config.Get(ctx, "tailscale-native:apiKey")
 }

@@ -18,7 +18,7 @@ export class ReplaceSearchPaths extends pulumi.CustomResource {
     }
 
     /** @internal */
-    public static readonly __pulumiType = 'tailscale:tailnet:replaceSearchPaths';
+    public static readonly __pulumiType = 'tailscale-native:tailnet:replaceSearchPaths';
 
     /**
      * Returns true if the given object is an instance of ReplaceSearchPaths.  This is designed to work even

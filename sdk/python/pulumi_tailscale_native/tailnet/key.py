@@ -115,7 +115,7 @@ class Key(pulumi.CustomResource):
             __props__.__dict__["expires"] = None
             __props__.__dict__["key"] = None
         super(Key, __self__).__init__(
-            'tailscale:tailnet:Key',
+            'tailscale-native:tailnet:Key',
             resource_name,
             __props__,
             opts)

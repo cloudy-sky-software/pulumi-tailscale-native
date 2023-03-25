@@ -13,7 +13,7 @@ import (
 func GetDevice(ctx *pulumi.Context, args *GetDeviceArgs, opts ...pulumi.InvokeOption) (*GetDeviceResult, error) {
 	opts = pkgInvokeDefaultOpts(opts)
 	var rv GetDeviceResult
-	err := ctx.Invoke("tailscale:device:getDevice", args, &rv, opts...)
+	err := ctx.Invoke("tailscale-native:device:getDevice", args, &rv, opts...)
 	if err != nil {
 		return nil, err
 	}

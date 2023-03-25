@@ -10,7 +10,7 @@ import * as utilities from "../utilities";
 export function getDNSPreferences(args: GetDNSPreferencesArgs, opts?: pulumi.InvokeOptions): Promise<GetDNSPreferencesResult> {
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
-    return pulumi.runtime.invoke("tailscale:tailnet:getDNSPreferences", {
+    return pulumi.runtime.invoke("tailscale-native:tailnet:getDNSPreferences", {
         "tailnet": args.tailnet,
     }, opts);
 }

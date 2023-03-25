@@ -7,15 +7,15 @@ using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
 
-namespace Pulumi.Tailscale.Device
+namespace Pulumi.TailscaleNative.Device
 {
     public static class GetRoutes
     {
         public static Task<GetRoutesResult> InvokeAsync(GetRoutesArgs args, InvokeOptions? options = null)
-            => global::Pulumi.Deployment.Instance.InvokeAsync<GetRoutesResult>("tailscale:device:getRoutes", args ?? new GetRoutesArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GetRoutesResult>("tailscale-native:device:getRoutes", args ?? new GetRoutesArgs(), options.WithDefaults());
 
         public static Output<GetRoutesResult> Invoke(GetRoutesInvokeArgs args, InvokeOptions? options = null)
-            => global::Pulumi.Deployment.Instance.Invoke<GetRoutesResult>("tailscale:device:getRoutes", args ?? new GetRoutesInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<GetRoutesResult>("tailscale-native:device:getRoutes", args ?? new GetRoutesInvokeArgs(), options.WithDefaults());
     }
 
 

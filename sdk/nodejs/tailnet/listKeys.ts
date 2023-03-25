@@ -10,7 +10,7 @@ import * as utilities from "../utilities";
 export function listKeys(args: ListKeysArgs, opts?: pulumi.InvokeOptions): Promise<ListKeysResult> {
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
-    return pulumi.runtime.invoke("tailscale:tailnet:listKeys", {
+    return pulumi.runtime.invoke("tailscale-native:tailnet:listKeys", {
         "tailnet": args.tailnet,
     }, opts);
 }

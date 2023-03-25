@@ -7,7 +7,7 @@ using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
 
-namespace Pulumi.Tailscale.Device.Outputs
+namespace Pulumi.TailscaleNative.Device.Outputs
 {
 
     [OutputType]

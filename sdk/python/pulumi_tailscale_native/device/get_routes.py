@@ -47,7 +47,7 @@ def get_routes(id: Optional[str] = None,
     __args__ = dict()
     __args__['id'] = id
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('tailscale:device:getRoutes', __args__, opts=opts, typ=GetRoutesResult).value
+    __ret__ = pulumi.runtime.invoke('tailscale-native:device:getRoutes', __args__, opts=opts, typ=GetRoutesResult).value
 
     return AwaitableGetRoutesResult(
         items=__ret__.items)

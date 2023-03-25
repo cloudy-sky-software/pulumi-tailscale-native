@@ -7,13 +7,13 @@ using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
 
-namespace Pulumi.Tailscale.Tailnet.Inputs
+namespace Pulumi.TailscaleNative.Tailnet.Inputs
 {
 
     public sealed class AclRuleArgs : global::Pulumi.ResourceArgs
     {
         [Input("action", required: true)]
-        public Input<Pulumi.Tailscale.Tailnet.AclRuleAction> Action { get; set; } = null!;
+        public Input<Pulumi.TailscaleNative.Tailnet.AclRuleAction> Action { get; set; } = null!;
 
         [Input("ports", required: true)]
         private InputList<string>? _ports;

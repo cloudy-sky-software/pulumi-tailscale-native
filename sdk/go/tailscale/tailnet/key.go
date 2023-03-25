@@ -36,7 +36,7 @@ func NewKey(ctx *pulumi.Context,
 	}
 	opts = pkgResourceDefaultOpts(opts)
 	var resource Key
-	err := ctx.RegisterResource("tailscale:tailnet:Key", name, args, &resource, opts...)
+	err := ctx.RegisterResource("tailscale-native:tailnet:Key", name, args, &resource, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -48,7 +48,7 @@ func NewKey(ctx *pulumi.Context,
 func GetKey(ctx *pulumi.Context,
 	name string, id pulumi.IDInput, state *KeyState, opts ...pulumi.ResourceOption) (*Key, error) {
 	var resource Key
-	err := ctx.ReadResource("tailscale:tailnet:Key", name, id, state, &resource, opts...)
+	err := ctx.ReadResource("tailscale-native:tailnet:Key", name, id, state, &resource, opts...)
 	if err != nil {
 		return nil, err
 	}

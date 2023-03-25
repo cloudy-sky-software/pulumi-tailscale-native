@@ -67,7 +67,7 @@ func getEnvOrDefault(def interface{}, parser envParser, vars ...string) interfac
 func PkgVersion() (semver.Version, error) {
 	type sentinal struct{}
 	pkgPath := reflect.TypeOf(sentinal{}).PkgPath()
-	re := regexp.MustCompile("^.*/pulumi-tailscale/sdk(/v\\d+)?")
+	re := regexp.MustCompile("^.*/pulumi-tailscale-native/sdk(/v\\d+)?")
 	if match := re.FindStringSubmatch(pkgPath); match != nil {
 		vStr := match[1]
 		if len(vStr) == 0 { // If the version capture group was empty, default to v1.
@@ -88,14 +88,14 @@ func isZero(v interface{}) bool {
 
 // pkgResourceDefaultOpts provides package level defaults to pulumi.OptionResource.
 func pkgResourceDefaultOpts(opts []pulumi.ResourceOption) []pulumi.ResourceOption {
-	defaults := []pulumi.ResourceOption{pulumi.PluginDownloadURL("github://api.github.com/cloudy-sky-software/pulumi-tailscale")}
+	defaults := []pulumi.ResourceOption{pulumi.PluginDownloadURL("github://api.github.com/cloudy-sky-software/pulumi-tailscale-native")}
 
 	return append(defaults, opts...)
 }
 
 // pkgInvokeDefaultOpts provides package level defaults to pulumi.OptionInvoke.
 func pkgInvokeDefaultOpts(opts []pulumi.InvokeOption) []pulumi.InvokeOption {
-	defaults := []pulumi.InvokeOption{pulumi.PluginDownloadURL("github://api.github.com/cloudy-sky-software/pulumi-tailscale")}
+	defaults := []pulumi.InvokeOption{pulumi.PluginDownloadURL("github://api.github.com/cloudy-sky-software/pulumi-tailscale-native")}
 
 	return append(defaults, opts...)
 }

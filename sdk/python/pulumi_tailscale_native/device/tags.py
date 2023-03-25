@@ -94,7 +94,7 @@ class Tags(pulumi.CustomResource):
                 raise TypeError("Missing required property 'tags'")
             __props__.__dict__["tags"] = tags
         super(Tags, __self__).__init__(
-            'tailscale:device:Tags',
+            'tailscale-native:device:Tags',
             resource_name,
             __props__,
             opts)

@@ -209,7 +209,7 @@ class Acl(pulumi.CustomResource):
                 raise TypeError("Missing required property 'tests'")
             __props__.__dict__["tests"] = tests
         super(Acl, __self__).__init__(
-            'tailscale:tailnet:Acl',
+            'tailscale-native:tailnet:Acl',
             resource_name,
             __props__,
             opts)
