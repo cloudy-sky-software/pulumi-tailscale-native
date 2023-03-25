@@ -3,5 +3,5 @@ emit:
   - "@typespec/openapi3"
 options:
   "@typespec/openapi3":
-    emitter-output-dir: "{output-dir}/../provider/cmd/pulumi-gen-tailscale"
+    emitter-output-dir: "{output-dir}/../provider/cmd/pulumi-gen-tailscale-native"
     output-file: "openapi.yml"
