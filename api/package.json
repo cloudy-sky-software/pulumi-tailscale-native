@@ -6,6 +6,6 @@
   "dependencies": {
     "@typespec/compiler": "^0.41.0",
     "@typespec/openapi3": "^0.41.0",
-    "@typespec/rest": "^0.41.0"
+    "@typespec/rest": "^0.42.0"
   }
 }
