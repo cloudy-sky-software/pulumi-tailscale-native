@@ -3,11 +3,11 @@ module github.com/cloudy-sky-software/pulumi-tailscale-native/provider
 go 1.18
 
 require (
-	github.com/cloudy-sky-software/pulschema v0.0.0-20230309052312-be969ef2cd14
-	github.com/cloudy-sky-software/pulumi-provider-framework v0.0.0-20230309043123-29067ead2716
+	github.com/cloudy-sky-software/pulschema v0.0.0-20230323045932-3fcdac4fb65e
+	github.com/cloudy-sky-software/pulumi-provider-framework v0.0.0-20230325043241-a9f6004209c2
 	github.com/getkin/kin-openapi v0.115.0
-	github.com/pulumi/pulumi/pkg/v3 v3.57.0
-	github.com/pulumi/pulumi/sdk/v3 v3.57.0
+	github.com/pulumi/pulumi/pkg/v3 v3.59.1
+	github.com/pulumi/pulumi/sdk/v3 v3.59.1
 )
 
 require github.com/stretchr/testify v1.8.2
@@ -89,7 +89,7 @@ require (
 	github.com/gofrs/uuid v4.3.0+incompatible // indirect
 	github.com/gogo/protobuf v1.3.2 // indirect
 	github.com/golang-jwt/jwt/v4 v4.4.2 // indirect
-	github.com/golang/glog v1.1.0 // indirect
+	github.com/golang/glog v1.1.1 // indirect
 	github.com/golang/groupcache v0.0.0-20210331224755-41bb18bfe9da // indirect
 	github.com/golang/protobuf v1.5.3 // indirect
 	github.com/golang/snappy v0.0.4 // indirect
@@ -169,6 +169,7 @@ require (
 	github.com/segmentio/encoding v0.3.6 // indirect
 	github.com/sergi/go-diff v1.2.0 // indirect
 	github.com/skeema/knownhosts v1.1.0 // indirect
+	github.com/spf13/afero v1.9.5 // indirect
 	github.com/spf13/cobra v1.6.1 // indirect
 	github.com/spf13/pflag v1.0.5 // indirect
 	github.com/texttheater/golang-levenshtein v1.0.1 // indirect
@@ -186,11 +187,11 @@ require (
 	gocloud.dev/secrets/hashivault v0.27.0 // indirect
 	golang.org/x/crypto v0.3.0 // indirect
 	golang.org/x/mod v0.8.0 // indirect
-	golang.org/x/net v0.7.0 // indirect
+	golang.org/x/net v0.8.0 // indirect
 	golang.org/x/oauth2 v0.4.0 // indirect
 	golang.org/x/sync v0.1.0 // indirect
-	golang.org/x/sys v0.5.0 // indirect
-	golang.org/x/term v0.5.0 // indirect
+	golang.org/x/sys v0.6.0 // indirect
+	golang.org/x/term v0.6.0 // indirect
 	golang.org/x/text v0.8.0 // indirect
 	golang.org/x/time v0.1.0 // indirect
 	golang.org/x/tools v0.6.0 // indirect
@@ -198,7 +199,7 @@ require (
 	google.golang.org/api v0.103.0 // indirect
 	google.golang.org/appengine v1.6.7 // indirect
 	google.golang.org/genproto v0.0.0-20230110181048-76db0878b65f // indirect
-	google.golang.org/grpc v1.53.0 // indirect
+	google.golang.org/grpc v1.54.0 // indirect
 	google.golang.org/protobuf v1.28.1 // indirect
 	gopkg.in/square/go-jose.v2 v2.6.0 // indirect
 	gopkg.in/warnings.v0 v0.1.2 // indirect
