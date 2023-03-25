@@ -44,7 +44,7 @@ const testCreateJSONPayload = `{
 func readFileFromProviderResourceDir(t *testing.T, filename string) []byte {
 	t.Helper()
 
-	b, err := os.ReadFile(filepath.Join("..", "..", "cmd", "pulumi-resource-tailscale-native", filename))
+	b, err := os.ReadFile(filepath.Join("..", "..", "cmd", "pulumi-resource-tailscale", filename))
 	if err != nil {
 		t.Fatalf("Failed reading openapi.yml: %v", err)
 	}
