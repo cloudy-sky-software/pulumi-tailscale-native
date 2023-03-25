@@ -6,8 +6,8 @@ require (
 	github.com/cloudy-sky-software/pulschema v0.0.0-20230309052312-be969ef2cd14
 	github.com/cloudy-sky-software/pulumi-provider-framework v0.0.0-20230309043123-29067ead2716
 	github.com/getkin/kin-openapi v0.115.0
-	github.com/pulumi/pulumi/pkg/v3 v3.57.0
-	github.com/pulumi/pulumi/sdk/v3 v3.57.0
+	github.com/pulumi/pulumi/pkg/v3 v3.59.1
+	github.com/pulumi/pulumi/sdk/v3 v3.59.1
 )
 
 require github.com/stretchr/testify v1.8.2
@@ -169,6 +169,7 @@ require (
 	github.com/segmentio/encoding v0.3.6 // indirect
 	github.com/sergi/go-diff v1.2.0 // indirect
 	github.com/skeema/knownhosts v1.1.0 // indirect
+	github.com/spf13/afero v1.9.5 // indirect
 	github.com/spf13/cobra v1.6.1 // indirect
 	github.com/spf13/pflag v1.0.5 // indirect
 	github.com/texttheater/golang-levenshtein v1.0.1 // indirect
