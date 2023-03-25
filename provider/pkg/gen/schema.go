@@ -24,7 +24,7 @@ func PulumiSchema(openapiDoc openapi3.T) (pschema.PackageSpec, openapigen.Provid
 	pkg := pschema.PackageSpec{
 		Name:        packageName,
 		Description: "A native Pulumi package for creating and managing Tailscale resources.",
-		DisplayName: "Tailscale",
+		DisplayName: "Tailscale Native",
 		License:     "Apache-2.0",
 		Keywords: []string{
 			"pulumi",
@@ -34,7 +34,7 @@ func PulumiSchema(openapiDoc openapi3.T) (pschema.PackageSpec, openapigen.Provid
 		},
 		Homepage:   "https://cloudysky.software",
 		Publisher:  "Cloudy Sky Software",
-		Repository: "https://github.com/cloudy-sky-software/pulumi-tailscale",
+		Repository: "https://github.com/cloudy-sky-software/pulumi-tailscale-native",
 
 		Config: pschema.ConfigSpec{
 			Variables: map[string]pschema.PropertySpec{
@@ -75,7 +75,7 @@ func PulumiSchema(openapiDoc openapi3.T) (pschema.PackageSpec, openapigen.Provid
 			},
 		},
 
-		PluginDownloadURL: "github://api.github.com/cloudy-sky-software/pulumi-tailscale",
+		PluginDownloadURL: "github://api.github.com/cloudy-sky-software/pulumi-tailscale-native",
 		Types:             map[string]pschema.ComplexTypeSpec{},
 		Resources:         map[string]pschema.ResourceSpec{},
 		Functions:         map[string]pschema.FunctionSpec{},
@@ -120,13 +120,13 @@ func PulumiSchema(openapiDoc openapi3.T) (pschema.PackageSpec, openapigen.Provid
 	})
 
 	pkg.Language["go"] = rawMessage(map[string]interface{}{
-		"importBasePath": "github.com/cloudy-sky-software/pulumi-tailscale/sdk/go/tailscale",
+		"importBasePath": "github.com/cloudy-sky-software/pulumi-tailscale-native/sdk/go/tailscale",
 		"packageImportAliases": map[string]string{
-			"github.com/cloudy-sky-software/pulumi-tailscale/sdk/go/tailscale": "tailscale",
+			"github.com/cloudy-sky-software/pulumi-tailscale-native/sdk/go/tailscale": "tailscale",
 		},
 	})
 	pkg.Language["nodejs"] = rawMessage(map[string]interface{}{
-		"packageName": "@cloudyskysoftware/pulumi-tailscale",
+		"packageName": "@cloudyskysoftware/pulumi-tailscale-native",
 		"dependencies": map[string]string{
 			"@pulumi/pulumi":    "^3.0.0",
 			"shell-quote":       "^1.6.1",
