@@ -21,10 +21,14 @@ WORKING_DIR     := $(shell pwd)
 TESTPARALLELISM := 4
 
 ensure::
+	cd api && npm ci
 	cd provider && GO111MODULE=on go mod tidy
 	cd sdk && GO111MODULE=on go mod tidy
 
-gen::
+gen_openapi::
+	cd api && tsp compile .
+
+gen:: gen_openapi
 	(cd provider && go build -o $(WORKING_DIR)/bin/${CODEGEN} -ldflags "-X ${PROJECT}/${VERSION_PATH}=${VERSION}" ${PROJECT}/${PROVIDER_PATH}/cmd/$(CODEGEN))
 
 generate_schema::

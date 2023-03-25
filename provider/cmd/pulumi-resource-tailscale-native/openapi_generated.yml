@@ -361,7 +361,7 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/AuthKeyReadItem'
+                  $ref: '#/components/schemas/AuthKey'
                 x-typespec-name: AuthKey[]
     post:
       operationId: TailnetEndpoints_createKey
@@ -381,12 +381,12 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/AuthKeyRead'
+                $ref: '#/components/schemas/AuthKey'
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/AuthKey'
+              $ref: '#/components/schemas/AuthKeyCreate'
   /tailnet/{tailnet}/keys/{id}:
     get:
       operationId: TailnetEndpoints_getKey
@@ -411,7 +411,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/AuthKeyRead'
+                $ref: '#/components/schemas/AuthKey'
     delete:
       operationId: TailnetEndpoints_deleteKey
       parameters:
@@ -529,46 +529,20 @@ components:
         expires:
           type: string
           readOnly: true
+      required:
+        - key
+        - expires
+    AuthKeyCreate:
+      type: object
+      properties:
         capabilities:
           $ref: '#/components/schemas/KeyCapabilities'
         expirySeconds:
           type: integer
           format: int64
       required:
-        - key
-        - expires
         - capabilities
         - expirySeconds
-    AuthKeyRead:
-      type: object
-      properties:
-        key:
-          type: string
-          readOnly: true
-        created:
-          type: string
-          readOnly: true
-        expires:
-          type: string
-          readOnly: true
-      required:
-        - key
-        - expires
-    AuthKeyReadItem:
-      type: object
-      properties:
-        key:
-          type: string
-          readOnly: true
-        created:
-          type: string
-          readOnly: true
-        expires:
-          type: string
-          readOnly: true
-      required:
-        - key
-        - expires
     ClientConnectivity:
       type: object
       properties:
@@ -866,7 +840,22 @@ components:
         - accept
     TailnetEndpoints.CommonParameters:
       type: object
-      properties: {}
+      properties:
+        tailnet:
+          anyOf:
+            - type: string
+              enum:
+                - '-'
+            - type: string
+          x-typespec-name: '- | string'
+          description: >-
+            For paid plans, your domain is your tailnet. For solo plans, the
+            tailnet is the email you signed up with. So `alice@gmail.com` has
+            the tailnet `alice@gmail.com` since `@gmail.com` is a shared email
+            host. Alternatively, you can specify the value "-" to refer to the
+            default tailnet of the authenticated user making the API call.
+      required:
+        - tailnet
   securitySchemes:
     BasicAuth:
       type: http

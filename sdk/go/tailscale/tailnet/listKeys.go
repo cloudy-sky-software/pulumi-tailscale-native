@@ -25,7 +25,7 @@ type ListKeysArgs struct {
 }
 
 type ListKeysResult struct {
-	Items []AuthKeyReadItem `pulumi:"items"`
+	Items []AuthKey `pulumi:"items"`
 }
 
 func ListKeysOutput(ctx *pulumi.Context, args ListKeysOutputArgs, opts ...pulumi.InvokeOption) ListKeysResultOutput {
@@ -63,8 +63,8 @@ func (o ListKeysResultOutput) ToListKeysResultOutputWithContext(ctx context.Cont
 	return o
 }
 
-func (o ListKeysResultOutput) Items() AuthKeyReadItemArrayOutput {
-	return o.ApplyT(func(v ListKeysResult) []AuthKeyReadItem { return v.Items }).(AuthKeyReadItemArrayOutput)
+func (o ListKeysResultOutput) Items() AuthKeyArrayOutput {
+	return o.ApplyT(func(v ListKeysResult) []AuthKey { return v.Items }).(AuthKeyArrayOutput)
 }
 
 func init() {

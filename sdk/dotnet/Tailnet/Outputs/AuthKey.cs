@@ -11,14 +11,14 @@ namespace Pulumi.TailscaleNative.Tailnet.Outputs
 {
 
     [OutputType]
-    public sealed class AuthKeyRead
+    public sealed class AuthKey
     {
         public readonly string? Created;
         public readonly string Expires;
         public readonly string Key;
 
         [OutputConstructor]
-        private AuthKeyRead(
+        private AuthKey(
             string? created,
 
             string expires,

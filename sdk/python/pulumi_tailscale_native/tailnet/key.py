@@ -111,9 +111,6 @@ class Key(pulumi.CustomResource):
                 raise TypeError("Missing required property 'expiry_seconds'")
             __props__.__dict__["expiry_seconds"] = expiry_seconds
             __props__.__dict__["tailnet"] = tailnet
-            __props__.__dict__["created"] = None
-            __props__.__dict__["expires"] = None
-            __props__.__dict__["key"] = None
         super(Key, __self__).__init__(
             'tailscale-native:tailnet:Key',
             resource_name,
@@ -137,10 +134,7 @@ class Key(pulumi.CustomResource):
         __props__ = KeyArgs.__new__(KeyArgs)
 
         __props__.__dict__["capabilities"] = None
-        __props__.__dict__["created"] = None
-        __props__.__dict__["expires"] = None
         __props__.__dict__["expiry_seconds"] = None
-        __props__.__dict__["key"] = None
         return Key(resource_name, opts=opts, __props__=__props__)
 
     @property
@@ -149,22 +143,7 @@ class Key(pulumi.CustomResource):
         return pulumi.get(self, "capabilities")
 
     @property
-    @pulumi.getter
-    def created(self) -> pulumi.Output[Optional[str]]:
-        return pulumi.get(self, "created")
-
-    @property
-    @pulumi.getter
-    def expires(self) -> pulumi.Output[str]:
-        return pulumi.get(self, "expires")
-
-    @property
     @pulumi.getter(name="expirySeconds")
     def expiry_seconds(self) -> pulumi.Output[int]:
         return pulumi.get(self, "expiry_seconds")
-
-    @property
-    @pulumi.getter
-    def key(self) -> pulumi.Output[str]:
-        return pulumi.get(self, "key")
 

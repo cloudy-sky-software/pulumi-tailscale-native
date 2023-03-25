@@ -31,6 +31,11 @@ jobs:
         with:
           go-version: 1.19.x
 
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16.x
+
       - run: |
           git config --global url."https://praneetloke:${GH_REPO_PAT}@github.com/".insteadOf "https://github.com/"
         env:
@@ -86,6 +91,12 @@ jobs:
           tag: "latest"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Install @typespec/compiler
+        run: |
+          npm i -g @typespec/compiler
+          cd api
+          npm ci
 
       - name: Generate schema and build SDKs
         run: make gen generate_schema build

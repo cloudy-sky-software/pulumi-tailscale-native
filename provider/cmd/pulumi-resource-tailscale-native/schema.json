@@ -329,25 +329,7 @@
                 }
             ]
         },
-        "tailscale-native:tailnet:AuthKeyRead": {
-            "properties": {
-                "created": {
-                    "type": "string"
-                },
-                "expires": {
-                    "type": "string"
-                },
-                "key": {
-                    "type": "string"
-                }
-            },
-            "type": "object",
-            "required": [
-                "expires",
-                "key"
-            ]
-        },
-        "tailscale-native:tailnet:AuthKeyReadItem": {
+        "tailscale-native:tailnet:AuthKey": {
             "properties": {
                 "created": {
                     "type": "string"
@@ -947,28 +929,12 @@
                 "capabilities": {
                     "$ref": "#/types/tailscale-native:tailnet:KeyCapabilities"
                 },
-                "created": {
-                    "type": "string"
-                },
-                "expires": {
-                    "type": "string"
-                },
                 "expirySeconds": {
                     "type": "integer"
-                },
-                "key": {
-                    "type": "string",
-                    "language": {
-                        "csharp": {
-                            "name": "KeyValue"
-                        }
-                    }
                 }
             },
             "type": "object",
             "required": [
-                "key",
-                "expires",
                 "capabilities",
                 "expirySeconds"
             ],
@@ -1160,7 +1126,7 @@
             "outputs": {
                 "properties": {
                     "items": {
-                        "$ref": "#/types/tailscale-native:tailnet:AuthKeyRead"
+                        "$ref": "#/types/tailscale-native:tailnet:AuthKey"
                     }
                 },
                 "required": [
@@ -1231,7 +1197,7 @@
                     "items": {
                         "type": "array",
                         "items": {
-                            "$ref": "#/types/tailscale-native:tailnet:AuthKeyReadItem"
+                            "$ref": "#/types/tailscale-native:tailnet:AuthKey"
                         }
                     }
                 },
