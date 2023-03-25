@@ -10,7 +10,7 @@ import * as utilities from "../utilities";
 export function getNameServers(args: GetNameServersArgs, opts?: pulumi.InvokeOptions): Promise<GetNameServersResult> {
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
-    return pulumi.runtime.invoke("tailscale:tailnet:getNameServers", {
+    return pulumi.runtime.invoke("tailscale-native:tailnet:getNameServers", {
         "tailnet": args.tailnet,
     }, opts);
 }

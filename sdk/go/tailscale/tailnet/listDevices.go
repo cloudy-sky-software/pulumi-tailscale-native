@@ -13,7 +13,7 @@ import (
 func ListDevices(ctx *pulumi.Context, args *ListDevicesArgs, opts ...pulumi.InvokeOption) (*ListDevicesResult, error) {
 	opts = pkgInvokeDefaultOpts(opts)
 	var rv ListDevicesResult
-	err := ctx.Invoke("tailscale:tailnet:listDevices", args, &rv, opts...)
+	err := ctx.Invoke("tailscale-native:tailnet:listDevices", args, &rv, opts...)
 	if err != nil {
 		return nil, err
 	}

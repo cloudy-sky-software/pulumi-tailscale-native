@@ -18,7 +18,7 @@ export class DNSPreferences extends pulumi.CustomResource {
     }
 
     /** @internal */
-    public static readonly __pulumiType = 'tailscale:tailnet:DNSPreferences';
+    public static readonly __pulumiType = 'tailscale-native:tailnet:DNSPreferences';
 
     /**
      * Returns true if the given object is an instance of DNSPreferences.  This is designed to work even

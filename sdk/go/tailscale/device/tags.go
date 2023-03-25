@@ -29,7 +29,7 @@ func NewTags(ctx *pulumi.Context,
 	}
 	opts = pkgResourceDefaultOpts(opts)
 	var resource Tags
-	err := ctx.RegisterResource("tailscale:device:Tags", name, args, &resource, opts...)
+	err := ctx.RegisterResource("tailscale-native:device:Tags", name, args, &resource, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -41,7 +41,7 @@ func NewTags(ctx *pulumi.Context,
 func GetTags(ctx *pulumi.Context,
 	name string, id pulumi.IDInput, state *TagsState, opts ...pulumi.ResourceOption) (*Tags, error) {
 	var resource Tags
-	err := ctx.ReadResource("tailscale:device:Tags", name, id, state, &resource, opts...)
+	err := ctx.ReadResource("tailscale-native:device:Tags", name, id, state, &resource, opts...)
 	if err != nil {
 		return nil, err
 	}

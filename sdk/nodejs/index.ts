@@ -23,10 +23,10 @@ export {
     tailnet,
     types,
 };
-pulumi.runtime.registerResourcePackage("tailscale", {
+pulumi.runtime.registerResourcePackage("tailscale-native", {
     version: utilities.getVersion(),
     constructProvider: (name: string, type: string, urn: string): pulumi.ProviderResource => {
-        if (type !== "pulumi:providers:tailscale") {
+        if (type !== "pulumi:providers:tailscale-native") {
             throw new Error(`unknown provider type ${type}`);
         }
         return new Provider(name, <any>undefined, { urn });

@@ -20,7 +20,7 @@ class ProviderArgs:
         :param pulumi.Input[str] api_key: The Tailscale API key.
         """
         if api_key is None:
-            api_key = _utilities.get_env('TAILSCALE_APIKEY')
+            api_key = _utilities.get_env('TAILSCALE_NATIVE_APIKEY', 'TAILSCALE_APIKEY')
         if api_key is not None:
             pulumi.set(__self__, "api_key", api_key)
 
@@ -86,10 +86,10 @@ class Provider(pulumi.ProviderResource):
             __props__ = ProviderArgs.__new__(ProviderArgs)
 
             if api_key is None:
-                api_key = _utilities.get_env('TAILSCALE_APIKEY')
+                api_key = _utilities.get_env('TAILSCALE_NATIVE_APIKEY', 'TAILSCALE_APIKEY')
             __props__.__dict__["api_key"] = None if api_key is None else pulumi.Output.secret(api_key)
         super(Provider, __self__).__init__(
-            'tailscale',
+            'tailscale-native',
             resource_name,
             __props__,
             opts)

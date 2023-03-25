@@ -18,7 +18,7 @@ export class KeyExpiry extends pulumi.CustomResource {
     }
 
     /** @internal */
-    public static readonly __pulumiType = 'tailscale:device:KeyExpiry';
+    public static readonly __pulumiType = 'tailscale-native:device:KeyExpiry';
 
     /**
      * Returns true if the given object is an instance of KeyExpiry.  This is designed to work even

@@ -49,7 +49,7 @@ def get_key(id: Optional[str] = None,
     __args__['id'] = id
     __args__['tailnet'] = tailnet
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('tailscale:tailnet:getKey', __args__, opts=opts, typ=GetKeyResult).value
+    __ret__ = pulumi.runtime.invoke('tailscale-native:tailnet:getKey', __args__, opts=opts, typ=GetKeyResult).value
 
     return AwaitableGetKeyResult(
         items=__ret__.items)

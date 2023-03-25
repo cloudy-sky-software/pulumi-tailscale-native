@@ -7,9 +7,9 @@ using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
 
-namespace Pulumi.Tailscale.Tailnet
+namespace Pulumi.TailscaleNative.Tailnet
 {
-    [TailscaleResourceType("tailscale:tailnet:NameServers")]
+    [TailscaleNativeResourceType("tailscale-native:tailnet:NameServers")]
     public partial class NameServers : global::Pulumi.CustomResource
     {
         [Output("dns")]
@@ -27,12 +27,12 @@ namespace Pulumi.Tailscale.Tailnet
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
         public NameServers(string name, NameServersArgs args, CustomResourceOptions? options = null)
-            : base("tailscale:tailnet:NameServers", name, args ?? new NameServersArgs(), MakeResourceOptions(options, ""))
+            : base("tailscale-native:tailnet:NameServers", name, args ?? new NameServersArgs(), MakeResourceOptions(options, ""))
         {
         }
 
         private NameServers(string name, Input<string> id, CustomResourceOptions? options = null)
-            : base("tailscale:tailnet:NameServers", name, null, MakeResourceOptions(options, id))
+            : base("tailscale-native:tailnet:NameServers", name, null, MakeResourceOptions(options, id))
         {
         }
 
@@ -41,7 +41,7 @@ namespace Pulumi.Tailscale.Tailnet
             var defaultOptions = new CustomResourceOptions
             {
                 Version = Utilities.Version,
-                PluginDownloadURL = "github://api.github.com/cloudy-sky-software/pulumi-tailscale",
+                PluginDownloadURL = "github://api.github.com/cloudy-sky-software/pulumi-tailscale-native",
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.

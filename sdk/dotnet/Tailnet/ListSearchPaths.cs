@@ -7,15 +7,15 @@ using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
 
-namespace Pulumi.Tailscale.Tailnet
+namespace Pulumi.TailscaleNative.Tailnet
 {
     public static class ListSearchPaths
     {
         public static Task<ListSearchPathsResult> InvokeAsync(ListSearchPathsArgs args, InvokeOptions? options = null)
-            => global::Pulumi.Deployment.Instance.InvokeAsync<ListSearchPathsResult>("tailscale:tailnet:listSearchPaths", args ?? new ListSearchPathsArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<ListSearchPathsResult>("tailscale-native:tailnet:listSearchPaths", args ?? new ListSearchPathsArgs(), options.WithDefaults());
 
         public static Output<ListSearchPathsResult> Invoke(ListSearchPathsInvokeArgs args, InvokeOptions? options = null)
-            => global::Pulumi.Deployment.Instance.Invoke<ListSearchPathsResult>("tailscale:tailnet:listSearchPaths", args ?? new ListSearchPathsInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<ListSearchPathsResult>("tailscale-native:tailnet:listSearchPaths", args ?? new ListSearchPathsInvokeArgs(), options.WithDefaults());
     }
 
 

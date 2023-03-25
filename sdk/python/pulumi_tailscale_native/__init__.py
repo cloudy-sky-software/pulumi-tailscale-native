@@ -24,26 +24,26 @@ _utilities.register(
     resource_modules="""
 [
  {
-  "pkg": "tailscale",
+  "pkg": "tailscale-native",
   "mod": "device",
   "fqn": "pulumi_tailscale_native.device",
   "classes": {
-   "tailscale:device:KeyExpiry": "KeyExpiry",
-   "tailscale:device:Routes": "Routes",
-   "tailscale:device:Tags": "Tags",
-   "tailscale:device:authorizeDevice": "AuthorizeDevice"
+   "tailscale-native:device:KeyExpiry": "KeyExpiry",
+   "tailscale-native:device:Routes": "Routes",
+   "tailscale-native:device:Tags": "Tags",
+   "tailscale-native:device:authorizeDevice": "AuthorizeDevice"
   }
  },
  {
-  "pkg": "tailscale",
+  "pkg": "tailscale-native",
   "mod": "tailnet",
   "fqn": "pulumi_tailscale_native.tailnet",
   "classes": {
-   "tailscale:tailnet:Acl": "Acl",
-   "tailscale:tailnet:DNSPreferences": "DNSPreferences",
-   "tailscale:tailnet:Key": "Key",
-   "tailscale:tailnet:NameServers": "NameServers",
-   "tailscale:tailnet:replaceSearchPaths": "ReplaceSearchPaths"
+   "tailscale-native:tailnet:Acl": "Acl",
+   "tailscale-native:tailnet:DNSPreferences": "DNSPreferences",
+   "tailscale-native:tailnet:Key": "Key",
+   "tailscale-native:tailnet:NameServers": "NameServers",
+   "tailscale-native:tailnet:replaceSearchPaths": "ReplaceSearchPaths"
   }
  }
 ]
@@ -51,8 +51,8 @@ _utilities.register(
     resource_packages="""
 [
  {
-  "pkg": "tailscale",
-  "token": "pulumi:providers:tailscale",
+  "pkg": "tailscale-native",
+  "token": "pulumi:providers:tailscale-native",
   "fqn": "pulumi_tailscale_native",
   "class": "Provider"
  }

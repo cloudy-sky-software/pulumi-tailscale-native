@@ -7,12 +7,12 @@ using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
 
-namespace Pulumi.Tailscale
+namespace Pulumi.TailscaleNative
 {
     /// <summary>
     /// The provider type for the Tailscale package.
     /// </summary>
-    [TailscaleResourceType("pulumi:providers:tailscale")]
+    [TailscaleNativeResourceType("pulumi:providers:tailscale-native")]
     public partial class Provider : global::Pulumi.ProviderResource
     {
         /// <summary>
@@ -23,7 +23,7 @@ namespace Pulumi.Tailscale
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
         public Provider(string name, ProviderArgs? args = null, CustomResourceOptions? options = null)
-            : base("tailscale", name, args ?? new ProviderArgs(), MakeResourceOptions(options, ""))
+            : base("tailscale-native", name, args ?? new ProviderArgs(), MakeResourceOptions(options, ""))
         {
         }
 
@@ -32,7 +32,7 @@ namespace Pulumi.Tailscale
             var defaultOptions = new CustomResourceOptions
             {
                 Version = Utilities.Version,
-                PluginDownloadURL = "github://api.github.com/cloudy-sky-software/pulumi-tailscale",
+                PluginDownloadURL = "github://api.github.com/cloudy-sky-software/pulumi-tailscale-native",
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.
@@ -61,7 +61,7 @@ namespace Pulumi.Tailscale
 
         public ProviderArgs()
         {
-            ApiKey = Utilities.GetEnv("TAILSCALE_APIKEY");
+            ApiKey = Utilities.GetEnv("TAILSCALE_NATIVE_APIKEY", "TAILSCALE_APIKEY");
         }
         public static new ProviderArgs Empty => new ProviderArgs();
     }

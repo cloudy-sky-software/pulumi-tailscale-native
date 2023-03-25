@@ -13,7 +13,7 @@ import (
 func ListKeys(ctx *pulumi.Context, args *ListKeysArgs, opts ...pulumi.InvokeOption) (*ListKeysResult, error) {
 	opts = pkgInvokeDefaultOpts(opts)
 	var rv ListKeysResult
-	err := ctx.Invoke("tailscale:tailnet:listKeys", args, &rv, opts...)
+	err := ctx.Invoke("tailscale-native:tailnet:listKeys", args, &rv, opts...)
 	if err != nil {
 		return nil, err
 	}

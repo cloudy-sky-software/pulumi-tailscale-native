@@ -11,8 +11,8 @@ import (
 	"os"
 	"path/filepath"
 
-	providerSchemaGen "github.com/cloudy-sky-software/pulumi-tailscale/provider/pkg/gen"
-	providerVersion "github.com/cloudy-sky-software/pulumi-tailscale/provider/pkg/version"
+	providerSchemaGen "github.com/cloudy-sky-software/pulumi-tailscale-native/provider/pkg/gen"
+	providerVersion "github.com/cloudy-sky-software/pulumi-tailscale-native/provider/pkg/version"
 
 	"github.com/cloudy-sky-software/pulumi-provider-framework/openapi"
 
@@ -33,7 +33,7 @@ var openapiDocBytes []byte
 // TemplateDir is the path to the base directory for code generator templates.
 var TemplateDir string
 
-// BaseDir is the path to the base pulumi-tailscale directory.
+// BaseDir is the path to the base pulumi-tailscale-native directory.
 var BaseDir string
 
 // Language is the SDK language.
@@ -88,7 +88,7 @@ func main() {
 	case Schema:
 		openapiDoc := openapi.GetOpenAPISpec(openapiDocBytes)
 		schemaSpec, metadata := providerSchemaGen.PulumiSchema(*openapiDoc)
-		providerDir := filepath.Join(".", "provider", "cmd", "pulumi-resource-tailscale")
+		providerDir := filepath.Join(".", "provider", "cmd", "pulumi-resource-tailscale-native")
 		mustWritePulumiSchema(schemaSpec, providerDir)
 
 		// Write the metadata.json file as well.

@@ -29,7 +29,7 @@ func NewKeyExpiry(ctx *pulumi.Context,
 	}
 	opts = pkgResourceDefaultOpts(opts)
 	var resource KeyExpiry
-	err := ctx.RegisterResource("tailscale:device:KeyExpiry", name, args, &resource, opts...)
+	err := ctx.RegisterResource("tailscale-native:device:KeyExpiry", name, args, &resource, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -41,7 +41,7 @@ func NewKeyExpiry(ctx *pulumi.Context,
 func GetKeyExpiry(ctx *pulumi.Context,
 	name string, id pulumi.IDInput, state *KeyExpiryState, opts ...pulumi.ResourceOption) (*KeyExpiry, error) {
 	var resource KeyExpiry
-	err := ctx.ReadResource("tailscale:device:KeyExpiry", name, id, state, &resource, opts...)
+	err := ctx.ReadResource("tailscale-native:device:KeyExpiry", name, id, state, &resource, opts...)
 	if err != nil {
 		return nil, err
 	}

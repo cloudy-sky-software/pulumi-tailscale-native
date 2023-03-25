@@ -7,7 +7,7 @@ import (
 	"fmt"
 
 	"github.com/blang/semver"
-	"github.com/cloudy-sky-software/pulumi-tailscale/sdk/go/tailscale"
+	tailscale "github.com/cloudy-sky-software/pulumi-tailscale-native/sdk/go/tailscale"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -21,13 +21,13 @@ func (m *module) Version() semver.Version {
 
 func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi.Resource, err error) {
 	switch typ {
-	case "tailscale:device:KeyExpiry":
+	case "tailscale-native:device:KeyExpiry":
 		r = &KeyExpiry{}
-	case "tailscale:device:Routes":
+	case "tailscale-native:device:Routes":
 		r = &Routes{}
-	case "tailscale:device:Tags":
+	case "tailscale-native:device:Tags":
 		r = &Tags{}
-	case "tailscale:device:authorizeDevice":
+	case "tailscale-native:device:authorizeDevice":
 		r = &AuthorizeDevice{}
 	default:
 		return nil, fmt.Errorf("unknown resource type: %s", typ)
@@ -43,7 +43,7 @@ func init() {
 		version = semver.Version{Major: 1}
 	}
 	pulumi.RegisterResourceModule(
-		"tailscale",
+		"tailscale-native",
 		"device",
 		&module{version},
 	)

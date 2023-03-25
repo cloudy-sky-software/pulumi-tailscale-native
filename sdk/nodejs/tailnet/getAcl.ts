@@ -10,7 +10,7 @@ import * as utilities from "../utilities";
 export function getAcl(args: GetAclArgs, opts?: pulumi.InvokeOptions): Promise<GetAclResult> {
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
-    return pulumi.runtime.invoke("tailscale:tailnet:getAcl", {
+    return pulumi.runtime.invoke("tailscale-native:tailnet:getAcl", {
         "tailnet": args.tailnet,
     }, opts);
 }

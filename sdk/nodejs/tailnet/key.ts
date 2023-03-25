@@ -21,7 +21,7 @@ export class Key extends pulumi.CustomResource {
     }
 
     /** @internal */
-    public static readonly __pulumiType = 'tailscale:tailnet:Key';
+    public static readonly __pulumiType = 'tailscale-native:tailnet:Key';
 
     /**
      * Returns true if the given object is an instance of Key.  This is designed to work even

@@ -1,1 +1,1 @@
-A Pulumi package for creating and managing Tailscale resources.
+A native Pulumi package for creating and managing Tailscale resources.

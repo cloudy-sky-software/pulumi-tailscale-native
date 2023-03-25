@@ -7,13 +7,13 @@ using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
 
-namespace Pulumi.Tailscale.Tailnet.Inputs
+namespace Pulumi.TailscaleNative.Tailnet.Inputs
 {
 
     public sealed class SshRuleArgs : global::Pulumi.ResourceArgs
     {
         [Input("action", required: true)]
-        public Input<Pulumi.Tailscale.Tailnet.SshRuleAction> Action { get; set; } = null!;
+        public Input<Pulumi.TailscaleNative.Tailnet.SshRuleAction> Action { get; set; } = null!;
 
         [Input("checkPeriod", required: true)]
         public Input<string> CheckPeriod { get; set; } = null!;

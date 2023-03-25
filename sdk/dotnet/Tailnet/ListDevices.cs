@@ -7,15 +7,15 @@ using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
 
-namespace Pulumi.Tailscale.Tailnet
+namespace Pulumi.TailscaleNative.Tailnet
 {
     public static class ListDevices
     {
         public static Task<ListDevicesResult> InvokeAsync(ListDevicesArgs args, InvokeOptions? options = null)
-            => global::Pulumi.Deployment.Instance.InvokeAsync<ListDevicesResult>("tailscale:tailnet:listDevices", args ?? new ListDevicesArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<ListDevicesResult>("tailscale-native:tailnet:listDevices", args ?? new ListDevicesArgs(), options.WithDefaults());
 
         public static Output<ListDevicesResult> Invoke(ListDevicesInvokeArgs args, InvokeOptions? options = null)
-            => global::Pulumi.Deployment.Instance.Invoke<ListDevicesResult>("tailscale:tailnet:listDevices", args ?? new ListDevicesInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<ListDevicesResult>("tailscale-native:tailnet:listDevices", args ?? new ListDevicesInvokeArgs(), options.WithDefaults());
     }
 
 

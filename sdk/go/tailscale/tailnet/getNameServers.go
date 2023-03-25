@@ -13,7 +13,7 @@ import (
 func LookupNameServers(ctx *pulumi.Context, args *LookupNameServersArgs, opts ...pulumi.InvokeOption) (*LookupNameServersResult, error) {
 	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupNameServersResult
-	err := ctx.Invoke("tailscale:tailnet:getNameServers", args, &rv, opts...)
+	err := ctx.Invoke("tailscale-native:tailnet:getNameServers", args, &rv, opts...)
 	if err != nil {
 		return nil, err
 	}

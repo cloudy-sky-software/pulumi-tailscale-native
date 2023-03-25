@@ -1,17 +1,17 @@
 {
-    "name": "tailscale",
-    "displayName": "Tailscale",
-    "description": "A Pulumi package for creating and managing Tailscale resources.",
+    "name": "tailscale-native",
+    "displayName": "Tailscale Native",
+    "description": "A native Pulumi package for creating and managing Tailscale resources.",
     "keywords": [
         "pulumi",
-        "tailscale",
+        "tailscale-native",
         "category/cloud",
         "kind/native"
     ],
     "homepage": "https://cloudysky.software",
     "license": "Apache-2.0",
-    "repository": "https://github.com/cloudy-sky-software/pulumi-tailscale",
-    "pluginDownloadURL": "github://api.github.com/cloudy-sky-software/pulumi-tailscale",
+    "repository": "https://github.com/cloudy-sky-software/pulumi-tailscale-native",
+    "pluginDownloadURL": "github://api.github.com/cloudy-sky-software/pulumi-tailscale-native",
     "publisher": "Cloudy Sky Software",
     "language": {
         "csharp": {
@@ -19,7 +19,7 @@
                 "": "Provider",
                 "device": "Device",
                 "tailnet": "Tailnet",
-                "tailscale": "Tailscale"
+                "tailscale-native": "TailscaleNative"
             },
             "packageReferences": {
                 "Pulumi": "3.*"
@@ -27,7 +27,10 @@
             "rootNamespace": "Pulumi"
         },
         "go": {
-            "importBasePath": "github.com/cloudy-sky-software/pulumi-tailscale/sdk/go/tailscale"
+            "importBasePath": "github.com/cloudy-sky-software/pulumi-tailscale-native/sdk/go/tailscale",
+            "packageImportAliases": {
+                "github.com/cloudy-sky-software/pulumi-tailscale-native/sdk/go/tailscale": "tailscale"
+            }
         },
         "nodejs": {
             "dependencies": {
@@ -45,7 +48,7 @@
                 "@types/shell-quote": "^1.6.0",
                 "mocha": "^5.2.0"
             },
-            "packageName": "@cloudyskysoftware/pulumi-tailscale"
+            "packageName": "@cloudyskysoftware/pulumi-tailscale-native"
         },
         "python": {
             "packageName": "pulumi_tailscale_native",
@@ -69,10 +72,10 @@
         }
     },
     "types": {
-        "tailscale:device:ClientConnectivity": {
+        "tailscale-native:device:ClientConnectivity": {
             "properties": {
                 "clientSupports": {
-                    "$ref": "#/types/tailscale:device:ClientSupports"
+                    "$ref": "#/types/tailscale-native:device:ClientSupports"
                 },
                 "derp": {
                     "type": "string"
@@ -96,7 +99,7 @@
                 "mappingVariesByDestIP"
             ]
         },
-        "tailscale:device:ClientSupports": {
+        "tailscale-native:device:ClientSupports": {
             "properties": {
                 "hairPinning": {
                     "type": "boolean"
@@ -127,7 +130,7 @@
                 "upnp"
             ]
         },
-        "tailscale:device:Device": {
+        "tailscale-native:device:Device": {
             "properties": {
                 "addresses": {
                     "type": "array",
@@ -148,7 +151,7 @@
                     "type": "boolean"
                 },
                 "clientConnectivity": {
-                    "$ref": "#/types/tailscale:device:ClientConnectivity"
+                    "$ref": "#/types/tailscale-native:device:ClientConnectivity"
                 },
                 "clientVersion": {
                     "type": "string"
@@ -223,7 +226,7 @@
                 "user"
             ]
         },
-        "tailscale:device:DeviceRoutes": {
+        "tailscale-native:device:DeviceRoutes": {
             "properties": {
                 "advertisedRoutes": {
                     "type": "array",
@@ -244,12 +247,12 @@
                 "enabledRoutes"
             ]
         },
-        "tailscale:tailnet:Acl": {
+        "tailscale-native:tailnet:Acl": {
             "properties": {
                 "acls": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/tailscale:tailnet:AclRule"
+                        "$ref": "#/types/tailscale-native:tailnet:AclRule"
                     }
                 },
                 "autoApprovers": {
@@ -264,13 +267,13 @@
                 "nodeAttrs": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/tailscale:tailnet:NodeAttrs"
+                        "$ref": "#/types/tailscale-native:tailnet:NodeAttrs"
                     }
                 },
                 "ssh": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/tailscale:tailnet:SshRule"
+                        "$ref": "#/types/tailscale-native:tailnet:SshRule"
                     }
                 },
                 "tagOwners": {
@@ -292,10 +295,10 @@
                 "tests"
             ]
         },
-        "tailscale:tailnet:AclRule": {
+        "tailscale-native:tailnet:AclRule": {
             "properties": {
                 "action": {
-                    "$ref": "#/types/tailscale:tailnet:AclRuleAction"
+                    "$ref": "#/types/tailscale-native:tailnet:AclRuleAction"
                 },
                 "ports": {
                     "type": "array",
@@ -317,7 +320,7 @@
                 "users"
             ]
         },
-        "tailscale:tailnet:AclRuleAction": {
+        "tailscale-native:tailnet:AclRuleAction": {
             "type": "string",
             "enum": [
                 {
@@ -326,7 +329,7 @@
                 }
             ]
         },
-        "tailscale:tailnet:AuthKeyRead": {
+        "tailscale-native:tailnet:AuthKeyRead": {
             "properties": {
                 "created": {
                     "type": "string"
@@ -344,7 +347,7 @@
                 "key"
             ]
         },
-        "tailscale:tailnet:AuthKeyReadItem": {
+        "tailscale-native:tailnet:AuthKeyReadItem": {
             "properties": {
                 "created": {
                     "type": "string"
@@ -362,10 +365,10 @@
                 "key"
             ]
         },
-        "tailscale:tailnet:ClientConnectivity": {
+        "tailscale-native:tailnet:ClientConnectivity": {
             "properties": {
                 "clientSupports": {
-                    "$ref": "#/types/tailscale:tailnet:ClientSupports"
+                    "$ref": "#/types/tailscale-native:tailnet:ClientSupports"
                 },
                 "derp": {
                     "type": "string"
@@ -389,7 +392,7 @@
                 "mappingVariesByDestIP"
             ]
         },
-        "tailscale:tailnet:ClientSupports": {
+        "tailscale-native:tailnet:ClientSupports": {
             "properties": {
                 "hairPinning": {
                     "type": "boolean"
@@ -420,7 +423,7 @@
                 "upnp"
             ]
         },
-        "tailscale:tailnet:CreateKey": {
+        "tailscale-native:tailnet:CreateKey": {
             "properties": {
                 "ephemeral": {
                     "type": "boolean"
@@ -446,7 +449,7 @@
                 "tags"
             ]
         },
-        "tailscale:tailnet:Device": {
+        "tailscale-native:tailnet:Device": {
             "properties": {
                 "addresses": {
                     "type": "array",
@@ -467,7 +470,7 @@
                     "type": "boolean"
                 },
                 "clientConnectivity": {
-                    "$ref": "#/types/tailscale:tailnet:ClientConnectivity"
+                    "$ref": "#/types/tailscale-native:tailnet:ClientConnectivity"
                 },
                 "clientVersion": {
                     "type": "string"
@@ -542,10 +545,10 @@
                 "user"
             ]
         },
-        "tailscale:tailnet:DeviceKeyCapabilities": {
+        "tailscale-native:tailnet:DeviceKeyCapabilities": {
             "properties": {
                 "create": {
-                    "$ref": "#/types/tailscale:tailnet:CreateKey"
+                    "$ref": "#/types/tailscale-native:tailnet:CreateKey"
                 }
             },
             "type": "object",
@@ -553,7 +556,7 @@
                 "create"
             ]
         },
-        "tailscale:tailnet:DnsSearchPaths": {
+        "tailscale-native:tailnet:DnsSearchPaths": {
             "properties": {
                 "searchPaths": {
                     "type": "array",
@@ -567,10 +570,10 @@
                 "searchPaths"
             ]
         },
-        "tailscale:tailnet:KeyCapabilities": {
+        "tailscale-native:tailnet:KeyCapabilities": {
             "properties": {
                 "devices": {
-                    "$ref": "#/types/tailscale:tailnet:DeviceKeyCapabilities"
+                    "$ref": "#/types/tailscale-native:tailnet:DeviceKeyCapabilities"
                 }
             },
             "type": "object",
@@ -578,7 +581,7 @@
                 "devices"
             ]
         },
-        "tailscale:tailnet:NameServers": {
+        "tailscale-native:tailnet:NameServers": {
             "properties": {
                 "dns": {
                     "type": "array",
@@ -596,7 +599,7 @@
                 "magicDNS"
             ]
         },
-        "tailscale:tailnet:NameServersPreference": {
+        "tailscale-native:tailnet:NameServersPreference": {
             "properties": {
                 "magicDNS": {
                     "type": "boolean"
@@ -607,7 +610,7 @@
                 "magicDNS"
             ]
         },
-        "tailscale:tailnet:NodeAttrs": {
+        "tailscale-native:tailnet:NodeAttrs": {
             "properties": {
                 "attr": {
                     "type": "array",
@@ -628,10 +631,10 @@
                 "target"
             ]
         },
-        "tailscale:tailnet:SshRule": {
+        "tailscale-native:tailnet:SshRule": {
             "properties": {
                 "action": {
-                    "$ref": "#/types/tailscale:tailnet:SshRuleAction"
+                    "$ref": "#/types/tailscale-native:tailnet:SshRuleAction"
                 },
                 "checkPeriod": {
                     "type": "string"
@@ -664,7 +667,7 @@
                 "users"
             ]
         },
-        "tailscale:tailnet:SshRuleAction": {
+        "tailscale-native:tailnet:SshRuleAction": {
             "type": "string",
             "enum": [
                 {
@@ -687,6 +690,7 @@
                 "description": "The Tailscale API key.",
                 "defaultInfo": {
                     "environment": [
+                        "TAILSCALE_NATIVE_APIKEY",
                         "TAILSCALE_APIKEY"
                     ]
                 },
@@ -700,7 +704,7 @@
         }
     },
     "resources": {
-        "tailscale:device:KeyExpiry": {
+        "tailscale-native:device:KeyExpiry": {
             "properties": {
                 "keyExpiryDisabled": {
                     "type": "boolean"
@@ -722,7 +726,7 @@
                 "keyExpiryDisabled"
             ]
         },
-        "tailscale:device:Routes": {
+        "tailscale-native:device:Routes": {
             "properties": {
                 "routes": {
                     "type": "array",
@@ -760,7 +764,7 @@
                 "routes"
             ]
         },
-        "tailscale:device:Tags": {
+        "tailscale-native:device:Tags": {
             "properties": {
                 "tags": {
                     "type": "array",
@@ -798,7 +802,7 @@
                 "tags"
             ]
         },
-        "tailscale:device:authorizeDevice": {
+        "tailscale-native:device:authorizeDevice": {
             "properties": {
                 "authorized": {
                     "type": "boolean"
@@ -820,12 +824,12 @@
                 "authorized"
             ]
         },
-        "tailscale:tailnet:Acl": {
+        "tailscale-native:tailnet:Acl": {
             "properties": {
                 "acls": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/tailscale:tailnet:AclRule"
+                        "$ref": "#/types/tailscale-native:tailnet:AclRule"
                     }
                 },
                 "autoApprovers": {
@@ -840,13 +844,13 @@
                 "nodeAttrs": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/tailscale:tailnet:NodeAttrs"
+                        "$ref": "#/types/tailscale-native:tailnet:NodeAttrs"
                     }
                 },
                 "ssh": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/tailscale:tailnet:SshRule"
+                        "$ref": "#/types/tailscale-native:tailnet:SshRule"
                     }
                 },
                 "tagOwners": {
@@ -871,7 +875,7 @@
                 "acls": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/tailscale:tailnet:AclRule"
+                        "$ref": "#/types/tailscale-native:tailnet:AclRule"
                     }
                 },
                 "autoApprovers": {
@@ -886,13 +890,13 @@
                 "nodeAttrs": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/tailscale:tailnet:NodeAttrs"
+                        "$ref": "#/types/tailscale-native:tailnet:NodeAttrs"
                     }
                 },
                 "ssh": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/tailscale:tailnet:SshRule"
+                        "$ref": "#/types/tailscale-native:tailnet:SshRule"
                     }
                 },
                 "tagOwners": {
@@ -916,7 +920,7 @@
                 "tests"
             ]
         },
-        "tailscale:tailnet:DNSPreferences": {
+        "tailscale-native:tailnet:DNSPreferences": {
             "properties": {
                 "magicDNS": {
                     "type": "boolean"
@@ -938,10 +942,10 @@
                 "magicDNS"
             ]
         },
-        "tailscale:tailnet:Key": {
+        "tailscale-native:tailnet:Key": {
             "properties": {
                 "capabilities": {
-                    "$ref": "#/types/tailscale:tailnet:KeyCapabilities"
+                    "$ref": "#/types/tailscale-native:tailnet:KeyCapabilities"
                 },
                 "created": {
                     "type": "string"
@@ -970,7 +974,7 @@
             ],
             "inputProperties": {
                 "capabilities": {
-                    "$ref": "#/types/tailscale:tailnet:KeyCapabilities"
+                    "$ref": "#/types/tailscale-native:tailnet:KeyCapabilities"
                 },
                 "expirySeconds": {
                     "type": "integer"
@@ -984,7 +988,7 @@
                 "expirySeconds"
             ]
         },
-        "tailscale:tailnet:NameServers": {
+        "tailscale-native:tailnet:NameServers": {
             "properties": {
                 "dns": {
                     "type": "array",
@@ -1020,7 +1024,7 @@
                 "magicDNS"
             ]
         },
-        "tailscale:tailnet:replaceSearchPaths": {
+        "tailscale-native:tailnet:replaceSearchPaths": {
             "properties": {
                 "searchPaths": {
                     "type": "array",
@@ -1050,7 +1054,7 @@
         }
     },
     "functions": {
-        "tailscale:device:getDevice": {
+        "tailscale-native:device:getDevice": {
             "inputs": {
                 "properties": {
                     "id": {
@@ -1064,7 +1068,7 @@
             "outputs": {
                 "properties": {
                     "items": {
-                        "$ref": "#/types/tailscale:device:Device"
+                        "$ref": "#/types/tailscale-native:device:Device"
                     }
                 },
                 "required": [
@@ -1072,7 +1076,7 @@
                 ]
             }
         },
-        "tailscale:device:getRoutes": {
+        "tailscale-native:device:getRoutes": {
             "inputs": {
                 "properties": {
                     "id": {
@@ -1086,7 +1090,7 @@
             "outputs": {
                 "properties": {
                     "items": {
-                        "$ref": "#/types/tailscale:device:DeviceRoutes"
+                        "$ref": "#/types/tailscale-native:device:DeviceRoutes"
                     }
                 },
                 "required": [
@@ -1094,7 +1098,7 @@
                 ]
             }
         },
-        "tailscale:tailnet:getAcl": {
+        "tailscale-native:tailnet:getAcl": {
             "inputs": {
                 "properties": {
                     "tailnet": {
@@ -1108,7 +1112,7 @@
             "outputs": {
                 "properties": {
                     "items": {
-                        "$ref": "#/types/tailscale:tailnet:Acl"
+                        "$ref": "#/types/tailscale-native:tailnet:Acl"
                     }
                 },
                 "required": [
@@ -1116,7 +1120,7 @@
                 ]
             }
         },
-        "tailscale:tailnet:getDNSPreferences": {
+        "tailscale-native:tailnet:getDNSPreferences": {
             "inputs": {
                 "properties": {
                     "tailnet": {
@@ -1130,7 +1134,7 @@
             "outputs": {
                 "properties": {
                     "items": {
-                        "$ref": "#/types/tailscale:tailnet:NameServersPreference"
+                        "$ref": "#/types/tailscale-native:tailnet:NameServersPreference"
                     }
                 },
                 "required": [
@@ -1138,7 +1142,7 @@
                 ]
             }
         },
-        "tailscale:tailnet:getKey": {
+        "tailscale-native:tailnet:getKey": {
             "inputs": {
                 "properties": {
                     "id": {
@@ -1156,7 +1160,7 @@
             "outputs": {
                 "properties": {
                     "items": {
-                        "$ref": "#/types/tailscale:tailnet:AuthKeyRead"
+                        "$ref": "#/types/tailscale-native:tailnet:AuthKeyRead"
                     }
                 },
                 "required": [
@@ -1164,7 +1168,7 @@
                 ]
             }
         },
-        "tailscale:tailnet:getNameServers": {
+        "tailscale-native:tailnet:getNameServers": {
             "inputs": {
                 "properties": {
                     "tailnet": {
@@ -1178,7 +1182,7 @@
             "outputs": {
                 "properties": {
                     "items": {
-                        "$ref": "#/types/tailscale:tailnet:NameServers"
+                        "$ref": "#/types/tailscale-native:tailnet:NameServers"
                     }
                 },
                 "required": [
@@ -1186,32 +1190,7 @@
                 ]
             }
         },
-        "tailscale:tailnet:listDevices": {
-            "inputs": {
-                "properties": {
-                    "tailnet": {
-                        "type": "string"
-                    }
-                },
-                "required": [
-                    "tailnet"
-                ]
-            },
-            "outputs": {
-                "properties": {
-                    "items": {
-                        "type": "array",
-                        "items": {
-                            "$ref": "#/types/tailscale:tailnet:Device"
-                        }
-                    }
-                },
-                "required": [
-                    "items"
-                ]
-            }
-        },
-        "tailscale:tailnet:listKeys": {
+        "tailscale-native:tailnet:listDevices": {
             "inputs": {
                 "properties": {
                     "tailnet": {
@@ -1227,7 +1206,7 @@
                     "items": {
                         "type": "array",
                         "items": {
-                            "$ref": "#/types/tailscale:tailnet:AuthKeyReadItem"
+                            "$ref": "#/types/tailscale-native:tailnet:Device"
                         }
                     }
                 },
@@ -1236,7 +1215,7 @@
                 ]
             }
         },
-        "tailscale:tailnet:listSearchPaths": {
+        "tailscale-native:tailnet:listKeys": {
             "inputs": {
                 "properties": {
                     "tailnet": {
@@ -1250,7 +1229,32 @@
             "outputs": {
                 "properties": {
                     "items": {
-                        "$ref": "#/types/tailscale:tailnet:DnsSearchPaths"
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/tailscale-native:tailnet:AuthKeyReadItem"
+                        }
+                    }
+                },
+                "required": [
+                    "items"
+                ]
+            }
+        },
+        "tailscale-native:tailnet:listSearchPaths": {
+            "inputs": {
+                "properties": {
+                    "tailnet": {
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "tailnet"
+                ]
+            },
+            "outputs": {
+                "properties": {
+                    "items": {
+                        "$ref": "#/types/tailscale-native:tailnet:DnsSearchPaths"
                     }
                 },
                 "required": [
