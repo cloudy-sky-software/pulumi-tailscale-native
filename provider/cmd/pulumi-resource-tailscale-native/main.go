@@ -9,7 +9,7 @@ import (
 	"github.com/cloudy-sky-software/pulumi-tailscale-native/provider/pkg/version"
 )
 
-var providerName = "tailscale"
+var providerName = "tailscale-native"
 
 //go:embed schema.json
 var pulumiSchema []byte

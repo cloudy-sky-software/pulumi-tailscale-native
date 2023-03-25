@@ -60,6 +60,7 @@ func PulumiSchema(openapiDoc openapi3.T) (pschema.PackageSpec, openapigen.Provid
 				"apiKey": {
 					DefaultInfo: &pschema.DefaultSpec{
 						Environment: []string{
+							"TAILSCALE_NATIVE_APIKEY",
 							"TAILSCALE_APIKEY",
 						},
 					},

@@ -63,7 +63,7 @@ func (p *tailscaleProvider) OnPostInvoke(ctx context.Context, req *pulumirpc.Inv
 // OnConfigure is called by the provider framework when Pulumi calls Configure on
 // the resource provider server.
 func (p *tailscaleProvider) OnConfigure(_ context.Context, req *pulumirpc.ConfigureRequest) (*pulumirpc.ConfigureResponse, error) {
-	apiKey, ok := req.GetVariables()["tailscale:config:apiKey"]
+	apiKey, ok := req.GetVariables()[fmt.Sprintf("%s:config:apiKey", p.name)]
 	if !ok {
 		// Check if it's set as an env var.
 		envVarNames := handler.GetSchemaSpec().Provider.InputProperties["apiKey"].DefaultInfo.Environment
@@ -80,7 +80,7 @@ func (p *tailscaleProvider) OnConfigure(_ context.Context, req *pulumirpc.Config
 		}
 	}
 
-	logging.V(3).Info("Configuring TAILSCALE API key")
+	logging.V(3).Info("Configuring Tailscale API key")
 	p.apiKey = apiKey
 
 	return &pulumirpc.ConfigureResponse{
