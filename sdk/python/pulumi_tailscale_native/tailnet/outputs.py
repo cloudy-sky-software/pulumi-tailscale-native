@@ -14,8 +14,7 @@ from ._enums import *
 __all__ = [
     'Acl',
     'AclRule',
-    'AuthKeyRead',
-    'AuthKeyReadItem',
+    'AuthKey',
     'ClientConnectivity',
     'ClientSupports',
     'CreateKey',
@@ -117,34 +116,7 @@ class AclRule(dict):
 
 
 @pulumi.output_type
-class AuthKeyRead(dict):
-    def __init__(__self__, *,
-                 expires: str,
-                 key: str,
-                 created: Optional[str] = None):
-        pulumi.set(__self__, "expires", expires)
-        pulumi.set(__self__, "key", key)
-        if created is not None:
-            pulumi.set(__self__, "created", created)
-
-    @property
-    @pulumi.getter
-    def expires(self) -> str:
-        return pulumi.get(self, "expires")
-
-    @property
-    @pulumi.getter
-    def key(self) -> str:
-        return pulumi.get(self, "key")
-
-    @property
-    @pulumi.getter
-    def created(self) -> Optional[str]:
-        return pulumi.get(self, "created")
-
-
-@pulumi.output_type
-class AuthKeyReadItem(dict):
+class AuthKey(dict):
     def __init__(__self__, *,
                  expires: str,
                  key: str,

@@ -22,7 +22,7 @@ export interface GetKeyArgs {
 }
 
 export interface GetKeyResult {
-    readonly items: outputs.tailnet.AuthKeyRead;
+    readonly items: outputs.tailnet.AuthKey;
 }
 export function getKeyOutput(args: GetKeyOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetKeyResult> {
     return pulumi.output(args).apply((a: any) => getKey(a, opts))

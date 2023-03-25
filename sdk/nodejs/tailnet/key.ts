@@ -35,10 +35,7 @@ export class Key extends pulumi.CustomResource {
     }
 
     public readonly capabilities!: pulumi.Output<outputs.tailnet.KeyCapabilities>;
-    public /*out*/ readonly created!: pulumi.Output<string | undefined>;
-    public /*out*/ readonly expires!: pulumi.Output<string>;
     public readonly expirySeconds!: pulumi.Output<number>;
-    public /*out*/ readonly key!: pulumi.Output<string>;
 
     /**
      * Create a Key resource with the given unique name, arguments, and options.
@@ -60,15 +57,9 @@ export class Key extends pulumi.CustomResource {
             resourceInputs["capabilities"] = args ? args.capabilities : undefined;
             resourceInputs["expirySeconds"] = args ? args.expirySeconds : undefined;
             resourceInputs["tailnet"] = args ? args.tailnet : undefined;
-            resourceInputs["created"] = undefined /*out*/;
-            resourceInputs["expires"] = undefined /*out*/;
-            resourceInputs["key"] = undefined /*out*/;
         } else {
             resourceInputs["capabilities"] = undefined /*out*/;
-            resourceInputs["created"] = undefined /*out*/;
-            resourceInputs["expires"] = undefined /*out*/;
             resourceInputs["expirySeconds"] = undefined /*out*/;
-            resourceInputs["key"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(Key.__pulumiType, name, resourceInputs, opts);

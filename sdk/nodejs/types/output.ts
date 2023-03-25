@@ -72,13 +72,7 @@ export namespace tailnet {
         users: string[];
     }
 
-    export interface AuthKeyRead {
-        created?: string;
-        expires: string;
-        key: string;
-    }
-
-    export interface AuthKeyReadItem {
+    export interface AuthKey {
         created?: string;
         expires: string;
         key: string;

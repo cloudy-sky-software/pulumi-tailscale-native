@@ -173,88 +173,56 @@ func (o AclRuleArrayOutput) Index(i pulumi.IntInput) AclRuleOutput {
 	}).(AclRuleOutput)
 }
 
-type AuthKeyRead struct {
+type AuthKey struct {
 	Created *string `pulumi:"created"`
 	Expires string  `pulumi:"expires"`
 	Key     string  `pulumi:"key"`
 }
 
-type AuthKeyReadOutput struct{ *pulumi.OutputState }
+type AuthKeyOutput struct{ *pulumi.OutputState }
 
-func (AuthKeyReadOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*AuthKeyRead)(nil)).Elem()
+func (AuthKeyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AuthKey)(nil)).Elem()
 }
 
-func (o AuthKeyReadOutput) ToAuthKeyReadOutput() AuthKeyReadOutput {
+func (o AuthKeyOutput) ToAuthKeyOutput() AuthKeyOutput {
 	return o
 }
 
-func (o AuthKeyReadOutput) ToAuthKeyReadOutputWithContext(ctx context.Context) AuthKeyReadOutput {
+func (o AuthKeyOutput) ToAuthKeyOutputWithContext(ctx context.Context) AuthKeyOutput {
 	return o
 }
 
-func (o AuthKeyReadOutput) Created() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v AuthKeyRead) *string { return v.Created }).(pulumi.StringPtrOutput)
+func (o AuthKeyOutput) Created() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AuthKey) *string { return v.Created }).(pulumi.StringPtrOutput)
 }
 
-func (o AuthKeyReadOutput) Expires() pulumi.StringOutput {
-	return o.ApplyT(func(v AuthKeyRead) string { return v.Expires }).(pulumi.StringOutput)
+func (o AuthKeyOutput) Expires() pulumi.StringOutput {
+	return o.ApplyT(func(v AuthKey) string { return v.Expires }).(pulumi.StringOutput)
 }
 
-func (o AuthKeyReadOutput) Key() pulumi.StringOutput {
-	return o.ApplyT(func(v AuthKeyRead) string { return v.Key }).(pulumi.StringOutput)
+func (o AuthKeyOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v AuthKey) string { return v.Key }).(pulumi.StringOutput)
 }
 
-type AuthKeyReadItem struct {
-	Created *string `pulumi:"created"`
-	Expires string  `pulumi:"expires"`
-	Key     string  `pulumi:"key"`
+type AuthKeyArrayOutput struct{ *pulumi.OutputState }
+
+func (AuthKeyArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]AuthKey)(nil)).Elem()
 }
 
-type AuthKeyReadItemOutput struct{ *pulumi.OutputState }
-
-func (AuthKeyReadItemOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*AuthKeyReadItem)(nil)).Elem()
-}
-
-func (o AuthKeyReadItemOutput) ToAuthKeyReadItemOutput() AuthKeyReadItemOutput {
+func (o AuthKeyArrayOutput) ToAuthKeyArrayOutput() AuthKeyArrayOutput {
 	return o
 }
 
-func (o AuthKeyReadItemOutput) ToAuthKeyReadItemOutputWithContext(ctx context.Context) AuthKeyReadItemOutput {
+func (o AuthKeyArrayOutput) ToAuthKeyArrayOutputWithContext(ctx context.Context) AuthKeyArrayOutput {
 	return o
 }
 
-func (o AuthKeyReadItemOutput) Created() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v AuthKeyReadItem) *string { return v.Created }).(pulumi.StringPtrOutput)
-}
-
-func (o AuthKeyReadItemOutput) Expires() pulumi.StringOutput {
-	return o.ApplyT(func(v AuthKeyReadItem) string { return v.Expires }).(pulumi.StringOutput)
-}
-
-func (o AuthKeyReadItemOutput) Key() pulumi.StringOutput {
-	return o.ApplyT(func(v AuthKeyReadItem) string { return v.Key }).(pulumi.StringOutput)
-}
-
-type AuthKeyReadItemArrayOutput struct{ *pulumi.OutputState }
-
-func (AuthKeyReadItemArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]AuthKeyReadItem)(nil)).Elem()
-}
-
-func (o AuthKeyReadItemArrayOutput) ToAuthKeyReadItemArrayOutput() AuthKeyReadItemArrayOutput {
-	return o
-}
-
-func (o AuthKeyReadItemArrayOutput) ToAuthKeyReadItemArrayOutputWithContext(ctx context.Context) AuthKeyReadItemArrayOutput {
-	return o
-}
-
-func (o AuthKeyReadItemArrayOutput) Index(i pulumi.IntInput) AuthKeyReadItemOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) AuthKeyReadItem {
-		return vs[0].([]AuthKeyReadItem)[vs[1].(int)]
-	}).(AuthKeyReadItemOutput)
+func (o AuthKeyArrayOutput) Index(i pulumi.IntInput) AuthKeyOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) AuthKey {
+		return vs[0].([]AuthKey)[vs[1].(int)]
+	}).(AuthKeyOutput)
 }
 
 type ClientConnectivity struct {
@@ -950,9 +918,8 @@ func init() {
 	pulumi.RegisterOutputType(AclTypeOutput{})
 	pulumi.RegisterOutputType(AclRuleOutput{})
 	pulumi.RegisterOutputType(AclRuleArrayOutput{})
-	pulumi.RegisterOutputType(AuthKeyReadOutput{})
-	pulumi.RegisterOutputType(AuthKeyReadItemOutput{})
-	pulumi.RegisterOutputType(AuthKeyReadItemArrayOutput{})
+	pulumi.RegisterOutputType(AuthKeyOutput{})
+	pulumi.RegisterOutputType(AuthKeyArrayOutput{})
 	pulumi.RegisterOutputType(ClientConnectivityOutput{})
 	pulumi.RegisterOutputType(ClientSupportsOutput{})
 	pulumi.RegisterOutputType(CreateKeyOutput{})

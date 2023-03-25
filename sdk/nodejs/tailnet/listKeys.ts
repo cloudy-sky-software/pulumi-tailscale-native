@@ -20,7 +20,7 @@ export interface ListKeysArgs {
 }
 
 export interface ListKeysResult {
-    readonly items: outputs.tailnet.AuthKeyReadItem[];
+    readonly items: outputs.tailnet.AuthKey[];
 }
 export function listKeysOutput(args: ListKeysOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<ListKeysResult> {
     return pulumi.output(args).apply((a: any) => listKeys(a, opts))
