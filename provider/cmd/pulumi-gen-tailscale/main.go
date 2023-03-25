@@ -88,7 +88,7 @@ func main() {
 	case Schema:
 		openapiDoc := openapi.GetOpenAPISpec(openapiDocBytes)
 		schemaSpec, metadata := providerSchemaGen.PulumiSchema(*openapiDoc)
-		providerDir := filepath.Join(".", "provider", "cmd", "pulumi-resource-tailscale")
+		providerDir := filepath.Join(".", "provider", "cmd", "pulumi-resource-tailscale-native")
 		mustWritePulumiSchema(schemaSpec, providerDir)
 
 		// Write the metadata.json file as well.
