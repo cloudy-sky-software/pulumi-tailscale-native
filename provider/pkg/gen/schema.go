@@ -61,6 +61,10 @@ func PulumiSchema(openapiDoc openapi3.T) (pschema.PackageSpec, openapigen.Provid
 					DefaultInfo: &pschema.DefaultSpec{
 						Environment: []string{
 							"TAILSCALE_NATIVE_APIKEY",
+							// TODO: Pulumi's Node.js codegen seems to have a bug wherein
+							// only the first env var in this slice is looked-up while the
+							// other language SDKs correctly look-up all env vars specified
+							// in this slice.
 							"TAILSCALE_APIKEY",
 						},
 					},

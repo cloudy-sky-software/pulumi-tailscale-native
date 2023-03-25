@@ -23,7 +23,7 @@ func NewProvider(ctx *pulumi.Context,
 	}
 
 	if args.ApiKey == nil {
-		args.ApiKey = pulumi.StringPtr(getEnvOrDefault("", nil, "TAILSCALE_APIKEY").(string))
+		args.ApiKey = pulumi.StringPtr(getEnvOrDefault("", nil, "TAILSCALE_NATIVE_APIKEY", "TAILSCALE_APIKEY").(string))
 	}
 	if args.ApiKey != nil {
 		args.ApiKey = pulumi.ToSecret(args.ApiKey).(pulumi.StringPtrInput)

@@ -690,6 +690,7 @@
                 "description": "The Tailscale API key.",
                 "defaultInfo": {
                     "environment": [
+                        "TAILSCALE_NATIVE_APIKEY",
                         "TAILSCALE_APIKEY"
                     ]
                 },

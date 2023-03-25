@@ -61,7 +61,7 @@ namespace Pulumi.TailscaleNative
 
         public ProviderArgs()
         {
-            ApiKey = Utilities.GetEnv("TAILSCALE_APIKEY");
+            ApiKey = Utilities.GetEnv("TAILSCALE_NATIVE_APIKEY", "TAILSCALE_APIKEY");
         }
         public static new ProviderArgs Empty => new ProviderArgs();
     }
