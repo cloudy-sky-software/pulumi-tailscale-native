@@ -38,6 +38,7 @@ def readme():
 
 
 setup(name='pulumi_tailscale_native',
+      python_requires='>=3.7',
       version=VERSION,
       description="A native Pulumi package for creating and managing Tailscale resources.",
       long_description=readme(),
