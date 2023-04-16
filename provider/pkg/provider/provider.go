@@ -127,19 +127,19 @@ func (p *tailscaleProvider) OnConfigure(_ context.Context, req *pulumirpc.Config
 		p.apiKey = &apiKey
 	}
 
-	clientId, ok := req.GetVariables()[fmt.Sprintf("%s:config:clientId", p.name)]
+	clientID, ok := req.GetVariables()[fmt.Sprintf("%s:config:clientId", p.name)]
 	if !ok {
 		// Check if it's set as an env var.
 		envVarNames := handler.GetSchemaSpec().Provider.InputProperties["clientId"].DefaultInfo.Environment
 		for _, n := range envVarNames {
 			v := os.Getenv(n)
 			if v != "" {
-				clientId = v
+				clientID = v
 			}
 		}
 	}
 
-	if apiKey != "" && clientId != "" {
+	if apiKey != "" && clientID != "" {
 		return nil, errors.New("only one of apiKey or clientId and secret must be specified")
 	}
 
@@ -156,7 +156,7 @@ func (p *tailscaleProvider) OnConfigure(_ context.Context, req *pulumirpc.Config
 	}
 
 	logging.V(3).Info("Configuring Tailscale OAuth client credentials")
-	p.oauthClientID = &clientId
+	p.oauthClientID = &clientID
 	p.oauthClientSecret = &clientSecret
 
 	return &pulumirpc.ConfigureResponse{
