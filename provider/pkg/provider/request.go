@@ -9,7 +9,8 @@ import (
 )
 
 const (
-	authSchemePrefix = "Basic"
+	basicAuthSchemePrefix  = "Basic"
+	bearerAuthSchemePrefix = "Bearer"
 )
 
 func (p *tailscaleProvider) determineDiffsAndReplacements(d *resource.ObjectDiff, properties openapi3.Schemas) ([]string, []string) {

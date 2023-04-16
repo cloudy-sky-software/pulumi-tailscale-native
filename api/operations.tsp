@@ -9,12 +9,34 @@ import "./models/dns.tsp";
 using TypeSpec.Http;
 using TypeSpec.Rest;
 
+model TailscaleOAuthFlow {
+    type: OAuth2FlowType.clientCredentials;
+    tokenUrl: "https://api.tailscale.com/api/v2/oauth/token";
+    // The goal is to map these scopes to individual operations
+    // but these are less useful in the context of the Pulumi
+    // provider.
+    // TODO: This needs to be a map but is currently blocked.
+    // https://github.com/microsoft/typespec/issues/1113
+    scopes: [
+        "all",
+        "all:read",
+        "acl",
+        "acl:read",
+        "devices",
+        "devices:read",
+        "dns",
+        "dns:read",
+        "routes",
+        "routes:read"
+    ];
+}
+
 @service({
     title: "Tailscale API",
     version: "2023-01-01",
 })
 @server("https://api.tailscale.com/api/v2", "Tailscale API")
-@useAuth(BasicAuth)
+@useAuth(BasicAuth | OAuth2Auth<[TailscaleOAuthFlow]>)
 @doc("This namespace contains operations that can be performed on a Tailscale-connected device.")
 namespace Operations {
     @error
