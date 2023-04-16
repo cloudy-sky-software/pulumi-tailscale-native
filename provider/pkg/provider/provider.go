@@ -86,7 +86,7 @@ func (p *tailscaleProvider) GetAuthorizationHeader() string {
 			return ""
 		}
 
-		return token.AccessToken
+		return fmt.Sprintf("%s %s", bearerAuthSchemePrefix, token.AccessToken)
 	}
 
 	logging.Errorf("Could not determine authorization header")
