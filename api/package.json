@@ -4,8 +4,8 @@
   "type": "module",
   "private": true,
   "dependencies": {
-    "@typespec/compiler": "^0.42.0",
-    "@typespec/openapi3": "^0.42.0",
-    "@typespec/rest": "^0.42.0"
+    "@typespec/compiler": "^0.43.0",
+    "@typespec/openapi3": "^0.43.0",
+    "@typespec/rest": "^0.43.0"
   }
 }
