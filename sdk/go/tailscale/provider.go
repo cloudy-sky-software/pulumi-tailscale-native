@@ -25,8 +25,17 @@ func NewProvider(ctx *pulumi.Context,
 	if args.ApiKey == nil {
 		args.ApiKey = pulumi.StringPtr(getEnvOrDefault("", nil, "TAILSCALE_NATIVE_APIKEY", "TAILSCALE_APIKEY").(string))
 	}
+	if args.ClientId == nil {
+		args.ClientId = pulumi.StringPtr(getEnvOrDefault("", nil, "TAILSCALE_NATIVE_CLIENT_ID", "TAILSCALE_CLIENT_ID").(string))
+	}
+	if args.ClientSecret == nil {
+		args.ClientSecret = pulumi.StringPtr(getEnvOrDefault("", nil, "TAILSCALE_NATIVE_CLIENT_SECRET", "TAILSCALE_CLIENT_SECRET").(string))
+	}
 	if args.ApiKey != nil {
 		args.ApiKey = pulumi.ToSecret(args.ApiKey).(pulumi.StringPtrInput)
+	}
+	if args.ClientSecret != nil {
+		args.ClientSecret = pulumi.ToSecret(args.ClientSecret).(pulumi.StringPtrInput)
 	}
 	opts = pkgResourceDefaultOpts(opts)
 	var resource Provider
@@ -40,12 +49,20 @@ func NewProvider(ctx *pulumi.Context,
 type providerArgs struct {
 	// The Tailscale API key.
 	ApiKey *string `pulumi:"apiKey"`
+	// The Tailscale OAuth client ID.
+	ClientId *string `pulumi:"clientId"`
+	// The Tailscale OAuth client secret.
+	ClientSecret *string `pulumi:"clientSecret"`
 }
 
 // The set of arguments for constructing a Provider resource.
 type ProviderArgs struct {
 	// The Tailscale API key.
 	ApiKey pulumi.StringPtrInput
+	// The Tailscale OAuth client ID.
+	ClientId pulumi.StringPtrInput
+	// The Tailscale OAuth client secret.
+	ClientSecret pulumi.StringPtrInput
 }
 
 func (ProviderArgs) ElementType() reflect.Type {

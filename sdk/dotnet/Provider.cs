@@ -59,9 +59,33 @@ namespace Pulumi.TailscaleNative
             }
         }
 
+        /// <summary>
+        /// The Tailscale OAuth client ID.
+        /// </summary>
+        [Input("clientId")]
+        public Input<string>? ClientId { get; set; }
+
+        [Input("clientSecret")]
+        private Input<string>? _clientSecret;
+
+        /// <summary>
+        /// The Tailscale OAuth client secret.
+        /// </summary>
+        public Input<string>? ClientSecret
+        {
+            get => _clientSecret;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _clientSecret = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
         public ProviderArgs()
         {
             ApiKey = Utilities.GetEnv("TAILSCALE_NATIVE_APIKEY", "TAILSCALE_APIKEY");
+            ClientId = Utilities.GetEnv("TAILSCALE_NATIVE_CLIENT_ID", "TAILSCALE_CLIENT_ID");
+            ClientSecret = Utilities.GetEnv("TAILSCALE_NATIVE_CLIENT_SECRET", "TAILSCALE_CLIENT_SECRET");
         }
         public static new ProviderArgs Empty => new ProviderArgs();
     }

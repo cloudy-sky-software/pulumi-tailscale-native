@@ -22,3 +22,17 @@ class _ExportableConfig(types.ModuleType):
         """
         return __config__.get('apiKey')
 
+    @property
+    def client_id(self) -> Optional[str]:
+        """
+        The OAuth client ID
+        """
+        return __config__.get('clientId')
+
+    @property
+    def client_secret(self) -> Optional[str]:
+        """
+        The OAuth client secret
+        """
+        return __config__.get('clientSecret')
+
