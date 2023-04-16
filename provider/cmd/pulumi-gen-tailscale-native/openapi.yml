@@ -434,6 +434,17 @@ paths:
           description: The request has succeeded.
 security:
   - BasicAuth: []
+  - OAuth2Auth:
+      - all
+      - all:read
+      - acl
+      - acl:read
+      - devices
+      - devices:read
+      - dns
+      - dns:read
+      - routes
+      - routes:read
 components:
   schemas:
     Acl:
@@ -860,6 +871,22 @@ components:
     BasicAuth:
       type: http
       scheme: basic
+    OAuth2Auth:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: https://api.tailscale.com/api/v2/oauth/token
+          scopes:
+            all: ''
+            all:read: ''
+            acl: ''
+            acl:read: ''
+            devices: ''
+            devices:read: ''
+            dns: ''
+            dns:read: ''
+            routes: ''
+            routes:read: ''
 servers:
   - url: https://api.tailscale.com/api/v2
     description: Tailscale API

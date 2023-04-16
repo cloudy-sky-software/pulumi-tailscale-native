@@ -68,6 +68,25 @@
                     }
                 },
                 "secret": true
+            },
+            "clientId": {
+                "type": "string",
+                "description": "The OAuth client ID",
+                "language": {
+                    "csharp": {
+                        "name": "ClientId"
+                    }
+                }
+            },
+            "clientSecret": {
+                "type": "string",
+                "description": "The OAuth client secret",
+                "language": {
+                    "csharp": {
+                        "name": "ClientSecret"
+                    }
+                },
+                "secret": true
             }
         }
     },
@@ -679,6 +698,37 @@
                 "language": {
                     "csharp": {
                         "name": "ApiKey"
+                    }
+                },
+                "secret": true
+            },
+            "clientId": {
+                "type": "string",
+                "description": "The Tailscale OAuth client ID.",
+                "defaultInfo": {
+                    "environment": [
+                        "TAILSCALE_NATIVE_CLIENT_ID",
+                        "TAILSCALE_CLIENT_ID"
+                    ]
+                },
+                "language": {
+                    "csharp": {
+                        "name": "ClientId"
+                    }
+                }
+            },
+            "clientSecret": {
+                "type": "string",
+                "description": "The Tailscale OAuth client secret.",
+                "defaultInfo": {
+                    "environment": [
+                        "TAILSCALE_NATIVE_CLIENT_SECRET",
+                        "TAILSCALE_CLIENT_SECRET"
+                    ]
+                },
+                "language": {
+                    "csharp": {
+                        "name": "ClientSecret"
                     }
                 },
                 "secret": true

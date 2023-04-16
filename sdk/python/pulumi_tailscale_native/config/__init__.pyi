@@ -14,3 +14,13 @@ apiKey: Optional[str]
 The API key
 """
 
+clientId: Optional[str]
+"""
+The OAuth client ID
+"""
+
+clientSecret: Optional[str]
+"""
+The OAuth client secret
+"""
+

@@ -48,6 +48,26 @@ func PulumiSchema(openapiDoc openapi3.T) (pschema.PackageSpec, openapigen.Provid
 					},
 					Secret: true,
 				},
+				"clientId": {
+					Description: "The OAuth client ID",
+					TypeSpec:    pschema.TypeSpec{Type: "string"},
+					Language: map[string]pschema.RawMessage{
+						"csharp": rawMessage(map[string]interface{}{
+							"name": "ClientId",
+						}),
+					},
+					Secret: false,
+				},
+				"clientSecret": {
+					Description: "The OAuth client secret",
+					TypeSpec:    pschema.TypeSpec{Type: "string"},
+					Language: map[string]pschema.RawMessage{
+						"csharp": rawMessage(map[string]interface{}{
+							"name": "ClientSecret",
+						}),
+					},
+					Secret: true,
+				},
 			},
 		},
 
@@ -61,10 +81,6 @@ func PulumiSchema(openapiDoc openapi3.T) (pschema.PackageSpec, openapigen.Provid
 					DefaultInfo: &pschema.DefaultSpec{
 						Environment: []string{
 							"TAILSCALE_NATIVE_APIKEY",
-							// TODO: Pulumi's Node.js codegen seems to have a bug wherein
-							// only the first env var in this slice is looked-up while the
-							// other language SDKs correctly look-up all env vars specified
-							// in this slice.
 							"TAILSCALE_APIKEY",
 						},
 					},
@@ -73,6 +89,38 @@ func PulumiSchema(openapiDoc openapi3.T) (pschema.PackageSpec, openapigen.Provid
 					Language: map[string]pschema.RawMessage{
 						"csharp": rawMessage(map[string]interface{}{
 							"name": "ApiKey",
+						}),
+					},
+					Secret: true,
+				},
+				"clientId": {
+					DefaultInfo: &pschema.DefaultSpec{
+						Environment: []string{
+							"TAILSCALE_NATIVE_CLIENT_ID",
+							"TAILSCALE_CLIENT_ID",
+						},
+					},
+					Description: "The Tailscale OAuth client ID.",
+					TypeSpec:    pschema.TypeSpec{Type: "string"},
+					Language: map[string]pschema.RawMessage{
+						"csharp": rawMessage(map[string]interface{}{
+							"name": "ClientId",
+						}),
+					},
+					Secret: false,
+				},
+				"clientSecret": {
+					DefaultInfo: &pschema.DefaultSpec{
+						Environment: []string{
+							"TAILSCALE_NATIVE_CLIENT_SECRET",
+							"TAILSCALE_CLIENT_SECRET",
+						},
+					},
+					Description: "The Tailscale OAuth client secret.",
+					TypeSpec:    pschema.TypeSpec{Type: "string"},
+					Language: map[string]pschema.RawMessage{
+						"csharp": rawMessage(map[string]interface{}{
+							"name": "ClientSecret",
 						}),
 					},
 					Secret: true,
@@ -167,6 +215,6 @@ func rawMessage(v interface{}) pschema.RawMessage {
 	encoder := json.NewEncoder(&out)
 	encoder.SetEscapeHTML(false)
 	err := encoder.Encode(v)
-	contract.Assert(err == nil)
+	contract.Assertf(err == nil, "Failed to convert input to raw JSON bytes")
 	return out.Bytes()
 }

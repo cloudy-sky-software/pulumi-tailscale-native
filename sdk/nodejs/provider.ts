@@ -35,6 +35,8 @@ export class Provider extends pulumi.ProviderResource {
         opts = opts || {};
         {
             resourceInputs["apiKey"] = (args?.apiKey ? pulumi.secret(args.apiKey) : undefined) ?? utilities.getEnv("TAILSCALE_NATIVE_APIKEY", "TAILSCALE_APIKEY");
+            resourceInputs["clientId"] = (args ? args.clientId : undefined) ?? utilities.getEnv("TAILSCALE_NATIVE_CLIENT_ID", "TAILSCALE_CLIENT_ID");
+            resourceInputs["clientSecret"] = (args?.clientSecret ? pulumi.secret(args.clientSecret) : undefined) ?? utilities.getEnv("TAILSCALE_NATIVE_CLIENT_SECRET", "TAILSCALE_CLIENT_SECRET");
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(Provider.__pulumiType, name, resourceInputs, opts);
@@ -49,4 +51,12 @@ export interface ProviderArgs {
      * The Tailscale API key.
      */
     apiKey?: pulumi.Input<string>;
+    /**
+     * The Tailscale OAuth client ID.
+     */
+    clientId?: pulumi.Input<string>;
+    /**
+     * The Tailscale OAuth client secret.
+     */
+    clientSecret?: pulumi.Input<string>;
 }

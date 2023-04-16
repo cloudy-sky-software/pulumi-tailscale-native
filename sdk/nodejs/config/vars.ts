@@ -18,3 +18,25 @@ Object.defineProperty(exports, "apiKey", {
     enumerable: true,
 });
 
+/**
+ * The OAuth client ID
+ */
+export declare const clientId: string | undefined;
+Object.defineProperty(exports, "clientId", {
+    get() {
+        return __config.get("clientId");
+    },
+    enumerable: true,
+});
+
+/**
+ * The OAuth client secret
+ */
+export declare const clientSecret: string | undefined;
+Object.defineProperty(exports, "clientSecret", {
+    get() {
+        return __config.get("clientSecret");
+    },
+    enumerable: true,
+});
+

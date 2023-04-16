@@ -3,13 +3,13 @@ package provider
 import (
 	"context"
 	"encoding/base64"
+	"errors"
 	"fmt"
 	"net/http"
 	"os"
+	"strings"
 
 	"github.com/getkin/kin-openapi/openapi3"
-
-	"github.com/pkg/errors"
 
 	"github.com/pulumi/pulumi/pkg/v3/resource/provider"
 
@@ -19,13 +19,17 @@ import (
 
 	fwCallback "github.com/cloudy-sky-software/pulumi-provider-framework/callback"
 	fwRest "github.com/cloudy-sky-software/pulumi-provider-framework/rest"
+
+	"golang.org/x/oauth2/clientcredentials"
 )
 
 type tailscaleProvider struct {
 	name    string
 	version string
 
-	apiKey string
+	apiKey            *string
+	oauthClientID     *string
+	oauthClientSecret *string
 }
 
 var (
@@ -48,8 +52,46 @@ func makeProvider(host *provider.HostClient, name, version string, pulumiSchemaB
 }
 
 func (p *tailscaleProvider) GetAuthorizationHeader() string {
-	basicAuth := base64.URLEncoding.EncodeToString([]byte(p.apiKey + ":"))
-	return fmt.Sprintf("%s %s", authSchemePrefix, basicAuth)
+	if p.apiKey != nil {
+		basicAuth := base64.URLEncoding.EncodeToString([]byte(*p.apiKey + ":"))
+		return fmt.Sprintf("%s %s", basicAuthSchemePrefix, basicAuth)
+	}
+
+	if p.oauthClientID == nil || p.oauthClientSecret == nil {
+		logging.Errorf("None of the supported credentials were configured. Calls will fail!")
+		return ""
+	}
+
+	apiDoc := handler.GetOpenAPIDoc()
+	for _, scheme := range apiDoc.Components.SecuritySchemes {
+		if strings.ToLower(scheme.Value.Type) != "oauth2" {
+			continue
+		}
+
+		if scheme.Value.Flows == nil || scheme.Value.Flows.ClientCredentials == nil {
+			logging.Errorf("Invalid OAuth2 flow declared in the OpenAPI doc")
+			continue
+		}
+
+		tokenURL := scheme.Value.Flows.ClientCredentials.TokenURL
+
+		config := clientcredentials.Config{
+			ClientID:     *p.oauthClientID,
+			ClientSecret: *p.oauthClientSecret,
+			TokenURL:     tokenURL,
+		}
+		token, err := config.Token(context.Background())
+		if err != nil {
+			logging.Errorf("Failed to fetch token using OAuth2 client credentials: %v", err)
+			return ""
+		}
+
+		return token.AccessToken
+	}
+
+	logging.Errorf("Could not determine authorization header")
+
+	return ""
 }
 
 func (p *tailscaleProvider) OnPreInvoke(ctx context.Context, req *pulumirpc.InvokeRequest, httpReq *http.Request) error {
@@ -76,12 +118,46 @@ func (p *tailscaleProvider) OnConfigure(_ context.Context, req *pulumirpc.Config
 
 		// Return an error if the API key is still empty.
 		if apiKey == "" {
-			return nil, errors.New("api key is required")
+			logging.V(3).Info("Did not find an API key in the config")
 		}
 	}
 
-	logging.V(3).Info("Configuring Tailscale API key")
-	p.apiKey = apiKey
+	if apiKey != "" {
+		logging.V(3).Info("Configuring Tailscale API key")
+		p.apiKey = &apiKey
+	}
+
+	clientID, ok := req.GetVariables()[fmt.Sprintf("%s:config:clientId", p.name)]
+	if !ok {
+		// Check if it's set as an env var.
+		envVarNames := handler.GetSchemaSpec().Provider.InputProperties["clientId"].DefaultInfo.Environment
+		for _, n := range envVarNames {
+			v := os.Getenv(n)
+			if v != "" {
+				clientID = v
+			}
+		}
+	}
+
+	if apiKey != "" && clientID != "" {
+		return nil, errors.New("only one of apiKey or clientId and secret must be specified")
+	}
+
+	clientSecret, ok := req.GetVariables()[fmt.Sprintf("%s:config:clientSecret", p.name)]
+	if !ok {
+		// Check if it's set as an env var.
+		envVarNames := handler.GetSchemaSpec().Provider.InputProperties["clientSecret"].DefaultInfo.Environment
+		for _, n := range envVarNames {
+			v := os.Getenv(n)
+			if v != "" {
+				clientSecret = v
+			}
+		}
+	}
+
+	logging.V(3).Info("Configuring Tailscale OAuth client credentials")
+	p.oauthClientID = &clientID
+	p.oauthClientSecret = &clientSecret
 
 	return &pulumirpc.ConfigureResponse{
 		AcceptSecrets: true,
