@@ -14,15 +14,27 @@ __all__ = ['ProviderArgs', 'Provider']
 @pulumi.input_type
 class ProviderArgs:
     def __init__(__self__, *,
-                 api_key: Optional[pulumi.Input[str]] = None):
+                 api_key: Optional[pulumi.Input[str]] = None,
+                 client_id: Optional[pulumi.Input[str]] = None,
+                 client_secret: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a Provider resource.
         :param pulumi.Input[str] api_key: The Tailscale API key.
+        :param pulumi.Input[str] client_id: The Tailscale OAuth client ID.
+        :param pulumi.Input[str] client_secret: The Tailscale OAuth client secret.
         """
         if api_key is None:
             api_key = _utilities.get_env('TAILSCALE_NATIVE_APIKEY', 'TAILSCALE_APIKEY')
         if api_key is not None:
             pulumi.set(__self__, "api_key", api_key)
+        if client_id is None:
+            client_id = _utilities.get_env('TAILSCALE_NATIVE_CLIENT_ID', 'TAILSCALE_CLIENT_ID')
+        if client_id is not None:
+            pulumi.set(__self__, "client_id", client_id)
+        if client_secret is None:
+            client_secret = _utilities.get_env('TAILSCALE_NATIVE_CLIENT_SECRET', 'TAILSCALE_CLIENT_SECRET')
+        if client_secret is not None:
+            pulumi.set(__self__, "client_secret", client_secret)
 
     @property
     @pulumi.getter(name="apiKey")
@@ -36,6 +48,30 @@ class ProviderArgs:
     def api_key(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "api_key", value)
 
+    @property
+    @pulumi.getter(name="clientId")
+    def client_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The Tailscale OAuth client ID.
+        """
+        return pulumi.get(self, "client_id")
+
+    @client_id.setter
+    def client_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "client_id", value)
+
+    @property
+    @pulumi.getter(name="clientSecret")
+    def client_secret(self) -> Optional[pulumi.Input[str]]:
+        """
+        The Tailscale OAuth client secret.
+        """
+        return pulumi.get(self, "client_secret")
+
+    @client_secret.setter
+    def client_secret(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "client_secret", value)
+
 
 class Provider(pulumi.ProviderResource):
     @overload
@@ -43,6 +79,8 @@ class Provider(pulumi.ProviderResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  api_key: Optional[pulumi.Input[str]] = None,
+                 client_id: Optional[pulumi.Input[str]] = None,
+                 client_secret: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
         The provider type for the Tailscale package.
@@ -50,6 +88,8 @@ class Provider(pulumi.ProviderResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] api_key: The Tailscale API key.
+        :param pulumi.Input[str] client_id: The Tailscale OAuth client ID.
+        :param pulumi.Input[str] client_secret: The Tailscale OAuth client secret.
         """
         ...
     @overload
@@ -76,6 +116,8 @@ class Provider(pulumi.ProviderResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  api_key: Optional[pulumi.Input[str]] = None,
+                 client_id: Optional[pulumi.Input[str]] = None,
+                 client_secret: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -88,6 +130,12 @@ class Provider(pulumi.ProviderResource):
             if api_key is None:
                 api_key = _utilities.get_env('TAILSCALE_NATIVE_APIKEY', 'TAILSCALE_APIKEY')
             __props__.__dict__["api_key"] = None if api_key is None else pulumi.Output.secret(api_key)
+            if client_id is None:
+                client_id = _utilities.get_env('TAILSCALE_NATIVE_CLIENT_ID', 'TAILSCALE_CLIENT_ID')
+            __props__.__dict__["client_id"] = client_id
+            if client_secret is None:
+                client_secret = _utilities.get_env('TAILSCALE_NATIVE_CLIENT_SECRET', 'TAILSCALE_CLIENT_SECRET')
+            __props__.__dict__["client_secret"] = None if client_secret is None else pulumi.Output.secret(client_secret)
         super(Provider, __self__).__init__(
             'tailscale-native',
             resource_name,

@@ -12,3 +12,13 @@ import (
 func GetApiKey(ctx *pulumi.Context) string {
 	return config.Get(ctx, "tailscale-native:apiKey")
 }
+
+// The OAuth client ID
+func GetClientId(ctx *pulumi.Context) string {
+	return config.Get(ctx, "tailscale-native:clientId")
+}
+
+// The OAuth client secret
+func GetClientSecret(ctx *pulumi.Context) string {
+	return config.Get(ctx, "tailscale-native:clientSecret")
+}
