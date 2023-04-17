@@ -28,9 +28,9 @@ A quote from Tailscale's own docs:
 - Create an OAuth client on https://login.tailscale.com/admin/settings/oauth.
 - Grant the appropriate scopes (permissions) to the client.
 - Copy the client ID and secret.
-- Set the client ID with `pulumi config set tailscale:clientId <clientID>`.
-- Set the client secret with `pulumi config set --secret tailscale:clientSecret <clientSecret>`.
-- Optional: Remove the API key config `tailscale:apiKey` from your stack config if you previously used that method of auth.
+- Set the client ID with `pulumi config set tailscale-native:clientId <clientID>`.
+- Set the client secret with `pulumi config set --secret tailscale-native:clientSecret <clientSecret>`.
+- Optional: Remove the API key config `tailscale-native:apiKey` from your stack config if you previously used that method of auth.
 
 Read the full official docs at https://tailscale.com/kb/1215/oauth-clients/.
 
