@@ -1,3 +1,7 @@
+## v0.0.8
+
+Add support for OAuth2 client credentials auth flow in addition to API key-based auth.
+
 ## v0.0.7
 
 Prepare for public release.
