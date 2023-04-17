@@ -1,4 +1,4 @@
-## v0.0.8
+## v0.0.8-v0.0.9
 
 Add support for OAuth2 client credentials auth flow in addition to API key-based auth.
 
