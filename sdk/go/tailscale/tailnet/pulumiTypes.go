@@ -381,6 +381,66 @@ func (o CreateKeyOutput) Tags() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v CreateKey) []string { return v.Tags }).(pulumi.StringArrayOutput)
 }
 
+type CreateKeyPtrOutput struct{ *pulumi.OutputState }
+
+func (CreateKeyPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**CreateKey)(nil)).Elem()
+}
+
+func (o CreateKeyPtrOutput) ToCreateKeyPtrOutput() CreateKeyPtrOutput {
+	return o
+}
+
+func (o CreateKeyPtrOutput) ToCreateKeyPtrOutputWithContext(ctx context.Context) CreateKeyPtrOutput {
+	return o
+}
+
+func (o CreateKeyPtrOutput) Elem() CreateKeyOutput {
+	return o.ApplyT(func(v *CreateKey) CreateKey {
+		if v != nil {
+			return *v
+		}
+		var ret CreateKey
+		return ret
+	}).(CreateKeyOutput)
+}
+
+func (o CreateKeyPtrOutput) Ephemeral() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *CreateKey) *bool {
+		if v == nil {
+			return nil
+		}
+		return &v.Ephemeral
+	}).(pulumi.BoolPtrOutput)
+}
+
+func (o CreateKeyPtrOutput) Preauthorized() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *CreateKey) *bool {
+		if v == nil {
+			return nil
+		}
+		return &v.Preauthorized
+	}).(pulumi.BoolPtrOutput)
+}
+
+func (o CreateKeyPtrOutput) Reusable() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *CreateKey) *bool {
+		if v == nil {
+			return nil
+		}
+		return &v.Reusable
+	}).(pulumi.BoolPtrOutput)
+}
+
+func (o CreateKeyPtrOutput) Tags() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *CreateKey) []string {
+		if v == nil {
+			return nil
+		}
+		return v.Tags
+	}).(pulumi.StringArrayOutput)
+}
+
 type Device struct {
 	Addresses                 []string           `pulumi:"addresses"`
 	AdvertisedRoutes          []string           `pulumi:"advertisedRoutes"`
@@ -567,6 +627,39 @@ func (o DeviceKeyCapabilitiesOutput) Create() CreateKeyOutput {
 	return o.ApplyT(func(v DeviceKeyCapabilities) CreateKey { return v.Create }).(CreateKeyOutput)
 }
 
+type DeviceKeyCapabilitiesPtrOutput struct{ *pulumi.OutputState }
+
+func (DeviceKeyCapabilitiesPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**DeviceKeyCapabilities)(nil)).Elem()
+}
+
+func (o DeviceKeyCapabilitiesPtrOutput) ToDeviceKeyCapabilitiesPtrOutput() DeviceKeyCapabilitiesPtrOutput {
+	return o
+}
+
+func (o DeviceKeyCapabilitiesPtrOutput) ToDeviceKeyCapabilitiesPtrOutputWithContext(ctx context.Context) DeviceKeyCapabilitiesPtrOutput {
+	return o
+}
+
+func (o DeviceKeyCapabilitiesPtrOutput) Elem() DeviceKeyCapabilitiesOutput {
+	return o.ApplyT(func(v *DeviceKeyCapabilities) DeviceKeyCapabilities {
+		if v != nil {
+			return *v
+		}
+		var ret DeviceKeyCapabilities
+		return ret
+	}).(DeviceKeyCapabilitiesOutput)
+}
+
+func (o DeviceKeyCapabilitiesPtrOutput) Create() CreateKeyPtrOutput {
+	return o.ApplyT(func(v *DeviceKeyCapabilities) *CreateKey {
+		if v == nil {
+			return nil
+		}
+		return &v.Create
+	}).(CreateKeyPtrOutput)
+}
+
 type DnsSearchPaths struct {
 	SearchPaths []string `pulumi:"searchPaths"`
 }
@@ -636,6 +729,39 @@ func (o KeyCapabilitiesOutput) ToKeyCapabilitiesOutputWithContext(ctx context.Co
 
 func (o KeyCapabilitiesOutput) Devices() DeviceKeyCapabilitiesOutput {
 	return o.ApplyT(func(v KeyCapabilities) DeviceKeyCapabilities { return v.Devices }).(DeviceKeyCapabilitiesOutput)
+}
+
+type KeyCapabilitiesPtrOutput struct{ *pulumi.OutputState }
+
+func (KeyCapabilitiesPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**KeyCapabilities)(nil)).Elem()
+}
+
+func (o KeyCapabilitiesPtrOutput) ToKeyCapabilitiesPtrOutput() KeyCapabilitiesPtrOutput {
+	return o
+}
+
+func (o KeyCapabilitiesPtrOutput) ToKeyCapabilitiesPtrOutputWithContext(ctx context.Context) KeyCapabilitiesPtrOutput {
+	return o
+}
+
+func (o KeyCapabilitiesPtrOutput) Elem() KeyCapabilitiesOutput {
+	return o.ApplyT(func(v *KeyCapabilities) KeyCapabilities {
+		if v != nil {
+			return *v
+		}
+		var ret KeyCapabilities
+		return ret
+	}).(KeyCapabilitiesOutput)
+}
+
+func (o KeyCapabilitiesPtrOutput) Devices() DeviceKeyCapabilitiesPtrOutput {
+	return o.ApplyT(func(v *KeyCapabilities) *DeviceKeyCapabilities {
+		if v == nil {
+			return nil
+		}
+		return &v.Devices
+	}).(DeviceKeyCapabilitiesPtrOutput)
 }
 
 type NameServersType struct {
@@ -923,11 +1049,14 @@ func init() {
 	pulumi.RegisterOutputType(ClientConnectivityOutput{})
 	pulumi.RegisterOutputType(ClientSupportsOutput{})
 	pulumi.RegisterOutputType(CreateKeyOutput{})
+	pulumi.RegisterOutputType(CreateKeyPtrOutput{})
 	pulumi.RegisterOutputType(DeviceOutput{})
 	pulumi.RegisterOutputType(DeviceArrayOutput{})
 	pulumi.RegisterOutputType(DeviceKeyCapabilitiesOutput{})
+	pulumi.RegisterOutputType(DeviceKeyCapabilitiesPtrOutput{})
 	pulumi.RegisterOutputType(DnsSearchPathsOutput{})
 	pulumi.RegisterOutputType(KeyCapabilitiesOutput{})
+	pulumi.RegisterOutputType(KeyCapabilitiesPtrOutput{})
 	pulumi.RegisterOutputType(NameServersTypeOutput{})
 	pulumi.RegisterOutputType(NameServersPreferenceOutput{})
 	pulumi.RegisterOutputType(NodeAttrsOutput{})

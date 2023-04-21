@@ -760,6 +760,18 @@
         },
         "tailscale-native:device:Routes": {
             "properties": {
+                "advertisedRoutes": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "enabledRoutes": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
                 "routes": {
                     "type": "array",
                     "items": {
@@ -774,7 +786,8 @@
             },
             "type": "object",
             "required": [
-                "routes"
+                "advertisedRoutes",
+                "enabledRoutes"
             ],
             "inputProperties": {
                 "id": {
@@ -979,14 +992,28 @@
                 "capabilities": {
                     "$ref": "#/types/tailscale-native:tailnet:KeyCapabilities"
                 },
+                "created": {
+                    "type": "string"
+                },
+                "expires": {
+                    "type": "string"
+                },
                 "expirySeconds": {
                     "type": "integer"
+                },
+                "key": {
+                    "type": "string",
+                    "language": {
+                        "csharp": {
+                            "name": "KeyValue"
+                        }
+                    }
                 }
             },
             "type": "object",
             "required": [
-                "capabilities",
-                "expirySeconds"
+                "expires",
+                "key"
             ],
             "inputProperties": {
                 "capabilities": {

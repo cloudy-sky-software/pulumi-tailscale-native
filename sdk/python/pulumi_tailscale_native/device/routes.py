@@ -93,6 +93,8 @@ class Routes(pulumi.CustomResource):
             if routes is None and not opts.urn:
                 raise TypeError("Missing required property 'routes'")
             __props__.__dict__["routes"] = routes
+            __props__.__dict__["advertised_routes"] = None
+            __props__.__dict__["enabled_routes"] = None
         super(Routes, __self__).__init__(
             'tailscale-native:device:Routes',
             resource_name,
@@ -115,11 +117,23 @@ class Routes(pulumi.CustomResource):
 
         __props__ = RoutesArgs.__new__(RoutesArgs)
 
+        __props__.__dict__["advertised_routes"] = None
+        __props__.__dict__["enabled_routes"] = None
         __props__.__dict__["routes"] = None
         return Routes(resource_name, opts=opts, __props__=__props__)
 
     @property
+    @pulumi.getter(name="advertisedRoutes")
+    def advertised_routes(self) -> pulumi.Output[Sequence[str]]:
+        return pulumi.get(self, "advertised_routes")
+
+    @property
+    @pulumi.getter(name="enabledRoutes")
+    def enabled_routes(self) -> pulumi.Output[Sequence[str]]:
+        return pulumi.get(self, "enabled_routes")
+
+    @property
     @pulumi.getter
-    def routes(self) -> pulumi.Output[Sequence[str]]:
+    def routes(self) -> pulumi.Output[Optional[Sequence[str]]]:
         return pulumi.get(self, "routes")
 

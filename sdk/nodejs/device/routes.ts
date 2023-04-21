@@ -31,7 +31,9 @@ export class Routes extends pulumi.CustomResource {
         return obj['__pulumiType'] === Routes.__pulumiType;
     }
 
-    public readonly routes!: pulumi.Output<string[]>;
+    public /*out*/ readonly advertisedRoutes!: pulumi.Output<string[]>;
+    public /*out*/ readonly enabledRoutes!: pulumi.Output<string[]>;
+    public readonly routes!: pulumi.Output<string[] | undefined>;
 
     /**
      * Create a Routes resource with the given unique name, arguments, and options.
@@ -49,7 +51,11 @@ export class Routes extends pulumi.CustomResource {
             }
             resourceInputs["id"] = args ? args.id : undefined;
             resourceInputs["routes"] = args ? args.routes : undefined;
+            resourceInputs["advertisedRoutes"] = undefined /*out*/;
+            resourceInputs["enabledRoutes"] = undefined /*out*/;
         } else {
+            resourceInputs["advertisedRoutes"] = undefined /*out*/;
+            resourceInputs["enabledRoutes"] = undefined /*out*/;
             resourceInputs["routes"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);

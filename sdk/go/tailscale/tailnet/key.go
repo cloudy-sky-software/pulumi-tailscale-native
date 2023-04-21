@@ -14,8 +14,11 @@ import (
 type Key struct {
 	pulumi.CustomResourceState
 
-	Capabilities  KeyCapabilitiesOutput `pulumi:"capabilities"`
-	ExpirySeconds pulumi.IntOutput      `pulumi:"expirySeconds"`
+	Capabilities  KeyCapabilitiesPtrOutput `pulumi:"capabilities"`
+	Created       pulumi.StringPtrOutput   `pulumi:"created"`
+	Expires       pulumi.StringOutput      `pulumi:"expires"`
+	ExpirySeconds pulumi.IntPtrOutput      `pulumi:"expirySeconds"`
+	Key           pulumi.StringOutput      `pulumi:"key"`
 }
 
 // NewKey registers a new resource with the given unique name, arguments, and options.
@@ -113,12 +116,24 @@ func (o KeyOutput) ToKeyOutputWithContext(ctx context.Context) KeyOutput {
 	return o
 }
 
-func (o KeyOutput) Capabilities() KeyCapabilitiesOutput {
-	return o.ApplyT(func(v *Key) KeyCapabilitiesOutput { return v.Capabilities }).(KeyCapabilitiesOutput)
+func (o KeyOutput) Capabilities() KeyCapabilitiesPtrOutput {
+	return o.ApplyT(func(v *Key) KeyCapabilitiesPtrOutput { return v.Capabilities }).(KeyCapabilitiesPtrOutput)
 }
 
-func (o KeyOutput) ExpirySeconds() pulumi.IntOutput {
-	return o.ApplyT(func(v *Key) pulumi.IntOutput { return v.ExpirySeconds }).(pulumi.IntOutput)
+func (o KeyOutput) Created() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Key) pulumi.StringPtrOutput { return v.Created }).(pulumi.StringPtrOutput)
+}
+
+func (o KeyOutput) Expires() pulumi.StringOutput {
+	return o.ApplyT(func(v *Key) pulumi.StringOutput { return v.Expires }).(pulumi.StringOutput)
+}
+
+func (o KeyOutput) ExpirySeconds() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *Key) pulumi.IntPtrOutput { return v.ExpirySeconds }).(pulumi.IntPtrOutput)
+}
+
+func (o KeyOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v *Key) pulumi.StringOutput { return v.Key }).(pulumi.StringOutput)
 }
 
 func init() {
