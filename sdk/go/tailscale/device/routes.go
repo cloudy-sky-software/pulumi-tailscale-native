@@ -14,7 +14,9 @@ import (
 type Routes struct {
 	pulumi.CustomResourceState
 
-	Routes pulumi.StringArrayOutput `pulumi:"routes"`
+	AdvertisedRoutes pulumi.StringArrayOutput `pulumi:"advertisedRoutes"`
+	EnabledRoutes    pulumi.StringArrayOutput `pulumi:"enabledRoutes"`
+	Routes           pulumi.StringArrayOutput `pulumi:"routes"`
 }
 
 // NewRoutes registers a new resource with the given unique name, arguments, and options.
@@ -105,6 +107,14 @@ func (o RoutesOutput) ToRoutesOutput() RoutesOutput {
 
 func (o RoutesOutput) ToRoutesOutputWithContext(ctx context.Context) RoutesOutput {
 	return o
+}
+
+func (o RoutesOutput) AdvertisedRoutes() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *Routes) pulumi.StringArrayOutput { return v.AdvertisedRoutes }).(pulumi.StringArrayOutput)
+}
+
+func (o RoutesOutput) EnabledRoutes() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *Routes) pulumi.StringArrayOutput { return v.EnabledRoutes }).(pulumi.StringArrayOutput)
 }
 
 func (o RoutesOutput) Routes() pulumi.StringArrayOutput {

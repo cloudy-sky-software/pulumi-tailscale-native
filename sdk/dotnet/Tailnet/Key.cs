@@ -13,10 +13,19 @@ namespace Pulumi.TailscaleNative.Tailnet
     public partial class Key : global::Pulumi.CustomResource
     {
         [Output("capabilities")]
-        public Output<Outputs.KeyCapabilities> Capabilities { get; private set; } = null!;
+        public Output<Outputs.KeyCapabilities?> Capabilities { get; private set; } = null!;
+
+        [Output("created")]
+        public Output<string?> Created { get; private set; } = null!;
+
+        [Output("expires")]
+        public Output<string> Expires { get; private set; } = null!;
 
         [Output("expirySeconds")]
-        public Output<int> ExpirySeconds { get; private set; } = null!;
+        public Output<int?> ExpirySeconds { get; private set; } = null!;
+
+        [Output("key")]
+        public Output<string> KeyValue { get; private set; } = null!;
 
 
         /// <summary>

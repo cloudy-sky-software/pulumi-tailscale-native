@@ -12,6 +12,12 @@ namespace Pulumi.TailscaleNative.Device
     [TailscaleNativeResourceType("tailscale-native:device:Routes")]
     public partial class Routes : global::Pulumi.CustomResource
     {
+        [Output("advertisedRoutes")]
+        public Output<ImmutableArray<string>> AdvertisedRoutes { get; private set; } = null!;
+
+        [Output("enabledRoutes")]
+        public Output<ImmutableArray<string>> EnabledRoutes { get; private set; } = null!;
+
         [Output("routes")]
         public Output<ImmutableArray<string>> RoutesValue { get; private set; } = null!;
 
