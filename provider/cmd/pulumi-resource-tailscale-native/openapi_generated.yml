@@ -204,10 +204,16 @@ paths:
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Device'
-                x-typespec-name: Device[]
+                type: object
+                properties:
+                  devices:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Device'
+                    x-typespec-name: Device[]
+                required:
+                  - devices
+                x-typespec-name: TailnetEndpoints.(anonymous model)
   /tailnet/{tailnet}/dns/nameservers:
     get:
       operationId: TailnetEndpoints_getNameServers

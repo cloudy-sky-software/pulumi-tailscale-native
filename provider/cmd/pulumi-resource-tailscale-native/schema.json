@@ -582,6 +582,20 @@
                 "devices"
             ]
         },
+        "tailscale-native:tailnet:ListDevicesProperties": {
+            "properties": {
+                "devices": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/tailscale-native:tailnet:Device"
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "devices"
+            ]
+        },
         "tailscale-native:tailnet:NameServers": {
             "properties": {
                 "dns": {
@@ -1247,10 +1261,7 @@
             "outputs": {
                 "properties": {
                     "items": {
-                        "type": "array",
-                        "items": {
-                            "$ref": "#/types/tailscale-native:tailnet:Device"
-                        }
+                        "$ref": "#/types/tailscale-native:tailnet:ListDevicesProperties"
                     }
                 },
                 "required": [
