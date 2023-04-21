@@ -20,7 +20,7 @@
     }
   ],
   "customEnvVariables": {
-    "GOPRIVATE": "github.com/cloudy-sky-software/pulumi-provider-framework"
+    "GOPRIVATE": "github.com/cloudy-sky-software/*"
   },
   "postUpdateOptions": ["gomodTidy"]
 }
