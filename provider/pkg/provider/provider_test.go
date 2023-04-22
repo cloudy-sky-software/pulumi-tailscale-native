@@ -20,24 +20,18 @@ import (
 )
 
 const testCreateJSONPayload = `{
-    "autoDeploy": "yes",
-    "branch": "master",
-    "envVars": [{ "key": "PORT", "value": "8080" }],
-    "name": "An Express.js web service",
-    "ownerId": "usr-somefakeownerid",
-    "repo": "https://github.com/render-examples/express-hello-world",
-    "serviceDetails": {
-        "env": "node",
-        "envSpecificDetails": {
-            "buildCommand": "yarn",
-            "startCommand": "node app.js"
-        },
-        "numInstances": 1,
-        "plan": "starter",
-        "pullRequestPreviewsEnabled": "no",
-        "region": "oregon"
-    },
-    "type": "web_service"
+    "capabilities": {
+		"devices": {
+			"create": {
+				"ephemeral": true,
+				"preauthorized": true,
+				"reusable": true,
+				"tags": ["admin:authorized"]
+			}
+		}
+	},
+	"expirySeconds": 300,
+	"tailnet": "mytailnet@tailscale.com"
 }
 `
 
@@ -81,36 +75,32 @@ func makeTestProvider(ctx context.Context, t *testing.T) pulumirpc.ResourceProvi
 }
 
 func TestDiff(t *testing.T) {
-	t.Skip("Skipping temporarily. Needs update.")
-
 	ctx := context.Background()
 
 	p := makeTestProvider(ctx, t)
 
 	outputs := make(map[string]interface{})
-	outputs["name"] = "Test"
+	outputs["key"] = "somesecretkey"
 	oldsStruct, _ := plugin.MarshalProperties(state.GetResourceState(outputs, resource.NewPropertyMapFromMap(outputs)), state.DefaultMarshalOpts)
 
 	news := make(map[string]interface{})
-	news["name"] = "Test2"
+	news["expirySeconds"] = 400
 	newsStruct, _ := plugin.MarshalProperties(resource.NewPropertyMapFromMap(news), state.DefaultMarshalOpts)
 
-	resp, err := p.Diff(ctx, &pulumirpc.DiffRequest{Id: "", Urn: "urn:pulumi:some-stack::some-project::tailscale:services:StaticSite::someResourceName", Olds: oldsStruct, News: newsStruct})
+	resp, err := p.Diff(ctx, &pulumirpc.DiffRequest{Id: "", Urn: "urn:pulumi:some-stack::some-project::tailscale-native:tailnet:Key::myAuthKey", Olds: oldsStruct, News: newsStruct})
 	assert.Nil(t, err)
 	assert.Equal(t, pulumirpc.DiffResponse_DIFF_SOME, resp.Changes)
 	assert.NotEmpty(t, resp.Diffs)
 	assert.Len(t, resp.Diffs, 1)
-	assert.Empty(t, resp.Replaces)
+	assert.NotEmpty(t, resp.Replaces)
 }
 
 func TestCreate(t *testing.T) {
-	t.Skip("Skipping temporarily. Needs update.")
-
 	ctx := context.Background()
 
 	var inputs map[string]interface{}
 	if err := json.Unmarshal([]byte(testCreateJSONPayload), &inputs); err != nil {
-		t.Fatal("Failed to unmarshal test payload")
+		t.Fatalf("Failed to unmarshal test payload: %v", err)
 	}
 
 	p := makeTestProvider(ctx, t)
@@ -118,7 +108,7 @@ func TestCreate(t *testing.T) {
 	inputProperties, _ := plugin.MarshalProperties(resource.NewPropertyMapFromMap(inputs), state.DefaultMarshalOpts)
 
 	_, err := p.Create(ctx, &pulumirpc.CreateRequest{
-		Urn:        "urn:pulumi:dev::tailscale-ts::tailscale:services:WebService::webservice",
+		Urn:        "urn:pulumi:dev::tailscale-ts::tailscale-native:tailnet:Key::myAuthKey",
 		Properties: inputProperties,
 	})
 
