@@ -57,14 +57,14 @@ func makeTestProvider(ctx context.Context, t *testing.T) pulumirpc.ResourceProvi
 	pSchemaBytes := readFileFromProviderResourceDir(t, "schema.json")
 	metadataBytes := readFileFromProviderResourceDir(t, "metadata.json")
 
-	p, err := makeProvider(nil, "", "", pSchemaBytes, openapiBytes, metadataBytes)
+	p, err := makeProvider(nil, "tailscale-native", "", pSchemaBytes, openapiBytes, metadataBytes)
 
 	if err != nil {
 		t.Fatalf("Could not create a provider instance: %v", err)
 	}
 
 	_, err = p.Configure(ctx, &pulumirpc.ConfigureRequest{
-		Variables: map[string]string{"tailscale:config:apiKey": "fakeapikey"},
+		Variables: map[string]string{"tailscale-native:config:apiKey": "fakeapikey"},
 	})
 
 	if err != nil {
@@ -79,11 +79,13 @@ func TestDiff(t *testing.T) {
 
 	p := makeTestProvider(ctx, t)
 
-	outputs := make(map[string]interface{})
-	outputs["key"] = "somesecretkey"
-	oldsStruct, _ := plugin.MarshalProperties(state.GetResourceState(outputs, resource.NewPropertyMapFromMap(outputs)), state.DefaultMarshalOpts)
+	original := make(map[string]interface{})
+	original["expirySeconds"] = 300
+	outputs := map[string]interface{}{"expirySeconds": 300, "key": "somesecretkey"}
+	oldsStruct, _ := plugin.MarshalProperties(state.GetResourceState(outputs, resource.NewPropertyMapFromMap(original)), state.DefaultMarshalOpts)
 
 	news := make(map[string]interface{})
+	// Now update the input property.
 	news["expirySeconds"] = 400
 	newsStruct, _ := plugin.MarshalProperties(resource.NewPropertyMapFromMap(news), state.DefaultMarshalOpts)
 
@@ -92,6 +94,8 @@ func TestDiff(t *testing.T) {
 	assert.Equal(t, pulumirpc.DiffResponse_DIFF_SOME, resp.Changes)
 	assert.NotEmpty(t, resp.Diffs)
 	assert.Len(t, resp.Diffs, 1)
+	// Since the tailscale-native:tailnet:Key resource does not support updates,
+	// we should get a replacement.
 	assert.NotEmpty(t, resp.Replaces)
 }
 
