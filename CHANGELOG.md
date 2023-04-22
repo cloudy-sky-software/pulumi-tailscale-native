@@ -1,3 +1,7 @@
+## v0.0.12
+
+Upgrade pulumi-provider-framework to the latest
+
 ## v0.0.11
 
 Fix return type of `GET /tailnet/{tailnet}/devices`
