@@ -1,3 +1,7 @@
+## v0.0.11
+
+Fix return type of `GET /tailnet/{tailnet}/devices`
+
 ## v0.0.10
 
 - Regen schema with the latest pulschema to fix an issue with output properties.
