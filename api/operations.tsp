@@ -70,7 +70,9 @@ namespace Operations {
 
         @route("/devices")
         @get
-        op listDevices(@path tailnet: "-" | string): Device[];
+        op listDevices(@path tailnet: "-" | string): {
+            devices: Device[];
+        };
 
         @route("/keys")
         @get

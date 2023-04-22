@@ -137,6 +137,10 @@ export namespace tailnet {
         devices: outputs.tailnet.DeviceKeyCapabilities;
     }
 
+    export interface ListDevicesProperties {
+        devices: outputs.tailnet.Device[];
+    }
+
     export interface NameServers {
         dns: string[];
         magicDNS: boolean;

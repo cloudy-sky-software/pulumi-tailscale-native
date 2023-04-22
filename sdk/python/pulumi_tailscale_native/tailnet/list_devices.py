@@ -20,13 +20,13 @@ __all__ = [
 @pulumi.output_type
 class ListDevicesResult:
     def __init__(__self__, items=None):
-        if items and not isinstance(items, list):
-            raise TypeError("Expected argument 'items' to be a list")
+        if items and not isinstance(items, dict):
+            raise TypeError("Expected argument 'items' to be a dict")
         pulumi.set(__self__, "items", items)
 
     @property
     @pulumi.getter
-    def items(self) -> Sequence['outputs.Device']:
+    def items(self) -> 'outputs.ListDevicesProperties':
         return pulumi.get(self, "items")
 
 

@@ -45,10 +45,10 @@ namespace Pulumi.TailscaleNative.Tailnet
     [OutputType]
     public sealed class ListDevicesResult
     {
-        public readonly ImmutableArray<Outputs.Device> Items;
+        public readonly Outputs.ListDevicesProperties Items;
 
         [OutputConstructor]
-        private ListDevicesResult(ImmutableArray<Outputs.Device> items)
+        private ListDevicesResult(Outputs.ListDevicesProperties items)
         {
             Items = items;
         }

@@ -20,7 +20,7 @@ export interface ListDevicesArgs {
 }
 
 export interface ListDevicesResult {
-    readonly items: outputs.tailnet.Device[];
+    readonly items: outputs.tailnet.ListDevicesProperties;
 }
 export function listDevicesOutput(args: ListDevicesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<ListDevicesResult> {
     return pulumi.output(args).apply((a: any) => listDevices(a, opts))

@@ -764,6 +764,28 @@ func (o KeyCapabilitiesPtrOutput) Devices() DeviceKeyCapabilitiesPtrOutput {
 	}).(DeviceKeyCapabilitiesPtrOutput)
 }
 
+type ListDevicesProperties struct {
+	Devices []Device `pulumi:"devices"`
+}
+
+type ListDevicesPropertiesOutput struct{ *pulumi.OutputState }
+
+func (ListDevicesPropertiesOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ListDevicesProperties)(nil)).Elem()
+}
+
+func (o ListDevicesPropertiesOutput) ToListDevicesPropertiesOutput() ListDevicesPropertiesOutput {
+	return o
+}
+
+func (o ListDevicesPropertiesOutput) ToListDevicesPropertiesOutputWithContext(ctx context.Context) ListDevicesPropertiesOutput {
+	return o
+}
+
+func (o ListDevicesPropertiesOutput) Devices() DeviceArrayOutput {
+	return o.ApplyT(func(v ListDevicesProperties) []Device { return v.Devices }).(DeviceArrayOutput)
+}
+
 type NameServersType struct {
 	Dns      []string `pulumi:"dns"`
 	MagicDNS bool     `pulumi:"magicDNS"`
@@ -1057,6 +1079,7 @@ func init() {
 	pulumi.RegisterOutputType(DnsSearchPathsOutput{})
 	pulumi.RegisterOutputType(KeyCapabilitiesOutput{})
 	pulumi.RegisterOutputType(KeyCapabilitiesPtrOutput{})
+	pulumi.RegisterOutputType(ListDevicesPropertiesOutput{})
 	pulumi.RegisterOutputType(NameServersTypeOutput{})
 	pulumi.RegisterOutputType(NameServersPreferenceOutput{})
 	pulumi.RegisterOutputType(NodeAttrsOutput{})

@@ -22,6 +22,7 @@ __all__ = [
     'DeviceKeyCapabilities',
     'DnsSearchPaths',
     'KeyCapabilities',
+    'ListDevicesProperties',
     'NameServers',
     'NameServersPreference',
     'NodeAttrs',
@@ -440,6 +441,18 @@ class KeyCapabilities(dict):
     @property
     @pulumi.getter
     def devices(self) -> 'outputs.DeviceKeyCapabilities':
+        return pulumi.get(self, "devices")
+
+
+@pulumi.output_type
+class ListDevicesProperties(dict):
+    def __init__(__self__, *,
+                 devices: Sequence['outputs.Device']):
+        pulumi.set(__self__, "devices", devices)
+
+    @property
+    @pulumi.getter
+    def devices(self) -> Sequence['outputs.Device']:
         return pulumi.get(self, "devices")
 
 
