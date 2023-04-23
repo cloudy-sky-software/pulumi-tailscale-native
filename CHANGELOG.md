@@ -1,3 +1,7 @@
+## v0.0.13
+
+Fix bug with resource reads that causes path param inputs to get removed
+
 ## v0.0.12
 
 Upgrade pulumi-provider-framework to the latest
