@@ -4,7 +4,7 @@ go 1.18
 
 require (
 	github.com/cloudy-sky-software/pulschema v0.0.0-20230421043110-472798fe0608
-	github.com/cloudy-sky-software/pulumi-provider-framework v0.0.0-20230422161902-b3d397af5991
+	github.com/cloudy-sky-software/pulumi-provider-framework v0.0.0-20230423052414-b161666cfb10
 	github.com/getkin/kin-openapi v0.116.0
 	github.com/pulumi/pulumi/pkg/v3 v3.64.0
 	github.com/pulumi/pulumi/sdk/v3 v3.64.0
@@ -211,3 +211,5 @@ require (
 )
 
 replace github.com/Azure/azure-sdk-for-go/sdk/storage/azblob => github.com/Azure/azure-sdk-for-go/sdk/storage/azblob v0.4.1
+
+replace github.com/cloudy-sky-software/pulumi-provider-framework => ../../pulumi-provider-framework
