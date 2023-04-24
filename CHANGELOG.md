@@ -1,3 +1,10 @@
+## v0.0.14
+
+- Update pulumi-provider-framework to the latest version
+  - This fixes an issue with resource refreshes that was incorrectly updating
+    the stashed inputs in the outputs state with read-only properties from the
+    provider which would result in diffs with the original inputs.
+
 ## v0.0.13
 
 Fix bug with resource reads that causes path param inputs to get removed
