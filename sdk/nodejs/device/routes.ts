@@ -33,7 +33,7 @@ export class Routes extends pulumi.CustomResource {
 
     public /*out*/ readonly advertisedRoutes!: pulumi.Output<string[]>;
     public /*out*/ readonly enabledRoutes!: pulumi.Output<string[]>;
-    public readonly routes!: pulumi.Output<string[] | undefined>;
+    public readonly routes!: pulumi.Output<string[]>;
 
     /**
      * Create a Routes resource with the given unique name, arguments, and options.

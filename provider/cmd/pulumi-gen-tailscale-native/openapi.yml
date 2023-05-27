@@ -53,6 +53,7 @@ paths:
         '200':
           description: The request has succeeded.
       requestBody:
+        required: true
         content:
           application/json:
             schema:
@@ -70,6 +71,7 @@ paths:
         '200':
           description: The request has succeeded.
       requestBody:
+        required: true
         content:
           application/json:
             schema:
@@ -106,6 +108,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/DeviceRoutes'
       requestBody:
+        required: true
         content:
           application/json:
             schema:
@@ -123,6 +126,7 @@ paths:
         '200':
           description: The request has succeeded.
       requestBody:
+        required: true
         content:
           application/json:
             schema:
@@ -181,6 +185,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/Acl'
       requestBody:
+        required: true
         content:
           application/json:
             schema:
@@ -254,6 +259,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/NameServers'
       requestBody:
+        required: true
         content:
           application/json:
             schema:
@@ -298,6 +304,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/NameServersPreference'
       requestBody:
+        required: true
         content:
           application/json:
             schema:
@@ -342,6 +349,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/DnsSearchPaths'
       requestBody:
+        required: true
         content:
           application/json:
             schema:
@@ -389,6 +397,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/AuthKey'
       requestBody:
+        required: true
         content:
           application/json:
             schema:

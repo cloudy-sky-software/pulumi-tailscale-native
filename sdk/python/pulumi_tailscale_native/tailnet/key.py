@@ -145,7 +145,7 @@ class Key(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def capabilities(self) -> pulumi.Output[Optional['outputs.KeyCapabilities']]:
+    def capabilities(self) -> pulumi.Output['outputs.KeyCapabilities']:
         return pulumi.get(self, "capabilities")
 
     @property
@@ -160,7 +160,7 @@ class Key(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="expirySeconds")
-    def expiry_seconds(self) -> pulumi.Output[Optional[int]]:
+    def expiry_seconds(self) -> pulumi.Output[int]:
         return pulumi.get(self, "expiry_seconds")
 
     @property
