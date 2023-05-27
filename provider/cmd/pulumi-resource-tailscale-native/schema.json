@@ -801,7 +801,8 @@
             "type": "object",
             "required": [
                 "advertisedRoutes",
-                "enabledRoutes"
+                "enabledRoutes",
+                "routes"
             ],
             "inputProperties": {
                 "id": {
@@ -1026,7 +1027,9 @@
             },
             "type": "object",
             "required": [
+                "capabilities",
                 "expires",
+                "expirySeconds",
                 "key"
             ],
             "inputProperties": {

@@ -34,10 +34,10 @@ export class Key extends pulumi.CustomResource {
         return obj['__pulumiType'] === Key.__pulumiType;
     }
 
-    public readonly capabilities!: pulumi.Output<outputs.tailnet.KeyCapabilities | undefined>;
+    public readonly capabilities!: pulumi.Output<outputs.tailnet.KeyCapabilities>;
     public /*out*/ readonly created!: pulumi.Output<string | undefined>;
     public /*out*/ readonly expires!: pulumi.Output<string>;
-    public readonly expirySeconds!: pulumi.Output<number | undefined>;
+    public readonly expirySeconds!: pulumi.Output<number>;
     public /*out*/ readonly key!: pulumi.Output<string>;
 
     /**

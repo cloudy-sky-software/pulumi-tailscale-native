@@ -134,6 +134,6 @@ class Routes(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def routes(self) -> pulumi.Output[Optional[Sequence[str]]]:
+    def routes(self) -> pulumi.Output[Sequence[str]]:
         return pulumi.get(self, "routes")
 
