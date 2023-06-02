@@ -23,13 +23,19 @@ func NewProvider(ctx *pulumi.Context,
 	}
 
 	if args.ApiKey == nil {
-		args.ApiKey = pulumi.StringPtr(getEnvOrDefault("", nil, "TAILSCALE_NATIVE_APIKEY", "TAILSCALE_APIKEY").(string))
+		if d := getEnvOrDefault(nil, nil, "TAILSCALE_NATIVE_APIKEY", "TAILSCALE_APIKEY"); d != nil {
+			args.ApiKey = pulumi.StringPtr(d.(string))
+		}
 	}
 	if args.ClientId == nil {
-		args.ClientId = pulumi.StringPtr(getEnvOrDefault("", nil, "TAILSCALE_NATIVE_CLIENT_ID", "TAILSCALE_CLIENT_ID").(string))
+		if d := getEnvOrDefault(nil, nil, "TAILSCALE_NATIVE_CLIENT_ID", "TAILSCALE_CLIENT_ID"); d != nil {
+			args.ClientId = pulumi.StringPtr(d.(string))
+		}
 	}
 	if args.ClientSecret == nil {
-		args.ClientSecret = pulumi.StringPtr(getEnvOrDefault("", nil, "TAILSCALE_NATIVE_CLIENT_SECRET", "TAILSCALE_CLIENT_SECRET").(string))
+		if d := getEnvOrDefault(nil, nil, "TAILSCALE_NATIVE_CLIENT_SECRET", "TAILSCALE_CLIENT_SECRET"); d != nil {
+			args.ClientSecret = pulumi.StringPtr(d.(string))
+		}
 	}
 	if args.ApiKey != nil {
 		args.ApiKey = pulumi.ToSecret(args.ApiKey).(pulumi.StringPtrInput)
