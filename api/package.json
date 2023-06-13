@@ -3,6 +3,9 @@
   "version": "0.1.0",
   "type": "module",
   "private": true,
+  "scripts": {
+    "compile": "tsp compile ."
+  },
   "dependencies": {
     "@typespec/compiler": "^0.44.0",
     "@typespec/openapi3": "^0.44.0",

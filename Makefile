@@ -26,7 +26,7 @@ ensure::
 	cd sdk && GO111MODULE=on go mod tidy
 
 gen_openapi::
-	cd api && tsp compile .
+	cd api && npm run compile
 
 gen:: gen_openapi
 	(cd provider && go build -o $(WORKING_DIR)/bin/${CODEGEN} -ldflags "-X ${PROJECT}/${VERSION_PATH}=${VERSION}" ${PROJECT}/${PROVIDER_PATH}/cmd/$(CODEGEN))
