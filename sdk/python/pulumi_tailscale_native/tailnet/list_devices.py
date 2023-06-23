@@ -50,7 +50,7 @@ def list_devices(tailnet: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('tailscale-native:tailnet:listDevices', __args__, opts=opts, typ=ListDevicesResult).value
 
     return AwaitableListDevicesResult(
-        items=__ret__.items)
+        items=pulumi.get(__ret__, 'items'))
 
 
 @_utilities.lift_output_func(list_devices)

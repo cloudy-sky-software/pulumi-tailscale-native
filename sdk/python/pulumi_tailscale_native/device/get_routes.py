@@ -50,7 +50,7 @@ def get_routes(id: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('tailscale-native:device:getRoutes', __args__, opts=opts, typ=GetRoutesResult).value
 
     return AwaitableGetRoutesResult(
-        items=__ret__.items)
+        items=pulumi.get(__ret__, 'items'))
 
 
 @_utilities.lift_output_func(get_routes)

@@ -50,7 +50,7 @@ def list_keys(tailnet: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('tailscale-native:tailnet:listKeys', __args__, opts=opts, typ=ListKeysResult).value
 
     return AwaitableListKeysResult(
-        items=__ret__.items)
+        items=pulumi.get(__ret__, 'items'))
 
 
 @_utilities.lift_output_func(list_keys)
