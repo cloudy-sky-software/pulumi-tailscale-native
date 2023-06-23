@@ -50,7 +50,7 @@ def get_name_servers(tailnet: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('tailscale-native:tailnet:getNameServers', __args__, opts=opts, typ=GetNameServersResult).value
 
     return AwaitableGetNameServersResult(
-        items=__ret__.items)
+        items=pulumi.get(__ret__, 'items'))
 
 
 @_utilities.lift_output_func(get_name_servers)

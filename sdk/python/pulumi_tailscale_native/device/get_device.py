@@ -50,7 +50,7 @@ def get_device(id: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('tailscale-native:device:getDevice', __args__, opts=opts, typ=GetDeviceResult).value
 
     return AwaitableGetDeviceResult(
-        items=__ret__.items)
+        items=pulumi.get(__ret__, 'items'))
 
 
 @_utilities.lift_output_func(get_device)

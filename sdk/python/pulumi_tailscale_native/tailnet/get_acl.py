@@ -51,7 +51,7 @@ def get_acl(tailnet: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('tailscale-native:tailnet:getAcl', __args__, opts=opts, typ=GetAclResult).value
 
     return AwaitableGetAclResult(
-        items=__ret__.items)
+        items=pulumi.get(__ret__, 'items'))
 
 
 @_utilities.lift_output_func(get_acl)

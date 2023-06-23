@@ -50,7 +50,7 @@ def list_search_paths(tailnet: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('tailscale-native:tailnet:listSearchPaths', __args__, opts=opts, typ=ListSearchPathsResult).value
 
     return AwaitableListSearchPathsResult(
-        items=__ret__.items)
+        items=pulumi.get(__ret__, 'items'))
 
 
 @_utilities.lift_output_func(list_search_paths)
