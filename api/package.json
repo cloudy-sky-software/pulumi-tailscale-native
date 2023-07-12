@@ -7,7 +7,7 @@
     "compile": "tsp compile ."
   },
   "dependencies": {
-    "@typespec/compiler": "^0.44.0",
+    "@typespec/compiler": "^0.46.0",
     "@typespec/openapi3": "^0.44.0",
     "@typespec/rest": "^0.44.0"
   }
