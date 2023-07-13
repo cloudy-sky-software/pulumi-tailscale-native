@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/cloudy-sky-software/pulumi-tailscale-native/sdk/go/tailscale/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -27,7 +28,7 @@ func NewKeyExpiry(ctx *pulumi.Context,
 	if args.KeyExpiryDisabled == nil {
 		return nil, errors.New("invalid value for required argument 'KeyExpiryDisabled'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource KeyExpiry
 	err := ctx.RegisterResource("tailscale-native:device:KeyExpiry", name, args, &resource, opts...)
 	if err != nil {

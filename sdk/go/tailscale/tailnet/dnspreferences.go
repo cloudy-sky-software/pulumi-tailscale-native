@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/cloudy-sky-software/pulumi-tailscale-native/sdk/go/tailscale/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -27,7 +28,7 @@ func NewDNSPreferences(ctx *pulumi.Context,
 	if args.MagicDNS == nil {
 		return nil, errors.New("invalid value for required argument 'MagicDNS'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource DNSPreferences
 	err := ctx.RegisterResource("tailscale-native:tailnet:DNSPreferences", name, args, &resource, opts...)
 	if err != nil {
