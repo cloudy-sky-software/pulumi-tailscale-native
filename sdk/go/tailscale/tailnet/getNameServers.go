@@ -7,11 +7,12 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/cloudy-sky-software/pulumi-tailscale-native/sdk/go/tailscale/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 func LookupNameServers(ctx *pulumi.Context, args *LookupNameServersArgs, opts ...pulumi.InvokeOption) (*LookupNameServersResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupNameServersResult
 	err := ctx.Invoke("tailscale-native:tailnet:getNameServers", args, &rv, opts...)
 	if err != nil {

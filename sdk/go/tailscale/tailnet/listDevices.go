@@ -7,11 +7,12 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/cloudy-sky-software/pulumi-tailscale-native/sdk/go/tailscale/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 func ListDevices(ctx *pulumi.Context, args *ListDevicesArgs, opts ...pulumi.InvokeOption) (*ListDevicesResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv ListDevicesResult
 	err := ctx.Invoke("tailscale-native:tailnet:listDevices", args, &rv, opts...)
 	if err != nil {

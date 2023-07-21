@@ -7,6 +7,11 @@ using Pulumi;
 
 namespace Pulumi.TailscaleNative.Tailnet
 {
+    /// <summary>
+    /// Tailscale ACL rules are "default deny".
+    /// So the only possible value for an ACL
+    /// rule is `accept`.
+    /// </summary>
     [EnumType]
     public readonly struct AclRuleAction : IEquatable<AclRuleAction>
     {

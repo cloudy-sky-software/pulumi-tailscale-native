@@ -13,6 +13,11 @@ namespace Pulumi.TailscaleNative.Tailnet.Outputs
     [OutputType]
     public sealed class AclRule
     {
+        /// <summary>
+        /// Tailscale ACL rules are "default deny".
+        /// So the only possible value for an ACL
+        /// rule is `accept`.
+        /// </summary>
         public readonly Pulumi.TailscaleNative.Tailnet.AclRuleAction Action;
         public readonly ImmutableArray<string> Ports;
         public readonly ImmutableArray<string> Users;

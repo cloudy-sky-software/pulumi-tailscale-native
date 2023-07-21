@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/cloudy-sky-software/pulumi-tailscale-native/sdk/go/tailscale/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -34,7 +35,7 @@ func NewKey(ctx *pulumi.Context,
 	if args.ExpirySeconds == nil {
 		return nil, errors.New("invalid value for required argument 'ExpirySeconds'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Key
 	err := ctx.RegisterResource("tailscale-native:tailnet:Key", name, args, &resource, opts...)
 	if err != nil {

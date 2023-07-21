@@ -6,6 +6,11 @@ export const AclRuleAction = {
     Accept: "accept",
 } as const;
 
+/**
+ * Tailscale ACL rules are "default deny".
+ * So the only possible value for an ACL
+ * rule is `accept`.
+ */
 export type AclRuleAction = (typeof AclRuleAction)[keyof typeof AclRuleAction];
 
 export const SshRuleAction = {

@@ -7,11 +7,12 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/cloudy-sky-software/pulumi-tailscale-native/sdk/go/tailscale/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 func LookupDNSPreferences(ctx *pulumi.Context, args *LookupDNSPreferencesArgs, opts ...pulumi.InvokeOption) (*LookupDNSPreferencesResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupDNSPreferencesResult
 	err := ctx.Invoke("tailscale-native:tailnet:getDNSPreferences", args, &rv, opts...)
 	if err != nil {

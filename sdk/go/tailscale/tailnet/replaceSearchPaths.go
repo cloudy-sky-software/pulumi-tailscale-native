@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/cloudy-sky-software/pulumi-tailscale-native/sdk/go/tailscale/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -27,7 +28,7 @@ func NewReplaceSearchPaths(ctx *pulumi.Context,
 	if args.SearchPaths == nil {
 		return nil, errors.New("invalid value for required argument 'SearchPaths'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource ReplaceSearchPaths
 	err := ctx.RegisterResource("tailscale-native:tailnet:replaceSearchPaths", name, args, &resource, opts...)
 	if err != nil {

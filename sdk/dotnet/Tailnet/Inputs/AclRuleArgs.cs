@@ -12,6 +12,11 @@ namespace Pulumi.TailscaleNative.Tailnet.Inputs
 
     public sealed class AclRuleArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Tailscale ACL rules are "default deny".
+        /// So the only possible value for an ACL
+        /// rule is `accept`.
+        /// </summary>
         [Input("action", required: true)]
         public Input<Pulumi.TailscaleNative.Tailnet.AclRuleAction> Action { get; set; } = null!;
 
