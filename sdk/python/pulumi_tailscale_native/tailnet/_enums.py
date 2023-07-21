@@ -11,6 +11,11 @@ __all__ = [
 
 
 class AclRuleAction(str, Enum):
+    """
+    Tailscale ACL rules are "default deny".
+    So the only possible value for an ACL
+    rule is `accept`.
+    """
     ACCEPT = "accept"
 
 

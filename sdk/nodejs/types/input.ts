@@ -11,6 +11,11 @@ export namespace device {
 
 export namespace tailnet {
     export interface AclRuleArgs {
+        /**
+         * Tailscale ACL rules are "default deny".
+         * So the only possible value for an ACL
+         * rule is `accept`.
+         */
         action: pulumi.Input<enums.tailnet.AclRuleAction>;
         ports: pulumi.Input<pulumi.Input<string>[]>;
         users: pulumi.Input<pulumi.Input<string>[]>;

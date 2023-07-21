@@ -7,11 +7,12 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/cloudy-sky-software/pulumi-tailscale-native/sdk/go/tailscale/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 func LookupRoutes(ctx *pulumi.Context, args *LookupRoutesArgs, opts ...pulumi.InvokeOption) (*LookupRoutesResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupRoutesResult
 	err := ctx.Invoke("tailscale-native:device:getRoutes", args, &rv, opts...)
 	if err != nil {

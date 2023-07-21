@@ -10,6 +10,9 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Tailscale ACL rules are "default deny".
+// So the only possible value for an ACL
+// rule is `accept`.
 type AclRuleAction string
 
 const (

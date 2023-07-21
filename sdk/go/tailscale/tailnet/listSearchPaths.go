@@ -7,11 +7,12 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/cloudy-sky-software/pulumi-tailscale-native/sdk/go/tailscale/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 func ListSearchPaths(ctx *pulumi.Context, args *ListSearchPathsArgs, opts ...pulumi.InvokeOption) (*ListSearchPathsResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv ListSearchPathsResult
 	err := ctx.Invoke("tailscale-native:tailnet:listSearchPaths", args, &rv, opts...)
 	if err != nil {

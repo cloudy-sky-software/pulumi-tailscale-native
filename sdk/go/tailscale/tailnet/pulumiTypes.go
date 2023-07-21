@@ -7,8 +7,11 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/cloudy-sky-software/pulumi-tailscale-native/sdk/go/tailscale/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
+
+var _ = internal.GetEnvOrDefault
 
 type AclType struct {
 	Acls          []AclRule   `pulumi:"acls"`
@@ -68,6 +71,9 @@ func (o AclTypeOutput) Tests() pulumi.StringOutput {
 }
 
 type AclRule struct {
+	// Tailscale ACL rules are "default deny".
+	// So the only possible value for an ACL
+	// rule is `accept`.
 	Action AclRuleAction `pulumi:"action"`
 	Ports  []string      `pulumi:"ports"`
 	Users  []string      `pulumi:"users"`
@@ -85,6 +91,9 @@ type AclRuleInput interface {
 }
 
 type AclRuleArgs struct {
+	// Tailscale ACL rules are "default deny".
+	// So the only possible value for an ACL
+	// rule is `accept`.
 	Action AclRuleActionInput      `pulumi:"action"`
 	Ports  pulumi.StringArrayInput `pulumi:"ports"`
 	Users  pulumi.StringArrayInput `pulumi:"users"`
@@ -141,6 +150,9 @@ func (o AclRuleOutput) ToAclRuleOutputWithContext(ctx context.Context) AclRuleOu
 	return o
 }
 
+// Tailscale ACL rules are "default deny".
+// So the only possible value for an ACL
+// rule is `accept`.
 func (o AclRuleOutput) Action() AclRuleActionOutput {
 	return o.ApplyT(func(v AclRule) AclRuleAction { return v.Action }).(AclRuleActionOutput)
 }

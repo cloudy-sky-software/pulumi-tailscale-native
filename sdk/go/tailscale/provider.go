@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/cloudy-sky-software/pulumi-tailscale-native/sdk/go/tailscale/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -23,17 +24,17 @@ func NewProvider(ctx *pulumi.Context,
 	}
 
 	if args.ApiKey == nil {
-		if d := getEnvOrDefault(nil, nil, "TAILSCALE_NATIVE_APIKEY", "TAILSCALE_APIKEY"); d != nil {
+		if d := internal.GetEnvOrDefault(nil, nil, "TAILSCALE_NATIVE_APIKEY", "TAILSCALE_APIKEY"); d != nil {
 			args.ApiKey = pulumi.StringPtr(d.(string))
 		}
 	}
 	if args.ClientId == nil {
-		if d := getEnvOrDefault(nil, nil, "TAILSCALE_NATIVE_CLIENT_ID", "TAILSCALE_CLIENT_ID"); d != nil {
+		if d := internal.GetEnvOrDefault(nil, nil, "TAILSCALE_NATIVE_CLIENT_ID", "TAILSCALE_CLIENT_ID"); d != nil {
 			args.ClientId = pulumi.StringPtr(d.(string))
 		}
 	}
 	if args.ClientSecret == nil {
-		if d := getEnvOrDefault(nil, nil, "TAILSCALE_NATIVE_CLIENT_SECRET", "TAILSCALE_CLIENT_SECRET"); d != nil {
+		if d := internal.GetEnvOrDefault(nil, nil, "TAILSCALE_NATIVE_CLIENT_SECRET", "TAILSCALE_CLIENT_SECRET"); d != nil {
 			args.ClientSecret = pulumi.StringPtr(d.(string))
 		}
 	}
@@ -43,7 +44,7 @@ func NewProvider(ctx *pulumi.Context,
 	if args.ClientSecret != nil {
 		args.ClientSecret = pulumi.ToSecret(args.ClientSecret).(pulumi.StringPtrInput)
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Provider
 	err := ctx.RegisterResource("pulumi:providers:tailscale-native", name, args, &resource, opts...)
 	if err != nil {

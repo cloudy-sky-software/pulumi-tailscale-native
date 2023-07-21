@@ -7,11 +7,12 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/cloudy-sky-software/pulumi-tailscale-native/sdk/go/tailscale/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 func ListKeys(ctx *pulumi.Context, args *ListKeysArgs, opts ...pulumi.InvokeOption) (*ListKeysResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv ListKeysResult
 	err := ctx.Invoke("tailscale-native:tailnet:listKeys", args, &rv, opts...)
 	if err != nil {

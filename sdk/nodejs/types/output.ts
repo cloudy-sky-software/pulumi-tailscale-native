@@ -67,6 +67,11 @@ export namespace tailnet {
     }
 
     export interface AclRule {
+        /**
+         * Tailscale ACL rules are "default deny".
+         * So the only possible value for an ACL
+         * rule is `accept`.
+         */
         action: enums.tailnet.AclRuleAction;
         ports: string[];
         users: string[];

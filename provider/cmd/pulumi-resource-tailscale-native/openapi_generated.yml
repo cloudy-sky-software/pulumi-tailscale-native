@@ -215,10 +215,8 @@ paths:
                     type: array
                     items:
                       $ref: '#/components/schemas/Device'
-                    x-typespec-name: Device[]
                 required:
                   - devices
-                x-typespec-name: TailnetEndpoints.(anonymous model)
   /tailnet/{tailnet}/dns/nameservers:
     get:
       operationId: TailnetEndpoints_getNameServers
@@ -376,7 +374,6 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/AuthKey'
-                x-typespec-name: AuthKey[]
     post:
       operationId: TailnetEndpoints_createKey
       parameters:
@@ -469,46 +466,36 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/AclRule'
-          x-typespec-name: AclRule[]
         autoApprovers:
           type: object
           additionalProperties:
             type: array
             items:
               type: string
-            x-typespec-name: string[]
-          x-typespec-name: Record<string[]>
         groups:
           type: object
           additionalProperties:
             type: array
             items:
               type: string
-            x-typespec-name: string[]
-          x-typespec-name: Record<string[]>
         hosts:
           type: object
           additionalProperties:
             type: string
-          x-typespec-name: Record<string>
         nodeAttrs:
           type: array
           items:
             $ref: '#/components/schemas/NodeAttrs'
-          x-typespec-name: NodeAttrs[]
         ssh:
           type: array
           items:
             $ref: '#/components/schemas/SshRule'
-          x-typespec-name: SshRule[]
         tagOwners:
           type: object
           additionalProperties:
             type: array
             items:
               type: string
-            x-typespec-name: string[]
-          x-typespec-name: Record<string[]>
         tests:
           type: string
       required:
@@ -529,18 +516,20 @@ components:
           type: array
           items:
             type: string
-          x-typespec-name: string[]
         users:
           type: array
           items:
             type: string
-          x-typespec-name: string[]
       required:
         - action
         - ports
         - users
     AclRuleAction:
       type: string
+      description: |-
+        Tailscale ACL rules are "default deny".
+        So the only possible value for an ACL
+        rule is `accept`.
       enum:
         - accept
     AuthKey:
@@ -582,7 +571,6 @@ components:
           type: object
           additionalProperties:
             $ref: '#/components/schemas/Latency'
-          x-typespec-name: Record<Latency>
         clientSupports:
           $ref: '#/components/schemas/ClientSupports'
       required:
@@ -626,7 +614,6 @@ components:
           type: array
           items:
             type: string
-          x-typespec-name: string[]
       required:
         - reusable
         - ephemeral
@@ -639,7 +626,6 @@ components:
           type: array
           items:
             type: string
-          x-typespec-name: string[]
         id:
           type: string
         user:
@@ -676,12 +662,10 @@ components:
           type: array
           items:
             type: string
-          x-typespec-name: string[]
         advertisedRoutes:
           type: array
           items:
             type: string
-          x-typespec-name: string[]
         clientConnectivity:
           $ref: '#/components/schemas/ClientConnectivity'
       required:
@@ -719,12 +703,10 @@ components:
           type: array
           items:
             type: string
-          x-typespec-name: string[]
         enabledRoutes:
           type: array
           items:
             type: string
-          x-typespec-name: string[]
       required:
         - advertisedRoutes
         - enabledRoutes
@@ -735,7 +717,6 @@ components:
           type: array
           items:
             type: string
-          x-typespec-name: string[]
       required:
         - searchPaths
     Error:
@@ -755,7 +736,8 @@ components:
     Latency:
       type: object
       properties:
-        latencyMs: {}
+        latencyMs:
+          type: number
         preferred:
           type: boolean
       required:
@@ -768,7 +750,6 @@ components:
           type: array
           items:
             type: string
-          x-typespec-name: string[]
         magicDNS:
           type: boolean
       required:
@@ -788,12 +769,10 @@ components:
           type: array
           items:
             type: string
-          x-typespec-name: string[]
         attr:
           type: array
           items:
             type: string
-          x-typespec-name: string[]
       required:
         - target
         - attr
@@ -811,7 +790,6 @@ components:
           type: array
           items:
             type: string
-          x-typespec-name: string[]
       required:
         - routes
     SetKeyExpiry:
@@ -828,7 +806,6 @@ components:
           type: array
           items:
             type: string
-          x-typespec-name: string[]
       required:
         - tags
     SshRule:
@@ -840,17 +817,14 @@ components:
           type: array
           items:
             type: string
-          x-typespec-name: string[]
         dst:
           type: array
           items:
             type: string
-          x-typespec-name: string[]
         users:
           type: array
           items:
             type: string
-          x-typespec-name: string[]
         checkPeriod:
           type: string
       required:
@@ -873,7 +847,6 @@ components:
               enum:
                 - '-'
             - type: string
-          x-typespec-name: '- | string'
           description: >-
             For paid plans, your domain is your tailnet. For solo plans, the
             tailnet is the email you signed up with. So `alice@gmail.com` has

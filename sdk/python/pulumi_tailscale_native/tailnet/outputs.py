@@ -96,6 +96,11 @@ class AclRule(dict):
                  action: 'AclRuleAction',
                  ports: Sequence[str],
                  users: Sequence[str]):
+        """
+        :param 'AclRuleAction' action: Tailscale ACL rules are "default deny".
+               So the only possible value for an ACL
+               rule is `accept`.
+        """
         pulumi.set(__self__, "action", action)
         pulumi.set(__self__, "ports", ports)
         pulumi.set(__self__, "users", users)
@@ -103,6 +108,11 @@ class AclRule(dict):
     @property
     @pulumi.getter
     def action(self) -> 'AclRuleAction':
+        """
+        Tailscale ACL rules are "default deny".
+        So the only possible value for an ACL
+        rule is `accept`.
+        """
         return pulumi.get(self, "action")
 
     @property
