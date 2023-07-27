@@ -3,8 +3,8 @@ module github.com/cloudy-sky-software/pulumi-tailscale-native/provider
 go 1.18
 
 require (
-	github.com/cloudy-sky-software/pulschema v0.0.0-20230721021051-5d31ec1dc4de
-	github.com/cloudy-sky-software/pulumi-provider-framework v0.0.0-20230721144207-dee1f3ea9b65
+	github.com/cloudy-sky-software/pulschema v0.0.0-20230727004739-de5575c8f176
+	github.com/cloudy-sky-software/pulumi-provider-framework v0.0.0-20230727010350-1c2ff48bfada
 	github.com/getkin/kin-openapi v0.118.0
 	github.com/pulumi/pulumi/pkg/v3 v3.76.1
 	github.com/pulumi/pulumi/sdk/v3 v3.76.1
@@ -197,7 +197,7 @@ require (
 	google.golang.org/genproto v0.0.0-20230530153820-e85fd2cbaebc // indirect
 	google.golang.org/genproto/googleapis/api v0.0.0-20230530153820-e85fd2cbaebc // indirect
 	google.golang.org/genproto/googleapis/rpc v0.0.0-20230530153820-e85fd2cbaebc // indirect
-	google.golang.org/grpc v1.56.2 // indirect
+	google.golang.org/grpc v1.57.0 // indirect
 	google.golang.org/protobuf v1.31.0 // indirect
 	gopkg.in/square/go-jose.v2 v2.6.0 // indirect
 	gopkg.in/warnings.v0 v0.1.2 // indirect
