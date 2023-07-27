@@ -3,7 +3,7 @@ module github.com/cloudy-sky-software/pulumi-tailscale-native/provider
 go 1.18
 
 require (
-	github.com/cloudy-sky-software/pulschema v0.0.0-20230721021051-5d31ec1dc4de
+	github.com/cloudy-sky-software/pulschema v0.0.0-20230727004739-de5575c8f176
 	github.com/cloudy-sky-software/pulumi-provider-framework v0.0.0-20230721144207-dee1f3ea9b65
 	github.com/getkin/kin-openapi v0.118.0
 	github.com/pulumi/pulumi/pkg/v3 v3.76.1
