@@ -1,6 +1,6 @@
 module github.com/cloudy-sky-software/pulumi-tailscale-native/sdk
 
-go 1.19
+go 1.21
 
 require (
 	github.com/blang/semver v3.5.1+incompatible

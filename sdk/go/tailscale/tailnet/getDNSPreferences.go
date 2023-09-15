@@ -9,6 +9,7 @@ import (
 
 	"github.com/cloudy-sky-software/pulumi-tailscale-native/sdk/go/tailscale/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 func LookupDNSPreferences(ctx *pulumi.Context, args *LookupDNSPreferencesArgs, opts ...pulumi.InvokeOption) (*LookupDNSPreferencesResult, error) {
@@ -62,6 +63,12 @@ func (o LookupDNSPreferencesResultOutput) ToLookupDNSPreferencesResultOutput() L
 
 func (o LookupDNSPreferencesResultOutput) ToLookupDNSPreferencesResultOutputWithContext(ctx context.Context) LookupDNSPreferencesResultOutput {
 	return o
+}
+
+func (o LookupDNSPreferencesResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupDNSPreferencesResult] {
+	return pulumix.Output[LookupDNSPreferencesResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o LookupDNSPreferencesResultOutput) Items() NameServersPreferenceOutput {

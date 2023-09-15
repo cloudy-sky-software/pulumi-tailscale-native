@@ -9,6 +9,7 @@ import (
 
 	"github.com/cloudy-sky-software/pulumi-tailscale-native/sdk/go/tailscale/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 func LookupRoutes(ctx *pulumi.Context, args *LookupRoutesArgs, opts ...pulumi.InvokeOption) (*LookupRoutesResult, error) {
@@ -62,6 +63,12 @@ func (o LookupRoutesResultOutput) ToLookupRoutesResultOutput() LookupRoutesResul
 
 func (o LookupRoutesResultOutput) ToLookupRoutesResultOutputWithContext(ctx context.Context) LookupRoutesResultOutput {
 	return o
+}
+
+func (o LookupRoutesResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupRoutesResult] {
+	return pulumix.Output[LookupRoutesResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o LookupRoutesResultOutput) Items() DeviceRoutesOutput {

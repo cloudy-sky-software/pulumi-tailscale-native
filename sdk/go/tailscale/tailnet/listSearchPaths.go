@@ -9,6 +9,7 @@ import (
 
 	"github.com/cloudy-sky-software/pulumi-tailscale-native/sdk/go/tailscale/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 func ListSearchPaths(ctx *pulumi.Context, args *ListSearchPathsArgs, opts ...pulumi.InvokeOption) (*ListSearchPathsResult, error) {
@@ -62,6 +63,12 @@ func (o ListSearchPathsResultOutput) ToListSearchPathsResultOutput() ListSearchP
 
 func (o ListSearchPathsResultOutput) ToListSearchPathsResultOutputWithContext(ctx context.Context) ListSearchPathsResultOutput {
 	return o
+}
+
+func (o ListSearchPathsResultOutput) ToOutput(ctx context.Context) pulumix.Output[ListSearchPathsResult] {
+	return pulumix.Output[ListSearchPathsResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o ListSearchPathsResultOutput) Items() DnsSearchPathsOutput {

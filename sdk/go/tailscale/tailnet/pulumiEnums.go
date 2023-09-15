@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Tailscale ACL rules are "default deny".
@@ -79,6 +80,12 @@ func (o AclRuleActionOutput) ToAclRuleActionPtrOutputWithContext(ctx context.Con
 	}).(AclRuleActionPtrOutput)
 }
 
+func (o AclRuleActionOutput) ToOutput(ctx context.Context) pulumix.Output[AclRuleAction] {
+	return pulumix.Output[AclRuleAction]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o AclRuleActionOutput) ToStringOutput() pulumi.StringOutput {
 	return o.ToStringOutputWithContext(context.Background())
 }
@@ -112,6 +119,12 @@ func (o AclRuleActionPtrOutput) ToAclRuleActionPtrOutput() AclRuleActionPtrOutpu
 
 func (o AclRuleActionPtrOutput) ToAclRuleActionPtrOutputWithContext(ctx context.Context) AclRuleActionPtrOutput {
 	return o
+}
+
+func (o AclRuleActionPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*AclRuleAction] {
+	return pulumix.Output[*AclRuleAction]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o AclRuleActionPtrOutput) Elem() AclRuleActionOutput {
@@ -174,6 +187,12 @@ func (in *aclRuleActionPtr) ToAclRuleActionPtrOutput() AclRuleActionPtrOutput {
 
 func (in *aclRuleActionPtr) ToAclRuleActionPtrOutputWithContext(ctx context.Context) AclRuleActionPtrOutput {
 	return pulumi.ToOutputWithContext(ctx, in).(AclRuleActionPtrOutput)
+}
+
+func (in *aclRuleActionPtr) ToOutput(ctx context.Context) pulumix.Output[*AclRuleAction] {
+	return pulumix.Output[*AclRuleAction]{
+		OutputState: in.ToAclRuleActionPtrOutputWithContext(ctx).OutputState,
+	}
 }
 
 type SshRuleAction string
@@ -243,6 +262,12 @@ func (o SshRuleActionOutput) ToSshRuleActionPtrOutputWithContext(ctx context.Con
 	}).(SshRuleActionPtrOutput)
 }
 
+func (o SshRuleActionOutput) ToOutput(ctx context.Context) pulumix.Output[SshRuleAction] {
+	return pulumix.Output[SshRuleAction]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o SshRuleActionOutput) ToStringOutput() pulumi.StringOutput {
 	return o.ToStringOutputWithContext(context.Background())
 }
@@ -276,6 +301,12 @@ func (o SshRuleActionPtrOutput) ToSshRuleActionPtrOutput() SshRuleActionPtrOutpu
 
 func (o SshRuleActionPtrOutput) ToSshRuleActionPtrOutputWithContext(ctx context.Context) SshRuleActionPtrOutput {
 	return o
+}
+
+func (o SshRuleActionPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*SshRuleAction] {
+	return pulumix.Output[*SshRuleAction]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SshRuleActionPtrOutput) Elem() SshRuleActionOutput {
@@ -338,6 +369,12 @@ func (in *sshRuleActionPtr) ToSshRuleActionPtrOutput() SshRuleActionPtrOutput {
 
 func (in *sshRuleActionPtr) ToSshRuleActionPtrOutputWithContext(ctx context.Context) SshRuleActionPtrOutput {
 	return pulumi.ToOutputWithContext(ctx, in).(SshRuleActionPtrOutput)
+}
+
+func (in *sshRuleActionPtr) ToOutput(ctx context.Context) pulumix.Output[*SshRuleAction] {
+	return pulumix.Output[*SshRuleAction]{
+		OutputState: in.ToSshRuleActionPtrOutputWithContext(ctx).OutputState,
+	}
 }
 
 func init() {

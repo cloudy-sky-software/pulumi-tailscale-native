@@ -10,6 +10,7 @@ import (
 	"errors"
 	"github.com/cloudy-sky-software/pulumi-tailscale-native/sdk/go/tailscale/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type NameServers struct {
@@ -100,6 +101,12 @@ func (i *NameServers) ToNameServersOutputWithContext(ctx context.Context) NameSe
 	return pulumi.ToOutputWithContext(ctx, i).(NameServersOutput)
 }
 
+func (i *NameServers) ToOutput(ctx context.Context) pulumix.Output[*NameServers] {
+	return pulumix.Output[*NameServers]{
+		OutputState: i.ToNameServersOutputWithContext(ctx).OutputState,
+	}
+}
+
 type NameServersOutput struct{ *pulumi.OutputState }
 
 func (NameServersOutput) ElementType() reflect.Type {
@@ -112,6 +119,12 @@ func (o NameServersOutput) ToNameServersOutput() NameServersOutput {
 
 func (o NameServersOutput) ToNameServersOutputWithContext(ctx context.Context) NameServersOutput {
 	return o
+}
+
+func (o NameServersOutput) ToOutput(ctx context.Context) pulumix.Output[*NameServers] {
+	return pulumix.Output[*NameServers]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o NameServersOutput) Dns() pulumi.StringArrayOutput {

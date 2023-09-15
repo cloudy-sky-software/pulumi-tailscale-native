@@ -9,6 +9,7 @@ import (
 
 	"github.com/cloudy-sky-software/pulumi-tailscale-native/sdk/go/tailscale/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 func GetDevice(ctx *pulumi.Context, args *GetDeviceArgs, opts ...pulumi.InvokeOption) (*GetDeviceResult, error) {
@@ -62,6 +63,12 @@ func (o GetDeviceResultOutput) ToGetDeviceResultOutput() GetDeviceResultOutput {
 
 func (o GetDeviceResultOutput) ToGetDeviceResultOutputWithContext(ctx context.Context) GetDeviceResultOutput {
 	return o
+}
+
+func (o GetDeviceResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetDeviceResult] {
+	return pulumix.Output[GetDeviceResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o GetDeviceResultOutput) Items() DeviceOutput {

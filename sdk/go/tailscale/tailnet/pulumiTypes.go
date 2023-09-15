@@ -9,6 +9,7 @@ import (
 
 	"github.com/cloudy-sky-software/pulumi-tailscale-native/sdk/go/tailscale/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 var _ = internal.GetEnvOrDefault
@@ -36,6 +37,12 @@ func (o AclTypeOutput) ToAclTypeOutput() AclTypeOutput {
 
 func (o AclTypeOutput) ToAclTypeOutputWithContext(ctx context.Context) AclTypeOutput {
 	return o
+}
+
+func (o AclTypeOutput) ToOutput(ctx context.Context) pulumix.Output[AclType] {
+	return pulumix.Output[AclType]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o AclTypeOutput) Acls() AclRuleArrayOutput {
@@ -111,6 +118,12 @@ func (i AclRuleArgs) ToAclRuleOutputWithContext(ctx context.Context) AclRuleOutp
 	return pulumi.ToOutputWithContext(ctx, i).(AclRuleOutput)
 }
 
+func (i AclRuleArgs) ToOutput(ctx context.Context) pulumix.Output[AclRule] {
+	return pulumix.Output[AclRule]{
+		OutputState: i.ToAclRuleOutputWithContext(ctx).OutputState,
+	}
+}
+
 // AclRuleArrayInput is an input type that accepts AclRuleArray and AclRuleArrayOutput values.
 // You can construct a concrete instance of `AclRuleArrayInput` via:
 //
@@ -136,6 +149,12 @@ func (i AclRuleArray) ToAclRuleArrayOutputWithContext(ctx context.Context) AclRu
 	return pulumi.ToOutputWithContext(ctx, i).(AclRuleArrayOutput)
 }
 
+func (i AclRuleArray) ToOutput(ctx context.Context) pulumix.Output[[]AclRule] {
+	return pulumix.Output[[]AclRule]{
+		OutputState: i.ToAclRuleArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type AclRuleOutput struct{ *pulumi.OutputState }
 
 func (AclRuleOutput) ElementType() reflect.Type {
@@ -148,6 +167,12 @@ func (o AclRuleOutput) ToAclRuleOutput() AclRuleOutput {
 
 func (o AclRuleOutput) ToAclRuleOutputWithContext(ctx context.Context) AclRuleOutput {
 	return o
+}
+
+func (o AclRuleOutput) ToOutput(ctx context.Context) pulumix.Output[AclRule] {
+	return pulumix.Output[AclRule]{
+		OutputState: o.OutputState,
+	}
 }
 
 // Tailscale ACL rules are "default deny".
@@ -179,6 +204,12 @@ func (o AclRuleArrayOutput) ToAclRuleArrayOutputWithContext(ctx context.Context)
 	return o
 }
 
+func (o AclRuleArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]AclRule] {
+	return pulumix.Output[[]AclRule]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o AclRuleArrayOutput) Index(i pulumi.IntInput) AclRuleOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) AclRule {
 		return vs[0].([]AclRule)[vs[1].(int)]
@@ -203,6 +234,12 @@ func (o AuthKeyOutput) ToAuthKeyOutput() AuthKeyOutput {
 
 func (o AuthKeyOutput) ToAuthKeyOutputWithContext(ctx context.Context) AuthKeyOutput {
 	return o
+}
+
+func (o AuthKeyOutput) ToOutput(ctx context.Context) pulumix.Output[AuthKey] {
+	return pulumix.Output[AuthKey]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o AuthKeyOutput) Created() pulumi.StringPtrOutput {
@@ -231,6 +268,12 @@ func (o AuthKeyArrayOutput) ToAuthKeyArrayOutputWithContext(ctx context.Context)
 	return o
 }
 
+func (o AuthKeyArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]AuthKey] {
+	return pulumix.Output[[]AuthKey]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o AuthKeyArrayOutput) Index(i pulumi.IntInput) AuthKeyOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) AuthKey {
 		return vs[0].([]AuthKey)[vs[1].(int)]
@@ -257,6 +300,12 @@ func (o ClientConnectivityOutput) ToClientConnectivityOutput() ClientConnectivit
 
 func (o ClientConnectivityOutput) ToClientConnectivityOutputWithContext(ctx context.Context) ClientConnectivityOutput {
 	return o
+}
+
+func (o ClientConnectivityOutput) ToOutput(ctx context.Context) pulumix.Output[ClientConnectivity] {
+	return pulumix.Output[ClientConnectivity]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o ClientConnectivityOutput) ClientSupports() ClientSupportsOutput {
@@ -300,6 +349,12 @@ func (o ClientSupportsOutput) ToClientSupportsOutput() ClientSupportsOutput {
 
 func (o ClientSupportsOutput) ToClientSupportsOutputWithContext(ctx context.Context) ClientSupportsOutput {
 	return o
+}
+
+func (o ClientSupportsOutput) ToOutput(ctx context.Context) pulumix.Output[ClientSupports] {
+	return pulumix.Output[ClientSupports]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o ClientSupportsOutput) HairPinning() pulumi.BoolOutput {
@@ -363,6 +418,12 @@ func (i CreateKeyArgs) ToCreateKeyOutputWithContext(ctx context.Context) CreateK
 	return pulumi.ToOutputWithContext(ctx, i).(CreateKeyOutput)
 }
 
+func (i CreateKeyArgs) ToOutput(ctx context.Context) pulumix.Output[CreateKey] {
+	return pulumix.Output[CreateKey]{
+		OutputState: i.ToCreateKeyOutputWithContext(ctx).OutputState,
+	}
+}
+
 type CreateKeyOutput struct{ *pulumi.OutputState }
 
 func (CreateKeyOutput) ElementType() reflect.Type {
@@ -375,6 +436,12 @@ func (o CreateKeyOutput) ToCreateKeyOutput() CreateKeyOutput {
 
 func (o CreateKeyOutput) ToCreateKeyOutputWithContext(ctx context.Context) CreateKeyOutput {
 	return o
+}
+
+func (o CreateKeyOutput) ToOutput(ctx context.Context) pulumix.Output[CreateKey] {
+	return pulumix.Output[CreateKey]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o CreateKeyOutput) Ephemeral() pulumi.BoolOutput {
@@ -428,6 +495,12 @@ func (o DeviceOutput) ToDeviceOutput() DeviceOutput {
 
 func (o DeviceOutput) ToDeviceOutputWithContext(ctx context.Context) DeviceOutput {
 	return o
+}
+
+func (o DeviceOutput) ToOutput(ctx context.Context) pulumix.Output[Device] {
+	return pulumix.Output[Device]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o DeviceOutput) Addresses() pulumi.StringArrayOutput {
@@ -524,6 +597,12 @@ func (o DeviceArrayOutput) ToDeviceArrayOutputWithContext(ctx context.Context) D
 	return o
 }
 
+func (o DeviceArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]Device] {
+	return pulumix.Output[[]Device]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o DeviceArrayOutput) Index(i pulumi.IntInput) DeviceOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) Device {
 		return vs[0].([]Device)[vs[1].(int)]
@@ -561,6 +640,12 @@ func (i DeviceKeyCapabilitiesArgs) ToDeviceKeyCapabilitiesOutputWithContext(ctx 
 	return pulumi.ToOutputWithContext(ctx, i).(DeviceKeyCapabilitiesOutput)
 }
 
+func (i DeviceKeyCapabilitiesArgs) ToOutput(ctx context.Context) pulumix.Output[DeviceKeyCapabilities] {
+	return pulumix.Output[DeviceKeyCapabilities]{
+		OutputState: i.ToDeviceKeyCapabilitiesOutputWithContext(ctx).OutputState,
+	}
+}
+
 type DeviceKeyCapabilitiesOutput struct{ *pulumi.OutputState }
 
 func (DeviceKeyCapabilitiesOutput) ElementType() reflect.Type {
@@ -573,6 +658,12 @@ func (o DeviceKeyCapabilitiesOutput) ToDeviceKeyCapabilitiesOutput() DeviceKeyCa
 
 func (o DeviceKeyCapabilitiesOutput) ToDeviceKeyCapabilitiesOutputWithContext(ctx context.Context) DeviceKeyCapabilitiesOutput {
 	return o
+}
+
+func (o DeviceKeyCapabilitiesOutput) ToOutput(ctx context.Context) pulumix.Output[DeviceKeyCapabilities] {
+	return pulumix.Output[DeviceKeyCapabilities]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o DeviceKeyCapabilitiesOutput) Create() CreateKeyOutput {
@@ -595,6 +686,12 @@ func (o DnsSearchPathsOutput) ToDnsSearchPathsOutput() DnsSearchPathsOutput {
 
 func (o DnsSearchPathsOutput) ToDnsSearchPathsOutputWithContext(ctx context.Context) DnsSearchPathsOutput {
 	return o
+}
+
+func (o DnsSearchPathsOutput) ToOutput(ctx context.Context) pulumix.Output[DnsSearchPaths] {
+	return pulumix.Output[DnsSearchPaths]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o DnsSearchPathsOutput) SearchPaths() pulumi.StringArrayOutput {
@@ -632,6 +729,12 @@ func (i KeyCapabilitiesArgs) ToKeyCapabilitiesOutputWithContext(ctx context.Cont
 	return pulumi.ToOutputWithContext(ctx, i).(KeyCapabilitiesOutput)
 }
 
+func (i KeyCapabilitiesArgs) ToOutput(ctx context.Context) pulumix.Output[KeyCapabilities] {
+	return pulumix.Output[KeyCapabilities]{
+		OutputState: i.ToKeyCapabilitiesOutputWithContext(ctx).OutputState,
+	}
+}
+
 type KeyCapabilitiesOutput struct{ *pulumi.OutputState }
 
 func (KeyCapabilitiesOutput) ElementType() reflect.Type {
@@ -644,6 +747,12 @@ func (o KeyCapabilitiesOutput) ToKeyCapabilitiesOutput() KeyCapabilitiesOutput {
 
 func (o KeyCapabilitiesOutput) ToKeyCapabilitiesOutputWithContext(ctx context.Context) KeyCapabilitiesOutput {
 	return o
+}
+
+func (o KeyCapabilitiesOutput) ToOutput(ctx context.Context) pulumix.Output[KeyCapabilities] {
+	return pulumix.Output[KeyCapabilities]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o KeyCapabilitiesOutput) Devices() DeviceKeyCapabilitiesOutput {
@@ -668,6 +777,12 @@ func (o ListDevicesPropertiesOutput) ToListDevicesPropertiesOutputWithContext(ct
 	return o
 }
 
+func (o ListDevicesPropertiesOutput) ToOutput(ctx context.Context) pulumix.Output[ListDevicesProperties] {
+	return pulumix.Output[ListDevicesProperties]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o ListDevicesPropertiesOutput) Devices() DeviceArrayOutput {
 	return o.ApplyT(func(v ListDevicesProperties) []Device { return v.Devices }).(DeviceArrayOutput)
 }
@@ -689,6 +804,12 @@ func (o NameServersTypeOutput) ToNameServersTypeOutput() NameServersTypeOutput {
 
 func (o NameServersTypeOutput) ToNameServersTypeOutputWithContext(ctx context.Context) NameServersTypeOutput {
 	return o
+}
+
+func (o NameServersTypeOutput) ToOutput(ctx context.Context) pulumix.Output[NameServersType] {
+	return pulumix.Output[NameServersType]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o NameServersTypeOutput) Dns() pulumi.StringArrayOutput {
@@ -715,6 +836,12 @@ func (o NameServersPreferenceOutput) ToNameServersPreferenceOutput() NameServers
 
 func (o NameServersPreferenceOutput) ToNameServersPreferenceOutputWithContext(ctx context.Context) NameServersPreferenceOutput {
 	return o
+}
+
+func (o NameServersPreferenceOutput) ToOutput(ctx context.Context) pulumix.Output[NameServersPreference] {
+	return pulumix.Output[NameServersPreference]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o NameServersPreferenceOutput) MagicDNS() pulumi.BoolOutput {
@@ -754,6 +881,12 @@ func (i NodeAttrsArgs) ToNodeAttrsOutputWithContext(ctx context.Context) NodeAtt
 	return pulumi.ToOutputWithContext(ctx, i).(NodeAttrsOutput)
 }
 
+func (i NodeAttrsArgs) ToOutput(ctx context.Context) pulumix.Output[NodeAttrs] {
+	return pulumix.Output[NodeAttrs]{
+		OutputState: i.ToNodeAttrsOutputWithContext(ctx).OutputState,
+	}
+}
+
 // NodeAttrsArrayInput is an input type that accepts NodeAttrsArray and NodeAttrsArrayOutput values.
 // You can construct a concrete instance of `NodeAttrsArrayInput` via:
 //
@@ -779,6 +912,12 @@ func (i NodeAttrsArray) ToNodeAttrsArrayOutputWithContext(ctx context.Context) N
 	return pulumi.ToOutputWithContext(ctx, i).(NodeAttrsArrayOutput)
 }
 
+func (i NodeAttrsArray) ToOutput(ctx context.Context) pulumix.Output[[]NodeAttrs] {
+	return pulumix.Output[[]NodeAttrs]{
+		OutputState: i.ToNodeAttrsArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type NodeAttrsOutput struct{ *pulumi.OutputState }
 
 func (NodeAttrsOutput) ElementType() reflect.Type {
@@ -791,6 +930,12 @@ func (o NodeAttrsOutput) ToNodeAttrsOutput() NodeAttrsOutput {
 
 func (o NodeAttrsOutput) ToNodeAttrsOutputWithContext(ctx context.Context) NodeAttrsOutput {
 	return o
+}
+
+func (o NodeAttrsOutput) ToOutput(ctx context.Context) pulumix.Output[NodeAttrs] {
+	return pulumix.Output[NodeAttrs]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o NodeAttrsOutput) Attr() pulumi.StringArrayOutput {
@@ -813,6 +958,12 @@ func (o NodeAttrsArrayOutput) ToNodeAttrsArrayOutput() NodeAttrsArrayOutput {
 
 func (o NodeAttrsArrayOutput) ToNodeAttrsArrayOutputWithContext(ctx context.Context) NodeAttrsArrayOutput {
 	return o
+}
+
+func (o NodeAttrsArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]NodeAttrs] {
+	return pulumix.Output[[]NodeAttrs]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o NodeAttrsArrayOutput) Index(i pulumi.IntInput) NodeAttrsOutput {
@@ -860,6 +1011,12 @@ func (i SshRuleArgs) ToSshRuleOutputWithContext(ctx context.Context) SshRuleOutp
 	return pulumi.ToOutputWithContext(ctx, i).(SshRuleOutput)
 }
 
+func (i SshRuleArgs) ToOutput(ctx context.Context) pulumix.Output[SshRule] {
+	return pulumix.Output[SshRule]{
+		OutputState: i.ToSshRuleOutputWithContext(ctx).OutputState,
+	}
+}
+
 // SshRuleArrayInput is an input type that accepts SshRuleArray and SshRuleArrayOutput values.
 // You can construct a concrete instance of `SshRuleArrayInput` via:
 //
@@ -885,6 +1042,12 @@ func (i SshRuleArray) ToSshRuleArrayOutputWithContext(ctx context.Context) SshRu
 	return pulumi.ToOutputWithContext(ctx, i).(SshRuleArrayOutput)
 }
 
+func (i SshRuleArray) ToOutput(ctx context.Context) pulumix.Output[[]SshRule] {
+	return pulumix.Output[[]SshRule]{
+		OutputState: i.ToSshRuleArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type SshRuleOutput struct{ *pulumi.OutputState }
 
 func (SshRuleOutput) ElementType() reflect.Type {
@@ -897,6 +1060,12 @@ func (o SshRuleOutput) ToSshRuleOutput() SshRuleOutput {
 
 func (o SshRuleOutput) ToSshRuleOutputWithContext(ctx context.Context) SshRuleOutput {
 	return o
+}
+
+func (o SshRuleOutput) ToOutput(ctx context.Context) pulumix.Output[SshRule] {
+	return pulumix.Output[SshRule]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SshRuleOutput) Action() SshRuleActionOutput {
@@ -931,6 +1100,12 @@ func (o SshRuleArrayOutput) ToSshRuleArrayOutput() SshRuleArrayOutput {
 
 func (o SshRuleArrayOutput) ToSshRuleArrayOutputWithContext(ctx context.Context) SshRuleArrayOutput {
 	return o
+}
+
+func (o SshRuleArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]SshRule] {
+	return pulumix.Output[[]SshRule]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SshRuleArrayOutput) Index(i pulumi.IntInput) SshRuleOutput {

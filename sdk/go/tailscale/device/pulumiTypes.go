@@ -9,6 +9,7 @@ import (
 
 	"github.com/cloudy-sky-software/pulumi-tailscale-native/sdk/go/tailscale/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 var _ = internal.GetEnvOrDefault
@@ -33,6 +34,12 @@ func (o ClientConnectivityOutput) ToClientConnectivityOutput() ClientConnectivit
 
 func (o ClientConnectivityOutput) ToClientConnectivityOutputWithContext(ctx context.Context) ClientConnectivityOutput {
 	return o
+}
+
+func (o ClientConnectivityOutput) ToOutput(ctx context.Context) pulumix.Output[ClientConnectivity] {
+	return pulumix.Output[ClientConnectivity]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o ClientConnectivityOutput) ClientSupports() ClientSupportsOutput {
@@ -76,6 +83,12 @@ func (o ClientSupportsOutput) ToClientSupportsOutput() ClientSupportsOutput {
 
 func (o ClientSupportsOutput) ToClientSupportsOutputWithContext(ctx context.Context) ClientSupportsOutput {
 	return o
+}
+
+func (o ClientSupportsOutput) ToOutput(ctx context.Context) pulumix.Output[ClientSupports] {
+	return pulumix.Output[ClientSupports]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o ClientSupportsOutput) HairPinning() pulumi.BoolOutput {
@@ -137,6 +150,12 @@ func (o DeviceOutput) ToDeviceOutput() DeviceOutput {
 
 func (o DeviceOutput) ToDeviceOutputWithContext(ctx context.Context) DeviceOutput {
 	return o
+}
+
+func (o DeviceOutput) ToOutput(ctx context.Context) pulumix.Output[Device] {
+	return pulumix.Output[Device]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o DeviceOutput) Addresses() pulumi.StringArrayOutput {
@@ -236,6 +255,12 @@ func (o DeviceRoutesOutput) ToDeviceRoutesOutput() DeviceRoutesOutput {
 
 func (o DeviceRoutesOutput) ToDeviceRoutesOutputWithContext(ctx context.Context) DeviceRoutesOutput {
 	return o
+}
+
+func (o DeviceRoutesOutput) ToOutput(ctx context.Context) pulumix.Output[DeviceRoutes] {
+	return pulumix.Output[DeviceRoutes]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o DeviceRoutesOutput) AdvertisedRoutes() pulumi.StringArrayOutput {

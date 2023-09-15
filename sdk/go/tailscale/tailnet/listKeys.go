@@ -9,6 +9,7 @@ import (
 
 	"github.com/cloudy-sky-software/pulumi-tailscale-native/sdk/go/tailscale/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 func ListKeys(ctx *pulumi.Context, args *ListKeysArgs, opts ...pulumi.InvokeOption) (*ListKeysResult, error) {
@@ -62,6 +63,12 @@ func (o ListKeysResultOutput) ToListKeysResultOutput() ListKeysResultOutput {
 
 func (o ListKeysResultOutput) ToListKeysResultOutputWithContext(ctx context.Context) ListKeysResultOutput {
 	return o
+}
+
+func (o ListKeysResultOutput) ToOutput(ctx context.Context) pulumix.Output[ListKeysResult] {
+	return pulumix.Output[ListKeysResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o ListKeysResultOutput) Items() AuthKeyArrayOutput {
