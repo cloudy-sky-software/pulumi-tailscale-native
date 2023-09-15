@@ -1,9 +1,8 @@
 openapi: 3.0.0
 info:
   title: Tailscale API
-  version: '2023-01-01'
-  description: >-
-    This namespace contains operations that can be performed on a
+  version: 2023-01-01
+  description: This namespace contains operations that can be performed on a
     Tailscale-connected device.
 tags: []
 paths:
@@ -210,13 +209,13 @@ paths:
             application/json:
               schema:
                 type: object
+                required:
+                  - devices
                 properties:
                   devices:
                     type: array
                     items:
                       $ref: '#/components/schemas/Device'
-                required:
-                  - devices
   /tailnet/{tailnet}/dns/nameservers:
     get:
       operationId: TailnetEndpoints_getNameServers
@@ -461,6 +460,15 @@ components:
   schemas:
     Acl:
       type: object
+      required:
+        - acls
+        - autoApprovers
+        - groups
+        - hosts
+        - nodeAttrs
+        - ssh
+        - tagOwners
+        - tests
       properties:
         acls:
           type: array
@@ -498,17 +506,12 @@ components:
               type: string
         tests:
           type: string
-      required:
-        - acls
-        - autoApprovers
-        - groups
-        - hosts
-        - nodeAttrs
-        - ssh
-        - tagOwners
-        - tests
     AclRule:
       type: object
+      required:
+        - action
+        - ports
+        - users
       properties:
         action:
           $ref: '#/components/schemas/AclRuleAction'
@@ -520,10 +523,6 @@ components:
           type: array
           items:
             type: string
-      required:
-        - action
-        - ports
-        - users
     AclRuleAction:
       type: string
       description: |-
@@ -534,6 +533,9 @@ components:
         - accept
     AuthKey:
       type: object
+      required:
+        - key
+        - expires
       properties:
         key:
           type: string
@@ -544,22 +546,25 @@ components:
         expires:
           type: string
           readOnly: true
-      required:
-        - key
-        - expires
     AuthKeyCreate:
       type: object
+      required:
+        - capabilities
+        - expirySeconds
       properties:
         capabilities:
           $ref: '#/components/schemas/KeyCapabilities'
         expirySeconds:
           type: integer
           format: int64
-      required:
-        - capabilities
-        - expirySeconds
     ClientConnectivity:
       type: object
+      required:
+        - endpoints
+        - derp
+        - mappingVariesByDestIP
+        - latency
+        - clientSupports
       properties:
         endpoints:
           type: string
@@ -573,14 +578,15 @@ components:
             $ref: '#/components/schemas/Latency'
         clientSupports:
           $ref: '#/components/schemas/ClientSupports'
-      required:
-        - endpoints
-        - derp
-        - mappingVariesByDestIP
-        - latency
-        - clientSupports
     ClientSupports:
       type: object
+      required:
+        - hairPinning
+        - ipv6
+        - pcp
+        - pmp
+        - udp
+        - upnp
       properties:
         hairPinning:
           type: boolean
@@ -594,15 +600,13 @@ components:
           type: boolean
         upnp:
           type: boolean
-      required:
-        - hairPinning
-        - ipv6
-        - pcp
-        - pmp
-        - udp
-        - upnp
     CreateKey:
       type: object
+      required:
+        - reusable
+        - ephemeral
+        - preauthorized
+        - tags
       properties:
         reusable:
           type: boolean
@@ -614,13 +618,29 @@ components:
           type: array
           items:
             type: string
-      required:
-        - reusable
-        - ephemeral
-        - preauthorized
-        - tags
     Device:
       type: object
+      required:
+        - addresses
+        - id
+        - user
+        - name
+        - hostname
+        - clientVersion
+        - updateAvailable
+        - os
+        - created
+        - lastSeen
+        - keyExpiryDisabled
+        - expires
+        - authorized
+        - isExternal
+        - machineKey
+        - nodeKey
+        - blocksIncomingConnections
+        - enabledRoutes
+        - advertisedRoutes
+        - clientConnectivity
       properties:
         addresses:
           type: array
@@ -668,36 +688,18 @@ components:
             type: string
         clientConnectivity:
           $ref: '#/components/schemas/ClientConnectivity'
-      required:
-        - addresses
-        - id
-        - user
-        - name
-        - hostname
-        - clientVersion
-        - updateAvailable
-        - os
-        - created
-        - lastSeen
-        - keyExpiryDisabled
-        - expires
-        - authorized
-        - isExternal
-        - machineKey
-        - nodeKey
-        - blocksIncomingConnections
-        - enabledRoutes
-        - advertisedRoutes
-        - clientConnectivity
     DeviceKeyCapabilities:
       type: object
+      required:
+        - create
       properties:
         create:
           $ref: '#/components/schemas/CreateKey'
-      required:
-        - create
     DeviceRoutes:
       type: object
+      required:
+        - advertisedRoutes
+        - enabledRoutes
       properties:
         advertisedRoutes:
           type: array
@@ -707,44 +709,44 @@ components:
           type: array
           items:
             type: string
-      required:
-        - advertisedRoutes
-        - enabledRoutes
     DnsSearchPaths:
       type: object
+      required:
+        - searchPaths
       properties:
         searchPaths:
           type: array
           items:
             type: string
-      required:
-        - searchPaths
     Error:
       type: object
+      required:
+        - message
       properties:
         message:
           type: string
-      required:
-        - message
     KeyCapabilities:
       type: object
+      required:
+        - devices
       properties:
         devices:
           $ref: '#/components/schemas/DeviceKeyCapabilities'
-      required:
-        - devices
     Latency:
       type: object
+      required:
+        - latencyMs
+        - preferred
       properties:
         latencyMs:
           type: number
         preferred:
           type: boolean
-      required:
-        - latencyMs
-        - preferred
     NameServers:
       type: object
+      required:
+        - dns
+        - magicDNS
       properties:
         dns:
           type: array
@@ -752,18 +754,18 @@ components:
             type: string
         magicDNS:
           type: boolean
-      required:
-        - dns
-        - magicDNS
     NameServersPreference:
       type: object
+      required:
+        - magicDNS
       properties:
         magicDNS:
           type: boolean
-      required:
-        - magicDNS
     NodeAttrs:
       type: object
+      required:
+        - target
+        - attr
       properties:
         target:
           type: array
@@ -773,43 +775,46 @@ components:
           type: array
           items:
             type: string
-      required:
-        - target
-        - attr
     SetAuthorized:
       type: object
+      required:
+        - authorized
       properties:
         authorized:
           type: boolean
-      required:
-        - authorized
     SetDeviceRoutes:
       type: object
+      required:
+        - routes
       properties:
         routes:
           type: array
           items:
             type: string
-      required:
-        - routes
     SetKeyExpiry:
       type: object
+      required:
+        - keyExpiryDisabled
       properties:
         keyExpiryDisabled:
           type: boolean
-      required:
-        - keyExpiryDisabled
     SetTags:
       type: object
+      required:
+        - tags
       properties:
         tags:
           type: array
           items:
             type: string
-      required:
-        - tags
     SshRule:
       type: object
+      required:
+        - action
+        - src
+        - dst
+        - users
+        - checkPeriod
       properties:
         action:
           $ref: '#/components/schemas/SshRuleAction'
@@ -827,12 +832,6 @@ components:
             type: string
         checkPeriod:
           type: string
-      required:
-        - action
-        - src
-        - dst
-        - users
-        - checkPeriod
     SshRuleAction:
       type: string
       enum:
@@ -840,6 +839,8 @@ components:
         - accept
     TailnetEndpoints.CommonParameters:
       type: object
+      required:
+        - tailnet
       properties:
         tailnet:
           anyOf:
@@ -847,14 +848,11 @@ components:
               enum:
                 - '-'
             - type: string
-          description: >-
-            For paid plans, your domain is your tailnet. For solo plans, the
+          description: For paid plans, your domain is your tailnet. For solo plans, the
             tailnet is the email you signed up with. So `alice@gmail.com` has
             the tailnet `alice@gmail.com` since `@gmail.com` is a shared email
             host. Alternatively, you can specify the value "-" to refer to the
             default tailnet of the authenticated user making the API call.
-      required:
-        - tailnet
   securitySchemes:
     BasicAuth:
       type: http

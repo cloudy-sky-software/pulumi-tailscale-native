@@ -10,6 +10,7 @@ import (
 	"errors"
 	"github.com/cloudy-sky-software/pulumi-tailscale-native/sdk/go/tailscale/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type ReplaceSearchPaths struct {
@@ -94,6 +95,12 @@ func (i *ReplaceSearchPaths) ToReplaceSearchPathsOutputWithContext(ctx context.C
 	return pulumi.ToOutputWithContext(ctx, i).(ReplaceSearchPathsOutput)
 }
 
+func (i *ReplaceSearchPaths) ToOutput(ctx context.Context) pulumix.Output[*ReplaceSearchPaths] {
+	return pulumix.Output[*ReplaceSearchPaths]{
+		OutputState: i.ToReplaceSearchPathsOutputWithContext(ctx).OutputState,
+	}
+}
+
 type ReplaceSearchPathsOutput struct{ *pulumi.OutputState }
 
 func (ReplaceSearchPathsOutput) ElementType() reflect.Type {
@@ -106,6 +113,12 @@ func (o ReplaceSearchPathsOutput) ToReplaceSearchPathsOutput() ReplaceSearchPath
 
 func (o ReplaceSearchPathsOutput) ToReplaceSearchPathsOutputWithContext(ctx context.Context) ReplaceSearchPathsOutput {
 	return o
+}
+
+func (o ReplaceSearchPathsOutput) ToOutput(ctx context.Context) pulumix.Output[*ReplaceSearchPaths] {
+	return pulumix.Output[*ReplaceSearchPaths]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o ReplaceSearchPathsOutput) SearchPaths() pulumi.StringArrayOutput {
