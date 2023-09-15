@@ -94,11 +94,11 @@ func (p *tailscaleProvider) GetAuthorizationHeader() string {
 	return ""
 }
 
-func (p *tailscaleProvider) OnPreInvoke(ctx context.Context, req *pulumirpc.InvokeRequest, httpReq *http.Request) error {
+func (p *tailscaleProvider) OnPreInvoke(_ context.Context, _ *pulumirpc.InvokeRequest, _ *http.Request) error {
 	return nil
 }
 
-func (p *tailscaleProvider) OnPostInvoke(ctx context.Context, req *pulumirpc.InvokeRequest, outputs interface{}) (map[string]interface{}, error) {
+func (p *tailscaleProvider) OnPostInvoke(_ context.Context, req *pulumirpc.InvokeRequest, outputs interface{}) (map[string]interface{}, error) {
 	invokeTypeToken := req.GetTok()
 
 	if strings.Contains(invokeTypeToken, ":list") {
@@ -173,39 +173,39 @@ func (p *tailscaleProvider) OnConfigure(_ context.Context, req *pulumirpc.Config
 }
 
 // OnDiff checks what impacts a hypothetical update will have on the resource's properties.
-func (p *tailscaleProvider) OnDiff(ctx context.Context, req *pulumirpc.DiffRequest, resourceTypeToken string, diff *resource.ObjectDiff, jsonReq *openapi3.MediaType) (*pulumirpc.DiffResponse, error) {
+func (p *tailscaleProvider) OnDiff(_ context.Context, _ *pulumirpc.DiffRequest, _ string, _ *resource.ObjectDiff, _ *openapi3.MediaType) (*pulumirpc.DiffResponse, error) {
 	return nil, nil
 }
 
-func (p *tailscaleProvider) OnPreCreate(ctx context.Context, req *pulumirpc.CreateRequest, httpReq *http.Request) error {
+func (p *tailscaleProvider) OnPreCreate(_ context.Context, _ *pulumirpc.CreateRequest, _ *http.Request) error {
 	return nil
 }
 
 // OnPostCreate allocates a new instance of the provided resource and returns its unique ID afterwards.
-func (p *tailscaleProvider) OnPostCreate(ctx context.Context, req *pulumirpc.CreateRequest, outputs interface{}) (map[string]interface{}, error) {
+func (p *tailscaleProvider) OnPostCreate(_ context.Context, _ *pulumirpc.CreateRequest, outputs interface{}) (map[string]interface{}, error) {
 	return outputs.(map[string]interface{}), nil
 }
 
-func (p *tailscaleProvider) OnPreRead(ctx context.Context, req *pulumirpc.ReadRequest, httpReq *http.Request) error {
+func (p *tailscaleProvider) OnPreRead(_ context.Context, _ *pulumirpc.ReadRequest, _ *http.Request) error {
 	return nil
 }
 
-func (p *tailscaleProvider) OnPostRead(ctx context.Context, req *pulumirpc.ReadRequest, outputs map[string]interface{}) (map[string]interface{}, error) {
+func (p *tailscaleProvider) OnPostRead(_ context.Context, _ *pulumirpc.ReadRequest, outputs map[string]interface{}) (map[string]interface{}, error) {
 	return outputs, nil
 }
 
-func (p *tailscaleProvider) OnPreUpdate(ctx context.Context, req *pulumirpc.UpdateRequest, httpReq *http.Request) error {
+func (p *tailscaleProvider) OnPreUpdate(_ context.Context, _ *pulumirpc.UpdateRequest, _ *http.Request) error {
 	return nil
 }
 
-func (p *tailscaleProvider) OnPostUpdate(ctx context.Context, req *pulumirpc.UpdateRequest, httpReq http.Request, outputs interface{}) (map[string]interface{}, error) {
+func (p *tailscaleProvider) OnPostUpdate(_ context.Context, _ *pulumirpc.UpdateRequest, _ http.Request, outputs interface{}) (map[string]interface{}, error) {
 	return outputs.(map[string]interface{}), nil
 }
 
-func (p *tailscaleProvider) OnPreDelete(ctx context.Context, req *pulumirpc.DeleteRequest, httpReq *http.Request) error {
+func (p *tailscaleProvider) OnPreDelete(_ context.Context, _ *pulumirpc.DeleteRequest, _ *http.Request) error {
 	return nil
 }
 
-func (p *tailscaleProvider) OnPostDelete(ctx context.Context, req *pulumirpc.DeleteRequest) error {
+func (p *tailscaleProvider) OnPostDelete(_ context.Context, _ *pulumirpc.DeleteRequest) error {
 	return nil
 }
