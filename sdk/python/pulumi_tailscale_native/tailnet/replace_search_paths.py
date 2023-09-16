@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities
 
 __all__ = ['ReplaceSearchPathsArgs', 'ReplaceSearchPaths']
@@ -19,9 +19,20 @@ class ReplaceSearchPathsArgs:
         """
         The set of arguments for constructing a ReplaceSearchPaths resource.
         """
-        pulumi.set(__self__, "search_paths", search_paths)
+        ReplaceSearchPathsArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            search_paths=search_paths,
+            tailnet=tailnet,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             search_paths: pulumi.Input[Sequence[pulumi.Input[str]]],
+             tailnet: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("search_paths", search_paths)
         if tailnet is not None:
-            pulumi.set(__self__, "tailnet", tailnet)
+            _setter("tailnet", tailnet)
 
     @property
     @pulumi.getter(name="searchPaths")
@@ -73,6 +84,10 @@ class ReplaceSearchPaths(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
+            kwargs = kwargs or {}
+            def _setter(key, value):
+                kwargs[key] = value
+            ReplaceSearchPathsArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,

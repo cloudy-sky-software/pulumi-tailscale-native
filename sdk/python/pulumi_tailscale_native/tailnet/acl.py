@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities
 from . import outputs
 from ._enums import *
@@ -29,16 +29,41 @@ class AclArgs:
         """
         The set of arguments for constructing a Acl resource.
         """
-        pulumi.set(__self__, "acls", acls)
-        pulumi.set(__self__, "auto_approvers", auto_approvers)
-        pulumi.set(__self__, "groups", groups)
-        pulumi.set(__self__, "hosts", hosts)
-        pulumi.set(__self__, "node_attrs", node_attrs)
-        pulumi.set(__self__, "ssh", ssh)
-        pulumi.set(__self__, "tag_owners", tag_owners)
-        pulumi.set(__self__, "tests", tests)
+        AclArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            acls=acls,
+            auto_approvers=auto_approvers,
+            groups=groups,
+            hosts=hosts,
+            node_attrs=node_attrs,
+            ssh=ssh,
+            tag_owners=tag_owners,
+            tests=tests,
+            tailnet=tailnet,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             acls: pulumi.Input[Sequence[pulumi.Input['AclRuleArgs']]],
+             auto_approvers: Any,
+             groups: Any,
+             hosts: Any,
+             node_attrs: pulumi.Input[Sequence[pulumi.Input['NodeAttrsArgs']]],
+             ssh: pulumi.Input[Sequence[pulumi.Input['SshRuleArgs']]],
+             tag_owners: Any,
+             tests: pulumi.Input[str],
+             tailnet: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("acls", acls)
+        _setter("auto_approvers", auto_approvers)
+        _setter("groups", groups)
+        _setter("hosts", hosts)
+        _setter("node_attrs", node_attrs)
+        _setter("ssh", ssh)
+        _setter("tag_owners", tag_owners)
+        _setter("tests", tests)
         if tailnet is not None:
-            pulumi.set(__self__, "tailnet", tailnet)
+            _setter("tailnet", tailnet)
 
     @property
     @pulumi.getter
@@ -160,6 +185,10 @@ class Acl(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
+            kwargs = kwargs or {}
+            def _setter(key, value):
+                kwargs[key] = value
+            AclArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,

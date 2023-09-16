@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities
 from . import outputs
 
@@ -25,11 +25,28 @@ class ClientConnectivity(dict):
                  endpoints: str,
                  latency: Any,
                  mapping_varies_by_dest_ip: bool):
-        pulumi.set(__self__, "client_supports", client_supports)
-        pulumi.set(__self__, "derp", derp)
-        pulumi.set(__self__, "endpoints", endpoints)
-        pulumi.set(__self__, "latency", latency)
-        pulumi.set(__self__, "mapping_varies_by_dest_ip", mapping_varies_by_dest_ip)
+        ClientConnectivity._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            client_supports=client_supports,
+            derp=derp,
+            endpoints=endpoints,
+            latency=latency,
+            mapping_varies_by_dest_ip=mapping_varies_by_dest_ip,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             client_supports: 'outputs.ClientSupports',
+             derp: str,
+             endpoints: str,
+             latency: Any,
+             mapping_varies_by_dest_ip: bool,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("client_supports", client_supports)
+        _setter("derp", derp)
+        _setter("endpoints", endpoints)
+        _setter("latency", latency)
+        _setter("mapping_varies_by_dest_ip", mapping_varies_by_dest_ip)
 
     @property
     @pulumi.getter(name="clientSupports")
@@ -66,12 +83,31 @@ class ClientSupports(dict):
                  pmp: bool,
                  udp: bool,
                  upnp: bool):
-        pulumi.set(__self__, "hair_pinning", hair_pinning)
-        pulumi.set(__self__, "ipv6", ipv6)
-        pulumi.set(__self__, "pcp", pcp)
-        pulumi.set(__self__, "pmp", pmp)
-        pulumi.set(__self__, "udp", udp)
-        pulumi.set(__self__, "upnp", upnp)
+        ClientSupports._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            hair_pinning=hair_pinning,
+            ipv6=ipv6,
+            pcp=pcp,
+            pmp=pmp,
+            udp=udp,
+            upnp=upnp,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             hair_pinning: bool,
+             ipv6: bool,
+             pcp: bool,
+             pmp: bool,
+             udp: bool,
+             upnp: bool,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("hair_pinning", hair_pinning)
+        _setter("ipv6", ipv6)
+        _setter("pcp", pcp)
+        _setter("pmp", pmp)
+        _setter("udp", udp)
+        _setter("upnp", upnp)
 
     @property
     @pulumi.getter(name="hairPinning")
@@ -127,26 +163,73 @@ class Device(dict):
                  os: str,
                  update_available: bool,
                  user: str):
-        pulumi.set(__self__, "addresses", addresses)
-        pulumi.set(__self__, "advertised_routes", advertised_routes)
-        pulumi.set(__self__, "authorized", authorized)
-        pulumi.set(__self__, "blocks_incoming_connections", blocks_incoming_connections)
-        pulumi.set(__self__, "client_connectivity", client_connectivity)
-        pulumi.set(__self__, "client_version", client_version)
-        pulumi.set(__self__, "created", created)
-        pulumi.set(__self__, "enabled_routes", enabled_routes)
-        pulumi.set(__self__, "expires", expires)
-        pulumi.set(__self__, "hostname", hostname)
-        pulumi.set(__self__, "id", id)
-        pulumi.set(__self__, "is_external", is_external)
-        pulumi.set(__self__, "key_expiry_disabled", key_expiry_disabled)
-        pulumi.set(__self__, "last_seen", last_seen)
-        pulumi.set(__self__, "machine_key", machine_key)
-        pulumi.set(__self__, "name", name)
-        pulumi.set(__self__, "node_key", node_key)
-        pulumi.set(__self__, "os", os)
-        pulumi.set(__self__, "update_available", update_available)
-        pulumi.set(__self__, "user", user)
+        Device._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            addresses=addresses,
+            advertised_routes=advertised_routes,
+            authorized=authorized,
+            blocks_incoming_connections=blocks_incoming_connections,
+            client_connectivity=client_connectivity,
+            client_version=client_version,
+            created=created,
+            enabled_routes=enabled_routes,
+            expires=expires,
+            hostname=hostname,
+            id=id,
+            is_external=is_external,
+            key_expiry_disabled=key_expiry_disabled,
+            last_seen=last_seen,
+            machine_key=machine_key,
+            name=name,
+            node_key=node_key,
+            os=os,
+            update_available=update_available,
+            user=user,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             addresses: Sequence[str],
+             advertised_routes: Sequence[str],
+             authorized: bool,
+             blocks_incoming_connections: bool,
+             client_connectivity: 'outputs.ClientConnectivity',
+             client_version: str,
+             created: str,
+             enabled_routes: Sequence[str],
+             expires: str,
+             hostname: str,
+             id: str,
+             is_external: bool,
+             key_expiry_disabled: bool,
+             last_seen: str,
+             machine_key: str,
+             name: str,
+             node_key: str,
+             os: str,
+             update_available: bool,
+             user: str,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("addresses", addresses)
+        _setter("advertised_routes", advertised_routes)
+        _setter("authorized", authorized)
+        _setter("blocks_incoming_connections", blocks_incoming_connections)
+        _setter("client_connectivity", client_connectivity)
+        _setter("client_version", client_version)
+        _setter("created", created)
+        _setter("enabled_routes", enabled_routes)
+        _setter("expires", expires)
+        _setter("hostname", hostname)
+        _setter("id", id)
+        _setter("is_external", is_external)
+        _setter("key_expiry_disabled", key_expiry_disabled)
+        _setter("last_seen", last_seen)
+        _setter("machine_key", machine_key)
+        _setter("name", name)
+        _setter("node_key", node_key)
+        _setter("os", os)
+        _setter("update_available", update_available)
+        _setter("user", user)
 
     @property
     @pulumi.getter
@@ -254,8 +337,19 @@ class DeviceRoutes(dict):
     def __init__(__self__, *,
                  advertised_routes: Sequence[str],
                  enabled_routes: Sequence[str]):
-        pulumi.set(__self__, "advertised_routes", advertised_routes)
-        pulumi.set(__self__, "enabled_routes", enabled_routes)
+        DeviceRoutes._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            advertised_routes=advertised_routes,
+            enabled_routes=enabled_routes,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             advertised_routes: Sequence[str],
+             enabled_routes: Sequence[str],
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("advertised_routes", advertised_routes)
+        _setter("enabled_routes", enabled_routes)
 
     @property
     @pulumi.getter(name="advertisedRoutes")
