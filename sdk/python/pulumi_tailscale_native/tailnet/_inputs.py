@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities
 from ._enums import *
 
@@ -30,9 +30,22 @@ class AclRuleArgs:
                So the only possible value for an ACL
                rule is `accept`.
         """
-        pulumi.set(__self__, "action", action)
-        pulumi.set(__self__, "ports", ports)
-        pulumi.set(__self__, "users", users)
+        AclRuleArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            action=action,
+            ports=ports,
+            users=users,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             action: pulumi.Input['AclRuleAction'],
+             ports: pulumi.Input[Sequence[pulumi.Input[str]]],
+             users: pulumi.Input[Sequence[pulumi.Input[str]]],
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("action", action)
+        _setter("ports", ports)
+        _setter("users", users)
 
     @property
     @pulumi.getter
@@ -74,10 +87,25 @@ class CreateKeyArgs:
                  preauthorized: pulumi.Input[bool],
                  reusable: pulumi.Input[bool],
                  tags: pulumi.Input[Sequence[pulumi.Input[str]]]):
-        pulumi.set(__self__, "ephemeral", ephemeral)
-        pulumi.set(__self__, "preauthorized", preauthorized)
-        pulumi.set(__self__, "reusable", reusable)
-        pulumi.set(__self__, "tags", tags)
+        CreateKeyArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            ephemeral=ephemeral,
+            preauthorized=preauthorized,
+            reusable=reusable,
+            tags=tags,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             ephemeral: pulumi.Input[bool],
+             preauthorized: pulumi.Input[bool],
+             reusable: pulumi.Input[bool],
+             tags: pulumi.Input[Sequence[pulumi.Input[str]]],
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("ephemeral", ephemeral)
+        _setter("preauthorized", preauthorized)
+        _setter("reusable", reusable)
+        _setter("tags", tags)
 
     @property
     @pulumi.getter
@@ -120,7 +148,16 @@ class CreateKeyArgs:
 class DeviceKeyCapabilitiesArgs:
     def __init__(__self__, *,
                  create: pulumi.Input['CreateKeyArgs']):
-        pulumi.set(__self__, "create", create)
+        DeviceKeyCapabilitiesArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            create=create,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             create: pulumi.Input['CreateKeyArgs'],
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("create", create)
 
     @property
     @pulumi.getter
@@ -136,7 +173,16 @@ class DeviceKeyCapabilitiesArgs:
 class KeyCapabilitiesArgs:
     def __init__(__self__, *,
                  devices: pulumi.Input['DeviceKeyCapabilitiesArgs']):
-        pulumi.set(__self__, "devices", devices)
+        KeyCapabilitiesArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            devices=devices,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             devices: pulumi.Input['DeviceKeyCapabilitiesArgs'],
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("devices", devices)
 
     @property
     @pulumi.getter
@@ -153,8 +199,19 @@ class NodeAttrsArgs:
     def __init__(__self__, *,
                  attr: pulumi.Input[Sequence[pulumi.Input[str]]],
                  target: pulumi.Input[Sequence[pulumi.Input[str]]]):
-        pulumi.set(__self__, "attr", attr)
-        pulumi.set(__self__, "target", target)
+        NodeAttrsArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            attr=attr,
+            target=target,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             attr: pulumi.Input[Sequence[pulumi.Input[str]]],
+             target: pulumi.Input[Sequence[pulumi.Input[str]]],
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("attr", attr)
+        _setter("target", target)
 
     @property
     @pulumi.getter
@@ -183,11 +240,28 @@ class SshRuleArgs:
                  dst: pulumi.Input[Sequence[pulumi.Input[str]]],
                  src: pulumi.Input[Sequence[pulumi.Input[str]]],
                  users: pulumi.Input[Sequence[pulumi.Input[str]]]):
-        pulumi.set(__self__, "action", action)
-        pulumi.set(__self__, "check_period", check_period)
-        pulumi.set(__self__, "dst", dst)
-        pulumi.set(__self__, "src", src)
-        pulumi.set(__self__, "users", users)
+        SshRuleArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            action=action,
+            check_period=check_period,
+            dst=dst,
+            src=src,
+            users=users,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             action: pulumi.Input['SshRuleAction'],
+             check_period: pulumi.Input[str],
+             dst: pulumi.Input[Sequence[pulumi.Input[str]]],
+             src: pulumi.Input[Sequence[pulumi.Input[str]]],
+             users: pulumi.Input[Sequence[pulumi.Input[str]]],
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("action", action)
+        _setter("check_period", check_period)
+        _setter("dst", dst)
+        _setter("src", src)
+        _setter("users", users)
 
     @property
     @pulumi.getter
