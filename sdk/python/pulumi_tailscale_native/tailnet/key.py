@@ -121,7 +121,7 @@ class Key(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = KeyArgs.__new__(KeyArgs)
 
-            if not isinstance(capabilities, KeyCapabilitiesArgs):
+            if capabilities is not None and not isinstance(capabilities, KeyCapabilitiesArgs):
                 capabilities = capabilities or {}
                 def _setter(key, value):
                     capabilities[key] = value
