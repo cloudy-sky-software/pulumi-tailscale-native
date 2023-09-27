@@ -28,10 +28,10 @@ _utilities.register(
   "mod": "device",
   "fqn": "pulumi_tailscale_native.device",
   "classes": {
+   "tailscale-native:device:AuthorizeDevice": "AuthorizeDevice",
    "tailscale-native:device:KeyExpiry": "KeyExpiry",
    "tailscale-native:device:Routes": "Routes",
-   "tailscale-native:device:Tags": "Tags",
-   "tailscale-native:device:authorizeDevice": "AuthorizeDevice"
+   "tailscale-native:device:Tags": "Tags"
   }
  },
  {
@@ -43,7 +43,7 @@ _utilities.register(
    "tailscale-native:tailnet:DNSPreferences": "DNSPreferences",
    "tailscale-native:tailnet:Key": "Key",
    "tailscale-native:tailnet:NameServers": "NameServers",
-   "tailscale-native:tailnet:replaceSearchPaths": "ReplaceSearchPaths"
+   "tailscale-native:tailnet:ReplaceSearchPaths": "ReplaceSearchPaths"
   }
  }
 ]

@@ -29,7 +29,7 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &Key{}
 	case "tailscale-native:tailnet:NameServers":
 		r = &NameServers{}
-	case "tailscale-native:tailnet:replaceSearchPaths":
+	case "tailscale-native:tailnet:ReplaceSearchPaths":
 		r = &ReplaceSearchPaths{}
 	default:
 		return nil, fmt.Errorf("unknown resource type: %s", typ)

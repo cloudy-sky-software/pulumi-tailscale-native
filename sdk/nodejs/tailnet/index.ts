@@ -81,7 +81,7 @@ const _module = {
                 return new Key(name, <any>undefined, { urn })
             case "tailscale-native:tailnet:NameServers":
                 return new NameServers(name, <any>undefined, { urn })
-            case "tailscale-native:tailnet:replaceSearchPaths":
+            case "tailscale-native:tailnet:ReplaceSearchPaths":
                 return new ReplaceSearchPaths(name, <any>undefined, { urn })
             default:
                 throw new Error(`unknown resource type ${type}`);

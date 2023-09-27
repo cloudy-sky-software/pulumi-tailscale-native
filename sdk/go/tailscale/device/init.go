@@ -21,14 +21,14 @@ func (m *module) Version() semver.Version {
 
 func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi.Resource, err error) {
 	switch typ {
+	case "tailscale-native:device:AuthorizeDevice":
+		r = &AuthorizeDevice{}
 	case "tailscale-native:device:KeyExpiry":
 		r = &KeyExpiry{}
 	case "tailscale-native:device:Routes":
 		r = &Routes{}
 	case "tailscale-native:device:Tags":
 		r = &Tags{}
-	case "tailscale-native:device:authorizeDevice":
-		r = &AuthorizeDevice{}
 	default:
 		return nil, fmt.Errorf("unknown resource type: %s", typ)
 	}

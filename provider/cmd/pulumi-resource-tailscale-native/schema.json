@@ -752,6 +752,28 @@
         }
     },
     "resources": {
+        "tailscale-native:device:AuthorizeDevice": {
+            "properties": {
+                "authorized": {
+                    "type": "boolean"
+                }
+            },
+            "type": "object",
+            "required": [
+                "authorized"
+            ],
+            "inputProperties": {
+                "authorized": {
+                    "type": "boolean"
+                },
+                "id": {
+                    "type": "string"
+                }
+            },
+            "requiredInputs": [
+                "authorized"
+            ]
+        },
         "tailscale-native:device:KeyExpiry": {
             "properties": {
                 "keyExpiryDisabled": {
@@ -862,28 +884,6 @@
             },
             "requiredInputs": [
                 "tags"
-            ]
-        },
-        "tailscale-native:device:authorizeDevice": {
-            "properties": {
-                "authorized": {
-                    "type": "boolean"
-                }
-            },
-            "type": "object",
-            "required": [
-                "authorized"
-            ],
-            "inputProperties": {
-                "authorized": {
-                    "type": "boolean"
-                },
-                "id": {
-                    "type": "string"
-                }
-            },
-            "requiredInputs": [
-                "authorized"
             ]
         },
         "tailscale-native:tailnet:Acl": {
@@ -1086,7 +1086,7 @@
                 "magicDNS"
             ]
         },
-        "tailscale-native:tailnet:replaceSearchPaths": {
+        "tailscale-native:tailnet:ReplaceSearchPaths": {
             "properties": {
                 "searchPaths": {
                     "type": "array",
