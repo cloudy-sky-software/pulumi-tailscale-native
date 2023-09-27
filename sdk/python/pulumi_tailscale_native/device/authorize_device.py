@@ -109,7 +109,7 @@ class AuthorizeDevice(pulumi.CustomResource):
             __props__.__dict__["authorized"] = authorized
             __props__.__dict__["id"] = id
         super(AuthorizeDevice, __self__).__init__(
-            'tailscale-native:device:authorizeDevice',
+            'tailscale-native:device:AuthorizeDevice',
             resource_name,
             __props__,
             opts)

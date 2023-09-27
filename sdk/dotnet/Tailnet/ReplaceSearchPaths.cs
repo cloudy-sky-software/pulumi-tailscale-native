@@ -9,7 +9,7 @@ using Pulumi.Serialization;
 
 namespace Pulumi.TailscaleNative.Tailnet
 {
-    [TailscaleNativeResourceType("tailscale-native:tailnet:replaceSearchPaths")]
+    [TailscaleNativeResourceType("tailscale-native:tailnet:ReplaceSearchPaths")]
     public partial class ReplaceSearchPaths : global::Pulumi.CustomResource
     {
         [Output("searchPaths")]
@@ -24,12 +24,12 @@ namespace Pulumi.TailscaleNative.Tailnet
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
         public ReplaceSearchPaths(string name, ReplaceSearchPathsArgs args, CustomResourceOptions? options = null)
-            : base("tailscale-native:tailnet:replaceSearchPaths", name, args ?? new ReplaceSearchPathsArgs(), MakeResourceOptions(options, ""))
+            : base("tailscale-native:tailnet:ReplaceSearchPaths", name, args ?? new ReplaceSearchPathsArgs(), MakeResourceOptions(options, ""))
         {
         }
 
         private ReplaceSearchPaths(string name, Input<string> id, CustomResourceOptions? options = null)
-            : base("tailscale-native:tailnet:replaceSearchPaths", name, null, MakeResourceOptions(options, id))
+            : base("tailscale-native:tailnet:ReplaceSearchPaths", name, null, MakeResourceOptions(options, id))
         {
         }
 

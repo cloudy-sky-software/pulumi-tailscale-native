@@ -9,7 +9,7 @@ using Pulumi.Serialization;
 
 namespace Pulumi.TailscaleNative.Device
 {
-    [TailscaleNativeResourceType("tailscale-native:device:authorizeDevice")]
+    [TailscaleNativeResourceType("tailscale-native:device:AuthorizeDevice")]
     public partial class AuthorizeDevice : global::Pulumi.CustomResource
     {
         [Output("authorized")]
@@ -24,12 +24,12 @@ namespace Pulumi.TailscaleNative.Device
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
         public AuthorizeDevice(string name, AuthorizeDeviceArgs args, CustomResourceOptions? options = null)
-            : base("tailscale-native:device:authorizeDevice", name, args ?? new AuthorizeDeviceArgs(), MakeResourceOptions(options, ""))
+            : base("tailscale-native:device:AuthorizeDevice", name, args ?? new AuthorizeDeviceArgs(), MakeResourceOptions(options, ""))
         {
         }
 
         private AuthorizeDevice(string name, Input<string> id, CustomResourceOptions? options = null)
-            : base("tailscale-native:device:authorizeDevice", name, null, MakeResourceOptions(options, id))
+            : base("tailscale-native:device:AuthorizeDevice", name, null, MakeResourceOptions(options, id))
         {
         }
 
