@@ -118,6 +118,7 @@ cloud.google.com/go/vpcaccess v1.7.1/go.mod h1:FogoD46/ZU+JUBX9D606X21EnxiszYi2t
 cloud.google.com/go/webrisk v1.9.1/go.mod h1:4GCmXKcOa2BZcZPn6DCEvE7HypmEJcJkr4mtM+sqYPc=
 cloud.google.com/go/websecurityscanner v1.6.1/go.mod h1:Njgaw3rttgRHXzwCB8kgCYqv5/rGpFCsBOvPbYgszpg=
 cloud.google.com/go/workflows v1.11.1/go.mod h1:Z+t10G1wF7h8LgdY/EmRcQY8ptBD/nvofaL6FqlET6g=
+github.com/Azure/azure-sdk-for-go v66.0.0+incompatible h1:bmmC38SlE8/E81nNADlgmVGurPWMHDX2YNXVQMrBpEE=
 github.com/Azure/azure-sdk-for-go v67.0.0+incompatible h1:SVBwznSETB0Sipd0uyGJr7khLhJOFRUEUb+0JgkCvDo=
 github.com/Azure/azure-sdk-for-go v67.0.0+incompatible/go.mod h1:9XXNKU+eRnpl9moKnB4QOLf1HestfXbmab5FXxiDBjc=
 github.com/Azure/go-autorest/autorest v0.11.28 h1:ndAExarwr5Y+GaHE6VCaY1kyS/HwwGGyuimVhWsHOEM=
