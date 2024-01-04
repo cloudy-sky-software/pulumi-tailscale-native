@@ -4,6 +4,7 @@ model NameServersPreference {
 
 model NameServers {
     dns: string[];
+
     // It's unfortunate we can't use model composition here because
     // pulschema doesn't support the format that CADL emits when
     // composition is used.

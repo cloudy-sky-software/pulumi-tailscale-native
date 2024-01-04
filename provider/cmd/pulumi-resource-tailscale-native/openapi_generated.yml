@@ -2,8 +2,7 @@ openapi: 3.0.0
 info:
   title: Tailscale API
   version: 2023-01-01
-  description: This namespace contains operations that can be performed on a
-    Tailscale-connected device.
+  description: This namespace contains operations that can be performed on a Tailscale-connected device.
 tags: []
 paths:
   /device/{id}:
@@ -209,13 +208,13 @@ paths:
             application/json:
               schema:
                 type: object
-                required:
-                  - devices
                 properties:
                   devices:
                     type: array
                     items:
                       $ref: '#/components/schemas/Device'
+                required:
+                  - devices
   /tailnet/{tailnet}/dns/nameservers:
     get:
       operationId: TailnetEndpoints_getNameServers
@@ -525,12 +524,12 @@ components:
             type: string
     AclRuleAction:
       type: string
+      enum:
+        - accept
       description: |-
         Tailscale ACL rules are "default deny".
         So the only possible value for an ACL
         rule is `accept`.
-      enum:
-        - accept
     AuthKey:
       type: object
       required:
@@ -839,20 +838,6 @@ components:
         - accept
     TailnetEndpoints.CommonParameters:
       type: object
-      required:
-        - tailnet
-      properties:
-        tailnet:
-          anyOf:
-            - type: string
-              enum:
-                - '-'
-            - type: string
-          description: For paid plans, your domain is your tailnet. For solo plans, the
-            tailnet is the email you signed up with. So `alice@gmail.com` has
-            the tailnet `alice@gmail.com` since `@gmail.com` is a shared email
-            host. Alternatively, you can specify the value "-" to refer to the
-            default tailnet of the authenticated user making the API call.
   securitySchemes:
     BasicAuth:
       type: http

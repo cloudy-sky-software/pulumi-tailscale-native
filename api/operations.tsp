@@ -12,6 +12,7 @@ using TypeSpec.Rest;
 model TailscaleOAuthFlow {
     type: OAuth2FlowType.clientCredentials;
     tokenUrl: "https://api.tailscale.com/api/v2/oauth/token";
+
     // The goal is to map these scopes to individual operations
     // but these are less useful in the context of the Pulumi
     // provider.
@@ -57,7 +58,7 @@ namespace Operations {
         @get
         op getAcl(
             @path tailnet: "-" | string,
-            @header accept: "application/json"
+            @header accept: "application/json",
         ): Acl;
 
         @route("/acl")
@@ -65,7 +66,7 @@ namespace Operations {
         op createAcl(
             @path tailnet: "-" | string,
             @header accept: "application/json",
-            @body acl: Acl
+            @body acl: Acl,
         ): Acl;
 
         @route("/devices")
@@ -86,14 +87,14 @@ namespace Operations {
         @post
         op createKey(
             @path tailnet: "-" | string,
-            @body authKey: AuthKey
+            @body authKey: AuthKey,
         ): AuthKey;
 
         @route("/keys/{id}")
         @delete
         op deleteKey(
             @path tailnet: "-" | string,
-            @path id: string
+            @path id: string,
         ): Response<200>;
 
         @route("/dns/nameservers")
@@ -104,20 +105,20 @@ namespace Operations {
         @post
         op replaceNameServers(
             @path tailnet: "-" | string,
-            @body nameServer: NameServers
+            @body nameServer: NameServers,
         ): NameServers;
 
         @route("/dns/preferences")
         @get
         op getDNSPreferences(
-            @path tailnet: "-" | string
+            @path tailnet: "-" | string,
         ): NameServersPreference;
 
         @route("/dns/preferences")
         @post
         op replaceDNSPreferences(
             @path tailnet: "-" | string,
-            @body prefs: NameServersPreference
+            @body prefs: NameServersPreference,
         ): NameServersPreference;
 
         @route("/dns/searchpaths")
@@ -128,7 +129,7 @@ namespace Operations {
         @post
         op replaceSearchPaths(
             @path tailnet: "-" | string,
-            @body searchPaths: DnsSearchPaths
+            @body searchPaths: DnsSearchPaths,
         ): DnsSearchPaths;
     }
 
@@ -142,7 +143,7 @@ namespace Operations {
         @post
         op authorizeDevice(
             @path id: string,
-            @body setAuthorized: SetAuthorized
+            @body setAuthorized: SetAuthorized,
         ): Response<200>;
 
         @route("/tags")
@@ -157,14 +158,14 @@ namespace Operations {
         @post
         op setRoutes(
             @path id: string,
-            @body setRoutes: SetDeviceRoutes
+            @body setRoutes: SetDeviceRoutes,
         ): DeviceRoutes;
 
         @route("/key")
         @post
         op setKeyExpiry(
             @path id: string,
-            @body setKeyExpiry: SetKeyExpiry
+            @body setKeyExpiry: SetKeyExpiry,
         ): Response<200>;
     }
 }
