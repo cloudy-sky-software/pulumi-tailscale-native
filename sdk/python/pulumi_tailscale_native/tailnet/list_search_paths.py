@@ -43,6 +43,8 @@ def list_search_paths(tailnet: Optional[str] = None,
                       opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableListSearchPathsResult:
     """
     Use this data source to access information about an existing resource.
+
+    :param str tailnet: For paid plans, your domain is your tailnet. For solo plans, the tailnet is the email you signed up with. So `alice@gmail.com` has the tailnet `alice@gmail.com` since `@gmail.com` is a shared email host. Alternatively, you can specify the value "-" to refer to the default tailnet of the authenticated user making the API call.
     """
     __args__ = dict()
     __args__['tailnet'] = tailnet
@@ -58,5 +60,7 @@ def list_search_paths_output(tailnet: Optional[pulumi.Input[str]] = None,
                              opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[ListSearchPathsResult]:
     """
     Use this data source to access information about an existing resource.
+
+    :param str tailnet: For paid plans, your domain is your tailnet. For solo plans, the tailnet is the email you signed up with. So `alice@gmail.com` has the tailnet `alice@gmail.com` since `@gmail.com` is a shared email host. Alternatively, you can specify the value "-" to refer to the default tailnet of the authenticated user making the API call.
     """
     ...

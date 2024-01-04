@@ -118,6 +118,9 @@ namespace Pulumi.TailscaleNative.Tailnet
         [Input("tagOwners", required: true)]
         public Input<object> TagOwners { get; set; } = null!;
 
+        /// <summary>
+        /// For paid plans, your domain is your tailnet. For solo plans, the tailnet is the email you signed up with. So `alice@gmail.com` has the tailnet `alice@gmail.com` since `@gmail.com` is a shared email host. Alternatively, you can specify the value "-" to refer to the default tailnet of the authenticated user making the API call.
+        /// </summary>
         [Input("tailnet")]
         public Input<string>? Tailnet { get; set; }
 

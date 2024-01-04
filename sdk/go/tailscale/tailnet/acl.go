@@ -97,8 +97,9 @@ type aclArgs struct {
 	NodeAttrs     []NodeAttrs `pulumi:"nodeAttrs"`
 	Ssh           []SshRule   `pulumi:"ssh"`
 	TagOwners     interface{} `pulumi:"tagOwners"`
-	Tailnet       *string     `pulumi:"tailnet"`
-	Tests         string      `pulumi:"tests"`
+	// For paid plans, your domain is your tailnet. For solo plans, the tailnet is the email you signed up with. So `alice@gmail.com` has the tailnet `alice@gmail.com` since `@gmail.com` is a shared email host. Alternatively, you can specify the value "-" to refer to the default tailnet of the authenticated user making the API call.
+	Tailnet *string `pulumi:"tailnet"`
+	Tests   string  `pulumi:"tests"`
 }
 
 // The set of arguments for constructing a Acl resource.
@@ -110,8 +111,9 @@ type AclArgs struct {
 	NodeAttrs     NodeAttrsArrayInput
 	Ssh           SshRuleArrayInput
 	TagOwners     pulumi.Input
-	Tailnet       pulumi.StringPtrInput
-	Tests         pulumi.StringInput
+	// For paid plans, your domain is your tailnet. For solo plans, the tailnet is the email you signed up with. So `alice@gmail.com` has the tailnet `alice@gmail.com` since `@gmail.com` is a shared email host. Alternatively, you can specify the value "-" to refer to the default tailnet of the authenticated user making the API call.
+	Tailnet pulumi.StringPtrInput
+	Tests   pulumi.StringInput
 }
 
 func (AclArgs) ElementType() reflect.Type {
