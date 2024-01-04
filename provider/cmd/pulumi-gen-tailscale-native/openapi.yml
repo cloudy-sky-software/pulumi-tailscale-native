@@ -133,15 +133,7 @@ paths:
     get:
       operationId: TailnetEndpoints_getAcl
       parameters:
-        - name: tailnet
-          in: path
-          required: true
-          schema:
-            anyOf:
-              - type: string
-                enum:
-                  - '-'
-              - type: string
+        - $ref: '#/components/parameters/TailnetEndpoints.CommonParameters'
         - name: accept
           in: header
           required: true
@@ -159,15 +151,7 @@ paths:
     post:
       operationId: TailnetEndpoints_createAcl
       parameters:
-        - name: tailnet
-          in: path
-          required: true
-          schema:
-            anyOf:
-              - type: string
-                enum:
-                  - '-'
-              - type: string
+        - $ref: '#/components/parameters/TailnetEndpoints.CommonParameters'
         - name: accept
           in: header
           required: true
@@ -192,15 +176,7 @@ paths:
     get:
       operationId: TailnetEndpoints_listDevices
       parameters:
-        - name: tailnet
-          in: path
-          required: true
-          schema:
-            anyOf:
-              - type: string
-                enum:
-                  - '-'
-              - type: string
+        - $ref: '#/components/parameters/TailnetEndpoints.CommonParameters'
       responses:
         '200':
           description: The request has succeeded.
@@ -219,15 +195,7 @@ paths:
     get:
       operationId: TailnetEndpoints_getNameServers
       parameters:
-        - name: tailnet
-          in: path
-          required: true
-          schema:
-            anyOf:
-              - type: string
-                enum:
-                  - '-'
-              - type: string
+        - $ref: '#/components/parameters/TailnetEndpoints.CommonParameters'
       responses:
         '200':
           description: The request has succeeded.
@@ -238,15 +206,7 @@ paths:
     post:
       operationId: TailnetEndpoints_replaceNameServers
       parameters:
-        - name: tailnet
-          in: path
-          required: true
-          schema:
-            anyOf:
-              - type: string
-                enum:
-                  - '-'
-              - type: string
+        - $ref: '#/components/parameters/TailnetEndpoints.CommonParameters'
       responses:
         '200':
           description: The request has succeeded.
@@ -264,15 +224,7 @@ paths:
     get:
       operationId: TailnetEndpoints_getDNSPreferences
       parameters:
-        - name: tailnet
-          in: path
-          required: true
-          schema:
-            anyOf:
-              - type: string
-                enum:
-                  - '-'
-              - type: string
+        - $ref: '#/components/parameters/TailnetEndpoints.CommonParameters'
       responses:
         '200':
           description: The request has succeeded.
@@ -283,15 +235,7 @@ paths:
     post:
       operationId: TailnetEndpoints_replaceDNSPreferences
       parameters:
-        - name: tailnet
-          in: path
-          required: true
-          schema:
-            anyOf:
-              - type: string
-                enum:
-                  - '-'
-              - type: string
+        - $ref: '#/components/parameters/TailnetEndpoints.CommonParameters'
       responses:
         '200':
           description: The request has succeeded.
@@ -309,15 +253,7 @@ paths:
     get:
       operationId: TailnetEndpoints_listSearchPaths
       parameters:
-        - name: tailnet
-          in: path
-          required: true
-          schema:
-            anyOf:
-              - type: string
-                enum:
-                  - '-'
-              - type: string
+        - $ref: '#/components/parameters/TailnetEndpoints.CommonParameters'
       responses:
         '200':
           description: The request has succeeded.
@@ -328,15 +264,7 @@ paths:
     post:
       operationId: TailnetEndpoints_replaceSearchPaths
       parameters:
-        - name: tailnet
-          in: path
-          required: true
-          schema:
-            anyOf:
-              - type: string
-                enum:
-                  - '-'
-              - type: string
+        - $ref: '#/components/parameters/TailnetEndpoints.CommonParameters'
       responses:
         '200':
           description: The request has succeeded.
@@ -354,15 +282,7 @@ paths:
     get:
       operationId: TailnetEndpoints_listKeys
       parameters:
-        - name: tailnet
-          in: path
-          required: true
-          schema:
-            anyOf:
-              - type: string
-                enum:
-                  - '-'
-              - type: string
+        - $ref: '#/components/parameters/TailnetEndpoints.CommonParameters'
       responses:
         '200':
           description: The request has succeeded.
@@ -375,15 +295,7 @@ paths:
     post:
       operationId: TailnetEndpoints_createKey
       parameters:
-        - name: tailnet
-          in: path
-          required: true
-          schema:
-            anyOf:
-              - type: string
-                enum:
-                  - '-'
-              - type: string
+        - $ref: '#/components/parameters/TailnetEndpoints.CommonParameters'
       responses:
         '200':
           description: The request has succeeded.
@@ -401,15 +313,7 @@ paths:
     get:
       operationId: TailnetEndpoints_getKey
       parameters:
-        - name: tailnet
-          in: path
-          required: true
-          schema:
-            anyOf:
-              - type: string
-                enum:
-                  - '-'
-              - type: string
+        - $ref: '#/components/parameters/TailnetEndpoints.CommonParameters'
         - name: id
           in: path
           required: true
@@ -425,15 +329,7 @@ paths:
     delete:
       operationId: TailnetEndpoints_deleteKey
       parameters:
-        - name: tailnet
-          in: path
-          required: true
-          schema:
-            anyOf:
-              - type: string
-                enum:
-                  - '-'
-              - type: string
+        - $ref: '#/components/parameters/TailnetEndpoints.CommonParameters'
         - name: id
           in: path
           required: true
@@ -456,6 +352,18 @@ security:
       - routes
       - routes:read
 components:
+  parameters:
+    TailnetEndpoints.CommonParameters:
+      name: tailnet
+      in: path
+      required: true
+      description: For paid plans, your domain is your tailnet. For solo plans, the tailnet is the email you signed up with. So `alice@gmail.com` has the tailnet `alice@gmail.com` since `@gmail.com` is a shared email host. Alternatively, you can specify the value "-" to refer to the default tailnet of the authenticated user making the API call.
+      schema:
+        anyOf:
+          - type: string
+            enum:
+              - '-'
+          - type: string
   schemas:
     Acl:
       type: object
@@ -836,8 +744,6 @@ components:
       enum:
         - check
         - accept
-    TailnetEndpoints.CommonParameters:
-      type: object
   securitySchemes:
     BasicAuth:
       type: http

@@ -56,79 +56,68 @@ namespace Operations {
 
         @route("/acl")
         @get
-        op getAcl(
-            @path tailnet: "-" | string,
-            @header accept: "application/json",
-        ): Acl;
+        op getAcl(...CommonParameters, @header accept: "application/json"): Acl;
 
         @route("/acl")
         @post
         op createAcl(
-            @path tailnet: "-" | string,
+            ...CommonParameters,
             @header accept: "application/json",
             @body acl: Acl,
         ): Acl;
 
         @route("/devices")
         @get
-        op listDevices(@path tailnet: "-" | string): {
+        op listDevices(...CommonParameters): {
             devices: Device[];
         };
 
         @route("/keys")
         @get
-        op listKeys(@path tailnet: "-" | string): AuthKey[];
+        op listKeys(...CommonParameters): AuthKey[];
 
         @route("/keys/{id}")
         @get
-        op getKey(@path tailnet: "-" | string, @path id: string): AuthKey;
+        op getKey(...CommonParameters, @path id: string): AuthKey;
 
         @route("/keys")
         @post
-        op createKey(
-            @path tailnet: "-" | string,
-            @body authKey: AuthKey,
-        ): AuthKey;
+        op createKey(...CommonParameters, @body authKey: AuthKey): AuthKey;
 
         @route("/keys/{id}")
         @delete
-        op deleteKey(
-            @path tailnet: "-" | string,
-            @path id: string,
-        ): Response<200>;
+        op deleteKey(...CommonParameters, @path id: string): Response<200>;
 
         @route("/dns/nameservers")
         @get
-        op getNameServers(@path tailnet: "-" | string): NameServers;
+        op getNameServers(...CommonParameters): NameServers;
 
         @route("/dns/nameservers")
         @post
         op replaceNameServers(
-            @path tailnet: "-" | string,
+            ...CommonParameters,
             @body nameServer: NameServers,
         ): NameServers;
 
         @route("/dns/preferences")
         @get
-        op getDNSPreferences(
-            @path tailnet: "-" | string,
-        ): NameServersPreference;
+        op getDNSPreferences(...CommonParameters): NameServersPreference;
 
         @route("/dns/preferences")
         @post
         op replaceDNSPreferences(
-            @path tailnet: "-" | string,
+            ...CommonParameters,
             @body prefs: NameServersPreference,
         ): NameServersPreference;
 
         @route("/dns/searchpaths")
         @get
-        op listSearchPaths(@path tailnet: "-" | string): DnsSearchPaths;
+        op listSearchPaths(...CommonParameters): DnsSearchPaths;
 
         @route("/dns/searchpaths")
         @post
         op replaceSearchPaths(
-            @path tailnet: "-" | string,
+            ...CommonParameters,
             @body searchPaths: DnsSearchPaths,
         ): DnsSearchPaths;
     }
