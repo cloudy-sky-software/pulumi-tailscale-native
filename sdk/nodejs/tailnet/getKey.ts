@@ -18,6 +18,9 @@ export function getKey(args: GetKeyArgs, opts?: pulumi.InvokeOptions): Promise<G
 
 export interface GetKeyArgs {
     id: string;
+    /**
+     * For paid plans, your domain is your tailnet. For solo plans, the tailnet is the email you signed up with. So `alice@gmail.com` has the tailnet `alice@gmail.com` since `@gmail.com` is a shared email host. Alternatively, you can specify the value "-" to refer to the default tailnet of the authenticated user making the API call.
+     */
     tailnet: string;
 }
 
@@ -30,5 +33,8 @@ export function getKeyOutput(args: GetKeyOutputArgs, opts?: pulumi.InvokeOptions
 
 export interface GetKeyOutputArgs {
     id: pulumi.Input<string>;
+    /**
+     * For paid plans, your domain is your tailnet. For solo plans, the tailnet is the email you signed up with. So `alice@gmail.com` has the tailnet `alice@gmail.com` since `@gmail.com` is a shared email host. Alternatively, you can specify the value "-" to refer to the default tailnet of the authenticated user making the API call.
+     */
     tailnet: pulumi.Input<string>;
 }

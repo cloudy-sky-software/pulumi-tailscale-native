@@ -71,14 +71,16 @@ func (KeyState) ElementType() reflect.Type {
 type keyArgs struct {
 	Capabilities  KeyCapabilities `pulumi:"capabilities"`
 	ExpirySeconds int             `pulumi:"expirySeconds"`
-	Tailnet       *string         `pulumi:"tailnet"`
+	// For paid plans, your domain is your tailnet. For solo plans, the tailnet is the email you signed up with. So `alice@gmail.com` has the tailnet `alice@gmail.com` since `@gmail.com` is a shared email host. Alternatively, you can specify the value "-" to refer to the default tailnet of the authenticated user making the API call.
+	Tailnet *string `pulumi:"tailnet"`
 }
 
 // The set of arguments for constructing a Key resource.
 type KeyArgs struct {
 	Capabilities  KeyCapabilitiesInput
 	ExpirySeconds pulumi.IntInput
-	Tailnet       pulumi.StringPtrInput
+	// For paid plans, your domain is your tailnet. For solo plans, the tailnet is the email you signed up with. So `alice@gmail.com` has the tailnet `alice@gmail.com` since `@gmail.com` is a shared email host. Alternatively, you can specify the value "-" to refer to the default tailnet of the authenticated user making the API call.
+	Tailnet pulumi.StringPtrInput
 }
 
 func (KeyArgs) ElementType() reflect.Type {

@@ -18,6 +18,7 @@ class DNSPreferencesArgs:
                  tailnet: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a DNSPreferences resource.
+        :param pulumi.Input[str] tailnet: For paid plans, your domain is your tailnet. For solo plans, the tailnet is the email you signed up with. So `alice@gmail.com` has the tailnet `alice@gmail.com` since `@gmail.com` is a shared email host. Alternatively, you can specify the value "-" to refer to the default tailnet of the authenticated user making the API call.
         """
         DNSPreferencesArgs._configure(
             lambda key, value: pulumi.set(__self__, key, value),
@@ -46,6 +47,9 @@ class DNSPreferencesArgs:
     @property
     @pulumi.getter
     def tailnet(self) -> Optional[pulumi.Input[str]]:
+        """
+        For paid plans, your domain is your tailnet. For solo plans, the tailnet is the email you signed up with. So `alice@gmail.com` has the tailnet `alice@gmail.com` since `@gmail.com` is a shared email host. Alternatively, you can specify the value "-" to refer to the default tailnet of the authenticated user making the API call.
+        """
         return pulumi.get(self, "tailnet")
 
     @tailnet.setter
@@ -65,6 +69,7 @@ class DNSPreferences(pulumi.CustomResource):
         Create a DNSPreferences resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] tailnet: For paid plans, your domain is your tailnet. For solo plans, the tailnet is the email you signed up with. So `alice@gmail.com` has the tailnet `alice@gmail.com` since `@gmail.com` is a shared email host. Alternatively, you can specify the value "-" to refer to the default tailnet of the authenticated user making the API call.
         """
         ...
     @overload

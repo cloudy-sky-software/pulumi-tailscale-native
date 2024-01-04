@@ -965,7 +965,8 @@
                     "$ref": "pulumi.json#/Any"
                 },
                 "tailnet": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "For paid plans, your domain is your tailnet. For solo plans, the tailnet is the email you signed up with. So `alice@gmail.com` has the tailnet `alice@gmail.com` since `@gmail.com` is a shared email host. Alternatively, you can specify the value \"-\" to refer to the default tailnet of the authenticated user making the API call."
                 },
                 "tests": {
                     "type": "string"
@@ -997,7 +998,8 @@
                     "type": "boolean"
                 },
                 "tailnet": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "For paid plans, your domain is your tailnet. For solo plans, the tailnet is the email you signed up with. So `alice@gmail.com` has the tailnet `alice@gmail.com` since `@gmail.com` is a shared email host. Alternatively, you can specify the value \"-\" to refer to the default tailnet of the authenticated user making the API call."
                 }
             },
             "requiredInputs": [
@@ -1042,7 +1044,8 @@
                     "type": "integer"
                 },
                 "tailnet": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "For paid plans, your domain is your tailnet. For solo plans, the tailnet is the email you signed up with. So `alice@gmail.com` has the tailnet `alice@gmail.com` since `@gmail.com` is a shared email host. Alternatively, you can specify the value \"-\" to refer to the default tailnet of the authenticated user making the API call."
                 }
             },
             "requiredInputs": [
@@ -1078,7 +1081,8 @@
                     "type": "boolean"
                 },
                 "tailnet": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "For paid plans, your domain is your tailnet. For solo plans, the tailnet is the email you signed up with. So `alice@gmail.com` has the tailnet `alice@gmail.com` since `@gmail.com` is a shared email host. Alternatively, you can specify the value \"-\" to refer to the default tailnet of the authenticated user making the API call."
                 }
             },
             "requiredInputs": [
@@ -1107,7 +1111,8 @@
                     }
                 },
                 "tailnet": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "For paid plans, your domain is your tailnet. For solo plans, the tailnet is the email you signed up with. So `alice@gmail.com` has the tailnet `alice@gmail.com` since `@gmail.com` is a shared email host. Alternatively, you can specify the value \"-\" to refer to the default tailnet of the authenticated user making the API call."
                 }
             },
             "requiredInputs": [
@@ -1164,7 +1169,8 @@
             "inputs": {
                 "properties": {
                     "tailnet": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "For paid plans, your domain is your tailnet. For solo plans, the tailnet is the email you signed up with. So `alice@gmail.com` has the tailnet `alice@gmail.com` since `@gmail.com` is a shared email host. Alternatively, you can specify the value \"-\" to refer to the default tailnet of the authenticated user making the API call."
                     }
                 },
                 "required": [
@@ -1186,7 +1192,8 @@
             "inputs": {
                 "properties": {
                     "tailnet": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "For paid plans, your domain is your tailnet. For solo plans, the tailnet is the email you signed up with. So `alice@gmail.com` has the tailnet `alice@gmail.com` since `@gmail.com` is a shared email host. Alternatively, you can specify the value \"-\" to refer to the default tailnet of the authenticated user making the API call."
                     }
                 },
                 "required": [
@@ -1211,7 +1218,8 @@
                         "type": "string"
                     },
                     "tailnet": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "For paid plans, your domain is your tailnet. For solo plans, the tailnet is the email you signed up with. So `alice@gmail.com` has the tailnet `alice@gmail.com` since `@gmail.com` is a shared email host. Alternatively, you can specify the value \"-\" to refer to the default tailnet of the authenticated user making the API call."
                     }
                 },
                 "required": [
@@ -1234,7 +1242,8 @@
             "inputs": {
                 "properties": {
                     "tailnet": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "For paid plans, your domain is your tailnet. For solo plans, the tailnet is the email you signed up with. So `alice@gmail.com` has the tailnet `alice@gmail.com` since `@gmail.com` is a shared email host. Alternatively, you can specify the value \"-\" to refer to the default tailnet of the authenticated user making the API call."
                     }
                 },
                 "required": [
@@ -1256,7 +1265,8 @@
             "inputs": {
                 "properties": {
                     "tailnet": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "For paid plans, your domain is your tailnet. For solo plans, the tailnet is the email you signed up with. So `alice@gmail.com` has the tailnet `alice@gmail.com` since `@gmail.com` is a shared email host. Alternatively, you can specify the value \"-\" to refer to the default tailnet of the authenticated user making the API call."
                     }
                 },
                 "required": [
@@ -1278,7 +1288,8 @@
             "inputs": {
                 "properties": {
                     "tailnet": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "For paid plans, your domain is your tailnet. For solo plans, the tailnet is the email you signed up with. So `alice@gmail.com` has the tailnet `alice@gmail.com` since `@gmail.com` is a shared email host. Alternatively, you can specify the value \"-\" to refer to the default tailnet of the authenticated user making the API call."
                     }
                 },
                 "required": [
@@ -1303,7 +1314,8 @@
             "inputs": {
                 "properties": {
                     "tailnet": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "For paid plans, your domain is your tailnet. For solo plans, the tailnet is the email you signed up with. So `alice@gmail.com` has the tailnet `alice@gmail.com` since `@gmail.com` is a shared email host. Alternatively, you can specify the value \"-\" to refer to the default tailnet of the authenticated user making the API call."
                     }
                 },
                 "required": [

@@ -62,14 +62,16 @@ func (DNSPreferencesState) ElementType() reflect.Type {
 }
 
 type dnspreferencesArgs struct {
-	MagicDNS bool    `pulumi:"magicDNS"`
-	Tailnet  *string `pulumi:"tailnet"`
+	MagicDNS bool `pulumi:"magicDNS"`
+	// For paid plans, your domain is your tailnet. For solo plans, the tailnet is the email you signed up with. So `alice@gmail.com` has the tailnet `alice@gmail.com` since `@gmail.com` is a shared email host. Alternatively, you can specify the value "-" to refer to the default tailnet of the authenticated user making the API call.
+	Tailnet *string `pulumi:"tailnet"`
 }
 
 // The set of arguments for constructing a DNSPreferences resource.
 type DNSPreferencesArgs struct {
 	MagicDNS pulumi.BoolInput
-	Tailnet  pulumi.StringPtrInput
+	// For paid plans, your domain is your tailnet. For solo plans, the tailnet is the email you signed up with. So `alice@gmail.com` has the tailnet `alice@gmail.com` since `@gmail.com` is a shared email host. Alternatively, you can specify the value "-" to refer to the default tailnet of the authenticated user making the API call.
+	Tailnet pulumi.StringPtrInput
 }
 
 func (DNSPreferencesArgs) ElementType() reflect.Type {

@@ -29,12 +29,16 @@ model Device {
     clientVersion: string;
     updateAvailable: boolean;
     os: string;
+
     // TODO: Should these use the CADL date/time types?
     created: string;
+
     lastSeen: string;
     keyExpiryDisabled: boolean;
+
     // TODO: Same here.
     expires: string;
+
     authorized: boolean;
     isExternal: boolean;
     machineKey: string;
