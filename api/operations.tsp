@@ -94,7 +94,8 @@ namespace Operations {
 
         @route("/dns/nameservers")
         @post
-        op replaceNameServers(
+        @doc("Replaces the list of DNS nameservers for a tailnet.")
+        op setNameServers(
             ...CommonParameters,
             @body nameServer: NameServers,
         ): NameServers;
@@ -105,7 +106,8 @@ namespace Operations {
 
         @route("/dns/preferences")
         @post
-        op replaceDNSPreferences(
+        @doc("Replaces the DNS preferences for a tailnet.")
+        op setDNSPreferences(
             ...CommonParameters,
             @body prefs: NameServersPreference,
         ): NameServersPreference;
