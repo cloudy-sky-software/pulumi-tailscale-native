@@ -10,7 +10,6 @@ import (
 	"errors"
 	"github.com/cloudy-sky-software/pulumi-tailscale-native/sdk/go/tailscale/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type KeyExpiry struct {
@@ -95,12 +94,6 @@ func (i *KeyExpiry) ToKeyExpiryOutputWithContext(ctx context.Context) KeyExpiryO
 	return pulumi.ToOutputWithContext(ctx, i).(KeyExpiryOutput)
 }
 
-func (i *KeyExpiry) ToOutput(ctx context.Context) pulumix.Output[*KeyExpiry] {
-	return pulumix.Output[*KeyExpiry]{
-		OutputState: i.ToKeyExpiryOutputWithContext(ctx).OutputState,
-	}
-}
-
 type KeyExpiryOutput struct{ *pulumi.OutputState }
 
 func (KeyExpiryOutput) ElementType() reflect.Type {
@@ -113,12 +106,6 @@ func (o KeyExpiryOutput) ToKeyExpiryOutput() KeyExpiryOutput {
 
 func (o KeyExpiryOutput) ToKeyExpiryOutputWithContext(ctx context.Context) KeyExpiryOutput {
 	return o
-}
-
-func (o KeyExpiryOutput) ToOutput(ctx context.Context) pulumix.Output[*KeyExpiry] {
-	return pulumix.Output[*KeyExpiry]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o KeyExpiryOutput) KeyExpiryDisabled() pulumi.BoolOutput {

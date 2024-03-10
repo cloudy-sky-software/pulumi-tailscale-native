@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities
 from . import outputs
 from ._enums import *
@@ -40,37 +40,14 @@ class Acl(dict):
                  ssh: Sequence['outputs.SshRule'],
                  tag_owners: Any,
                  tests: str):
-        Acl._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            acls=acls,
-            auto_approvers=auto_approvers,
-            groups=groups,
-            hosts=hosts,
-            node_attrs=node_attrs,
-            ssh=ssh,
-            tag_owners=tag_owners,
-            tests=tests,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             acls: Sequence['outputs.AclRule'],
-             auto_approvers: Any,
-             groups: Any,
-             hosts: Any,
-             node_attrs: Sequence['outputs.NodeAttrs'],
-             ssh: Sequence['outputs.SshRule'],
-             tag_owners: Any,
-             tests: str,
-             opts: Optional[pulumi.ResourceOptions]=None):
-        _setter("acls", acls)
-        _setter("auto_approvers", auto_approvers)
-        _setter("groups", groups)
-        _setter("hosts", hosts)
-        _setter("node_attrs", node_attrs)
-        _setter("ssh", ssh)
-        _setter("tag_owners", tag_owners)
-        _setter("tests", tests)
+        pulumi.set(__self__, "acls", acls)
+        pulumi.set(__self__, "auto_approvers", auto_approvers)
+        pulumi.set(__self__, "groups", groups)
+        pulumi.set(__self__, "hosts", hosts)
+        pulumi.set(__self__, "node_attrs", node_attrs)
+        pulumi.set(__self__, "ssh", ssh)
+        pulumi.set(__self__, "tag_owners", tag_owners)
+        pulumi.set(__self__, "tests", tests)
 
     @property
     @pulumi.getter
@@ -124,22 +101,9 @@ class AclRule(dict):
                So the only possible value for an ACL
                rule is `accept`.
         """
-        AclRule._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            action=action,
-            ports=ports,
-            users=users,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             action: 'AclRuleAction',
-             ports: Sequence[str],
-             users: Sequence[str],
-             opts: Optional[pulumi.ResourceOptions]=None):
-        _setter("action", action)
-        _setter("ports", ports)
-        _setter("users", users)
+        pulumi.set(__self__, "action", action)
+        pulumi.set(__self__, "ports", ports)
+        pulumi.set(__self__, "users", users)
 
     @property
     @pulumi.getter
@@ -168,23 +132,10 @@ class AuthKey(dict):
                  expires: str,
                  key: str,
                  created: Optional[str] = None):
-        AuthKey._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            expires=expires,
-            key=key,
-            created=created,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             expires: str,
-             key: str,
-             created: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
-        _setter("expires", expires)
-        _setter("key", key)
+        pulumi.set(__self__, "expires", expires)
+        pulumi.set(__self__, "key", key)
         if created is not None:
-            _setter("created", created)
+            pulumi.set(__self__, "created", created)
 
     @property
     @pulumi.getter
@@ -210,28 +161,11 @@ class ClientConnectivity(dict):
                  endpoints: str,
                  latency: Any,
                  mapping_varies_by_dest_ip: bool):
-        ClientConnectivity._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            client_supports=client_supports,
-            derp=derp,
-            endpoints=endpoints,
-            latency=latency,
-            mapping_varies_by_dest_ip=mapping_varies_by_dest_ip,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             client_supports: 'outputs.ClientSupports',
-             derp: str,
-             endpoints: str,
-             latency: Any,
-             mapping_varies_by_dest_ip: bool,
-             opts: Optional[pulumi.ResourceOptions]=None):
-        _setter("client_supports", client_supports)
-        _setter("derp", derp)
-        _setter("endpoints", endpoints)
-        _setter("latency", latency)
-        _setter("mapping_varies_by_dest_ip", mapping_varies_by_dest_ip)
+        pulumi.set(__self__, "client_supports", client_supports)
+        pulumi.set(__self__, "derp", derp)
+        pulumi.set(__self__, "endpoints", endpoints)
+        pulumi.set(__self__, "latency", latency)
+        pulumi.set(__self__, "mapping_varies_by_dest_ip", mapping_varies_by_dest_ip)
 
     @property
     @pulumi.getter(name="clientSupports")
@@ -268,31 +202,12 @@ class ClientSupports(dict):
                  pmp: bool,
                  udp: bool,
                  upnp: bool):
-        ClientSupports._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            hair_pinning=hair_pinning,
-            ipv6=ipv6,
-            pcp=pcp,
-            pmp=pmp,
-            udp=udp,
-            upnp=upnp,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             hair_pinning: bool,
-             ipv6: bool,
-             pcp: bool,
-             pmp: bool,
-             udp: bool,
-             upnp: bool,
-             opts: Optional[pulumi.ResourceOptions]=None):
-        _setter("hair_pinning", hair_pinning)
-        _setter("ipv6", ipv6)
-        _setter("pcp", pcp)
-        _setter("pmp", pmp)
-        _setter("udp", udp)
-        _setter("upnp", upnp)
+        pulumi.set(__self__, "hair_pinning", hair_pinning)
+        pulumi.set(__self__, "ipv6", ipv6)
+        pulumi.set(__self__, "pcp", pcp)
+        pulumi.set(__self__, "pmp", pmp)
+        pulumi.set(__self__, "udp", udp)
+        pulumi.set(__self__, "upnp", upnp)
 
     @property
     @pulumi.getter(name="hairPinning")
@@ -332,25 +247,10 @@ class CreateKey(dict):
                  preauthorized: bool,
                  reusable: bool,
                  tags: Sequence[str]):
-        CreateKey._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            ephemeral=ephemeral,
-            preauthorized=preauthorized,
-            reusable=reusable,
-            tags=tags,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             ephemeral: bool,
-             preauthorized: bool,
-             reusable: bool,
-             tags: Sequence[str],
-             opts: Optional[pulumi.ResourceOptions]=None):
-        _setter("ephemeral", ephemeral)
-        _setter("preauthorized", preauthorized)
-        _setter("reusable", reusable)
-        _setter("tags", tags)
+        pulumi.set(__self__, "ephemeral", ephemeral)
+        pulumi.set(__self__, "preauthorized", preauthorized)
+        pulumi.set(__self__, "reusable", reusable)
+        pulumi.set(__self__, "tags", tags)
 
     @property
     @pulumi.getter
@@ -396,73 +296,26 @@ class Device(dict):
                  os: str,
                  update_available: bool,
                  user: str):
-        Device._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            addresses=addresses,
-            advertised_routes=advertised_routes,
-            authorized=authorized,
-            blocks_incoming_connections=blocks_incoming_connections,
-            client_connectivity=client_connectivity,
-            client_version=client_version,
-            created=created,
-            enabled_routes=enabled_routes,
-            expires=expires,
-            hostname=hostname,
-            id=id,
-            is_external=is_external,
-            key_expiry_disabled=key_expiry_disabled,
-            last_seen=last_seen,
-            machine_key=machine_key,
-            name=name,
-            node_key=node_key,
-            os=os,
-            update_available=update_available,
-            user=user,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             addresses: Sequence[str],
-             advertised_routes: Sequence[str],
-             authorized: bool,
-             blocks_incoming_connections: bool,
-             client_connectivity: 'outputs.ClientConnectivity',
-             client_version: str,
-             created: str,
-             enabled_routes: Sequence[str],
-             expires: str,
-             hostname: str,
-             id: str,
-             is_external: bool,
-             key_expiry_disabled: bool,
-             last_seen: str,
-             machine_key: str,
-             name: str,
-             node_key: str,
-             os: str,
-             update_available: bool,
-             user: str,
-             opts: Optional[pulumi.ResourceOptions]=None):
-        _setter("addresses", addresses)
-        _setter("advertised_routes", advertised_routes)
-        _setter("authorized", authorized)
-        _setter("blocks_incoming_connections", blocks_incoming_connections)
-        _setter("client_connectivity", client_connectivity)
-        _setter("client_version", client_version)
-        _setter("created", created)
-        _setter("enabled_routes", enabled_routes)
-        _setter("expires", expires)
-        _setter("hostname", hostname)
-        _setter("id", id)
-        _setter("is_external", is_external)
-        _setter("key_expiry_disabled", key_expiry_disabled)
-        _setter("last_seen", last_seen)
-        _setter("machine_key", machine_key)
-        _setter("name", name)
-        _setter("node_key", node_key)
-        _setter("os", os)
-        _setter("update_available", update_available)
-        _setter("user", user)
+        pulumi.set(__self__, "addresses", addresses)
+        pulumi.set(__self__, "advertised_routes", advertised_routes)
+        pulumi.set(__self__, "authorized", authorized)
+        pulumi.set(__self__, "blocks_incoming_connections", blocks_incoming_connections)
+        pulumi.set(__self__, "client_connectivity", client_connectivity)
+        pulumi.set(__self__, "client_version", client_version)
+        pulumi.set(__self__, "created", created)
+        pulumi.set(__self__, "enabled_routes", enabled_routes)
+        pulumi.set(__self__, "expires", expires)
+        pulumi.set(__self__, "hostname", hostname)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "is_external", is_external)
+        pulumi.set(__self__, "key_expiry_disabled", key_expiry_disabled)
+        pulumi.set(__self__, "last_seen", last_seen)
+        pulumi.set(__self__, "machine_key", machine_key)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "node_key", node_key)
+        pulumi.set(__self__, "os", os)
+        pulumi.set(__self__, "update_available", update_available)
+        pulumi.set(__self__, "user", user)
 
     @property
     @pulumi.getter
@@ -569,16 +422,7 @@ class Device(dict):
 class DeviceKeyCapabilities(dict):
     def __init__(__self__, *,
                  create: 'outputs.CreateKey'):
-        DeviceKeyCapabilities._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            create=create,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             create: 'outputs.CreateKey',
-             opts: Optional[pulumi.ResourceOptions]=None):
-        _setter("create", create)
+        pulumi.set(__self__, "create", create)
 
     @property
     @pulumi.getter
@@ -590,16 +434,7 @@ class DeviceKeyCapabilities(dict):
 class DnsSearchPaths(dict):
     def __init__(__self__, *,
                  search_paths: Sequence[str]):
-        DnsSearchPaths._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            search_paths=search_paths,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             search_paths: Sequence[str],
-             opts: Optional[pulumi.ResourceOptions]=None):
-        _setter("search_paths", search_paths)
+        pulumi.set(__self__, "search_paths", search_paths)
 
     @property
     @pulumi.getter(name="searchPaths")
@@ -611,16 +446,7 @@ class DnsSearchPaths(dict):
 class KeyCapabilities(dict):
     def __init__(__self__, *,
                  devices: 'outputs.DeviceKeyCapabilities'):
-        KeyCapabilities._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            devices=devices,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             devices: 'outputs.DeviceKeyCapabilities',
-             opts: Optional[pulumi.ResourceOptions]=None):
-        _setter("devices", devices)
+        pulumi.set(__self__, "devices", devices)
 
     @property
     @pulumi.getter
@@ -632,16 +458,7 @@ class KeyCapabilities(dict):
 class ListDevicesProperties(dict):
     def __init__(__self__, *,
                  devices: Sequence['outputs.Device']):
-        ListDevicesProperties._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            devices=devices,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             devices: Sequence['outputs.Device'],
-             opts: Optional[pulumi.ResourceOptions]=None):
-        _setter("devices", devices)
+        pulumi.set(__self__, "devices", devices)
 
     @property
     @pulumi.getter
@@ -654,19 +471,8 @@ class NameServers(dict):
     def __init__(__self__, *,
                  dns: Sequence[str],
                  magic_dns: bool):
-        NameServers._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            dns=dns,
-            magic_dns=magic_dns,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             dns: Sequence[str],
-             magic_dns: bool,
-             opts: Optional[pulumi.ResourceOptions]=None):
-        _setter("dns", dns)
-        _setter("magic_dns", magic_dns)
+        pulumi.set(__self__, "dns", dns)
+        pulumi.set(__self__, "magic_dns", magic_dns)
 
     @property
     @pulumi.getter
@@ -683,16 +489,7 @@ class NameServers(dict):
 class NameServersPreference(dict):
     def __init__(__self__, *,
                  magic_dns: bool):
-        NameServersPreference._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            magic_dns=magic_dns,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             magic_dns: bool,
-             opts: Optional[pulumi.ResourceOptions]=None):
-        _setter("magic_dns", magic_dns)
+        pulumi.set(__self__, "magic_dns", magic_dns)
 
     @property
     @pulumi.getter(name="magicDNS")
@@ -705,19 +502,8 @@ class NodeAttrs(dict):
     def __init__(__self__, *,
                  attr: Sequence[str],
                  target: Sequence[str]):
-        NodeAttrs._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            attr=attr,
-            target=target,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             attr: Sequence[str],
-             target: Sequence[str],
-             opts: Optional[pulumi.ResourceOptions]=None):
-        _setter("attr", attr)
-        _setter("target", target)
+        pulumi.set(__self__, "attr", attr)
+        pulumi.set(__self__, "target", target)
 
     @property
     @pulumi.getter
@@ -755,28 +541,11 @@ class SshRule(dict):
                  dst: Sequence[str],
                  src: Sequence[str],
                  users: Sequence[str]):
-        SshRule._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            action=action,
-            check_period=check_period,
-            dst=dst,
-            src=src,
-            users=users,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             action: 'SshRuleAction',
-             check_period: str,
-             dst: Sequence[str],
-             src: Sequence[str],
-             users: Sequence[str],
-             opts: Optional[pulumi.ResourceOptions]=None):
-        _setter("action", action)
-        _setter("check_period", check_period)
-        _setter("dst", dst)
-        _setter("src", src)
-        _setter("users", users)
+        pulumi.set(__self__, "action", action)
+        pulumi.set(__self__, "check_period", check_period)
+        pulumi.set(__self__, "dst", dst)
+        pulumi.set(__self__, "src", src)
+        pulumi.set(__self__, "users", users)
 
     @property
     @pulumi.getter

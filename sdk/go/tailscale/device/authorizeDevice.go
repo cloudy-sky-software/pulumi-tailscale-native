@@ -10,7 +10,6 @@ import (
 	"errors"
 	"github.com/cloudy-sky-software/pulumi-tailscale-native/sdk/go/tailscale/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type AuthorizeDevice struct {
@@ -95,12 +94,6 @@ func (i *AuthorizeDevice) ToAuthorizeDeviceOutputWithContext(ctx context.Context
 	return pulumi.ToOutputWithContext(ctx, i).(AuthorizeDeviceOutput)
 }
 
-func (i *AuthorizeDevice) ToOutput(ctx context.Context) pulumix.Output[*AuthorizeDevice] {
-	return pulumix.Output[*AuthorizeDevice]{
-		OutputState: i.ToAuthorizeDeviceOutputWithContext(ctx).OutputState,
-	}
-}
-
 type AuthorizeDeviceOutput struct{ *pulumi.OutputState }
 
 func (AuthorizeDeviceOutput) ElementType() reflect.Type {
@@ -113,12 +106,6 @@ func (o AuthorizeDeviceOutput) ToAuthorizeDeviceOutput() AuthorizeDeviceOutput {
 
 func (o AuthorizeDeviceOutput) ToAuthorizeDeviceOutputWithContext(ctx context.Context) AuthorizeDeviceOutput {
 	return o
-}
-
-func (o AuthorizeDeviceOutput) ToOutput(ctx context.Context) pulumix.Output[*AuthorizeDevice] {
-	return pulumix.Output[*AuthorizeDevice]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o AuthorizeDeviceOutput) Authorized() pulumi.BoolOutput {

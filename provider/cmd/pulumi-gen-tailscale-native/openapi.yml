@@ -204,7 +204,8 @@ paths:
               schema:
                 $ref: '#/components/schemas/NameServers'
     post:
-      operationId: TailnetEndpoints_replaceNameServers
+      operationId: TailnetEndpoints_setNameServers
+      description: Replaces the list of DNS nameservers for a tailnet.
       parameters:
         - $ref: '#/components/parameters/TailnetEndpoints.CommonParameters'
       responses:
@@ -233,7 +234,8 @@ paths:
               schema:
                 $ref: '#/components/schemas/NameServersPreference'
     post:
-      operationId: TailnetEndpoints_replaceDNSPreferences
+      operationId: TailnetEndpoints_setDNSPreferences
+      description: Replaces the DNS preferences for a tailnet.
       parameters:
         - $ref: '#/components/parameters/TailnetEndpoints.CommonParameters'
       responses:

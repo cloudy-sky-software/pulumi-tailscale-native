@@ -10,7 +10,6 @@ import (
 	"errors"
 	"github.com/cloudy-sky-software/pulumi-tailscale-native/sdk/go/tailscale/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type DNSPreferences struct {
@@ -97,12 +96,6 @@ func (i *DNSPreferences) ToDNSPreferencesOutputWithContext(ctx context.Context) 
 	return pulumi.ToOutputWithContext(ctx, i).(DNSPreferencesOutput)
 }
 
-func (i *DNSPreferences) ToOutput(ctx context.Context) pulumix.Output[*DNSPreferences] {
-	return pulumix.Output[*DNSPreferences]{
-		OutputState: i.ToDNSPreferencesOutputWithContext(ctx).OutputState,
-	}
-}
-
 type DNSPreferencesOutput struct{ *pulumi.OutputState }
 
 func (DNSPreferencesOutput) ElementType() reflect.Type {
@@ -115,12 +108,6 @@ func (o DNSPreferencesOutput) ToDNSPreferencesOutput() DNSPreferencesOutput {
 
 func (o DNSPreferencesOutput) ToDNSPreferencesOutputWithContext(ctx context.Context) DNSPreferencesOutput {
 	return o
-}
-
-func (o DNSPreferencesOutput) ToOutput(ctx context.Context) pulumix.Output[*DNSPreferences] {
-	return pulumix.Output[*DNSPreferences]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o DNSPreferencesOutput) MagicDNS() pulumi.BoolOutput {

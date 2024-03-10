@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities
 from . import outputs
 from ._inputs import *
@@ -23,23 +23,10 @@ class KeyArgs:
         The set of arguments for constructing a Key resource.
         :param pulumi.Input[str] tailnet: For paid plans, your domain is your tailnet. For solo plans, the tailnet is the email you signed up with. So `alice@gmail.com` has the tailnet `alice@gmail.com` since `@gmail.com` is a shared email host. Alternatively, you can specify the value "-" to refer to the default tailnet of the authenticated user making the API call.
         """
-        KeyArgs._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            capabilities=capabilities,
-            expiry_seconds=expiry_seconds,
-            tailnet=tailnet,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             capabilities: pulumi.Input['KeyCapabilitiesArgs'],
-             expiry_seconds: pulumi.Input[int],
-             tailnet: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
-        _setter("capabilities", capabilities)
-        _setter("expiry_seconds", expiry_seconds)
+        pulumi.set(__self__, "capabilities", capabilities)
+        pulumi.set(__self__, "expiry_seconds", expiry_seconds)
         if tailnet is not None:
-            _setter("tailnet", tailnet)
+            pulumi.set(__self__, "tailnet", tailnet)
 
     @property
     @pulumi.getter
@@ -105,10 +92,6 @@ class Key(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
-            kwargs = kwargs or {}
-            def _setter(key, value):
-                kwargs[key] = value
-            KeyArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,
@@ -126,11 +109,6 @@ class Key(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = KeyArgs.__new__(KeyArgs)
 
-            if capabilities is not None and not isinstance(capabilities, KeyCapabilitiesArgs):
-                capabilities = capabilities or {}
-                def _setter(key, value):
-                    capabilities[key] = value
-                KeyCapabilitiesArgs._configure(_setter, **capabilities)
             if capabilities is None and not opts.urn:
                 raise TypeError("Missing required property 'capabilities'")
             __props__.__dict__["capabilities"] = capabilities

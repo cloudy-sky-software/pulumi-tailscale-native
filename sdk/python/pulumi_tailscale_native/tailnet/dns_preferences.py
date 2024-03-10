@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities
 
 __all__ = ['DNSPreferencesArgs', 'DNSPreferences']
@@ -20,20 +20,9 @@ class DNSPreferencesArgs:
         The set of arguments for constructing a DNSPreferences resource.
         :param pulumi.Input[str] tailnet: For paid plans, your domain is your tailnet. For solo plans, the tailnet is the email you signed up with. So `alice@gmail.com` has the tailnet `alice@gmail.com` since `@gmail.com` is a shared email host. Alternatively, you can specify the value "-" to refer to the default tailnet of the authenticated user making the API call.
         """
-        DNSPreferencesArgs._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            magic_dns=magic_dns,
-            tailnet=tailnet,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             magic_dns: pulumi.Input[bool],
-             tailnet: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
-        _setter("magic_dns", magic_dns)
+        pulumi.set(__self__, "magic_dns", magic_dns)
         if tailnet is not None:
-            _setter("tailnet", tailnet)
+            pulumi.set(__self__, "tailnet", tailnet)
 
     @property
     @pulumi.getter(name="magicDNS")
@@ -89,10 +78,6 @@ class DNSPreferences(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
-            kwargs = kwargs or {}
-            def _setter(key, value):
-                kwargs[key] = value
-            DNSPreferencesArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,
