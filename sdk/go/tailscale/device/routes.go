@@ -10,7 +10,6 @@ import (
 	"errors"
 	"github.com/cloudy-sky-software/pulumi-tailscale-native/sdk/go/tailscale/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type Routes struct {
@@ -97,12 +96,6 @@ func (i *Routes) ToRoutesOutputWithContext(ctx context.Context) RoutesOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(RoutesOutput)
 }
 
-func (i *Routes) ToOutput(ctx context.Context) pulumix.Output[*Routes] {
-	return pulumix.Output[*Routes]{
-		OutputState: i.ToRoutesOutputWithContext(ctx).OutputState,
-	}
-}
-
 type RoutesOutput struct{ *pulumi.OutputState }
 
 func (RoutesOutput) ElementType() reflect.Type {
@@ -115,12 +108,6 @@ func (o RoutesOutput) ToRoutesOutput() RoutesOutput {
 
 func (o RoutesOutput) ToRoutesOutputWithContext(ctx context.Context) RoutesOutput {
 	return o
-}
-
-func (o RoutesOutput) ToOutput(ctx context.Context) pulumix.Output[*Routes] {
-	return pulumix.Output[*Routes]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o RoutesOutput) AdvertisedRoutes() pulumi.StringArrayOutput {

@@ -8,7 +8,6 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Tailscale ACL rules are "default deny".
@@ -80,12 +79,6 @@ func (o AclRuleActionOutput) ToAclRuleActionPtrOutputWithContext(ctx context.Con
 	}).(AclRuleActionPtrOutput)
 }
 
-func (o AclRuleActionOutput) ToOutput(ctx context.Context) pulumix.Output[AclRuleAction] {
-	return pulumix.Output[AclRuleAction]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o AclRuleActionOutput) ToStringOutput() pulumi.StringOutput {
 	return o.ToStringOutputWithContext(context.Background())
 }
@@ -121,12 +114,6 @@ func (o AclRuleActionPtrOutput) ToAclRuleActionPtrOutputWithContext(ctx context.
 	return o
 }
 
-func (o AclRuleActionPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*AclRuleAction] {
-	return pulumix.Output[*AclRuleAction]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o AclRuleActionPtrOutput) Elem() AclRuleActionOutput {
 	return o.ApplyT(func(v *AclRuleAction) AclRuleAction {
 		if v != nil {
@@ -151,10 +138,10 @@ func (o AclRuleActionPtrOutput) ToStringPtrOutputWithContext(ctx context.Context
 	}).(pulumi.StringPtrOutput)
 }
 
-// AclRuleActionInput is an input type that accepts AclRuleActionArgs and AclRuleActionOutput values.
-// You can construct a concrete instance of `AclRuleActionInput` via:
+// AclRuleActionInput is an input type that accepts values of the AclRuleAction enum
+// A concrete instance of `AclRuleActionInput` can be one of the following:
 //
-//	AclRuleActionArgs{...}
+//	AclRuleActionAccept
 type AclRuleActionInput interface {
 	pulumi.Input
 
@@ -187,12 +174,6 @@ func (in *aclRuleActionPtr) ToAclRuleActionPtrOutput() AclRuleActionPtrOutput {
 
 func (in *aclRuleActionPtr) ToAclRuleActionPtrOutputWithContext(ctx context.Context) AclRuleActionPtrOutput {
 	return pulumi.ToOutputWithContext(ctx, in).(AclRuleActionPtrOutput)
-}
-
-func (in *aclRuleActionPtr) ToOutput(ctx context.Context) pulumix.Output[*AclRuleAction] {
-	return pulumix.Output[*AclRuleAction]{
-		OutputState: in.ToAclRuleActionPtrOutputWithContext(ctx).OutputState,
-	}
 }
 
 type SshRuleAction string
@@ -262,12 +243,6 @@ func (o SshRuleActionOutput) ToSshRuleActionPtrOutputWithContext(ctx context.Con
 	}).(SshRuleActionPtrOutput)
 }
 
-func (o SshRuleActionOutput) ToOutput(ctx context.Context) pulumix.Output[SshRuleAction] {
-	return pulumix.Output[SshRuleAction]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o SshRuleActionOutput) ToStringOutput() pulumi.StringOutput {
 	return o.ToStringOutputWithContext(context.Background())
 }
@@ -303,12 +278,6 @@ func (o SshRuleActionPtrOutput) ToSshRuleActionPtrOutputWithContext(ctx context.
 	return o
 }
 
-func (o SshRuleActionPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*SshRuleAction] {
-	return pulumix.Output[*SshRuleAction]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o SshRuleActionPtrOutput) Elem() SshRuleActionOutput {
 	return o.ApplyT(func(v *SshRuleAction) SshRuleAction {
 		if v != nil {
@@ -333,10 +302,11 @@ func (o SshRuleActionPtrOutput) ToStringPtrOutputWithContext(ctx context.Context
 	}).(pulumi.StringPtrOutput)
 }
 
-// SshRuleActionInput is an input type that accepts SshRuleActionArgs and SshRuleActionOutput values.
-// You can construct a concrete instance of `SshRuleActionInput` via:
+// SshRuleActionInput is an input type that accepts values of the SshRuleAction enum
+// A concrete instance of `SshRuleActionInput` can be one of the following:
 //
-//	SshRuleActionArgs{...}
+//	SshRuleActionCheck
+//	SshRuleActionAccept
 type SshRuleActionInput interface {
 	pulumi.Input
 
@@ -369,12 +339,6 @@ func (in *sshRuleActionPtr) ToSshRuleActionPtrOutput() SshRuleActionPtrOutput {
 
 func (in *sshRuleActionPtr) ToSshRuleActionPtrOutputWithContext(ctx context.Context) SshRuleActionPtrOutput {
 	return pulumi.ToOutputWithContext(ctx, in).(SshRuleActionPtrOutput)
-}
-
-func (in *sshRuleActionPtr) ToOutput(ctx context.Context) pulumix.Output[*SshRuleAction] {
-	return pulumix.Output[*SshRuleAction]{
-		OutputState: in.ToSshRuleActionPtrOutputWithContext(ctx).OutputState,
-	}
 }
 
 func init() {

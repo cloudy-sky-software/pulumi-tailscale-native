@@ -9,7 +9,6 @@ import (
 
 	"github.com/cloudy-sky-software/pulumi-tailscale-native/sdk/go/tailscale/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 func LookupNameServers(ctx *pulumi.Context, args *LookupNameServersArgs, opts ...pulumi.InvokeOption) (*LookupNameServersResult, error) {
@@ -65,12 +64,6 @@ func (o LookupNameServersResultOutput) ToLookupNameServersResultOutput() LookupN
 
 func (o LookupNameServersResultOutput) ToLookupNameServersResultOutputWithContext(ctx context.Context) LookupNameServersResultOutput {
 	return o
-}
-
-func (o LookupNameServersResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupNameServersResult] {
-	return pulumix.Output[LookupNameServersResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o LookupNameServersResultOutput) Items() NameServersTypeOutput {

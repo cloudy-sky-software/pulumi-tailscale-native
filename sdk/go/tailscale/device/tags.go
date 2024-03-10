@@ -10,7 +10,6 @@ import (
 	"errors"
 	"github.com/cloudy-sky-software/pulumi-tailscale-native/sdk/go/tailscale/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type Tags struct {
@@ -95,12 +94,6 @@ func (i *Tags) ToTagsOutputWithContext(ctx context.Context) TagsOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(TagsOutput)
 }
 
-func (i *Tags) ToOutput(ctx context.Context) pulumix.Output[*Tags] {
-	return pulumix.Output[*Tags]{
-		OutputState: i.ToTagsOutputWithContext(ctx).OutputState,
-	}
-}
-
 type TagsOutput struct{ *pulumi.OutputState }
 
 func (TagsOutput) ElementType() reflect.Type {
@@ -113,12 +106,6 @@ func (o TagsOutput) ToTagsOutput() TagsOutput {
 
 func (o TagsOutput) ToTagsOutputWithContext(ctx context.Context) TagsOutput {
 	return o
-}
-
-func (o TagsOutput) ToOutput(ctx context.Context) pulumix.Output[*Tags] {
-	return pulumix.Output[*Tags]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o TagsOutput) Tags() pulumi.StringArrayOutput {
