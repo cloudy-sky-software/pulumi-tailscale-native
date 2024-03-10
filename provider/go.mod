@@ -15,6 +15,7 @@ require github.com/stretchr/testify v1.9.0
 require (
 	github.com/pkg/errors v0.9.1
 	golang.org/x/oauth2 v0.17.0
+	gopkg.in/yaml.v3 v3.0.1
 )
 
 require (
@@ -197,6 +198,5 @@ require (
 	google.golang.org/grpc v1.62.1 // indirect
 	google.golang.org/protobuf v1.33.0 // indirect
 	gopkg.in/warnings.v0 v0.1.2 // indirect
-	gopkg.in/yaml.v3 v3.0.1 // indirect
 	lukechampine.com/frand v1.4.2 // indirect
 )
