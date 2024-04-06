@@ -3,6 +3,7 @@
 package main
 
 import (
+	"bytes"
 	_ "embed"
 
 	"encoding/json"
@@ -13,6 +14,8 @@ import (
 
 	providerSchemaGen "github.com/cloudy-sky-software/pulumi-tailscale-native/provider/pkg/gen"
 	providerVersion "github.com/cloudy-sky-software/pulumi-tailscale-native/provider/pkg/version"
+
+	"gopkg.in/yaml.v3"
 
 	"github.com/cloudy-sky-software/pulumi-provider-framework/openapi"
 
@@ -87,7 +90,7 @@ func main() {
 		writeGoClient(schemaPkg, outdir)
 	case Schema:
 		openAPIDoc := openapi.GetOpenAPISpec(openapiDocBytes)
-		schemaSpec, metadata, _ := providerSchemaGen.PulumiSchema(*openAPIDoc)
+		schemaSpec, metadata, updatedOpenAPIDoc := providerSchemaGen.PulumiSchema(*openAPIDoc)
 		providerDir := filepath.Join(".", "provider", "cmd", "pulumi-resource-tailscale-native")
 		mustWritePulumiSchema(schemaSpec, providerDir)
 
@@ -95,11 +98,16 @@ func main() {
 		metadataBytes, _ := json.Marshal(metadata)
 		mustWriteFile(providerDir, "metadata.json", metadataBytes)
 
-		// TODO: Temporarily ignore the updated doc. There is a
-		// problem with marshaling schemas with additionalProperties.
-		// updatedOpenAPIDocBytes, _ := yaml.Marshal(updatedOpenAPIDoc)
+		var buf bytes.Buffer
+		enc := yaml.NewEncoder(&buf)
+		enc.SetIndent(2)
+		err := enc.Encode(updatedOpenAPIDoc)
+		if err != nil {
+			panic(err)
+		}
+
 		// Also copy the raw OpenAPI spec file to the provider dir.
-		mustWriteFile(providerDir, "openapi_generated.yml", openapiDocBytes)
+		mustWriteFile(providerDir, "openapi_generated.yml", buf.Bytes())
 	default:
 		panic(fmt.Sprintf("Unrecognized language '%s'", language))
 	}
@@ -141,7 +149,7 @@ func writeNodeJSClient(pkg *schema.Package, outdir string) {
 	}
 
 	overlays := map[string][]byte{}
-	files, err := nodejsgen.GeneratePackage("pulumigen", pkg, overlays)
+	files, err := nodejsgen.GeneratePackage("pulumigen", pkg, overlays, nil)
 	if err != nil {
 		panic(err)
 	}
