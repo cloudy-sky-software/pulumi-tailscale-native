@@ -101,7 +101,11 @@ func main() {
 		var buf bytes.Buffer
 		enc := yaml.NewEncoder(&buf)
 		enc.SetIndent(2)
-		enc.Encode(updatedOpenAPIDoc)
+		err := enc.Encode(updatedOpenAPIDoc)
+		if err != nil {
+			panic(err)
+		}
+
 		// Also copy the raw OpenAPI spec file to the provider dir.
 		mustWriteFile(providerDir, "openapi_generated.yml", buf.Bytes())
 	default:
