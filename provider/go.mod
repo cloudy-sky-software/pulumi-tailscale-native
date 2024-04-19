@@ -4,7 +4,7 @@ go 1.21
 
 require (
 	github.com/cloudy-sky-software/pulschema v0.0.0-20240419214636-10c1fe440329
-	github.com/cloudy-sky-software/pulumi-provider-framework v0.0.0-20240418150200-581096cb3a50
+	github.com/cloudy-sky-software/pulumi-provider-framework v0.0.0-20240419222801-e0ed0163f465
 	github.com/getkin/kin-openapi v0.124.0
 	github.com/pulumi/pulumi/pkg/v3 v3.113.3
 	github.com/pulumi/pulumi/sdk/v3 v3.113.3
@@ -178,7 +178,7 @@ require (
 	golang.org/x/crypto v0.21.0 // indirect
 	golang.org/x/exp v0.0.0-20240213143201-ec583247a57a // indirect
 	golang.org/x/mod v0.15.0 // indirect
-	golang.org/x/net v0.22.0 // indirect
+	golang.org/x/net v0.23.0 // indirect
 	golang.org/x/sync v0.6.0 // indirect
 	golang.org/x/sys v0.18.0 // indirect
 	golang.org/x/term v0.18.0 // indirect
