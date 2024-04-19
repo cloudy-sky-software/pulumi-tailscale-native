@@ -181,7 +181,7 @@ func writeDotnetClient(pkg *schema.Package, outdir string) {
 
 	overlays := map[string][]byte{}
 
-	files, err := dotnetgen.GeneratePackage("pulumigen", pkg, overlays)
+	files, err := dotnetgen.GeneratePackage("pulumigen", pkg, overlays, nil)
 	if err != nil {
 		panic(err)
 	}
