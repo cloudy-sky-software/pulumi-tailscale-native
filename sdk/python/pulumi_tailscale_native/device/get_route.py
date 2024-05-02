@@ -11,14 +11,14 @@ from .. import _utilities
 from . import outputs
 
 __all__ = [
-    'GetRoutesResult',
-    'AwaitableGetRoutesResult',
-    'get_routes',
-    'get_routes_output',
+    'GetRouteResult',
+    'AwaitableGetRouteResult',
+    'get_route',
+    'get_route_output',
 ]
 
 @pulumi.output_type
-class GetRoutesResult:
+class GetRouteResult:
     def __init__(__self__, items=None):
         if items and not isinstance(items, dict):
             raise TypeError("Expected argument 'items' to be a dict")
@@ -30,32 +30,32 @@ class GetRoutesResult:
         return pulumi.get(self, "items")
 
 
-class AwaitableGetRoutesResult(GetRoutesResult):
+class AwaitableGetRouteResult(GetRouteResult):
     # pylint: disable=using-constant-test
     def __await__(self):
         if False:
             yield self
-        return GetRoutesResult(
+        return GetRouteResult(
             items=self.items)
 
 
-def get_routes(id: Optional[str] = None,
-               opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetRoutesResult:
+def get_route(id: Optional[str] = None,
+              opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetRouteResult:
     """
     Use this data source to access information about an existing resource.
     """
     __args__ = dict()
     __args__['id'] = id
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('tailscale-native:device:getRoutes', __args__, opts=opts, typ=GetRoutesResult).value
+    __ret__ = pulumi.runtime.invoke('tailscale-native:device:getRoute', __args__, opts=opts, typ=GetRouteResult).value
 
-    return AwaitableGetRoutesResult(
+    return AwaitableGetRouteResult(
         items=pulumi.get(__ret__, 'items'))
 
 
-@_utilities.lift_output_func(get_routes)
-def get_routes_output(id: Optional[pulumi.Input[str]] = None,
-                      opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetRoutesResult]:
+@_utilities.lift_output_func(get_route)
+def get_route_output(id: Optional[pulumi.Input[str]] = None,
+                     opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetRouteResult]:
     """
     Use this data source to access information about an existing resource.
     """

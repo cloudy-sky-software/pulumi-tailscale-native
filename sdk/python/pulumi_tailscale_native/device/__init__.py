@@ -7,7 +7,7 @@ import typing
 # Export this package's modules as members:
 from .authorize_device import *
 from .get_device import *
-from .get_routes import *
+from .get_route import *
 from .key_expiry import *
 from .routes import *
 from .tags import *

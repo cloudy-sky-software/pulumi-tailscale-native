@@ -7,29 +7,29 @@ import * as outputs from "../types/output";
 import * as enums from "../types/enums";
 import * as utilities from "../utilities";
 
-export function getDNSPreferences(args: GetDNSPreferencesArgs, opts?: pulumi.InvokeOptions): Promise<GetDNSPreferencesResult> {
+export function getNameServer(args: GetNameServerArgs, opts?: pulumi.InvokeOptions): Promise<GetNameServerResult> {
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
-    return pulumi.runtime.invoke("tailscale-native:tailnet:getDNSPreferences", {
+    return pulumi.runtime.invoke("tailscale-native:tailnet:getNameServer", {
         "tailnet": args.tailnet,
     }, opts);
 }
 
-export interface GetDNSPreferencesArgs {
+export interface GetNameServerArgs {
     /**
      * For paid plans, your domain is your tailnet. For solo plans, the tailnet is the email you signed up with. So `alice@gmail.com` has the tailnet `alice@gmail.com` since `@gmail.com` is a shared email host. Alternatively, you can specify the value "-" to refer to the default tailnet of the authenticated user making the API call.
      */
     tailnet: string;
 }
 
-export interface GetDNSPreferencesResult {
-    readonly items: outputs.tailnet.NameServersPreference;
+export interface GetNameServerResult {
+    readonly items: outputs.tailnet.NameServers;
 }
-export function getDNSPreferencesOutput(args: GetDNSPreferencesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetDNSPreferencesResult> {
-    return pulumi.output(args).apply((a: any) => getDNSPreferences(a, opts))
+export function getNameServerOutput(args: GetNameServerOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetNameServerResult> {
+    return pulumi.output(args).apply((a: any) => getNameServer(a, opts))
 }
 
-export interface GetDNSPreferencesOutputArgs {
+export interface GetNameServerOutputArgs {
     /**
      * For paid plans, your domain is your tailnet. For solo plans, the tailnet is the email you signed up with. So `alice@gmail.com` has the tailnet `alice@gmail.com` since `@gmail.com` is a shared email host. Alternatively, you can specify the value "-" to refer to the default tailnet of the authenticated user making the API call.
      */

@@ -15,10 +15,10 @@ export const getDevice: typeof import("./getDevice").getDevice = null as any;
 export const getDeviceOutput: typeof import("./getDevice").getDeviceOutput = null as any;
 utilities.lazyLoad(exports, ["getDevice","getDeviceOutput"], () => require("./getDevice"));
 
-export { GetRoutesArgs, GetRoutesResult, GetRoutesOutputArgs } from "./getRoutes";
-export const getRoutes: typeof import("./getRoutes").getRoutes = null as any;
-export const getRoutesOutput: typeof import("./getRoutes").getRoutesOutput = null as any;
-utilities.lazyLoad(exports, ["getRoutes","getRoutesOutput"], () => require("./getRoutes"));
+export { GetRouteArgs, GetRouteResult, GetRouteOutputArgs } from "./getRoute";
+export const getRoute: typeof import("./getRoute").getRoute = null as any;
+export const getRouteOutput: typeof import("./getRoute").getRouteOutput = null as any;
+utilities.lazyLoad(exports, ["getRoute","getRouteOutput"], () => require("./getRoute"));
 
 export { KeyExpiryArgs } from "./keyExpiry";
 export type KeyExpiry = import("./keyExpiry").KeyExpiry;

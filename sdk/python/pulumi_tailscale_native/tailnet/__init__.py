@@ -9,9 +9,9 @@ from ._enums import *
 from .acl import *
 from .dns_preferences import *
 from .get_acl import *
-from .get_dns_preferences import *
+from .get_dns_preference import *
 from .get_key import *
-from .get_name_servers import *
+from .get_name_server import *
 from .key import *
 from .list_devices import *
 from .list_keys import *

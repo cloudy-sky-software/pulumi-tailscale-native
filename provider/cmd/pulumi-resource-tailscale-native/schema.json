@@ -1128,7 +1128,7 @@
                 ]
             }
         },
-        "tailscale-native:device:getRoutes": {
+        "tailscale-native:device:getRoute": {
             "inputs": {
                 "properties": {
                     "id": {
@@ -1173,7 +1173,7 @@
                 ]
             }
         },
-        "tailscale-native:tailnet:getDNSPreferences": {
+        "tailscale-native:tailnet:getDNSPreference": {
             "inputs": {
                 "properties": {
                     "tailnet": {
@@ -1223,7 +1223,7 @@
                 ]
             }
         },
-        "tailscale-native:tailnet:getNameServers": {
+        "tailscale-native:tailnet:getNameServer": {
             "inputs": {
                 "properties": {
                     "tailnet": {
