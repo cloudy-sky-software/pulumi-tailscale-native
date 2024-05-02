@@ -20,20 +20,20 @@ export const getAcl: typeof import("./getAcl").getAcl = null as any;
 export const getAclOutput: typeof import("./getAcl").getAclOutput = null as any;
 utilities.lazyLoad(exports, ["getAcl","getAclOutput"], () => require("./getAcl"));
 
-export { GetDNSPreferencesArgs, GetDNSPreferencesResult, GetDNSPreferencesOutputArgs } from "./getDNSPreferences";
-export const getDNSPreferences: typeof import("./getDNSPreferences").getDNSPreferences = null as any;
-export const getDNSPreferencesOutput: typeof import("./getDNSPreferences").getDNSPreferencesOutput = null as any;
-utilities.lazyLoad(exports, ["getDNSPreferences","getDNSPreferencesOutput"], () => require("./getDNSPreferences"));
+export { GetDNSPreferenceArgs, GetDNSPreferenceResult, GetDNSPreferenceOutputArgs } from "./getDNSPreference";
+export const getDNSPreference: typeof import("./getDNSPreference").getDNSPreference = null as any;
+export const getDNSPreferenceOutput: typeof import("./getDNSPreference").getDNSPreferenceOutput = null as any;
+utilities.lazyLoad(exports, ["getDNSPreference","getDNSPreferenceOutput"], () => require("./getDNSPreference"));
 
 export { GetKeyArgs, GetKeyResult, GetKeyOutputArgs } from "./getKey";
 export const getKey: typeof import("./getKey").getKey = null as any;
 export const getKeyOutput: typeof import("./getKey").getKeyOutput = null as any;
 utilities.lazyLoad(exports, ["getKey","getKeyOutput"], () => require("./getKey"));
 
-export { GetNameServersArgs, GetNameServersResult, GetNameServersOutputArgs } from "./getNameServers";
-export const getNameServers: typeof import("./getNameServers").getNameServers = null as any;
-export const getNameServersOutput: typeof import("./getNameServers").getNameServersOutput = null as any;
-utilities.lazyLoad(exports, ["getNameServers","getNameServersOutput"], () => require("./getNameServers"));
+export { GetNameServerArgs, GetNameServerResult, GetNameServerOutputArgs } from "./getNameServer";
+export const getNameServer: typeof import("./getNameServer").getNameServer = null as any;
+export const getNameServerOutput: typeof import("./getNameServer").getNameServerOutput = null as any;
+utilities.lazyLoad(exports, ["getNameServer","getNameServerOutput"], () => require("./getNameServer"));
 
 export { KeyArgs } from "./key";
 export type Key = import("./key").Key;

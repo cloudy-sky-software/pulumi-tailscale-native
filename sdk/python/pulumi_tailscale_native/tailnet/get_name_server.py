@@ -11,14 +11,14 @@ from .. import _utilities
 from . import outputs
 
 __all__ = [
-    'GetDNSPreferencesResult',
-    'AwaitableGetDNSPreferencesResult',
-    'get_dns_preferences',
-    'get_dns_preferences_output',
+    'GetNameServerResult',
+    'AwaitableGetNameServerResult',
+    'get_name_server',
+    'get_name_server_output',
 ]
 
 @pulumi.output_type
-class GetDNSPreferencesResult:
+class GetNameServerResult:
     def __init__(__self__, items=None):
         if items and not isinstance(items, dict):
             raise TypeError("Expected argument 'items' to be a dict")
@@ -26,21 +26,21 @@ class GetDNSPreferencesResult:
 
     @property
     @pulumi.getter
-    def items(self) -> 'outputs.NameServersPreference':
+    def items(self) -> 'outputs.NameServers':
         return pulumi.get(self, "items")
 
 
-class AwaitableGetDNSPreferencesResult(GetDNSPreferencesResult):
+class AwaitableGetNameServerResult(GetNameServerResult):
     # pylint: disable=using-constant-test
     def __await__(self):
         if False:
             yield self
-        return GetDNSPreferencesResult(
+        return GetNameServerResult(
             items=self.items)
 
 
-def get_dns_preferences(tailnet: Optional[str] = None,
-                        opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetDNSPreferencesResult:
+def get_name_server(tailnet: Optional[str] = None,
+                    opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetNameServerResult:
     """
     Use this data source to access information about an existing resource.
 
@@ -49,15 +49,15 @@ def get_dns_preferences(tailnet: Optional[str] = None,
     __args__ = dict()
     __args__['tailnet'] = tailnet
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('tailscale-native:tailnet:getDNSPreferences', __args__, opts=opts, typ=GetDNSPreferencesResult).value
+    __ret__ = pulumi.runtime.invoke('tailscale-native:tailnet:getNameServer', __args__, opts=opts, typ=GetNameServerResult).value
 
-    return AwaitableGetDNSPreferencesResult(
+    return AwaitableGetNameServerResult(
         items=pulumi.get(__ret__, 'items'))
 
 
-@_utilities.lift_output_func(get_dns_preferences)
-def get_dns_preferences_output(tailnet: Optional[pulumi.Input[str]] = None,
-                               opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetDNSPreferencesResult]:
+@_utilities.lift_output_func(get_name_server)
+def get_name_server_output(tailnet: Optional[pulumi.Input[str]] = None,
+                           opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetNameServerResult]:
     """
     Use this data source to access information about an existing resource.
 
