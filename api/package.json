@@ -8,7 +8,7 @@
   },
   "dependencies": {
     "@typespec/compiler": "^0.55.0",
-    "@typespec/openapi3": "^0.55.0",
+    "@typespec/openapi3": "^0.56.0",
     "@typespec/rest": "^0.55.0"
   }
 }
