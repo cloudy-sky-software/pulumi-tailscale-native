@@ -147,6 +147,7 @@ func PulumiSchema(openapiDoc openapi3.T) (pschema.PackageSpec, openapigen.Provid
 		ExcludedPaths:                     []string{},
 		OperationIdsHaveTypeSpecNamespace: true,
 		TypeSpecNamespaceSeparator:        "_",
+		AllowedPluralResources:            []string{"Routes", "Tags", "NameServers", "SearchPaths", "DNSPreferences"},
 	}
 
 	providerMetadata, updatedOpenAPIDoc, err := openAPICtx.GatherResourcesFromAPI(csharpNamespaces)
