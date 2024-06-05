@@ -86,7 +86,7 @@ jobs:
           npm ci
 
       - name: Run GoReleaser
-        uses: goreleaser/goreleaser-action@v5
+        uses: goreleaser/goreleaser-action@v6
         with:
           args: -f ${{ matrix.goreleaser }} -p 1 release --rm-dist --timeout 90m0s
           version: latest
