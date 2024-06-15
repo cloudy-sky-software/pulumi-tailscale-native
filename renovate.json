@@ -19,6 +19,11 @@
       "hostType": "github"
     }
   ],
+  "packageRules": [
+    {
+      "matchPackagePrefixes": ["@typespec"]
+    }
+  ],
   "customEnvVariables": {
     "GOPRIVATE": "github.com/cloudy-sky-software/*"
   },
