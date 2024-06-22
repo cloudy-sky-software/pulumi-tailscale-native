@@ -1,8 +1,56 @@
 openapi: 3.0.0
 components:
+  parameters:
+    TailnetEndpoints.CommonParameters:
+      description: For paid plans, your domain is your tailnet. For solo plans, the tailnet is the email you signed up with. So `alice@gmail.com` has the tailnet `alice@gmail.com` since `@gmail.com` is a shared email host. Alternatively, you can specify the value "-" to refer to the default tailnet of the authenticated user making the API call.
+      in: path
+      name: tailnet
+      required: true
+      schema:
+        anyOf:
+          - enum:
+              - '-'
+            type: string
+          - type: string
   schemas:
     Acl:
-      type: object
+      properties:
+        acls:
+          items:
+            $ref: '#/components/schemas/AclRule'
+          type: array
+        autoApprovers:
+          additionalProperties:
+            items:
+              type: string
+            type: array
+          type: object
+        groups:
+          additionalProperties:
+            items:
+              type: string
+            type: array
+          type: object
+        hosts:
+          additionalProperties:
+            type: string
+          type: object
+        nodeAttrs:
+          items:
+            $ref: '#/components/schemas/NodeAttrs'
+          type: array
+        ssh:
+          items:
+            $ref: '#/components/schemas/SshRule'
+          type: array
+        tagOwners:
+          additionalProperties:
+            items:
+              type: string
+            type: array
+          type: object
+        tests:
+          type: string
       required:
         - acls
         - autoApprovers
@@ -12,102 +60,59 @@ components:
         - ssh
         - tagOwners
         - tests
-      properties:
-        acls:
-          type: array
-          items:
-            $ref: '#/components/schemas/AclRule'
-        autoApprovers:
-          type: object
-          additionalProperties:
-            type: array
-            items:
-              type: string
-        groups:
-          type: object
-          additionalProperties:
-            type: array
-            items:
-              type: string
-        hosts:
-          type: object
-          additionalProperties:
-            type: string
-        nodeAttrs:
-          type: array
-          items:
-            $ref: '#/components/schemas/NodeAttrs'
-        ssh:
-          type: array
-          items:
-            $ref: '#/components/schemas/SshRule'
-        tagOwners:
-          type: object
-          additionalProperties:
-            type: array
-            items:
-              type: string
-        tests:
-          type: string
-    AclRule:
       type: object
-      required:
-        - action
-        - ports
-        - users
+    AclRule:
       properties:
         action:
           $ref: '#/components/schemas/AclRuleAction'
         ports:
-          type: array
           items:
             type: string
+          type: array
         users:
-          type: array
           items:
             type: string
+          type: array
+      required:
+        - action
+        - ports
+        - users
+      type: object
     AclRuleAction:
-      type: string
       description: |-
         Tailscale ACL rules are "default deny".
         So the only possible value for an ACL
         rule is `accept`.
       enum:
         - accept
+      type: string
     AuthKey:
-      type: object
+      properties:
+        created:
+          readOnly: true
+          type: string
+        expires:
+          readOnly: true
+          type: string
+        key:
+          readOnly: true
+          type: string
       required:
         - key
         - expires
-      properties:
-        created:
-          type: string
-          readOnly: true
-        expires:
-          type: string
-          readOnly: true
-        key:
-          type: string
-          readOnly: true
-    AuthKeyCreate:
       type: object
-      required:
-        - capabilities
-        - expirySeconds
+    AuthKeyCreate:
       properties:
         capabilities:
           $ref: '#/components/schemas/KeyCapabilities'
         expirySeconds:
-          type: integer
           format: int64
-    ClientConnectivity:
-      type: object
+          type: integer
       required:
-        - endpoints
-        - derp
-        - mappingVariesByDestIP
-        - latency
-        - clientSupports
+        - capabilities
+        - expirySeconds
+      type: object
+    ClientConnectivity:
       properties:
         clientSupports:
           $ref: '#/components/schemas/ClientSupports'
@@ -116,28 +121,19 @@ components:
         endpoints:
           type: string
         latency:
-          type: object
           additionalProperties:
-            type: object
-            required:
-              - latencyMs
-              - preferred
-            properties:
-              latencyMs:
-                type: number
-              preferred:
-                type: boolean
+            $ref: '#/components/schemas/Latency'
+          type: object
         mappingVariesByDestIP:
           type: boolean
-    ClientSupports:
-      type: object
       required:
-        - hairPinning
-        - ipv6
-        - pcp
-        - pmp
-        - udp
-        - upnp
+        - endpoints
+        - derp
+        - mappingVariesByDestIP
+        - latency
+        - clientSupports
+      type: object
+    ClientSupports:
       properties:
         hairPinning:
           type: boolean
@@ -151,13 +147,15 @@ components:
           type: boolean
         upnp:
           type: boolean
-    CreateKey:
-      type: object
       required:
-        - reusable
-        - ephemeral
-        - preauthorized
-        - tags
+        - hairPinning
+        - ipv6
+        - pcp
+        - pmp
+        - udp
+        - upnp
+      type: object
+    CreateKey:
       properties:
         ephemeral:
           type: boolean
@@ -166,41 +164,25 @@ components:
         reusable:
           type: boolean
         tags:
-          type: array
           items:
             type: string
-    Device:
-      type: object
+          type: array
       required:
-        - addresses
-        - id
-        - user
-        - name
-        - hostname
-        - clientVersion
-        - updateAvailable
-        - os
-        - created
-        - lastSeen
-        - keyExpiryDisabled
-        - expires
-        - authorized
-        - isExternal
-        - machineKey
-        - nodeKey
-        - blocksIncomingConnections
-        - enabledRoutes
-        - advertisedRoutes
-        - clientConnectivity
+        - reusable
+        - ephemeral
+        - preauthorized
+        - tags
+      type: object
+    Device:
       properties:
         addresses:
-          type: array
           items:
             type: string
+          type: array
         advertisedRoutes:
-          type: array
           items:
             type: string
+          type: array
         authorized:
           type: boolean
         blocksIncomingConnections:
@@ -212,9 +194,9 @@ components:
         created:
           type: string
         enabledRoutes:
-          type: array
           items:
             type: string
+          type: array
         expires:
           type: string
         hostname:
@@ -239,176 +221,184 @@ components:
           type: boolean
         user:
           type: string
-    DeviceKeyCapabilities:
-      type: object
       required:
-        - create
+        - addresses
+        - id
+        - user
+        - name
+        - hostname
+        - clientVersion
+        - updateAvailable
+        - os
+        - created
+        - lastSeen
+        - keyExpiryDisabled
+        - expires
+        - authorized
+        - isExternal
+        - machineKey
+        - nodeKey
+        - blocksIncomingConnections
+        - enabledRoutes
+        - advertisedRoutes
+        - clientConnectivity
+      type: object
+    DeviceKeyCapabilities:
       properties:
         create:
           $ref: '#/components/schemas/CreateKey'
-    DeviceRoutes:
+      required:
+        - create
       type: object
+    DeviceRoutes:
+      properties:
+        advertisedRoutes:
+          items:
+            type: string
+          type: array
+        enabledRoutes:
+          items:
+            type: string
+          type: array
       required:
         - advertisedRoutes
         - enabledRoutes
-      properties:
-        advertisedRoutes:
-          type: array
-          items:
-            type: string
-        enabledRoutes:
-          type: array
-          items:
-            type: string
-    DnsSearchPaths:
       type: object
-      required:
-        - searchPaths
+    DnsSearchPaths:
       properties:
         searchPaths:
-          type: array
           items:
             type: string
-    Error:
-      type: object
+          type: array
       required:
-        - message
+        - searchPaths
+      type: object
+    Error:
       properties:
         message:
           type: string
-    KeyCapabilities:
-      type: object
       required:
-        - devices
+        - message
+      type: object
+    KeyCapabilities:
       properties:
         devices:
           $ref: '#/components/schemas/DeviceKeyCapabilities'
-    Latency:
-      type: object
       required:
-        - latencyMs
-        - preferred
+        - devices
+      type: object
+    Latency:
       properties:
         latencyMs:
           type: number
         preferred:
           type: boolean
-    NameServers:
+      required:
+        - latencyMs
+        - preferred
       type: object
+    NameServers:
+      properties:
+        dns:
+          items:
+            type: string
+          type: array
+        magicDNS:
+          type: boolean
       required:
         - dns
         - magicDNS
+      type: object
+    NameServersPreference:
       properties:
-        dns:
-          type: array
-          items:
-            type: string
         magicDNS:
           type: boolean
-    NameServersPreference:
-      type: object
       required:
         - magicDNS
-      properties:
-        magicDNS:
-          type: boolean
-    NodeAttrs:
       type: object
+    NodeAttrs:
+      properties:
+        attr:
+          items:
+            type: string
+          type: array
+        target:
+          items:
+            type: string
+          type: array
       required:
         - target
         - attr
-      properties:
-        attr:
-          type: array
-          items:
-            type: string
-        target:
-          type: array
-          items:
-            type: string
-    SetAuthorized:
       type: object
-      required:
-        - authorized
+    SetAuthorized:
       properties:
         authorized:
           type: boolean
-    SetDeviceRoutes:
-      type: object
       required:
-        - routes
+        - authorized
+      type: object
+    SetDeviceRoutes:
       properties:
         routes:
-          type: array
           items:
             type: string
-    SetKeyExpiry:
-      type: object
+          type: array
       required:
-        - keyExpiryDisabled
+        - routes
+      type: object
+    SetKeyExpiry:
       properties:
         keyExpiryDisabled:
           type: boolean
-    SetTags:
-      type: object
       required:
-        - tags
+        - keyExpiryDisabled
+      type: object
+    SetTags:
       properties:
         tags:
-          type: array
           items:
             type: string
-    SshRule:
-      type: object
+          type: array
       required:
-        - action
-        - src
-        - dst
-        - users
-        - checkPeriod
+        - tags
+      type: object
+    SshRule:
       properties:
         action:
           $ref: '#/components/schemas/SshRuleAction'
         checkPeriod:
           type: string
         dst:
-          type: array
           items:
             type: string
+          type: array
         src:
-          type: array
           items:
             type: string
+          type: array
         users:
-          type: array
           items:
             type: string
+          type: array
+      required:
+        - action
+        - src
+        - dst
+        - users
+        - checkPeriod
+      type: object
     SshRuleAction:
-      type: string
       enum:
         - check
         - accept
-  parameters:
-    TailnetEndpoints.CommonParameters:
-      name: tailnet
-      in: path
-      description: For paid plans, your domain is your tailnet. For solo plans, the tailnet is the email you signed up with. So `alice@gmail.com` has the tailnet `alice@gmail.com` since `@gmail.com` is a shared email host. Alternatively, you can specify the value "-" to refer to the default tailnet of the authenticated user making the API call.
-      required: true
-      schema:
-        anyOf:
-          - type: string
-            enum:
-              - '-'
-          - type: string
+      type: string
   securitySchemes:
     BasicAuth:
-      type: http
       scheme: basic
+      type: http
     OAuth2Auth:
-      type: oauth2
       flows:
         clientCredentials:
-          tokenUrl: https://api.tailscale.com/api/v2/oauth/token
           scopes:
             acl: ""
             acl:read: ""
@@ -420,17 +410,19 @@ components:
             dns:read: ""
             routes: ""
             routes:read: ""
+          tokenUrl: https://api.tailscale.com/api/v2/oauth/token
+      type: oauth2
 info:
-  title: Tailscale API
   description: This namespace contains operations that can be performed on a Tailscale-connected device.
+  title: Tailscale API
   version: "2023-01-01T00:00:00Z"
 paths:
   /device/{id}:
     delete:
       operationId: DeviceEndpoints_deleteDevice
       parameters:
-        - name: id
-          in: path
+        - in: path
+          name: id
           required: true
           schema:
             type: string
@@ -438,41 +430,41 @@ paths:
         "200":
           description: The request has succeeded.
         default:
-          description: An unexpected error response.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
+          description: An unexpected error response.
     get:
       operationId: DeviceEndpoints_getDevice
       parameters:
-        - name: id
-          in: path
+        - in: path
+          name: id
           required: true
           schema:
             type: string
       responses:
         "200":
-          description: The request has succeeded.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Device'
+          description: The request has succeeded.
   /device/{id}/authorized:
     post:
       operationId: DeviceEndpoints_authorizeDevice
       parameters:
-        - name: id
-          in: path
+        - in: path
+          name: id
           required: true
           schema:
             type: string
       requestBody:
-        required: true
         content:
           application/json:
             schema:
               $ref: '#/components/schemas/SetAuthorized'
+        required: true
       responses:
         "200":
           description: The request has succeeded.
@@ -480,17 +472,17 @@ paths:
     post:
       operationId: DeviceEndpoints_setKeyExpiry
       parameters:
-        - name: id
-          in: path
+        - in: path
+          name: id
           required: true
           schema:
             type: string
       requestBody:
-        required: true
         content:
           application/json:
             schema:
               $ref: '#/components/schemas/SetKeyExpiry'
+        required: true
       responses:
         "200":
           description: The request has succeeded.
@@ -498,54 +490,54 @@ paths:
     get:
       operationId: DeviceEndpoints_getRoutes
       parameters:
-        - name: id
-          in: path
+        - in: path
+          name: id
           required: true
           schema:
             type: string
       responses:
         "200":
-          description: The request has succeeded.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DeviceRoutes'
+          description: The request has succeeded.
     post:
       operationId: DeviceEndpoints_setRoutes
       parameters:
-        - name: id
-          in: path
+        - in: path
+          name: id
           required: true
           schema:
             type: string
       requestBody:
-        required: true
         content:
           application/json:
             schema:
               $ref: '#/components/schemas/SetDeviceRoutes'
+        required: true
       responses:
         "200":
-          description: The request has succeeded.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DeviceRoutes'
+          description: The request has succeeded.
   /device/{id}/tags:
     post:
       operationId: DeviceEndpoints_setTags
       parameters:
-        - name: id
-          in: path
+        - in: path
+          name: id
           required: true
           schema:
             type: string
       requestBody:
-        required: true
         content:
           application/json:
             schema:
               $ref: '#/components/schemas/SetTags'
+        required: true
       responses:
         "200":
           description: The request has succeeded.
@@ -554,44 +546,44 @@ paths:
       operationId: TailnetEndpoints_getAcl
       parameters:
         - $ref: '#/components/parameters/TailnetEndpoints.CommonParameters'
-        - name: accept
-          in: header
+        - in: header
+          name: accept
           required: true
           schema:
-            type: string
             enum:
               - application/json
+            type: string
       responses:
         "200":
-          description: The request has succeeded.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Acl'
+          description: The request has succeeded.
     post:
       operationId: TailnetEndpoints_createAcl
       parameters:
         - $ref: '#/components/parameters/TailnetEndpoints.CommonParameters'
-        - name: accept
-          in: header
+        - in: header
+          name: accept
           required: true
           schema:
-            type: string
             enum:
               - application/json
+            type: string
       requestBody:
-        required: true
         content:
           application/json:
             schema:
               $ref: '#/components/schemas/Acl'
+        required: true
       responses:
         "200":
-          description: The request has succeeded.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Acl'
+          description: The request has succeeded.
   /tailnet/{tailnet}/devices:
     get:
       operationId: TailnetEndpoints_listDevices
@@ -599,18 +591,18 @@ paths:
         - $ref: '#/components/parameters/TailnetEndpoints.CommonParameters'
       responses:
         "200":
-          description: The request has succeeded.
           content:
             application/json:
               schema:
-                type: object
-                required:
-                  - devices
                 properties:
                   devices:
-                    type: array
                     items:
                       $ref: '#/components/schemas/Device'
+                    type: array
+                required:
+                  - devices
+                type: object
+          description: The request has succeeded.
   /tailnet/{tailnet}/dns/nameservers:
     get:
       operationId: TailnetEndpoints_getNameServers
@@ -618,29 +610,29 @@ paths:
         - $ref: '#/components/parameters/TailnetEndpoints.CommonParameters'
       responses:
         "200":
-          description: The request has succeeded.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/NameServers'
+          description: The request has succeeded.
     post:
       description: Replaces the list of DNS nameservers for a tailnet.
       operationId: TailnetEndpoints_setNameServers
       parameters:
         - $ref: '#/components/parameters/TailnetEndpoints.CommonParameters'
       requestBody:
-        required: true
         content:
           application/json:
             schema:
               $ref: '#/components/schemas/NameServers'
+        required: true
       responses:
         "200":
-          description: The request has succeeded.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/NameServers'
+          description: The request has succeeded.
   /tailnet/{tailnet}/dns/preferences:
     get:
       operationId: TailnetEndpoints_getDNSPreferences
@@ -648,29 +640,29 @@ paths:
         - $ref: '#/components/parameters/TailnetEndpoints.CommonParameters'
       responses:
         "200":
-          description: The request has succeeded.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/NameServersPreference'
+          description: The request has succeeded.
     post:
       description: Replaces the DNS preferences for a tailnet.
       operationId: TailnetEndpoints_setDNSPreferences
       parameters:
         - $ref: '#/components/parameters/TailnetEndpoints.CommonParameters'
       requestBody:
-        required: true
         content:
           application/json:
             schema:
               $ref: '#/components/schemas/NameServersPreference'
+        required: true
       responses:
         "200":
-          description: The request has succeeded.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/NameServersPreference'
+          description: The request has succeeded.
   /tailnet/{tailnet}/dns/searchpaths:
     get:
       operationId: TailnetEndpoints_listSearchPaths
@@ -678,28 +670,28 @@ paths:
         - $ref: '#/components/parameters/TailnetEndpoints.CommonParameters'
       responses:
         "200":
-          description: The request has succeeded.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DnsSearchPaths'
+          description: The request has succeeded.
     post:
       operationId: TailnetEndpoints_replaceSearchPaths
       parameters:
         - $ref: '#/components/parameters/TailnetEndpoints.CommonParameters'
       requestBody:
-        required: true
         content:
           application/json:
             schema:
               $ref: '#/components/schemas/DnsSearchPaths'
+        required: true
       responses:
         "200":
-          description: The request has succeeded.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DnsSearchPaths'
+          description: The request has succeeded.
   /tailnet/{tailnet}/keys:
     get:
       operationId: TailnetEndpoints_listKeys
@@ -707,37 +699,37 @@ paths:
         - $ref: '#/components/parameters/TailnetEndpoints.CommonParameters'
       responses:
         "200":
-          description: The request has succeeded.
           content:
             application/json:
               schema:
-                type: array
                 items:
                   $ref: '#/components/schemas/AuthKey'
+                type: array
+          description: The request has succeeded.
     post:
       operationId: TailnetEndpoints_createKey
       parameters:
         - $ref: '#/components/parameters/TailnetEndpoints.CommonParameters'
       requestBody:
-        required: true
         content:
           application/json:
             schema:
               $ref: '#/components/schemas/AuthKeyCreate'
+        required: true
       responses:
         "200":
-          description: The request has succeeded.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/AuthKey'
+          description: The request has succeeded.
   /tailnet/{tailnet}/keys/{id}:
     delete:
       operationId: TailnetEndpoints_deleteKey
       parameters:
         - $ref: '#/components/parameters/TailnetEndpoints.CommonParameters'
-        - name: id
-          in: path
+        - in: path
+          name: id
           required: true
           schema:
             type: string
@@ -748,18 +740,18 @@ paths:
       operationId: TailnetEndpoints_getKey
       parameters:
         - $ref: '#/components/parameters/TailnetEndpoints.CommonParameters'
-        - name: id
-          in: path
+        - in: path
+          name: id
           required: true
           schema:
             type: string
       responses:
         "200":
-          description: The request has succeeded.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/AuthKey'
+          description: The request has succeeded.
 security:
   - BasicAuth: []
   - OAuth2Auth:
@@ -774,5 +766,5 @@ security:
       - routes
       - routes:read
 servers:
-  - url: https://api.tailscale.com/api/v2
-    description: Tailscale API
+  - description: Tailscale API
+    url: https://api.tailscale.com/api/v2
