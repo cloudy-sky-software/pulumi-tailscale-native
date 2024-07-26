@@ -64,7 +64,7 @@ class Key(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 capabilities: Optional[pulumi.Input[pulumi.InputType['KeyCapabilitiesArgs']]] = None,
+                 capabilities: Optional[pulumi.Input[Union['KeyCapabilitiesArgs', 'KeyCapabilitiesArgsDict']]] = None,
                  expiry_seconds: Optional[pulumi.Input[int]] = None,
                  tailnet: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -97,7 +97,7 @@ class Key(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 capabilities: Optional[pulumi.Input[pulumi.InputType['KeyCapabilitiesArgs']]] = None,
+                 capabilities: Optional[pulumi.Input[Union['KeyCapabilitiesArgs', 'KeyCapabilitiesArgsDict']]] = None,
                  expiry_seconds: Optional[pulumi.Input[int]] = None,
                  tailnet: Optional[pulumi.Input[str]] = None,
                  __props__=None):
