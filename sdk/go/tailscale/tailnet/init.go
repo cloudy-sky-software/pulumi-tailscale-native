@@ -23,12 +23,12 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 	switch typ {
 	case "tailscale-native:tailnet:Acl":
 		r = &Acl{}
-	case "tailscale-native:tailnet:DNSPreferences":
-		r = &DNSPreferences{}
+	case "tailscale-native:tailnet:DNSPreferencesConfig":
+		r = &DNSPreferencesConfig{}
 	case "tailscale-native:tailnet:Key":
 		r = &Key{}
-	case "tailscale-native:tailnet:NameServers":
-		r = &NameServers{}
+	case "tailscale-native:tailnet:NameServersConfig":
+		r = &NameServersConfig{}
 	case "tailscale-native:tailnet:ReplaceSearchPaths":
 		r = &ReplaceSearchPaths{}
 	default:

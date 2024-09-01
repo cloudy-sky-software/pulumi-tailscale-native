@@ -9,8 +9,8 @@ using Pulumi.Serialization;
 
 namespace Pulumi.TailscaleNative.Tailnet
 {
-    [TailscaleNativeResourceType("tailscale-native:tailnet:NameServers")]
-    public partial class NameServers : global::Pulumi.CustomResource
+    [TailscaleNativeResourceType("tailscale-native:tailnet:NameServersConfig")]
+    public partial class NameServersConfig : global::Pulumi.CustomResource
     {
         [Output("dns")]
         public Output<ImmutableArray<string>> Dns { get; private set; } = null!;
@@ -20,19 +20,19 @@ namespace Pulumi.TailscaleNative.Tailnet
 
 
         /// <summary>
-        /// Create a NameServers resource with the given unique name, arguments, and options.
+        /// Create a NameServersConfig resource with the given unique name, arguments, and options.
         /// </summary>
         ///
         /// <param name="name">The unique name of the resource</param>
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public NameServers(string name, NameServersArgs args, CustomResourceOptions? options = null)
-            : base("tailscale-native:tailnet:NameServers", name, args ?? new NameServersArgs(), MakeResourceOptions(options, ""))
+        public NameServersConfig(string name, NameServersConfigArgs args, CustomResourceOptions? options = null)
+            : base("tailscale-native:tailnet:NameServersConfig", name, args ?? new NameServersConfigArgs(), MakeResourceOptions(options, ""))
         {
         }
 
-        private NameServers(string name, Input<string> id, CustomResourceOptions? options = null)
-            : base("tailscale-native:tailnet:NameServers", name, null, MakeResourceOptions(options, id))
+        private NameServersConfig(string name, Input<string> id, CustomResourceOptions? options = null)
+            : base("tailscale-native:tailnet:NameServersConfig", name, null, MakeResourceOptions(options, id))
         {
         }
 
@@ -49,20 +49,20 @@ namespace Pulumi.TailscaleNative.Tailnet
             return merged;
         }
         /// <summary>
-        /// Get an existing NameServers resource's state with the given name, ID, and optional extra
+        /// Get an existing NameServersConfig resource's state with the given name, ID, and optional extra
         /// properties used to qualify the lookup.
         /// </summary>
         ///
         /// <param name="name">The unique name of the resulting resource.</param>
         /// <param name="id">The unique provider ID of the resource to lookup.</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public static NameServers Get(string name, Input<string> id, CustomResourceOptions? options = null)
+        public static NameServersConfig Get(string name, Input<string> id, CustomResourceOptions? options = null)
         {
-            return new NameServers(name, id, options);
+            return new NameServersConfig(name, id, options);
         }
     }
 
-    public sealed class NameServersArgs : global::Pulumi.ResourceArgs
+    public sealed class NameServersConfigArgs : global::Pulumi.ResourceArgs
     {
         [Input("dns", required: true)]
         private InputList<string>? _dns;
@@ -81,9 +81,9 @@ namespace Pulumi.TailscaleNative.Tailnet
         [Input("tailnet")]
         public Input<string>? Tailnet { get; set; }
 
-        public NameServersArgs()
+        public NameServersConfigArgs()
         {
         }
-        public static new NameServersArgs Empty => new NameServersArgs();
+        public static new NameServersConfigArgs Empty => new NameServersConfigArgs();
     }
 }

@@ -9,27 +9,27 @@ using Pulumi.Serialization;
 
 namespace Pulumi.TailscaleNative.Tailnet
 {
-    [TailscaleNativeResourceType("tailscale-native:tailnet:DNSPreferences")]
-    public partial class DNSPreferences : global::Pulumi.CustomResource
+    [TailscaleNativeResourceType("tailscale-native:tailnet:DNSPreferencesConfig")]
+    public partial class DNSPreferencesConfig : global::Pulumi.CustomResource
     {
         [Output("magicDNS")]
         public Output<bool> MagicDNS { get; private set; } = null!;
 
 
         /// <summary>
-        /// Create a DNSPreferences resource with the given unique name, arguments, and options.
+        /// Create a DNSPreferencesConfig resource with the given unique name, arguments, and options.
         /// </summary>
         ///
         /// <param name="name">The unique name of the resource</param>
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public DNSPreferences(string name, DNSPreferencesArgs args, CustomResourceOptions? options = null)
-            : base("tailscale-native:tailnet:DNSPreferences", name, args ?? new DNSPreferencesArgs(), MakeResourceOptions(options, ""))
+        public DNSPreferencesConfig(string name, DNSPreferencesConfigArgs args, CustomResourceOptions? options = null)
+            : base("tailscale-native:tailnet:DNSPreferencesConfig", name, args ?? new DNSPreferencesConfigArgs(), MakeResourceOptions(options, ""))
         {
         }
 
-        private DNSPreferences(string name, Input<string> id, CustomResourceOptions? options = null)
-            : base("tailscale-native:tailnet:DNSPreferences", name, null, MakeResourceOptions(options, id))
+        private DNSPreferencesConfig(string name, Input<string> id, CustomResourceOptions? options = null)
+            : base("tailscale-native:tailnet:DNSPreferencesConfig", name, null, MakeResourceOptions(options, id))
         {
         }
 
@@ -46,20 +46,20 @@ namespace Pulumi.TailscaleNative.Tailnet
             return merged;
         }
         /// <summary>
-        /// Get an existing DNSPreferences resource's state with the given name, ID, and optional extra
+        /// Get an existing DNSPreferencesConfig resource's state with the given name, ID, and optional extra
         /// properties used to qualify the lookup.
         /// </summary>
         ///
         /// <param name="name">The unique name of the resulting resource.</param>
         /// <param name="id">The unique provider ID of the resource to lookup.</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public static DNSPreferences Get(string name, Input<string> id, CustomResourceOptions? options = null)
+        public static DNSPreferencesConfig Get(string name, Input<string> id, CustomResourceOptions? options = null)
         {
-            return new DNSPreferences(name, id, options);
+            return new DNSPreferencesConfig(name, id, options);
         }
     }
 
-    public sealed class DNSPreferencesArgs : global::Pulumi.ResourceArgs
+    public sealed class DNSPreferencesConfigArgs : global::Pulumi.ResourceArgs
     {
         [Input("magicDNS", required: true)]
         public Input<bool> MagicDNS { get; set; } = null!;
@@ -70,9 +70,9 @@ namespace Pulumi.TailscaleNative.Tailnet
         [Input("tailnet")]
         public Input<string>? Tailnet { get; set; }
 
-        public DNSPreferencesArgs()
+        public DNSPreferencesConfigArgs()
         {
         }
-        public static new DNSPreferencesArgs Empty => new DNSPreferencesArgs();
+        public static new DNSPreferencesConfigArgs Empty => new DNSPreferencesConfigArgs();
     }
 }

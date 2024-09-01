@@ -7,29 +7,29 @@ import * as outputs from "../types/output";
 import * as enums from "../types/enums";
 import * as utilities from "../utilities";
 
-export function getDNSPreference(args: GetDNSPreferenceArgs, opts?: pulumi.InvokeOptions): Promise<GetDNSPreferenceResult> {
+export function getDNSPreferencesConfig(args: GetDNSPreferencesConfigArgs, opts?: pulumi.InvokeOptions): Promise<GetDNSPreferencesConfigResult> {
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
-    return pulumi.runtime.invoke("tailscale-native:tailnet:getDNSPreference", {
+    return pulumi.runtime.invoke("tailscale-native:tailnet:getDNSPreferencesConfig", {
         "tailnet": args.tailnet,
     }, opts);
 }
 
-export interface GetDNSPreferenceArgs {
+export interface GetDNSPreferencesConfigArgs {
     /**
      * For paid plans, your domain is your tailnet. For solo plans, the tailnet is the email you signed up with. So `alice@gmail.com` has the tailnet `alice@gmail.com` since `@gmail.com` is a shared email host. Alternatively, you can specify the value "-" to refer to the default tailnet of the authenticated user making the API call.
      */
     tailnet: string;
 }
 
-export interface GetDNSPreferenceResult {
+export interface GetDNSPreferencesConfigResult {
     readonly items: outputs.tailnet.NameServersPreference;
 }
-export function getDNSPreferenceOutput(args: GetDNSPreferenceOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetDNSPreferenceResult> {
-    return pulumi.output(args).apply((a: any) => getDNSPreference(a, opts))
+export function getDNSPreferencesConfigOutput(args: GetDNSPreferencesConfigOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetDNSPreferencesConfigResult> {
+    return pulumi.output(args).apply((a: any) => getDNSPreferencesConfig(a, opts))
 }
 
-export interface GetDNSPreferenceOutputArgs {
+export interface GetDNSPreferencesConfigOutputArgs {
     /**
      * For paid plans, your domain is your tailnet. For solo plans, the tailnet is the email you signed up with. So `alice@gmail.com` has the tailnet `alice@gmail.com` since `@gmail.com` is a shared email host. Alternatively, you can specify the value "-" to refer to the default tailnet of the authenticated user making the API call.
      */

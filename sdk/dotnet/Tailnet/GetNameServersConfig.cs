@@ -9,17 +9,17 @@ using Pulumi.Serialization;
 
 namespace Pulumi.TailscaleNative.Tailnet
 {
-    public static class GetNameServer
+    public static class GetNameServersConfig
     {
-        public static Task<GetNameServerResult> InvokeAsync(GetNameServerArgs args, InvokeOptions? options = null)
-            => global::Pulumi.Deployment.Instance.InvokeAsync<GetNameServerResult>("tailscale-native:tailnet:getNameServer", args ?? new GetNameServerArgs(), options.WithDefaults());
+        public static Task<GetNameServersConfigResult> InvokeAsync(GetNameServersConfigArgs args, InvokeOptions? options = null)
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GetNameServersConfigResult>("tailscale-native:tailnet:getNameServersConfig", args ?? new GetNameServersConfigArgs(), options.WithDefaults());
 
-        public static Output<GetNameServerResult> Invoke(GetNameServerInvokeArgs args, InvokeOptions? options = null)
-            => global::Pulumi.Deployment.Instance.Invoke<GetNameServerResult>("tailscale-native:tailnet:getNameServer", args ?? new GetNameServerInvokeArgs(), options.WithDefaults());
+        public static Output<GetNameServersConfigResult> Invoke(GetNameServersConfigInvokeArgs args, InvokeOptions? options = null)
+            => global::Pulumi.Deployment.Instance.Invoke<GetNameServersConfigResult>("tailscale-native:tailnet:getNameServersConfig", args ?? new GetNameServersConfigInvokeArgs(), options.WithDefaults());
     }
 
 
-    public sealed class GetNameServerArgs : global::Pulumi.InvokeArgs
+    public sealed class GetNameServersConfigArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// For paid plans, your domain is your tailnet. For solo plans, the tailnet is the email you signed up with. So `alice@gmail.com` has the tailnet `alice@gmail.com` since `@gmail.com` is a shared email host. Alternatively, you can specify the value "-" to refer to the default tailnet of the authenticated user making the API call.
@@ -27,13 +27,13 @@ namespace Pulumi.TailscaleNative.Tailnet
         [Input("tailnet", required: true)]
         public string Tailnet { get; set; } = null!;
 
-        public GetNameServerArgs()
+        public GetNameServersConfigArgs()
         {
         }
-        public static new GetNameServerArgs Empty => new GetNameServerArgs();
+        public static new GetNameServersConfigArgs Empty => new GetNameServersConfigArgs();
     }
 
-    public sealed class GetNameServerInvokeArgs : global::Pulumi.InvokeArgs
+    public sealed class GetNameServersConfigInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// For paid plans, your domain is your tailnet. For solo plans, the tailnet is the email you signed up with. So `alice@gmail.com` has the tailnet `alice@gmail.com` since `@gmail.com` is a shared email host. Alternatively, you can specify the value "-" to refer to the default tailnet of the authenticated user making the API call.
@@ -41,20 +41,20 @@ namespace Pulumi.TailscaleNative.Tailnet
         [Input("tailnet", required: true)]
         public Input<string> Tailnet { get; set; } = null!;
 
-        public GetNameServerInvokeArgs()
+        public GetNameServersConfigInvokeArgs()
         {
         }
-        public static new GetNameServerInvokeArgs Empty => new GetNameServerInvokeArgs();
+        public static new GetNameServersConfigInvokeArgs Empty => new GetNameServersConfigInvokeArgs();
     }
 
 
     [OutputType]
-    public sealed class GetNameServerResult
+    public sealed class GetNameServersConfigResult
     {
         public readonly Outputs.NameServers Items;
 
         [OutputConstructor]
-        private GetNameServerResult(Outputs.NameServers items)
+        private GetNameServersConfigResult(Outputs.NameServers items)
         {
             Items = items;
         }

@@ -9,16 +9,16 @@ import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities
 
-__all__ = ['NameServersArgs', 'NameServers']
+__all__ = ['NameServersConfigArgs', 'NameServersConfig']
 
 @pulumi.input_type
-class NameServersArgs:
+class NameServersConfigArgs:
     def __init__(__self__, *,
                  dns: pulumi.Input[Sequence[pulumi.Input[str]]],
                  magic_dns: pulumi.Input[bool],
                  tailnet: Optional[pulumi.Input[str]] = None):
         """
-        The set of arguments for constructing a NameServers resource.
+        The set of arguments for constructing a NameServersConfig resource.
         :param pulumi.Input[str] tailnet: For paid plans, your domain is your tailnet. For solo plans, the tailnet is the email you signed up with. So `alice@gmail.com` has the tailnet `alice@gmail.com` since `@gmail.com` is a shared email host. Alternatively, you can specify the value "-" to refer to the default tailnet of the authenticated user making the API call.
         """
         pulumi.set(__self__, "dns", dns)
@@ -57,7 +57,7 @@ class NameServersArgs:
         pulumi.set(self, "tailnet", value)
 
 
-class NameServers(pulumi.CustomResource):
+class NameServersConfig(pulumi.CustomResource):
     @overload
     def __init__(__self__,
                  resource_name: str,
@@ -67,7 +67,7 @@ class NameServers(pulumi.CustomResource):
                  tailnet: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Create a NameServers resource with the given unique name, props, and options.
+        Create a NameServersConfig resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] tailnet: For paid plans, your domain is your tailnet. For solo plans, the tailnet is the email you signed up with. So `alice@gmail.com` has the tailnet `alice@gmail.com` since `@gmail.com` is a shared email host. Alternatively, you can specify the value "-" to refer to the default tailnet of the authenticated user making the API call.
@@ -76,17 +76,17 @@ class NameServers(pulumi.CustomResource):
     @overload
     def __init__(__self__,
                  resource_name: str,
-                 args: NameServersArgs,
+                 args: NameServersConfigArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a NameServers resource with the given unique name, props, and options.
+        Create a NameServersConfig resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
-        :param NameServersArgs args: The arguments to use to populate this resource's properties.
+        :param NameServersConfigArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
         """
         ...
     def __init__(__self__, resource_name: str, *args, **kwargs):
-        resource_args, opts = _utilities.get_resource_args_opts(NameServersArgs, pulumi.ResourceOptions, *args, **kwargs)
+        resource_args, opts = _utilities.get_resource_args_opts(NameServersConfigArgs, pulumi.ResourceOptions, *args, **kwargs)
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
@@ -105,7 +105,7 @@ class NameServers(pulumi.CustomResource):
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
-            __props__ = NameServersArgs.__new__(NameServersArgs)
+            __props__ = NameServersConfigArgs.__new__(NameServersConfigArgs)
 
             if dns is None and not opts.urn:
                 raise TypeError("Missing required property 'dns'")
@@ -114,8 +114,8 @@ class NameServers(pulumi.CustomResource):
                 raise TypeError("Missing required property 'magic_dns'")
             __props__.__dict__["magic_dns"] = magic_dns
             __props__.__dict__["tailnet"] = tailnet
-        super(NameServers, __self__).__init__(
-            'tailscale-native:tailnet:NameServers',
+        super(NameServersConfig, __self__).__init__(
+            'tailscale-native:tailnet:NameServersConfig',
             resource_name,
             __props__,
             opts)
@@ -123,9 +123,9 @@ class NameServers(pulumi.CustomResource):
     @staticmethod
     def get(resource_name: str,
             id: pulumi.Input[str],
-            opts: Optional[pulumi.ResourceOptions] = None) -> 'NameServers':
+            opts: Optional[pulumi.ResourceOptions] = None) -> 'NameServersConfig':
         """
-        Get an existing NameServers resource's state with the given name, id, and optional extra
+        Get an existing NameServersConfig resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
 
         :param str resource_name: The unique name of the resulting resource.
@@ -134,11 +134,11 @@ class NameServers(pulumi.CustomResource):
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
-        __props__ = NameServersArgs.__new__(NameServersArgs)
+        __props__ = NameServersConfigArgs.__new__(NameServersConfigArgs)
 
         __props__.__dict__["dns"] = None
         __props__.__dict__["magic_dns"] = None
-        return NameServers(resource_name, opts=opts, __props__=__props__)
+        return NameServersConfig(resource_name, opts=opts, __props__=__props__)
 
     @property
     @pulumi.getter

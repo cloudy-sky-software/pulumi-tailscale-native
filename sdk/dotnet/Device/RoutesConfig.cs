@@ -9,8 +9,8 @@ using Pulumi.Serialization;
 
 namespace Pulumi.TailscaleNative.Device
 {
-    [TailscaleNativeResourceType("tailscale-native:device:Routes")]
-    public partial class Routes : global::Pulumi.CustomResource
+    [TailscaleNativeResourceType("tailscale-native:device:RoutesConfig")]
+    public partial class RoutesConfig : global::Pulumi.CustomResource
     {
         [Output("advertisedRoutes")]
         public Output<ImmutableArray<string>> AdvertisedRoutes { get; private set; } = null!;
@@ -19,23 +19,23 @@ namespace Pulumi.TailscaleNative.Device
         public Output<ImmutableArray<string>> EnabledRoutes { get; private set; } = null!;
 
         [Output("routes")]
-        public Output<ImmutableArray<string>> RoutesValue { get; private set; } = null!;
+        public Output<ImmutableArray<string>> Routes { get; private set; } = null!;
 
 
         /// <summary>
-        /// Create a Routes resource with the given unique name, arguments, and options.
+        /// Create a RoutesConfig resource with the given unique name, arguments, and options.
         /// </summary>
         ///
         /// <param name="name">The unique name of the resource</param>
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public Routes(string name, RoutesArgs args, CustomResourceOptions? options = null)
-            : base("tailscale-native:device:Routes", name, args ?? new RoutesArgs(), MakeResourceOptions(options, ""))
+        public RoutesConfig(string name, RoutesConfigArgs args, CustomResourceOptions? options = null)
+            : base("tailscale-native:device:RoutesConfig", name, args ?? new RoutesConfigArgs(), MakeResourceOptions(options, ""))
         {
         }
 
-        private Routes(string name, Input<string> id, CustomResourceOptions? options = null)
-            : base("tailscale-native:device:Routes", name, null, MakeResourceOptions(options, id))
+        private RoutesConfig(string name, Input<string> id, CustomResourceOptions? options = null)
+            : base("tailscale-native:device:RoutesConfig", name, null, MakeResourceOptions(options, id))
         {
         }
 
@@ -52,35 +52,35 @@ namespace Pulumi.TailscaleNative.Device
             return merged;
         }
         /// <summary>
-        /// Get an existing Routes resource's state with the given name, ID, and optional extra
+        /// Get an existing RoutesConfig resource's state with the given name, ID, and optional extra
         /// properties used to qualify the lookup.
         /// </summary>
         ///
         /// <param name="name">The unique name of the resulting resource.</param>
         /// <param name="id">The unique provider ID of the resource to lookup.</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public static Routes Get(string name, Input<string> id, CustomResourceOptions? options = null)
+        public static RoutesConfig Get(string name, Input<string> id, CustomResourceOptions? options = null)
         {
-            return new Routes(name, id, options);
+            return new RoutesConfig(name, id, options);
         }
     }
 
-    public sealed class RoutesArgs : global::Pulumi.ResourceArgs
+    public sealed class RoutesConfigArgs : global::Pulumi.ResourceArgs
     {
         [Input("id")]
         public Input<string>? Id { get; set; }
 
         [Input("routes", required: true)]
         private InputList<string>? _routes;
-        public InputList<string> RoutesValue
+        public InputList<string> Routes
         {
             get => _routes ?? (_routes = new InputList<string>());
             set => _routes = value;
         }
 
-        public RoutesArgs()
+        public RoutesConfigArgs()
         {
         }
-        public static new RoutesArgs Empty => new RoutesArgs();
+        public static new RoutesConfigArgs Empty => new RoutesConfigArgs();
     }
 }
