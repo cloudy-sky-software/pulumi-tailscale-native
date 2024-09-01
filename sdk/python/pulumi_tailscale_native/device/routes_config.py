@@ -9,15 +9,15 @@ import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities
 
-__all__ = ['RoutesArgs', 'Routes']
+__all__ = ['RoutesConfigArgs', 'RoutesConfig']
 
 @pulumi.input_type
-class RoutesArgs:
+class RoutesConfigArgs:
     def __init__(__self__, *,
                  routes: pulumi.Input[Sequence[pulumi.Input[str]]],
                  id: Optional[pulumi.Input[str]] = None):
         """
-        The set of arguments for constructing a Routes resource.
+        The set of arguments for constructing a RoutesConfig resource.
         """
         pulumi.set(__self__, "routes", routes)
         if id is not None:
@@ -42,7 +42,7 @@ class RoutesArgs:
         pulumi.set(self, "id", value)
 
 
-class Routes(pulumi.CustomResource):
+class RoutesConfig(pulumi.CustomResource):
     @overload
     def __init__(__self__,
                  resource_name: str,
@@ -51,7 +51,7 @@ class Routes(pulumi.CustomResource):
                  routes: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  __props__=None):
         """
-        Create a Routes resource with the given unique name, props, and options.
+        Create a RoutesConfig resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         """
@@ -59,17 +59,17 @@ class Routes(pulumi.CustomResource):
     @overload
     def __init__(__self__,
                  resource_name: str,
-                 args: RoutesArgs,
+                 args: RoutesConfigArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a Routes resource with the given unique name, props, and options.
+        Create a RoutesConfig resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
-        :param RoutesArgs args: The arguments to use to populate this resource's properties.
+        :param RoutesConfigArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
         """
         ...
     def __init__(__self__, resource_name: str, *args, **kwargs):
-        resource_args, opts = _utilities.get_resource_args_opts(RoutesArgs, pulumi.ResourceOptions, *args, **kwargs)
+        resource_args, opts = _utilities.get_resource_args_opts(RoutesConfigArgs, pulumi.ResourceOptions, *args, **kwargs)
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
@@ -87,7 +87,7 @@ class Routes(pulumi.CustomResource):
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
-            __props__ = RoutesArgs.__new__(RoutesArgs)
+            __props__ = RoutesConfigArgs.__new__(RoutesConfigArgs)
 
             __props__.__dict__["id"] = id
             if routes is None and not opts.urn:
@@ -95,8 +95,8 @@ class Routes(pulumi.CustomResource):
             __props__.__dict__["routes"] = routes
             __props__.__dict__["advertised_routes"] = None
             __props__.__dict__["enabled_routes"] = None
-        super(Routes, __self__).__init__(
-            'tailscale-native:device:Routes',
+        super(RoutesConfig, __self__).__init__(
+            'tailscale-native:device:RoutesConfig',
             resource_name,
             __props__,
             opts)
@@ -104,9 +104,9 @@ class Routes(pulumi.CustomResource):
     @staticmethod
     def get(resource_name: str,
             id: pulumi.Input[str],
-            opts: Optional[pulumi.ResourceOptions] = None) -> 'Routes':
+            opts: Optional[pulumi.ResourceOptions] = None) -> 'RoutesConfig':
         """
-        Get an existing Routes resource's state with the given name, id, and optional extra
+        Get an existing RoutesConfig resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
 
         :param str resource_name: The unique name of the resulting resource.
@@ -115,12 +115,12 @@ class Routes(pulumi.CustomResource):
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
-        __props__ = RoutesArgs.__new__(RoutesArgs)
+        __props__ = RoutesConfigArgs.__new__(RoutesConfigArgs)
 
         __props__.__dict__["advertised_routes"] = None
         __props__.__dict__["enabled_routes"] = None
         __props__.__dict__["routes"] = None
-        return Routes(resource_name, opts=opts, __props__=__props__)
+        return RoutesConfig(resource_name, opts=opts, __props__=__props__)
 
     @property
     @pulumi.getter(name="advertisedRoutes")

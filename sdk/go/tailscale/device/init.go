@@ -25,8 +25,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &AuthorizeDevice{}
 	case "tailscale-native:device:KeyExpiry":
 		r = &KeyExpiry{}
-	case "tailscale-native:device:Routes":
-		r = &Routes{}
+	case "tailscale-native:device:RoutesConfig":
+		r = &RoutesConfig{}
 	case "tailscale-native:device:Tags":
 		r = &Tags{}
 	default:

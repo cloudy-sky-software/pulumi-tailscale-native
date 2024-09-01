@@ -15,20 +15,20 @@ export const getDevice: typeof import("./getDevice").getDevice = null as any;
 export const getDeviceOutput: typeof import("./getDevice").getDeviceOutput = null as any;
 utilities.lazyLoad(exports, ["getDevice","getDeviceOutput"], () => require("./getDevice"));
 
-export { GetRouteArgs, GetRouteResult, GetRouteOutputArgs } from "./getRoute";
-export const getRoute: typeof import("./getRoute").getRoute = null as any;
-export const getRouteOutput: typeof import("./getRoute").getRouteOutput = null as any;
-utilities.lazyLoad(exports, ["getRoute","getRouteOutput"], () => require("./getRoute"));
+export { GetRoutesConfigArgs, GetRoutesConfigResult, GetRoutesConfigOutputArgs } from "./getRoutesConfig";
+export const getRoutesConfig: typeof import("./getRoutesConfig").getRoutesConfig = null as any;
+export const getRoutesConfigOutput: typeof import("./getRoutesConfig").getRoutesConfigOutput = null as any;
+utilities.lazyLoad(exports, ["getRoutesConfig","getRoutesConfigOutput"], () => require("./getRoutesConfig"));
 
 export { KeyExpiryArgs } from "./keyExpiry";
 export type KeyExpiry = import("./keyExpiry").KeyExpiry;
 export const KeyExpiry: typeof import("./keyExpiry").KeyExpiry = null as any;
 utilities.lazyLoad(exports, ["KeyExpiry"], () => require("./keyExpiry"));
 
-export { RoutesArgs } from "./routes";
-export type Routes = import("./routes").Routes;
-export const Routes: typeof import("./routes").Routes = null as any;
-utilities.lazyLoad(exports, ["Routes"], () => require("./routes"));
+export { RoutesConfigArgs } from "./routesConfig";
+export type RoutesConfig = import("./routesConfig").RoutesConfig;
+export const RoutesConfig: typeof import("./routesConfig").RoutesConfig = null as any;
+utilities.lazyLoad(exports, ["RoutesConfig"], () => require("./routesConfig"));
 
 export { TagsArgs } from "./tags";
 export type Tags = import("./tags").Tags;
@@ -44,8 +44,8 @@ const _module = {
                 return new AuthorizeDevice(name, <any>undefined, { urn })
             case "tailscale-native:device:KeyExpiry":
                 return new KeyExpiry(name, <any>undefined, { urn })
-            case "tailscale-native:device:Routes":
-                return new Routes(name, <any>undefined, { urn })
+            case "tailscale-native:device:RoutesConfig":
+                return new RoutesConfig(name, <any>undefined, { urn })
             case "tailscale-native:device:Tags":
                 return new Tags(name, <any>undefined, { urn })
             default:

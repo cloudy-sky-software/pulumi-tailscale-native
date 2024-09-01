@@ -90,24 +90,24 @@ namespace Operations {
 
         @route("/dns/nameservers")
         @get
-        op getNameServers(...CommonParameters): NameServers;
+        op getNameServersConfig(...CommonParameters): NameServers;
 
         @route("/dns/nameservers")
         @post
         @doc("Replaces the list of DNS nameservers for a tailnet.")
-        op setNameServers(
+        op setNameServersConfig(
             ...CommonParameters,
             @body nameServer: NameServers,
         ): NameServers;
 
         @route("/dns/preferences")
         @get
-        op getDNSPreferences(...CommonParameters): NameServersPreference;
+        op getDNSPreferencesConfig(...CommonParameters): NameServersPreference;
 
         @route("/dns/preferences")
         @post
         @doc("Replaces the DNS preferences for a tailnet.")
-        op setDNSPreferences(
+        op setDNSPreferencesConfig(
             ...CommonParameters,
             @body prefs: NameServersPreference,
         ): NameServersPreference;
@@ -143,11 +143,11 @@ namespace Operations {
 
         @route("/routes")
         @get
-        op getRoutes(@path id: string): DeviceRoutes;
+        op getRoutesConfig(@path id: string): DeviceRoutes;
 
         @route("/routes")
         @post
-        op setRoutes(
+        op setRoutesConfig(
             @path id: string,
             @body setRoutes: SetDeviceRoutes,
         ): DeviceRoutes;

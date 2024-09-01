@@ -4,31 +4,31 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
-export class Routes extends pulumi.CustomResource {
+export class RoutesConfig extends pulumi.CustomResource {
     /**
-     * Get an existing Routes resource's state with the given name, ID, and optional extra
+     * Get an existing RoutesConfig resource's state with the given name, ID, and optional extra
      * properties used to qualify the lookup.
      *
      * @param name The _unique_ name of the resulting resource.
      * @param id The _unique_ provider ID of the resource to lookup.
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
-    public static get(name: string, id: pulumi.Input<pulumi.ID>, opts?: pulumi.CustomResourceOptions): Routes {
-        return new Routes(name, undefined as any, { ...opts, id: id });
+    public static get(name: string, id: pulumi.Input<pulumi.ID>, opts?: pulumi.CustomResourceOptions): RoutesConfig {
+        return new RoutesConfig(name, undefined as any, { ...opts, id: id });
     }
 
     /** @internal */
-    public static readonly __pulumiType = 'tailscale-native:device:Routes';
+    public static readonly __pulumiType = 'tailscale-native:device:RoutesConfig';
 
     /**
-     * Returns true if the given object is an instance of Routes.  This is designed to work even
+     * Returns true if the given object is an instance of RoutesConfig.  This is designed to work even
      * when multiple copies of the Pulumi SDK have been loaded into the same process.
      */
-    public static isInstance(obj: any): obj is Routes {
+    public static isInstance(obj: any): obj is RoutesConfig {
         if (obj === undefined || obj === null) {
             return false;
         }
-        return obj['__pulumiType'] === Routes.__pulumiType;
+        return obj['__pulumiType'] === RoutesConfig.__pulumiType;
     }
 
     public /*out*/ readonly advertisedRoutes!: pulumi.Output<string[]>;
@@ -36,13 +36,13 @@ export class Routes extends pulumi.CustomResource {
     public readonly routes!: pulumi.Output<string[]>;
 
     /**
-     * Create a Routes resource with the given unique name, arguments, and options.
+     * Create a RoutesConfig resource with the given unique name, arguments, and options.
      *
      * @param name The _unique_ name of the resource.
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
-    constructor(name: string, args: RoutesArgs, opts?: pulumi.CustomResourceOptions) {
+    constructor(name: string, args: RoutesConfigArgs, opts?: pulumi.CustomResourceOptions) {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (!opts.id) {
@@ -59,14 +59,14 @@ export class Routes extends pulumi.CustomResource {
             resourceInputs["routes"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
-        super(Routes.__pulumiType, name, resourceInputs, opts);
+        super(RoutesConfig.__pulumiType, name, resourceInputs, opts);
     }
 }
 
 /**
- * The set of arguments for constructing a Routes resource.
+ * The set of arguments for constructing a RoutesConfig resource.
  */
-export interface RoutesArgs {
+export interface RoutesConfigArgs {
     id?: pulumi.Input<string>;
     routes: pulumi.Input<pulumi.Input<string>[]>;
 }

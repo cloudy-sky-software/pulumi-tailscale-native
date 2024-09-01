@@ -21,6 +21,7 @@ WORKING_DIR     := $(shell pwd)
 TESTPARALLELISM := 4
 
 ensure::
+	npm ci
 	cd api && npm ci
 	cd provider && GO111MODULE=on go mod tidy
 	cd sdk && GO111MODULE=on go mod tidy

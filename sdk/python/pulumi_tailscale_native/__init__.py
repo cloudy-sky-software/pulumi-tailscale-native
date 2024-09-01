@@ -30,7 +30,7 @@ _utilities.register(
   "classes": {
    "tailscale-native:device:AuthorizeDevice": "AuthorizeDevice",
    "tailscale-native:device:KeyExpiry": "KeyExpiry",
-   "tailscale-native:device:Routes": "Routes",
+   "tailscale-native:device:RoutesConfig": "RoutesConfig",
    "tailscale-native:device:Tags": "Tags"
   }
  },
@@ -40,9 +40,9 @@ _utilities.register(
   "fqn": "pulumi_tailscale_native.tailnet",
   "classes": {
    "tailscale-native:tailnet:Acl": "Acl",
-   "tailscale-native:tailnet:DNSPreferences": "DNSPreferences",
+   "tailscale-native:tailnet:DNSPreferencesConfig": "DNSPreferencesConfig",
    "tailscale-native:tailnet:Key": "Key",
-   "tailscale-native:tailnet:NameServers": "NameServers",
+   "tailscale-native:tailnet:NameServersConfig": "NameServersConfig",
    "tailscale-native:tailnet:ReplaceSearchPaths": "ReplaceSearchPaths"
   }
  }

@@ -672,31 +672,31 @@ func (o ListDevicesPropertiesOutput) Devices() DeviceArrayOutput {
 	return o.ApplyT(func(v ListDevicesProperties) []Device { return v.Devices }).(DeviceArrayOutput)
 }
 
-type NameServersType struct {
+type NameServers struct {
 	Dns      []string `pulumi:"dns"`
 	MagicDNS bool     `pulumi:"magicDNS"`
 }
 
-type NameServersTypeOutput struct{ *pulumi.OutputState }
+type NameServersOutput struct{ *pulumi.OutputState }
 
-func (NameServersTypeOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*NameServersType)(nil)).Elem()
+func (NameServersOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*NameServers)(nil)).Elem()
 }
 
-func (o NameServersTypeOutput) ToNameServersTypeOutput() NameServersTypeOutput {
+func (o NameServersOutput) ToNameServersOutput() NameServersOutput {
 	return o
 }
 
-func (o NameServersTypeOutput) ToNameServersTypeOutputWithContext(ctx context.Context) NameServersTypeOutput {
+func (o NameServersOutput) ToNameServersOutputWithContext(ctx context.Context) NameServersOutput {
 	return o
 }
 
-func (o NameServersTypeOutput) Dns() pulumi.StringArrayOutput {
-	return o.ApplyT(func(v NameServersType) []string { return v.Dns }).(pulumi.StringArrayOutput)
+func (o NameServersOutput) Dns() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v NameServers) []string { return v.Dns }).(pulumi.StringArrayOutput)
 }
 
-func (o NameServersTypeOutput) MagicDNS() pulumi.BoolOutput {
-	return o.ApplyT(func(v NameServersType) bool { return v.MagicDNS }).(pulumi.BoolOutput)
+func (o NameServersOutput) MagicDNS() pulumi.BoolOutput {
+	return o.ApplyT(func(v NameServers) bool { return v.MagicDNS }).(pulumi.BoolOutput)
 }
 
 type NameServersPreference struct {
@@ -963,7 +963,7 @@ func init() {
 	pulumi.RegisterOutputType(DnsSearchPathsOutput{})
 	pulumi.RegisterOutputType(KeyCapabilitiesOutput{})
 	pulumi.RegisterOutputType(ListDevicesPropertiesOutput{})
-	pulumi.RegisterOutputType(NameServersTypeOutput{})
+	pulumi.RegisterOutputType(NameServersOutput{})
 	pulumi.RegisterOutputType(NameServersPreferenceOutput{})
 	pulumi.RegisterOutputType(NodeAttrsOutput{})
 	pulumi.RegisterOutputType(NodeAttrsArrayOutput{})

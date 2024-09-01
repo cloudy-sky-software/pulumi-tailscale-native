@@ -781,7 +781,7 @@
                 "keyExpiryDisabled"
             ]
         },
-        "tailscale-native:device:Routes": {
+        "tailscale-native:device:RoutesConfig": {
             "properties": {
                 "advertisedRoutes": {
                     "type": "array",
@@ -799,11 +799,6 @@
                     "type": "array",
                     "items": {
                         "type": "string"
-                    },
-                    "language": {
-                        "csharp": {
-                            "name": "RoutesValue"
-                        }
                     }
                 }
             },
@@ -821,11 +816,6 @@
                     "type": "array",
                     "items": {
                         "type": "string"
-                    },
-                    "language": {
-                        "csharp": {
-                            "name": "RoutesValue"
-                        }
                     }
                 }
             },
@@ -968,7 +958,7 @@
                 "tests"
             ]
         },
-        "tailscale-native:tailnet:DNSPreferences": {
+        "tailscale-native:tailnet:DNSPreferencesConfig": {
             "properties": {
                 "magicDNS": {
                     "type": "boolean"
@@ -1038,7 +1028,7 @@
                 "expirySeconds"
             ]
         },
-        "tailscale-native:tailnet:NameServers": {
+        "tailscale-native:tailnet:NameServersConfig": {
             "properties": {
                 "dns": {
                     "type": "array",
@@ -1128,7 +1118,7 @@
                 ]
             }
         },
-        "tailscale-native:device:getRoute": {
+        "tailscale-native:device:getRoutesConfig": {
             "inputs": {
                 "properties": {
                     "id": {
@@ -1173,7 +1163,7 @@
                 ]
             }
         },
-        "tailscale-native:tailnet:getDNSPreference": {
+        "tailscale-native:tailnet:getDNSPreferencesConfig": {
             "inputs": {
                 "properties": {
                     "tailnet": {
@@ -1223,7 +1213,7 @@
                 ]
             }
         },
-        "tailscale-native:tailnet:getNameServer": {
+        "tailscale-native:tailnet:getNameServersConfig": {
             "inputs": {
                 "properties": {
                     "tailnet": {

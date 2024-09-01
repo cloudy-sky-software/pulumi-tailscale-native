@@ -10,30 +10,30 @@ export type Acl = import("./acl").Acl;
 export const Acl: typeof import("./acl").Acl = null as any;
 utilities.lazyLoad(exports, ["Acl"], () => require("./acl"));
 
-export { DNSPreferencesArgs } from "./dnspreferences";
-export type DNSPreferences = import("./dnspreferences").DNSPreferences;
-export const DNSPreferences: typeof import("./dnspreferences").DNSPreferences = null as any;
-utilities.lazyLoad(exports, ["DNSPreferences"], () => require("./dnspreferences"));
+export { DNSPreferencesConfigArgs } from "./dnspreferencesConfig";
+export type DNSPreferencesConfig = import("./dnspreferencesConfig").DNSPreferencesConfig;
+export const DNSPreferencesConfig: typeof import("./dnspreferencesConfig").DNSPreferencesConfig = null as any;
+utilities.lazyLoad(exports, ["DNSPreferencesConfig"], () => require("./dnspreferencesConfig"));
 
 export { GetAclArgs, GetAclResult, GetAclOutputArgs } from "./getAcl";
 export const getAcl: typeof import("./getAcl").getAcl = null as any;
 export const getAclOutput: typeof import("./getAcl").getAclOutput = null as any;
 utilities.lazyLoad(exports, ["getAcl","getAclOutput"], () => require("./getAcl"));
 
-export { GetDNSPreferenceArgs, GetDNSPreferenceResult, GetDNSPreferenceOutputArgs } from "./getDNSPreference";
-export const getDNSPreference: typeof import("./getDNSPreference").getDNSPreference = null as any;
-export const getDNSPreferenceOutput: typeof import("./getDNSPreference").getDNSPreferenceOutput = null as any;
-utilities.lazyLoad(exports, ["getDNSPreference","getDNSPreferenceOutput"], () => require("./getDNSPreference"));
+export { GetDNSPreferencesConfigArgs, GetDNSPreferencesConfigResult, GetDNSPreferencesConfigOutputArgs } from "./getDNSPreferencesConfig";
+export const getDNSPreferencesConfig: typeof import("./getDNSPreferencesConfig").getDNSPreferencesConfig = null as any;
+export const getDNSPreferencesConfigOutput: typeof import("./getDNSPreferencesConfig").getDNSPreferencesConfigOutput = null as any;
+utilities.lazyLoad(exports, ["getDNSPreferencesConfig","getDNSPreferencesConfigOutput"], () => require("./getDNSPreferencesConfig"));
 
 export { GetKeyArgs, GetKeyResult, GetKeyOutputArgs } from "./getKey";
 export const getKey: typeof import("./getKey").getKey = null as any;
 export const getKeyOutput: typeof import("./getKey").getKeyOutput = null as any;
 utilities.lazyLoad(exports, ["getKey","getKeyOutput"], () => require("./getKey"));
 
-export { GetNameServerArgs, GetNameServerResult, GetNameServerOutputArgs } from "./getNameServer";
-export const getNameServer: typeof import("./getNameServer").getNameServer = null as any;
-export const getNameServerOutput: typeof import("./getNameServer").getNameServerOutput = null as any;
-utilities.lazyLoad(exports, ["getNameServer","getNameServerOutput"], () => require("./getNameServer"));
+export { GetNameServersConfigArgs, GetNameServersConfigResult, GetNameServersConfigOutputArgs } from "./getNameServersConfig";
+export const getNameServersConfig: typeof import("./getNameServersConfig").getNameServersConfig = null as any;
+export const getNameServersConfigOutput: typeof import("./getNameServersConfig").getNameServersConfigOutput = null as any;
+utilities.lazyLoad(exports, ["getNameServersConfig","getNameServersConfigOutput"], () => require("./getNameServersConfig"));
 
 export { KeyArgs } from "./key";
 export type Key = import("./key").Key;
@@ -55,10 +55,10 @@ export const listSearchPaths: typeof import("./listSearchPaths").listSearchPaths
 export const listSearchPathsOutput: typeof import("./listSearchPaths").listSearchPathsOutput = null as any;
 utilities.lazyLoad(exports, ["listSearchPaths","listSearchPathsOutput"], () => require("./listSearchPaths"));
 
-export { NameServersArgs } from "./nameServers";
-export type NameServers = import("./nameServers").NameServers;
-export const NameServers: typeof import("./nameServers").NameServers = null as any;
-utilities.lazyLoad(exports, ["NameServers"], () => require("./nameServers"));
+export { NameServersConfigArgs } from "./nameServersConfig";
+export type NameServersConfig = import("./nameServersConfig").NameServersConfig;
+export const NameServersConfig: typeof import("./nameServersConfig").NameServersConfig = null as any;
+utilities.lazyLoad(exports, ["NameServersConfig"], () => require("./nameServersConfig"));
 
 export { ReplaceSearchPathsArgs } from "./replaceSearchPaths";
 export type ReplaceSearchPaths = import("./replaceSearchPaths").ReplaceSearchPaths;
@@ -75,12 +75,12 @@ const _module = {
         switch (type) {
             case "tailscale-native:tailnet:Acl":
                 return new Acl(name, <any>undefined, { urn })
-            case "tailscale-native:tailnet:DNSPreferences":
-                return new DNSPreferences(name, <any>undefined, { urn })
+            case "tailscale-native:tailnet:DNSPreferencesConfig":
+                return new DNSPreferencesConfig(name, <any>undefined, { urn })
             case "tailscale-native:tailnet:Key":
                 return new Key(name, <any>undefined, { urn })
-            case "tailscale-native:tailnet:NameServers":
-                return new NameServers(name, <any>undefined, { urn })
+            case "tailscale-native:tailnet:NameServersConfig":
+                return new NameServersConfig(name, <any>undefined, { urn })
             case "tailscale-native:tailnet:ReplaceSearchPaths":
                 return new ReplaceSearchPaths(name, <any>undefined, { urn })
             default:

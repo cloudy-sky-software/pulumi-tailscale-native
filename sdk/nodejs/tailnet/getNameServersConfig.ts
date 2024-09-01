@@ -7,29 +7,29 @@ import * as outputs from "../types/output";
 import * as enums from "../types/enums";
 import * as utilities from "../utilities";
 
-export function getNameServer(args: GetNameServerArgs, opts?: pulumi.InvokeOptions): Promise<GetNameServerResult> {
+export function getNameServersConfig(args: GetNameServersConfigArgs, opts?: pulumi.InvokeOptions): Promise<GetNameServersConfigResult> {
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
-    return pulumi.runtime.invoke("tailscale-native:tailnet:getNameServer", {
+    return pulumi.runtime.invoke("tailscale-native:tailnet:getNameServersConfig", {
         "tailnet": args.tailnet,
     }, opts);
 }
 
-export interface GetNameServerArgs {
+export interface GetNameServersConfigArgs {
     /**
      * For paid plans, your domain is your tailnet. For solo plans, the tailnet is the email you signed up with. So `alice@gmail.com` has the tailnet `alice@gmail.com` since `@gmail.com` is a shared email host. Alternatively, you can specify the value "-" to refer to the default tailnet of the authenticated user making the API call.
      */
     tailnet: string;
 }
 
-export interface GetNameServerResult {
+export interface GetNameServersConfigResult {
     readonly items: outputs.tailnet.NameServers;
 }
-export function getNameServerOutput(args: GetNameServerOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetNameServerResult> {
-    return pulumi.output(args).apply((a: any) => getNameServer(a, opts))
+export function getNameServersConfigOutput(args: GetNameServersConfigOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetNameServersConfigResult> {
+    return pulumi.output(args).apply((a: any) => getNameServersConfig(a, opts))
 }
 
-export interface GetNameServerOutputArgs {
+export interface GetNameServersConfigOutputArgs {
     /**
      * For paid plans, your domain is your tailnet. For solo plans, the tailnet is the email you signed up with. So `alice@gmail.com` has the tailnet `alice@gmail.com` since `@gmail.com` is a shared email host. Alternatively, you can specify the value "-" to refer to the default tailnet of the authenticated user making the API call.
      */
