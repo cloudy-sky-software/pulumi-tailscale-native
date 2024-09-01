@@ -76,7 +76,7 @@ paths:
               $ref: '#/components/schemas/SetKeyExpiry'
   /device/{id}/routes:
     get:
-      operationId: DeviceEndpoints_getRoutes
+      operationId: DeviceEndpoints_getRoutesConfig
       parameters:
         - name: id
           in: path
@@ -91,7 +91,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/DeviceRoutes'
     post:
-      operationId: DeviceEndpoints_setRoutes
+      operationId: DeviceEndpoints_setRoutesConfig
       parameters:
         - name: id
           in: path
@@ -193,7 +193,7 @@ paths:
                   - devices
   /tailnet/{tailnet}/dns/nameservers:
     get:
-      operationId: TailnetEndpoints_getNameServers
+      operationId: TailnetEndpoints_getNameServersConfig
       parameters:
         - $ref: '#/components/parameters/TailnetEndpoints.CommonParameters'
       responses:
@@ -204,7 +204,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/NameServers'
     post:
-      operationId: TailnetEndpoints_setNameServers
+      operationId: TailnetEndpoints_setNameServersConfig
       description: Replaces the list of DNS nameservers for a tailnet.
       parameters:
         - $ref: '#/components/parameters/TailnetEndpoints.CommonParameters'
@@ -223,7 +223,7 @@ paths:
               $ref: '#/components/schemas/NameServers'
   /tailnet/{tailnet}/dns/preferences:
     get:
-      operationId: TailnetEndpoints_getDNSPreferences
+      operationId: TailnetEndpoints_getDNSPreferencesConfig
       parameters:
         - $ref: '#/components/parameters/TailnetEndpoints.CommonParameters'
       responses:
@@ -234,7 +234,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/NameServersPreference'
     post:
-      operationId: TailnetEndpoints_setDNSPreferences
+      operationId: TailnetEndpoints_setDNSPreferencesConfig
       description: Replaces the DNS preferences for a tailnet.
       parameters:
         - $ref: '#/components/parameters/TailnetEndpoints.CommonParameters'
