@@ -1,4 +1,4 @@
-## v0.1.0
+## v0.1.0, v0.1.1
 
 The following resources and functions were renamed to better fit the
 semantics of the REST endpoints they use.
