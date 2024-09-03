@@ -37,6 +37,9 @@
         },
         "python": {
             "packageName": "pulumi_tailscale_native",
+            "pyproject": {
+                "enabled": true
+            },
             "requires": {
                 "pulumi": "\u003e=3.0.0,\u003c4.0.0"
             }
