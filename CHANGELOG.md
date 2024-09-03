@@ -1,3 +1,20 @@
+## v0.1.0
+
+The following resources and functions were renamed to better fit the
+semantics of the REST endpoints they use.
+
+Resources:
+
+`DNSPreferences` -> `DNSPreferencesConfig`
+`NameServers` -> `NameServersConfig`
+`Routes` -> `RoutesConfig`
+
+Functions:
+
+`getDNSPreference` -> `getDNSPreferencesConfig`
+`getNameServer` -> `getNameServersConfig`
+`getRoute` -> `getRoutesConfig`
+
 ## v0.0.14
 
 - Update pulumi-provider-framework to the latest version
