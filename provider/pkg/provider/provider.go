@@ -98,8 +98,8 @@ func (p *tailscaleProvider) OnPreInvoke(_ context.Context, _ *pulumirpc.InvokeRe
 	return nil
 }
 
-func (p *tailscaleProvider) OnPostInvoke(_ context.Context, _ *pulumirpc.InvokeRequest, outputs interface{}) (map[string]interface{}, error) {
-	return outputs.(map[string]interface{}), nil
+func (p *tailscaleProvider) OnPostInvoke(_ context.Context, _ *pulumirpc.InvokeRequest, _ interface{}) (map[string]interface{}, error) {
+	return nil, nil
 }
 
 // OnConfigure is called by the provider framework when Pulumi calls Configure on
