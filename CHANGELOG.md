@@ -1,4 +1,4 @@
-## 0.1.5
+## 0.1.5, 0.1.6
 
 Fix execution error for list-style invokes.
 
