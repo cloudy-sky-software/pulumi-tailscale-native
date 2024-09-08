@@ -11,11 +11,11 @@ namespace Pulumi.TailscaleNative.Tailnet
 {
     public static class GetDNSPreferencesConfig
     {
-        public static Task<GetDNSPreferencesConfigResult> InvokeAsync(GetDNSPreferencesConfigArgs args, InvokeOptions? options = null)
-            => global::Pulumi.Deployment.Instance.InvokeAsync<GetDNSPreferencesConfigResult>("tailscale-native:tailnet:getDNSPreferencesConfig", args ?? new GetDNSPreferencesConfigArgs(), options.WithDefaults());
+        public static Task<Outputs.NameServersPreference> InvokeAsync(GetDNSPreferencesConfigArgs args, InvokeOptions? options = null)
+            => global::Pulumi.Deployment.Instance.InvokeAsync<Outputs.NameServersPreference>("tailscale-native:tailnet:getDNSPreferencesConfig", args ?? new GetDNSPreferencesConfigArgs(), options.WithDefaults());
 
-        public static Output<GetDNSPreferencesConfigResult> Invoke(GetDNSPreferencesConfigInvokeArgs args, InvokeOptions? options = null)
-            => global::Pulumi.Deployment.Instance.Invoke<GetDNSPreferencesConfigResult>("tailscale-native:tailnet:getDNSPreferencesConfig", args ?? new GetDNSPreferencesConfigInvokeArgs(), options.WithDefaults());
+        public static Output<Outputs.NameServersPreference> Invoke(GetDNSPreferencesConfigInvokeArgs args, InvokeOptions? options = null)
+            => global::Pulumi.Deployment.Instance.Invoke<Outputs.NameServersPreference>("tailscale-native:tailnet:getDNSPreferencesConfig", args ?? new GetDNSPreferencesConfigInvokeArgs(), options.WithDefaults());
     }
 
 
@@ -45,18 +45,5 @@ namespace Pulumi.TailscaleNative.Tailnet
         {
         }
         public static new GetDNSPreferencesConfigInvokeArgs Empty => new GetDNSPreferencesConfigInvokeArgs();
-    }
-
-
-    [OutputType]
-    public sealed class GetDNSPreferencesConfigResult
-    {
-        public readonly Outputs.NameServersPreference Items;
-
-        [OutputConstructor]
-        private GetDNSPreferencesConfigResult(Outputs.NameServersPreference items)
-        {
-            Items = items;
-        }
     }
 }

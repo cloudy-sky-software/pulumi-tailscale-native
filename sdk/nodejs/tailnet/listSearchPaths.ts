@@ -7,7 +7,7 @@ import * as outputs from "../types/output";
 import * as enums from "../types/enums";
 import * as utilities from "../utilities";
 
-export function listSearchPaths(args: ListSearchPathsArgs, opts?: pulumi.InvokeOptions): Promise<ListSearchPathsResult> {
+export function listSearchPaths(args: ListSearchPathsArgs, opts?: pulumi.InvokeOptions): Promise<outputs.tailnet.DnsSearchPaths> {
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("tailscale-native:tailnet:listSearchPaths", {
@@ -21,11 +21,7 @@ export interface ListSearchPathsArgs {
      */
     tailnet: string;
 }
-
-export interface ListSearchPathsResult {
-    readonly items: outputs.tailnet.DnsSearchPaths;
-}
-export function listSearchPathsOutput(args: ListSearchPathsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<ListSearchPathsResult> {
+export function listSearchPathsOutput(args: ListSearchPathsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<outputs.tailnet.DnsSearchPaths> {
     return pulumi.output(args).apply((a: any) => listSearchPaths(a, opts))
 }
 

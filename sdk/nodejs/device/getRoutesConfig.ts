@@ -7,7 +7,7 @@ import * as outputs from "../types/output";
 import * as enums from "../types/enums";
 import * as utilities from "../utilities";
 
-export function getRoutesConfig(args: GetRoutesConfigArgs, opts?: pulumi.InvokeOptions): Promise<GetRoutesConfigResult> {
+export function getRoutesConfig(args: GetRoutesConfigArgs, opts?: pulumi.InvokeOptions): Promise<outputs.device.DeviceRoutes> {
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("tailscale-native:device:getRoutesConfig", {
@@ -18,11 +18,7 @@ export function getRoutesConfig(args: GetRoutesConfigArgs, opts?: pulumi.InvokeO
 export interface GetRoutesConfigArgs {
     id: string;
 }
-
-export interface GetRoutesConfigResult {
-    readonly items: outputs.device.DeviceRoutes;
-}
-export function getRoutesConfigOutput(args: GetRoutesConfigOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetRoutesConfigResult> {
+export function getRoutesConfigOutput(args: GetRoutesConfigOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<outputs.device.DeviceRoutes> {
     return pulumi.output(args).apply((a: any) => getRoutesConfig(a, opts))
 }
 

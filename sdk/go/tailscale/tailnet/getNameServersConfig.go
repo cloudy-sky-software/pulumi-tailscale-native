@@ -27,7 +27,8 @@ type LookupNameServersConfigArgs struct {
 }
 
 type LookupNameServersConfigResult struct {
-	Items NameServers `pulumi:"items"`
+	Dns      []string `pulumi:"dns"`
+	MagicDNS bool     `pulumi:"magicDNS"`
 }
 
 func LookupNameServersConfigOutput(ctx *pulumi.Context, args LookupNameServersConfigOutputArgs, opts ...pulumi.InvokeOption) LookupNameServersConfigResultOutput {
@@ -66,8 +67,12 @@ func (o LookupNameServersConfigResultOutput) ToLookupNameServersConfigResultOutp
 	return o
 }
 
-func (o LookupNameServersConfigResultOutput) Items() NameServersOutput {
-	return o.ApplyT(func(v LookupNameServersConfigResult) NameServers { return v.Items }).(NameServersOutput)
+func (o LookupNameServersConfigResultOutput) Dns() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v LookupNameServersConfigResult) []string { return v.Dns }).(pulumi.StringArrayOutput)
+}
+
+func (o LookupNameServersConfigResultOutput) MagicDNS() pulumi.BoolOutput {
+	return o.ApplyT(func(v LookupNameServersConfigResult) bool { return v.MagicDNS }).(pulumi.BoolOutput)
 }
 
 func init() {

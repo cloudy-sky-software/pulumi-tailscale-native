@@ -7,7 +7,7 @@ import * as outputs from "../types/output";
 import * as enums from "../types/enums";
 import * as utilities from "../utilities";
 
-export function getDevice(args: GetDeviceArgs, opts?: pulumi.InvokeOptions): Promise<GetDeviceResult> {
+export function getDevice(args: GetDeviceArgs, opts?: pulumi.InvokeOptions): Promise<outputs.device.Device> {
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("tailscale-native:device:getDevice", {
@@ -18,11 +18,7 @@ export function getDevice(args: GetDeviceArgs, opts?: pulumi.InvokeOptions): Pro
 export interface GetDeviceArgs {
     id: string;
 }
-
-export interface GetDeviceResult {
-    readonly items: outputs.device.Device;
-}
-export function getDeviceOutput(args: GetDeviceOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetDeviceResult> {
+export function getDeviceOutput(args: GetDeviceOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<outputs.device.Device> {
     return pulumi.output(args).apply((a: any) => getDevice(a, opts))
 }
 

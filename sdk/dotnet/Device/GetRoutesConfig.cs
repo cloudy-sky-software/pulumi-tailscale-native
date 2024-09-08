@@ -11,11 +11,11 @@ namespace Pulumi.TailscaleNative.Device
 {
     public static class GetRoutesConfig
     {
-        public static Task<GetRoutesConfigResult> InvokeAsync(GetRoutesConfigArgs args, InvokeOptions? options = null)
-            => global::Pulumi.Deployment.Instance.InvokeAsync<GetRoutesConfigResult>("tailscale-native:device:getRoutesConfig", args ?? new GetRoutesConfigArgs(), options.WithDefaults());
+        public static Task<Outputs.DeviceRoutes> InvokeAsync(GetRoutesConfigArgs args, InvokeOptions? options = null)
+            => global::Pulumi.Deployment.Instance.InvokeAsync<Outputs.DeviceRoutes>("tailscale-native:device:getRoutesConfig", args ?? new GetRoutesConfigArgs(), options.WithDefaults());
 
-        public static Output<GetRoutesConfigResult> Invoke(GetRoutesConfigInvokeArgs args, InvokeOptions? options = null)
-            => global::Pulumi.Deployment.Instance.Invoke<GetRoutesConfigResult>("tailscale-native:device:getRoutesConfig", args ?? new GetRoutesConfigInvokeArgs(), options.WithDefaults());
+        public static Output<Outputs.DeviceRoutes> Invoke(GetRoutesConfigInvokeArgs args, InvokeOptions? options = null)
+            => global::Pulumi.Deployment.Instance.Invoke<Outputs.DeviceRoutes>("tailscale-native:device:getRoutesConfig", args ?? new GetRoutesConfigInvokeArgs(), options.WithDefaults());
     }
 
 
@@ -39,18 +39,5 @@ namespace Pulumi.TailscaleNative.Device
         {
         }
         public static new GetRoutesConfigInvokeArgs Empty => new GetRoutesConfigInvokeArgs();
-    }
-
-
-    [OutputType]
-    public sealed class GetRoutesConfigResult
-    {
-        public readonly Outputs.DeviceRoutes Items;
-
-        [OutputConstructor]
-        private GetRoutesConfigResult(Outputs.DeviceRoutes items)
-        {
-            Items = items;
-        }
     }
 }

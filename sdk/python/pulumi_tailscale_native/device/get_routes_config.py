@@ -6,56 +6,65 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Mapping, Optional, Sequence, Union, overload, Awaitable
 from .. import _utilities
-from . import outputs
 
 __all__ = [
-    'GetRoutesConfigResult',
-    'AwaitableGetRoutesConfigResult',
+    'DeviceRoutes',
+    'AwaitableDeviceRoutes',
     'get_routes_config',
     'get_routes_config_output',
 ]
 
 @pulumi.output_type
-class GetRoutesConfigResult:
-    def __init__(__self__, items=None):
-        if items and not isinstance(items, dict):
-            raise TypeError("Expected argument 'items' to be a dict")
-        pulumi.set(__self__, "items", items)
+class DeviceRoutes:
+    def __init__(__self__, advertised_routes=None, enabled_routes=None):
+        if advertised_routes and not isinstance(advertised_routes, list):
+            raise TypeError("Expected argument 'advertised_routes' to be a list")
+        pulumi.set(__self__, "advertised_routes", advertised_routes)
+        if enabled_routes and not isinstance(enabled_routes, list):
+            raise TypeError("Expected argument 'enabled_routes' to be a list")
+        pulumi.set(__self__, "enabled_routes", enabled_routes)
 
     @property
-    @pulumi.getter
-    def items(self) -> 'outputs.DeviceRoutes':
-        return pulumi.get(self, "items")
+    @pulumi.getter(name="advertisedRoutes")
+    def advertised_routes(self) -> Sequence[str]:
+        return pulumi.get(self, "advertised_routes")
+
+    @property
+    @pulumi.getter(name="enabledRoutes")
+    def enabled_routes(self) -> Sequence[str]:
+        return pulumi.get(self, "enabled_routes")
 
 
-class AwaitableGetRoutesConfigResult(GetRoutesConfigResult):
+class AwaitableDeviceRoutes(DeviceRoutes):
     # pylint: disable=using-constant-test
     def __await__(self):
         if False:
             yield self
-        return GetRoutesConfigResult(
-            items=self.items)
+        return DeviceRoutes(
+            advertised_routes=self.advertised_routes,
+            enabled_routes=self.enabled_routes)
 
 
 def get_routes_config(id: Optional[str] = None,
-                      opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetRoutesConfigResult:
+                      opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableDeviceRoutes:
     """
     Use this data source to access information about an existing resource.
     """
     __args__ = dict()
     __args__['id'] = id
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('tailscale-native:device:getRoutesConfig', __args__, opts=opts, typ=GetRoutesConfigResult).value
+    __ret__ = pulumi.runtime.invoke('tailscale-native:device:getRoutesConfig', __args__, opts=opts, typ=DeviceRoutes).value
 
-    return AwaitableGetRoutesConfigResult(
-        items=pulumi.get(__ret__, 'items'))
+    return AwaitableDeviceRoutes(
+        advertised_routes=pulumi.get(__ret__, 'advertised_routes'),
+        enabled_routes=pulumi.get(__ret__, 'enabled_routes'))
 
 
 @_utilities.lift_output_func(get_routes_config)
 def get_routes_config_output(id: Optional[pulumi.Input[str]] = None,
-                             opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetRoutesConfigResult]:
+                             opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[DeviceRoutes]:
     """
     Use this data source to access information about an existing resource.
     """

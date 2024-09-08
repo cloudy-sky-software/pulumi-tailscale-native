@@ -6,42 +6,105 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Mapping, Optional, Sequence, Union, overload, Awaitable
 from .. import _utilities
 from . import outputs
 from ._enums import *
 
 __all__ = [
-    'GetAclResult',
-    'AwaitableGetAclResult',
+    'Acl',
+    'AwaitableAcl',
     'get_acl',
     'get_acl_output',
 ]
 
 @pulumi.output_type
-class GetAclResult:
-    def __init__(__self__, items=None):
-        if items and not isinstance(items, dict):
-            raise TypeError("Expected argument 'items' to be a dict")
-        pulumi.set(__self__, "items", items)
+class Acl:
+    def __init__(__self__, acls=None, auto_approvers=None, groups=None, hosts=None, node_attrs=None, ssh=None, tag_owners=None, tests=None):
+        if acls and not isinstance(acls, list):
+            raise TypeError("Expected argument 'acls' to be a list")
+        pulumi.set(__self__, "acls", acls)
+        if auto_approvers and not isinstance(auto_approvers, dict):
+            raise TypeError("Expected argument 'auto_approvers' to be a dict")
+        pulumi.set(__self__, "auto_approvers", auto_approvers)
+        if groups and not isinstance(groups, dict):
+            raise TypeError("Expected argument 'groups' to be a dict")
+        pulumi.set(__self__, "groups", groups)
+        if hosts and not isinstance(hosts, dict):
+            raise TypeError("Expected argument 'hosts' to be a dict")
+        pulumi.set(__self__, "hosts", hosts)
+        if node_attrs and not isinstance(node_attrs, list):
+            raise TypeError("Expected argument 'node_attrs' to be a list")
+        pulumi.set(__self__, "node_attrs", node_attrs)
+        if ssh and not isinstance(ssh, list):
+            raise TypeError("Expected argument 'ssh' to be a list")
+        pulumi.set(__self__, "ssh", ssh)
+        if tag_owners and not isinstance(tag_owners, dict):
+            raise TypeError("Expected argument 'tag_owners' to be a dict")
+        pulumi.set(__self__, "tag_owners", tag_owners)
+        if tests and not isinstance(tests, str):
+            raise TypeError("Expected argument 'tests' to be a str")
+        pulumi.set(__self__, "tests", tests)
 
     @property
     @pulumi.getter
-    def items(self) -> 'outputs.Acl':
-        return pulumi.get(self, "items")
+    def acls(self) -> Sequence['outputs.AclRule']:
+        return pulumi.get(self, "acls")
+
+    @property
+    @pulumi.getter(name="autoApprovers")
+    def auto_approvers(self) -> Any:
+        return pulumi.get(self, "auto_approvers")
+
+    @property
+    @pulumi.getter
+    def groups(self) -> Any:
+        return pulumi.get(self, "groups")
+
+    @property
+    @pulumi.getter
+    def hosts(self) -> Any:
+        return pulumi.get(self, "hosts")
+
+    @property
+    @pulumi.getter(name="nodeAttrs")
+    def node_attrs(self) -> Sequence['outputs.NodeAttrs']:
+        return pulumi.get(self, "node_attrs")
+
+    @property
+    @pulumi.getter
+    def ssh(self) -> Sequence['outputs.SshRule']:
+        return pulumi.get(self, "ssh")
+
+    @property
+    @pulumi.getter(name="tagOwners")
+    def tag_owners(self) -> Any:
+        return pulumi.get(self, "tag_owners")
+
+    @property
+    @pulumi.getter
+    def tests(self) -> str:
+        return pulumi.get(self, "tests")
 
 
-class AwaitableGetAclResult(GetAclResult):
+class AwaitableAcl(Acl):
     # pylint: disable=using-constant-test
     def __await__(self):
         if False:
             yield self
-        return GetAclResult(
-            items=self.items)
+        return Acl(
+            acls=self.acls,
+            auto_approvers=self.auto_approvers,
+            groups=self.groups,
+            hosts=self.hosts,
+            node_attrs=self.node_attrs,
+            ssh=self.ssh,
+            tag_owners=self.tag_owners,
+            tests=self.tests)
 
 
 def get_acl(tailnet: Optional[str] = None,
-            opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetAclResult:
+            opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableAcl:
     """
     Use this data source to access information about an existing resource.
 
@@ -50,15 +113,22 @@ def get_acl(tailnet: Optional[str] = None,
     __args__ = dict()
     __args__['tailnet'] = tailnet
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('tailscale-native:tailnet:getAcl', __args__, opts=opts, typ=GetAclResult).value
+    __ret__ = pulumi.runtime.invoke('tailscale-native:tailnet:getAcl', __args__, opts=opts, typ=Acl).value
 
-    return AwaitableGetAclResult(
-        items=pulumi.get(__ret__, 'items'))
+    return AwaitableAcl(
+        acls=pulumi.get(__ret__, 'acls'),
+        auto_approvers=pulumi.get(__ret__, 'auto_approvers'),
+        groups=pulumi.get(__ret__, 'groups'),
+        hosts=pulumi.get(__ret__, 'hosts'),
+        node_attrs=pulumi.get(__ret__, 'node_attrs'),
+        ssh=pulumi.get(__ret__, 'ssh'),
+        tag_owners=pulumi.get(__ret__, 'tag_owners'),
+        tests=pulumi.get(__ret__, 'tests'))
 
 
 @_utilities.lift_output_func(get_acl)
 def get_acl_output(tailnet: Optional[pulumi.Input[str]] = None,
-                   opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetAclResult]:
+                   opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[Acl]:
     """
     Use this data source to access information about an existing resource.
 

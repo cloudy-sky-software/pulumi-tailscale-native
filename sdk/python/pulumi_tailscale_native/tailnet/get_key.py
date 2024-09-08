@@ -6,42 +6,59 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Mapping, Optional, Sequence, Union, overload, Awaitable
 from .. import _utilities
-from . import outputs
 
 __all__ = [
-    'GetKeyResult',
-    'AwaitableGetKeyResult',
+    'AuthKey',
+    'AwaitableAuthKey',
     'get_key',
     'get_key_output',
 ]
 
 @pulumi.output_type
-class GetKeyResult:
-    def __init__(__self__, items=None):
-        if items and not isinstance(items, dict):
-            raise TypeError("Expected argument 'items' to be a dict")
-        pulumi.set(__self__, "items", items)
+class AuthKey:
+    def __init__(__self__, created=None, expires=None, key=None):
+        if created and not isinstance(created, str):
+            raise TypeError("Expected argument 'created' to be a str")
+        pulumi.set(__self__, "created", created)
+        if expires and not isinstance(expires, str):
+            raise TypeError("Expected argument 'expires' to be a str")
+        pulumi.set(__self__, "expires", expires)
+        if key and not isinstance(key, str):
+            raise TypeError("Expected argument 'key' to be a str")
+        pulumi.set(__self__, "key", key)
 
     @property
     @pulumi.getter
-    def items(self) -> 'outputs.AuthKey':
-        return pulumi.get(self, "items")
+    def created(self) -> Optional[str]:
+        return pulumi.get(self, "created")
+
+    @property
+    @pulumi.getter
+    def expires(self) -> str:
+        return pulumi.get(self, "expires")
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        return pulumi.get(self, "key")
 
 
-class AwaitableGetKeyResult(GetKeyResult):
+class AwaitableAuthKey(AuthKey):
     # pylint: disable=using-constant-test
     def __await__(self):
         if False:
             yield self
-        return GetKeyResult(
-            items=self.items)
+        return AuthKey(
+            created=self.created,
+            expires=self.expires,
+            key=self.key)
 
 
 def get_key(id: Optional[str] = None,
             tailnet: Optional[str] = None,
-            opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetKeyResult:
+            opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableAuthKey:
     """
     Use this data source to access information about an existing resource.
 
@@ -51,16 +68,18 @@ def get_key(id: Optional[str] = None,
     __args__['id'] = id
     __args__['tailnet'] = tailnet
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('tailscale-native:tailnet:getKey', __args__, opts=opts, typ=GetKeyResult).value
+    __ret__ = pulumi.runtime.invoke('tailscale-native:tailnet:getKey', __args__, opts=opts, typ=AuthKey).value
 
-    return AwaitableGetKeyResult(
-        items=pulumi.get(__ret__, 'items'))
+    return AwaitableAuthKey(
+        created=pulumi.get(__ret__, 'created'),
+        expires=pulumi.get(__ret__, 'expires'),
+        key=pulumi.get(__ret__, 'key'))
 
 
 @_utilities.lift_output_func(get_key)
 def get_key_output(id: Optional[pulumi.Input[str]] = None,
                    tailnet: Optional[pulumi.Input[str]] = None,
-                   opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetKeyResult]:
+                   opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[AuthKey]:
     """
     Use this data source to access information about an existing resource.
 

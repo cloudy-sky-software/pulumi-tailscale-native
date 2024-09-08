@@ -11,11 +11,11 @@ namespace Pulumi.TailscaleNative.Tailnet
 {
     public static class GetAcl
     {
-        public static Task<GetAclResult> InvokeAsync(GetAclArgs args, InvokeOptions? options = null)
-            => global::Pulumi.Deployment.Instance.InvokeAsync<GetAclResult>("tailscale-native:tailnet:getAcl", args ?? new GetAclArgs(), options.WithDefaults());
+        public static Task<Outputs.Acl> InvokeAsync(GetAclArgs args, InvokeOptions? options = null)
+            => global::Pulumi.Deployment.Instance.InvokeAsync<Outputs.Acl>("tailscale-native:tailnet:getAcl", args ?? new GetAclArgs(), options.WithDefaults());
 
-        public static Output<GetAclResult> Invoke(GetAclInvokeArgs args, InvokeOptions? options = null)
-            => global::Pulumi.Deployment.Instance.Invoke<GetAclResult>("tailscale-native:tailnet:getAcl", args ?? new GetAclInvokeArgs(), options.WithDefaults());
+        public static Output<Outputs.Acl> Invoke(GetAclInvokeArgs args, InvokeOptions? options = null)
+            => global::Pulumi.Deployment.Instance.Invoke<Outputs.Acl>("tailscale-native:tailnet:getAcl", args ?? new GetAclInvokeArgs(), options.WithDefaults());
     }
 
 
@@ -45,18 +45,5 @@ namespace Pulumi.TailscaleNative.Tailnet
         {
         }
         public static new GetAclInvokeArgs Empty => new GetAclInvokeArgs();
-    }
-
-
-    [OutputType]
-    public sealed class GetAclResult
-    {
-        public readonly Outputs.Acl Items;
-
-        [OutputConstructor]
-        private GetAclResult(Outputs.Acl items)
-        {
-            Items = items;
-        }
     }
 }

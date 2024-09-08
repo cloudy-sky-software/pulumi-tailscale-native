@@ -7,7 +7,7 @@ import * as outputs from "../types/output";
 import * as enums from "../types/enums";
 import * as utilities from "../utilities";
 
-export function getDNSPreferencesConfig(args: GetDNSPreferencesConfigArgs, opts?: pulumi.InvokeOptions): Promise<GetDNSPreferencesConfigResult> {
+export function getDNSPreferencesConfig(args: GetDNSPreferencesConfigArgs, opts?: pulumi.InvokeOptions): Promise<outputs.tailnet.NameServersPreference> {
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("tailscale-native:tailnet:getDNSPreferencesConfig", {
@@ -21,11 +21,7 @@ export interface GetDNSPreferencesConfigArgs {
      */
     tailnet: string;
 }
-
-export interface GetDNSPreferencesConfigResult {
-    readonly items: outputs.tailnet.NameServersPreference;
-}
-export function getDNSPreferencesConfigOutput(args: GetDNSPreferencesConfigOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetDNSPreferencesConfigResult> {
+export function getDNSPreferencesConfigOutput(args: GetDNSPreferencesConfigOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<outputs.tailnet.NameServersPreference> {
     return pulumi.output(args).apply((a: any) => getDNSPreferencesConfig(a, opts))
 }
 

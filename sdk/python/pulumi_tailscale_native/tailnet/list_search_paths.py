@@ -6,41 +6,40 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Mapping, Optional, Sequence, Union, overload, Awaitable
 from .. import _utilities
-from . import outputs
 
 __all__ = [
-    'ListSearchPathsResult',
-    'AwaitableListSearchPathsResult',
+    'DnsSearchPaths',
+    'AwaitableDnsSearchPaths',
     'list_search_paths',
     'list_search_paths_output',
 ]
 
 @pulumi.output_type
-class ListSearchPathsResult:
-    def __init__(__self__, items=None):
-        if items and not isinstance(items, dict):
-            raise TypeError("Expected argument 'items' to be a dict")
-        pulumi.set(__self__, "items", items)
+class DnsSearchPaths:
+    def __init__(__self__, search_paths=None):
+        if search_paths and not isinstance(search_paths, list):
+            raise TypeError("Expected argument 'search_paths' to be a list")
+        pulumi.set(__self__, "search_paths", search_paths)
 
     @property
-    @pulumi.getter
-    def items(self) -> 'outputs.DnsSearchPaths':
-        return pulumi.get(self, "items")
+    @pulumi.getter(name="searchPaths")
+    def search_paths(self) -> Sequence[str]:
+        return pulumi.get(self, "search_paths")
 
 
-class AwaitableListSearchPathsResult(ListSearchPathsResult):
+class AwaitableDnsSearchPaths(DnsSearchPaths):
     # pylint: disable=using-constant-test
     def __await__(self):
         if False:
             yield self
-        return ListSearchPathsResult(
-            items=self.items)
+        return DnsSearchPaths(
+            search_paths=self.search_paths)
 
 
 def list_search_paths(tailnet: Optional[str] = None,
-                      opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableListSearchPathsResult:
+                      opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableDnsSearchPaths:
     """
     Use this data source to access information about an existing resource.
 
@@ -49,15 +48,15 @@ def list_search_paths(tailnet: Optional[str] = None,
     __args__ = dict()
     __args__['tailnet'] = tailnet
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('tailscale-native:tailnet:listSearchPaths', __args__, opts=opts, typ=ListSearchPathsResult).value
+    __ret__ = pulumi.runtime.invoke('tailscale-native:tailnet:listSearchPaths', __args__, opts=opts, typ=DnsSearchPaths).value
 
-    return AwaitableListSearchPathsResult(
-        items=pulumi.get(__ret__, 'items'))
+    return AwaitableDnsSearchPaths(
+        search_paths=pulumi.get(__ret__, 'search_paths'))
 
 
 @_utilities.lift_output_func(list_search_paths)
 def list_search_paths_output(tailnet: Optional[pulumi.Input[str]] = None,
-                             opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[ListSearchPathsResult]:
+                             opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[DnsSearchPaths]:
     """
     Use this data source to access information about an existing resource.
 

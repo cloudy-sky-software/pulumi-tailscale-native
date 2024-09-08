@@ -7,7 +7,7 @@ import * as outputs from "../types/output";
 import * as enums from "../types/enums";
 import * as utilities from "../utilities";
 
-export function getAcl(args: GetAclArgs, opts?: pulumi.InvokeOptions): Promise<GetAclResult> {
+export function getAcl(args: GetAclArgs, opts?: pulumi.InvokeOptions): Promise<outputs.tailnet.Acl> {
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("tailscale-native:tailnet:getAcl", {
@@ -21,11 +21,7 @@ export interface GetAclArgs {
      */
     tailnet: string;
 }
-
-export interface GetAclResult {
-    readonly items: outputs.tailnet.Acl;
-}
-export function getAclOutput(args: GetAclOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetAclResult> {
+export function getAclOutput(args: GetAclOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<outputs.tailnet.Acl> {
     return pulumi.output(args).apply((a: any) => getAcl(a, opts))
 }
 

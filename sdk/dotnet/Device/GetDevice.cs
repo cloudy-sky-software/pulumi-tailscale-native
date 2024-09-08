@@ -11,11 +11,11 @@ namespace Pulumi.TailscaleNative.Device
 {
     public static class GetDevice
     {
-        public static Task<GetDeviceResult> InvokeAsync(GetDeviceArgs args, InvokeOptions? options = null)
-            => global::Pulumi.Deployment.Instance.InvokeAsync<GetDeviceResult>("tailscale-native:device:getDevice", args ?? new GetDeviceArgs(), options.WithDefaults());
+        public static Task<Outputs.Device> InvokeAsync(GetDeviceArgs args, InvokeOptions? options = null)
+            => global::Pulumi.Deployment.Instance.InvokeAsync<Outputs.Device>("tailscale-native:device:getDevice", args ?? new GetDeviceArgs(), options.WithDefaults());
 
-        public static Output<GetDeviceResult> Invoke(GetDeviceInvokeArgs args, InvokeOptions? options = null)
-            => global::Pulumi.Deployment.Instance.Invoke<GetDeviceResult>("tailscale-native:device:getDevice", args ?? new GetDeviceInvokeArgs(), options.WithDefaults());
+        public static Output<Outputs.Device> Invoke(GetDeviceInvokeArgs args, InvokeOptions? options = null)
+            => global::Pulumi.Deployment.Instance.Invoke<Outputs.Device>("tailscale-native:device:getDevice", args ?? new GetDeviceInvokeArgs(), options.WithDefaults());
     }
 
 
@@ -39,18 +39,5 @@ namespace Pulumi.TailscaleNative.Device
         {
         }
         public static new GetDeviceInvokeArgs Empty => new GetDeviceInvokeArgs();
-    }
-
-
-    [OutputType]
-    public sealed class GetDeviceResult
-    {
-        public readonly Outputs.Device Items;
-
-        [OutputConstructor]
-        private GetDeviceResult(Outputs.Device items)
-        {
-            Items = items;
-        }
     }
 }

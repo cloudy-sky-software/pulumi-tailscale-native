@@ -28,7 +28,9 @@ type LookupKeyArgs struct {
 }
 
 type LookupKeyResult struct {
-	Items AuthKey `pulumi:"items"`
+	Created *string `pulumi:"created"`
+	Expires string  `pulumi:"expires"`
+	Key     string  `pulumi:"key"`
 }
 
 func LookupKeyOutput(ctx *pulumi.Context, args LookupKeyOutputArgs, opts ...pulumi.InvokeOption) LookupKeyResultOutput {
@@ -68,8 +70,36 @@ func (o LookupKeyResultOutput) ToLookupKeyResultOutputWithContext(ctx context.Co
 	return o
 }
 
-func (o LookupKeyResultOutput) Items() AuthKeyOutput {
-	return o.ApplyT(func(v LookupKeyResult) AuthKey { return v.Items }).(AuthKeyOutput)
+func (o LookupKeyResultOutput) Created() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupKeyResult) *string { return v.Created }).(pulumi.StringPtrOutput)
+}
+
+func (o LookupKeyResultOutput) Expires() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupKeyResult) string { return v.Expires }).(pulumi.StringOutput)
+}
+
+func (o LookupKeyResultOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupKeyResult) string { return v.Key }).(pulumi.StringOutput)
+}
+
+type LookupKeyResultArrayOutput struct{ *pulumi.OutputState }
+
+func (LookupKeyResultArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]LookupKeyResult)(nil)).Elem()
+}
+
+func (o LookupKeyResultArrayOutput) ToLookupKeyResultArrayOutput() LookupKeyResultArrayOutput {
+	return o
+}
+
+func (o LookupKeyResultArrayOutput) ToLookupKeyResultArrayOutputWithContext(ctx context.Context) LookupKeyResultArrayOutput {
+	return o
+}
+
+func (o LookupKeyResultArrayOutput) Index(i pulumi.IntInput) LookupKeyResultOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) LookupKeyResult {
+		return vs[0].([]LookupKeyResult)[vs[1].(int)]
+	}).(LookupKeyResultOutput)
 }
 
 func init() {
