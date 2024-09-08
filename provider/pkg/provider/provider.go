@@ -98,15 +98,7 @@ func (p *tailscaleProvider) OnPreInvoke(_ context.Context, _ *pulumirpc.InvokeRe
 	return nil
 }
 
-func (p *tailscaleProvider) OnPostInvoke(_ context.Context, req *pulumirpc.InvokeRequest, outputs interface{}) (map[string]interface{}, error) {
-	invokeTypeToken := req.GetTok()
-
-	if strings.Contains(invokeTypeToken, ":list") {
-		m := make(map[string]interface{})
-		m["items"] = outputs
-		return m, nil
-	}
-
+func (p *tailscaleProvider) OnPostInvoke(_ context.Context, _ *pulumirpc.InvokeRequest, outputs interface{}) (map[string]interface{}, error) {
 	return outputs.(map[string]interface{}), nil
 }
 
