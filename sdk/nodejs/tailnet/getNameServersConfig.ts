@@ -7,7 +7,7 @@ import * as outputs from "../types/output";
 import * as enums from "../types/enums";
 import * as utilities from "../utilities";
 
-export function getNameServersConfig(args: GetNameServersConfigArgs, opts?: pulumi.InvokeOptions): Promise<GetNameServersConfigResult> {
+export function getNameServersConfig(args: GetNameServersConfigArgs, opts?: pulumi.InvokeOptions): Promise<outputs.tailnet.NameServers> {
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("tailscale-native:tailnet:getNameServersConfig", {
@@ -21,11 +21,7 @@ export interface GetNameServersConfigArgs {
      */
     tailnet: string;
 }
-
-export interface GetNameServersConfigResult {
-    readonly items: outputs.tailnet.NameServers;
-}
-export function getNameServersConfigOutput(args: GetNameServersConfigOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetNameServersConfigResult> {
+export function getNameServersConfigOutput(args: GetNameServersConfigOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<outputs.tailnet.NameServers> {
     return pulumi.output(args).apply((a: any) => getNameServersConfig(a, opts))
 }
 

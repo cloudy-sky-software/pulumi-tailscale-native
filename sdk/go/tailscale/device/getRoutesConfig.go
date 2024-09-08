@@ -26,7 +26,8 @@ type LookupRoutesConfigArgs struct {
 }
 
 type LookupRoutesConfigResult struct {
-	Items DeviceRoutes `pulumi:"items"`
+	AdvertisedRoutes []string `pulumi:"advertisedRoutes"`
+	EnabledRoutes    []string `pulumi:"enabledRoutes"`
 }
 
 func LookupRoutesConfigOutput(ctx *pulumi.Context, args LookupRoutesConfigOutputArgs, opts ...pulumi.InvokeOption) LookupRoutesConfigResultOutput {
@@ -64,8 +65,12 @@ func (o LookupRoutesConfigResultOutput) ToLookupRoutesConfigResultOutputWithCont
 	return o
 }
 
-func (o LookupRoutesConfigResultOutput) Items() DeviceRoutesOutput {
-	return o.ApplyT(func(v LookupRoutesConfigResult) DeviceRoutes { return v.Items }).(DeviceRoutesOutput)
+func (o LookupRoutesConfigResultOutput) AdvertisedRoutes() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v LookupRoutesConfigResult) []string { return v.AdvertisedRoutes }).(pulumi.StringArrayOutput)
+}
+
+func (o LookupRoutesConfigResultOutput) EnabledRoutes() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v LookupRoutesConfigResult) []string { return v.EnabledRoutes }).(pulumi.StringArrayOutput)
 }
 
 func init() {

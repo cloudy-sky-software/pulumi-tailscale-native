@@ -6,41 +6,41 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Mapping, Optional, Sequence, Union, overload, Awaitable
 from .. import _utilities
 from . import outputs
 
 __all__ = [
-    'ListDevicesResult',
-    'AwaitableListDevicesResult',
+    'ListDevicesProperties',
+    'AwaitableListDevicesProperties',
     'list_devices',
     'list_devices_output',
 ]
 
 @pulumi.output_type
-class ListDevicesResult:
-    def __init__(__self__, items=None):
-        if items and not isinstance(items, dict):
-            raise TypeError("Expected argument 'items' to be a dict")
-        pulumi.set(__self__, "items", items)
+class ListDevicesProperties:
+    def __init__(__self__, devices=None):
+        if devices and not isinstance(devices, list):
+            raise TypeError("Expected argument 'devices' to be a list")
+        pulumi.set(__self__, "devices", devices)
 
     @property
     @pulumi.getter
-    def items(self) -> 'outputs.ListDevicesProperties':
-        return pulumi.get(self, "items")
+    def devices(self) -> Sequence['outputs.Device']:
+        return pulumi.get(self, "devices")
 
 
-class AwaitableListDevicesResult(ListDevicesResult):
+class AwaitableListDevicesProperties(ListDevicesProperties):
     # pylint: disable=using-constant-test
     def __await__(self):
         if False:
             yield self
-        return ListDevicesResult(
-            items=self.items)
+        return ListDevicesProperties(
+            devices=self.devices)
 
 
 def list_devices(tailnet: Optional[str] = None,
-                 opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableListDevicesResult:
+                 opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableListDevicesProperties:
     """
     Use this data source to access information about an existing resource.
 
@@ -49,15 +49,15 @@ def list_devices(tailnet: Optional[str] = None,
     __args__ = dict()
     __args__['tailnet'] = tailnet
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('tailscale-native:tailnet:listDevices', __args__, opts=opts, typ=ListDevicesResult).value
+    __ret__ = pulumi.runtime.invoke('tailscale-native:tailnet:listDevices', __args__, opts=opts, typ=ListDevicesProperties).value
 
-    return AwaitableListDevicesResult(
-        items=pulumi.get(__ret__, 'items'))
+    return AwaitableListDevicesProperties(
+        devices=pulumi.get(__ret__, 'devices'))
 
 
 @_utilities.lift_output_func(list_devices)
 def list_devices_output(tailnet: Optional[pulumi.Input[str]] = None,
-                        opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[ListDevicesResult]:
+                        opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[ListDevicesProperties]:
     """
     Use this data source to access information about an existing resource.
 

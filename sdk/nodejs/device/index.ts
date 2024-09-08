@@ -10,12 +10,12 @@ export type AuthorizeDevice = import("./authorizeDevice").AuthorizeDevice;
 export const AuthorizeDevice: typeof import("./authorizeDevice").AuthorizeDevice = null as any;
 utilities.lazyLoad(exports, ["AuthorizeDevice"], () => require("./authorizeDevice"));
 
-export { GetDeviceArgs, GetDeviceResult, GetDeviceOutputArgs } from "./getDevice";
+export { GetDeviceArgs, GetDeviceOutputArgs } from "./getDevice";
 export const getDevice: typeof import("./getDevice").getDevice = null as any;
 export const getDeviceOutput: typeof import("./getDevice").getDeviceOutput = null as any;
 utilities.lazyLoad(exports, ["getDevice","getDeviceOutput"], () => require("./getDevice"));
 
-export { GetRoutesConfigArgs, GetRoutesConfigResult, GetRoutesConfigOutputArgs } from "./getRoutesConfig";
+export { GetRoutesConfigArgs, GetRoutesConfigOutputArgs } from "./getRoutesConfig";
 export const getRoutesConfig: typeof import("./getRoutesConfig").getRoutesConfig = null as any;
 export const getRoutesConfigOutput: typeof import("./getRoutesConfig").getRoutesConfigOutput = null as any;
 utilities.lazyLoad(exports, ["getRoutesConfig","getRoutesConfigOutput"], () => require("./getRoutesConfig"));

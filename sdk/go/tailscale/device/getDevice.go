@@ -26,7 +26,26 @@ type GetDeviceArgs struct {
 }
 
 type GetDeviceResult struct {
-	Items Device `pulumi:"items"`
+	Addresses                 []string           `pulumi:"addresses"`
+	AdvertisedRoutes          []string           `pulumi:"advertisedRoutes"`
+	Authorized                bool               `pulumi:"authorized"`
+	BlocksIncomingConnections bool               `pulumi:"blocksIncomingConnections"`
+	ClientConnectivity        ClientConnectivity `pulumi:"clientConnectivity"`
+	ClientVersion             string             `pulumi:"clientVersion"`
+	Created                   string             `pulumi:"created"`
+	EnabledRoutes             []string           `pulumi:"enabledRoutes"`
+	Expires                   string             `pulumi:"expires"`
+	Hostname                  string             `pulumi:"hostname"`
+	Id                        string             `pulumi:"id"`
+	IsExternal                bool               `pulumi:"isExternal"`
+	KeyExpiryDisabled         bool               `pulumi:"keyExpiryDisabled"`
+	LastSeen                  string             `pulumi:"lastSeen"`
+	MachineKey                string             `pulumi:"machineKey"`
+	Name                      string             `pulumi:"name"`
+	NodeKey                   string             `pulumi:"nodeKey"`
+	Os                        string             `pulumi:"os"`
+	UpdateAvailable           bool               `pulumi:"updateAvailable"`
+	User                      string             `pulumi:"user"`
 }
 
 func GetDeviceOutput(ctx *pulumi.Context, args GetDeviceOutputArgs, opts ...pulumi.InvokeOption) GetDeviceResultOutput {
@@ -64,8 +83,84 @@ func (o GetDeviceResultOutput) ToGetDeviceResultOutputWithContext(ctx context.Co
 	return o
 }
 
-func (o GetDeviceResultOutput) Items() DeviceOutput {
-	return o.ApplyT(func(v GetDeviceResult) Device { return v.Items }).(DeviceOutput)
+func (o GetDeviceResultOutput) Addresses() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetDeviceResult) []string { return v.Addresses }).(pulumi.StringArrayOutput)
+}
+
+func (o GetDeviceResultOutput) AdvertisedRoutes() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetDeviceResult) []string { return v.AdvertisedRoutes }).(pulumi.StringArrayOutput)
+}
+
+func (o GetDeviceResultOutput) Authorized() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetDeviceResult) bool { return v.Authorized }).(pulumi.BoolOutput)
+}
+
+func (o GetDeviceResultOutput) BlocksIncomingConnections() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetDeviceResult) bool { return v.BlocksIncomingConnections }).(pulumi.BoolOutput)
+}
+
+func (o GetDeviceResultOutput) ClientConnectivity() ClientConnectivityOutput {
+	return o.ApplyT(func(v GetDeviceResult) ClientConnectivity { return v.ClientConnectivity }).(ClientConnectivityOutput)
+}
+
+func (o GetDeviceResultOutput) ClientVersion() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDeviceResult) string { return v.ClientVersion }).(pulumi.StringOutput)
+}
+
+func (o GetDeviceResultOutput) Created() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDeviceResult) string { return v.Created }).(pulumi.StringOutput)
+}
+
+func (o GetDeviceResultOutput) EnabledRoutes() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetDeviceResult) []string { return v.EnabledRoutes }).(pulumi.StringArrayOutput)
+}
+
+func (o GetDeviceResultOutput) Expires() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDeviceResult) string { return v.Expires }).(pulumi.StringOutput)
+}
+
+func (o GetDeviceResultOutput) Hostname() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDeviceResult) string { return v.Hostname }).(pulumi.StringOutput)
+}
+
+func (o GetDeviceResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDeviceResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o GetDeviceResultOutput) IsExternal() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetDeviceResult) bool { return v.IsExternal }).(pulumi.BoolOutput)
+}
+
+func (o GetDeviceResultOutput) KeyExpiryDisabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetDeviceResult) bool { return v.KeyExpiryDisabled }).(pulumi.BoolOutput)
+}
+
+func (o GetDeviceResultOutput) LastSeen() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDeviceResult) string { return v.LastSeen }).(pulumi.StringOutput)
+}
+
+func (o GetDeviceResultOutput) MachineKey() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDeviceResult) string { return v.MachineKey }).(pulumi.StringOutput)
+}
+
+func (o GetDeviceResultOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDeviceResult) string { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o GetDeviceResultOutput) NodeKey() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDeviceResult) string { return v.NodeKey }).(pulumi.StringOutput)
+}
+
+func (o GetDeviceResultOutput) Os() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDeviceResult) string { return v.Os }).(pulumi.StringOutput)
+}
+
+func (o GetDeviceResultOutput) UpdateAvailable() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetDeviceResult) bool { return v.UpdateAvailable }).(pulumi.BoolOutput)
+}
+
+func (o GetDeviceResultOutput) User() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDeviceResult) string { return v.User }).(pulumi.StringOutput)
 }
 
 func init() {

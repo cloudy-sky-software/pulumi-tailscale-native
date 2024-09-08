@@ -11,11 +11,11 @@ namespace Pulumi.TailscaleNative.Tailnet
 {
     public static class ListSearchPaths
     {
-        public static Task<ListSearchPathsResult> InvokeAsync(ListSearchPathsArgs args, InvokeOptions? options = null)
-            => global::Pulumi.Deployment.Instance.InvokeAsync<ListSearchPathsResult>("tailscale-native:tailnet:listSearchPaths", args ?? new ListSearchPathsArgs(), options.WithDefaults());
+        public static Task<Outputs.DnsSearchPaths> InvokeAsync(ListSearchPathsArgs args, InvokeOptions? options = null)
+            => global::Pulumi.Deployment.Instance.InvokeAsync<Outputs.DnsSearchPaths>("tailscale-native:tailnet:listSearchPaths", args ?? new ListSearchPathsArgs(), options.WithDefaults());
 
-        public static Output<ListSearchPathsResult> Invoke(ListSearchPathsInvokeArgs args, InvokeOptions? options = null)
-            => global::Pulumi.Deployment.Instance.Invoke<ListSearchPathsResult>("tailscale-native:tailnet:listSearchPaths", args ?? new ListSearchPathsInvokeArgs(), options.WithDefaults());
+        public static Output<Outputs.DnsSearchPaths> Invoke(ListSearchPathsInvokeArgs args, InvokeOptions? options = null)
+            => global::Pulumi.Deployment.Instance.Invoke<Outputs.DnsSearchPaths>("tailscale-native:tailnet:listSearchPaths", args ?? new ListSearchPathsInvokeArgs(), options.WithDefaults());
     }
 
 
@@ -45,18 +45,5 @@ namespace Pulumi.TailscaleNative.Tailnet
         {
         }
         public static new ListSearchPathsInvokeArgs Empty => new ListSearchPathsInvokeArgs();
-    }
-
-
-    [OutputType]
-    public sealed class ListSearchPathsResult
-    {
-        public readonly Outputs.DnsSearchPaths Items;
-
-        [OutputConstructor]
-        private ListSearchPathsResult(Outputs.DnsSearchPaths items)
-        {
-            Items = items;
-        }
     }
 }

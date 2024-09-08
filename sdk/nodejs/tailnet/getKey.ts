@@ -7,7 +7,7 @@ import * as outputs from "../types/output";
 import * as enums from "../types/enums";
 import * as utilities from "../utilities";
 
-export function getKey(args: GetKeyArgs, opts?: pulumi.InvokeOptions): Promise<GetKeyResult> {
+export function getKey(args: GetKeyArgs, opts?: pulumi.InvokeOptions): Promise<outputs.tailnet.AuthKey> {
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("tailscale-native:tailnet:getKey", {
@@ -23,11 +23,7 @@ export interface GetKeyArgs {
      */
     tailnet: string;
 }
-
-export interface GetKeyResult {
-    readonly items: outputs.tailnet.AuthKey;
-}
-export function getKeyOutput(args: GetKeyOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetKeyResult> {
+export function getKeyOutput(args: GetKeyOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<outputs.tailnet.AuthKey> {
     return pulumi.output(args).apply((a: any) => getKey(a, opts))
 }
 

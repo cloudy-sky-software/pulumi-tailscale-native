@@ -11,11 +11,11 @@ namespace Pulumi.TailscaleNative.Tailnet
 {
     public static class ListDevices
     {
-        public static Task<ListDevicesResult> InvokeAsync(ListDevicesArgs args, InvokeOptions? options = null)
-            => global::Pulumi.Deployment.Instance.InvokeAsync<ListDevicesResult>("tailscale-native:tailnet:listDevices", args ?? new ListDevicesArgs(), options.WithDefaults());
+        public static Task<Outputs.ListDevicesProperties> InvokeAsync(ListDevicesArgs args, InvokeOptions? options = null)
+            => global::Pulumi.Deployment.Instance.InvokeAsync<Outputs.ListDevicesProperties>("tailscale-native:tailnet:listDevices", args ?? new ListDevicesArgs(), options.WithDefaults());
 
-        public static Output<ListDevicesResult> Invoke(ListDevicesInvokeArgs args, InvokeOptions? options = null)
-            => global::Pulumi.Deployment.Instance.Invoke<ListDevicesResult>("tailscale-native:tailnet:listDevices", args ?? new ListDevicesInvokeArgs(), options.WithDefaults());
+        public static Output<Outputs.ListDevicesProperties> Invoke(ListDevicesInvokeArgs args, InvokeOptions? options = null)
+            => global::Pulumi.Deployment.Instance.Invoke<Outputs.ListDevicesProperties>("tailscale-native:tailnet:listDevices", args ?? new ListDevicesInvokeArgs(), options.WithDefaults());
     }
 
 
@@ -45,18 +45,5 @@ namespace Pulumi.TailscaleNative.Tailnet
         {
         }
         public static new ListDevicesInvokeArgs Empty => new ListDevicesInvokeArgs();
-    }
-
-
-    [OutputType]
-    public sealed class ListDevicesResult
-    {
-        public readonly Outputs.ListDevicesProperties Items;
-
-        [OutputConstructor]
-        private ListDevicesResult(Outputs.ListDevicesProperties items)
-        {
-            Items = items;
-        }
     }
 }

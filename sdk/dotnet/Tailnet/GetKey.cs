@@ -11,11 +11,11 @@ namespace Pulumi.TailscaleNative.Tailnet
 {
     public static class GetKey
     {
-        public static Task<GetKeyResult> InvokeAsync(GetKeyArgs args, InvokeOptions? options = null)
-            => global::Pulumi.Deployment.Instance.InvokeAsync<GetKeyResult>("tailscale-native:tailnet:getKey", args ?? new GetKeyArgs(), options.WithDefaults());
+        public static Task<Outputs.AuthKey> InvokeAsync(GetKeyArgs args, InvokeOptions? options = null)
+            => global::Pulumi.Deployment.Instance.InvokeAsync<Outputs.AuthKey>("tailscale-native:tailnet:getKey", args ?? new GetKeyArgs(), options.WithDefaults());
 
-        public static Output<GetKeyResult> Invoke(GetKeyInvokeArgs args, InvokeOptions? options = null)
-            => global::Pulumi.Deployment.Instance.Invoke<GetKeyResult>("tailscale-native:tailnet:getKey", args ?? new GetKeyInvokeArgs(), options.WithDefaults());
+        public static Output<Outputs.AuthKey> Invoke(GetKeyInvokeArgs args, InvokeOptions? options = null)
+            => global::Pulumi.Deployment.Instance.Invoke<Outputs.AuthKey>("tailscale-native:tailnet:getKey", args ?? new GetKeyInvokeArgs(), options.WithDefaults());
     }
 
 
@@ -51,18 +51,5 @@ namespace Pulumi.TailscaleNative.Tailnet
         {
         }
         public static new GetKeyInvokeArgs Empty => new GetKeyInvokeArgs();
-    }
-
-
-    [OutputType]
-    public sealed class GetKeyResult
-    {
-        public readonly Outputs.AuthKey Items;
-
-        [OutputConstructor]
-        private GetKeyResult(Outputs.AuthKey items)
-        {
-            Items = items;
-        }
     }
 }

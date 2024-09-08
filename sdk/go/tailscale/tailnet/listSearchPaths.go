@@ -27,7 +27,7 @@ type ListSearchPathsArgs struct {
 }
 
 type ListSearchPathsResult struct {
-	Items DnsSearchPaths `pulumi:"items"`
+	SearchPaths []string `pulumi:"searchPaths"`
 }
 
 func ListSearchPathsOutput(ctx *pulumi.Context, args ListSearchPathsOutputArgs, opts ...pulumi.InvokeOption) ListSearchPathsResultOutput {
@@ -66,8 +66,8 @@ func (o ListSearchPathsResultOutput) ToListSearchPathsResultOutputWithContext(ct
 	return o
 }
 
-func (o ListSearchPathsResultOutput) Items() DnsSearchPathsOutput {
-	return o.ApplyT(func(v ListSearchPathsResult) DnsSearchPaths { return v.Items }).(DnsSearchPathsOutput)
+func (o ListSearchPathsResultOutput) SearchPaths() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v ListSearchPathsResult) []string { return v.SearchPaths }).(pulumi.StringArrayOutput)
 }
 
 func init() {

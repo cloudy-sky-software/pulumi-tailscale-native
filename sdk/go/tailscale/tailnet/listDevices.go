@@ -27,7 +27,7 @@ type ListDevicesArgs struct {
 }
 
 type ListDevicesResult struct {
-	Items ListDevicesProperties `pulumi:"items"`
+	Devices []Device `pulumi:"devices"`
 }
 
 func ListDevicesOutput(ctx *pulumi.Context, args ListDevicesOutputArgs, opts ...pulumi.InvokeOption) ListDevicesResultOutput {
@@ -66,8 +66,8 @@ func (o ListDevicesResultOutput) ToListDevicesResultOutputWithContext(ctx contex
 	return o
 }
 
-func (o ListDevicesResultOutput) Items() ListDevicesPropertiesOutput {
-	return o.ApplyT(func(v ListDevicesResult) ListDevicesProperties { return v.Items }).(ListDevicesPropertiesOutput)
+func (o ListDevicesResultOutput) Devices() DeviceArrayOutput {
+	return o.ApplyT(func(v ListDevicesResult) []Device { return v.Devices }).(DeviceArrayOutput)
 }
 
 func init() {

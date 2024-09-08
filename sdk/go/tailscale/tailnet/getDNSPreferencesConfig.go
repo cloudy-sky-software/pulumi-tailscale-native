@@ -27,7 +27,7 @@ type LookupDNSPreferencesConfigArgs struct {
 }
 
 type LookupDNSPreferencesConfigResult struct {
-	Items NameServersPreference `pulumi:"items"`
+	MagicDNS bool `pulumi:"magicDNS"`
 }
 
 func LookupDNSPreferencesConfigOutput(ctx *pulumi.Context, args LookupDNSPreferencesConfigOutputArgs, opts ...pulumi.InvokeOption) LookupDNSPreferencesConfigResultOutput {
@@ -66,8 +66,8 @@ func (o LookupDNSPreferencesConfigResultOutput) ToLookupDNSPreferencesConfigResu
 	return o
 }
 
-func (o LookupDNSPreferencesConfigResultOutput) Items() NameServersPreferenceOutput {
-	return o.ApplyT(func(v LookupDNSPreferencesConfigResult) NameServersPreference { return v.Items }).(NameServersPreferenceOutput)
+func (o LookupDNSPreferencesConfigResultOutput) MagicDNS() pulumi.BoolOutput {
+	return o.ApplyT(func(v LookupDNSPreferencesConfigResult) bool { return v.MagicDNS }).(pulumi.BoolOutput)
 }
 
 func init() {

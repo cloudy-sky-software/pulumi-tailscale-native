@@ -1111,14 +1111,7 @@
                 ]
             },
             "outputs": {
-                "properties": {
-                    "items": {
-                        "$ref": "#/types/tailscale-native:device:Device"
-                    }
-                },
-                "required": [
-                    "items"
-                ]
+                "$ref": "#/types/tailscale-native:device:Device"
             }
         },
         "tailscale-native:device:getRoutesConfig": {
@@ -1133,14 +1126,7 @@
                 ]
             },
             "outputs": {
-                "properties": {
-                    "items": {
-                        "$ref": "#/types/tailscale-native:device:DeviceRoutes"
-                    }
-                },
-                "required": [
-                    "items"
-                ]
+                "$ref": "#/types/tailscale-native:device:DeviceRoutes"
             }
         },
         "tailscale-native:tailnet:getAcl": {
@@ -1156,14 +1142,7 @@
                 ]
             },
             "outputs": {
-                "properties": {
-                    "items": {
-                        "$ref": "#/types/tailscale-native:tailnet:Acl"
-                    }
-                },
-                "required": [
-                    "items"
-                ]
+                "$ref": "#/types/tailscale-native:tailnet:Acl"
             }
         },
         "tailscale-native:tailnet:getDNSPreferencesConfig": {
@@ -1179,14 +1158,7 @@
                 ]
             },
             "outputs": {
-                "properties": {
-                    "items": {
-                        "$ref": "#/types/tailscale-native:tailnet:NameServersPreference"
-                    }
-                },
-                "required": [
-                    "items"
-                ]
+                "$ref": "#/types/tailscale-native:tailnet:NameServersPreference"
             }
         },
         "tailscale-native:tailnet:getKey": {
@@ -1206,14 +1178,7 @@
                 ]
             },
             "outputs": {
-                "properties": {
-                    "items": {
-                        "$ref": "#/types/tailscale-native:tailnet:AuthKey"
-                    }
-                },
-                "required": [
-                    "items"
-                ]
+                "$ref": "#/types/tailscale-native:tailnet:AuthKey"
             }
         },
         "tailscale-native:tailnet:getNameServersConfig": {
@@ -1229,14 +1194,7 @@
                 ]
             },
             "outputs": {
-                "properties": {
-                    "items": {
-                        "$ref": "#/types/tailscale-native:tailnet:NameServers"
-                    }
-                },
-                "required": [
-                    "items"
-                ]
+                "$ref": "#/types/tailscale-native:tailnet:NameServers"
             }
         },
         "tailscale-native:tailnet:listDevices": {
@@ -1252,14 +1210,7 @@
                 ]
             },
             "outputs": {
-                "properties": {
-                    "items": {
-                        "$ref": "#/types/tailscale-native:tailnet:ListDevicesProperties"
-                    }
-                },
-                "required": [
-                    "items"
-                ]
+                "$ref": "#/types/tailscale-native:tailnet:ListDevicesProperties"
             }
         },
         "tailscale-native:tailnet:listKeys": {
@@ -1277,10 +1228,10 @@
             "outputs": {
                 "properties": {
                     "items": {
-                        "type": "array",
                         "items": {
                             "$ref": "#/types/tailscale-native:tailnet:AuthKey"
-                        }
+                        },
+                        "type": "array"
                     }
                 },
                 "required": [
@@ -1301,14 +1252,7 @@
                 ]
             },
             "outputs": {
-                "properties": {
-                    "items": {
-                        "$ref": "#/types/tailscale-native:tailnet:DnsSearchPaths"
-                    }
-                },
-                "required": [
-                    "items"
-                ]
+                "$ref": "#/types/tailscale-native:tailnet:DnsSearchPaths"
             }
         }
     }

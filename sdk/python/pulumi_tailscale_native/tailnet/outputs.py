@@ -12,7 +12,6 @@ from . import outputs
 from ._enums import *
 
 __all__ = [
-    'Acl',
     'AclRule',
     'AuthKey',
     'ClientConnectivity',
@@ -20,75 +19,10 @@ __all__ = [
     'CreateKey',
     'Device',
     'DeviceKeyCapabilities',
-    'DnsSearchPaths',
     'KeyCapabilities',
-    'ListDevicesProperties',
-    'NameServers',
-    'NameServersPreference',
     'NodeAttrs',
     'SshRule',
 ]
-
-@pulumi.output_type
-class Acl(dict):
-    def __init__(__self__, *,
-                 acls: Sequence['outputs.AclRule'],
-                 auto_approvers: Any,
-                 groups: Any,
-                 hosts: Any,
-                 node_attrs: Sequence['outputs.NodeAttrs'],
-                 ssh: Sequence['outputs.SshRule'],
-                 tag_owners: Any,
-                 tests: str):
-        pulumi.set(__self__, "acls", acls)
-        pulumi.set(__self__, "auto_approvers", auto_approvers)
-        pulumi.set(__self__, "groups", groups)
-        pulumi.set(__self__, "hosts", hosts)
-        pulumi.set(__self__, "node_attrs", node_attrs)
-        pulumi.set(__self__, "ssh", ssh)
-        pulumi.set(__self__, "tag_owners", tag_owners)
-        pulumi.set(__self__, "tests", tests)
-
-    @property
-    @pulumi.getter
-    def acls(self) -> Sequence['outputs.AclRule']:
-        return pulumi.get(self, "acls")
-
-    @property
-    @pulumi.getter(name="autoApprovers")
-    def auto_approvers(self) -> Any:
-        return pulumi.get(self, "auto_approvers")
-
-    @property
-    @pulumi.getter
-    def groups(self) -> Any:
-        return pulumi.get(self, "groups")
-
-    @property
-    @pulumi.getter
-    def hosts(self) -> Any:
-        return pulumi.get(self, "hosts")
-
-    @property
-    @pulumi.getter(name="nodeAttrs")
-    def node_attrs(self) -> Sequence['outputs.NodeAttrs']:
-        return pulumi.get(self, "node_attrs")
-
-    @property
-    @pulumi.getter
-    def ssh(self) -> Sequence['outputs.SshRule']:
-        return pulumi.get(self, "ssh")
-
-    @property
-    @pulumi.getter(name="tagOwners")
-    def tag_owners(self) -> Any:
-        return pulumi.get(self, "tag_owners")
-
-    @property
-    @pulumi.getter
-    def tests(self) -> str:
-        return pulumi.get(self, "tests")
-
 
 @pulumi.output_type
 class AclRule(dict):
@@ -431,18 +365,6 @@ class DeviceKeyCapabilities(dict):
 
 
 @pulumi.output_type
-class DnsSearchPaths(dict):
-    def __init__(__self__, *,
-                 search_paths: Sequence[str]):
-        pulumi.set(__self__, "search_paths", search_paths)
-
-    @property
-    @pulumi.getter(name="searchPaths")
-    def search_paths(self) -> Sequence[str]:
-        return pulumi.get(self, "search_paths")
-
-
-@pulumi.output_type
 class KeyCapabilities(dict):
     def __init__(__self__, *,
                  devices: 'outputs.DeviceKeyCapabilities'):
@@ -452,49 +374,6 @@ class KeyCapabilities(dict):
     @pulumi.getter
     def devices(self) -> 'outputs.DeviceKeyCapabilities':
         return pulumi.get(self, "devices")
-
-
-@pulumi.output_type
-class ListDevicesProperties(dict):
-    def __init__(__self__, *,
-                 devices: Sequence['outputs.Device']):
-        pulumi.set(__self__, "devices", devices)
-
-    @property
-    @pulumi.getter
-    def devices(self) -> Sequence['outputs.Device']:
-        return pulumi.get(self, "devices")
-
-
-@pulumi.output_type
-class NameServers(dict):
-    def __init__(__self__, *,
-                 dns: Sequence[str],
-                 magic_dns: bool):
-        pulumi.set(__self__, "dns", dns)
-        pulumi.set(__self__, "magic_dns", magic_dns)
-
-    @property
-    @pulumi.getter
-    def dns(self) -> Sequence[str]:
-        return pulumi.get(self, "dns")
-
-    @property
-    @pulumi.getter(name="magicDNS")
-    def magic_dns(self) -> bool:
-        return pulumi.get(self, "magic_dns")
-
-
-@pulumi.output_type
-class NameServersPreference(dict):
-    def __init__(__self__, *,
-                 magic_dns: bool):
-        pulumi.set(__self__, "magic_dns", magic_dns)
-
-    @property
-    @pulumi.getter(name="magicDNS")
-    def magic_dns(self) -> bool:
-        return pulumi.get(self, "magic_dns")
 
 
 @pulumi.output_type

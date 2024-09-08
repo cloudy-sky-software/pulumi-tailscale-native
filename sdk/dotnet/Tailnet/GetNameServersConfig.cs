@@ -11,11 +11,11 @@ namespace Pulumi.TailscaleNative.Tailnet
 {
     public static class GetNameServersConfig
     {
-        public static Task<GetNameServersConfigResult> InvokeAsync(GetNameServersConfigArgs args, InvokeOptions? options = null)
-            => global::Pulumi.Deployment.Instance.InvokeAsync<GetNameServersConfigResult>("tailscale-native:tailnet:getNameServersConfig", args ?? new GetNameServersConfigArgs(), options.WithDefaults());
+        public static Task<Outputs.NameServers> InvokeAsync(GetNameServersConfigArgs args, InvokeOptions? options = null)
+            => global::Pulumi.Deployment.Instance.InvokeAsync<Outputs.NameServers>("tailscale-native:tailnet:getNameServersConfig", args ?? new GetNameServersConfigArgs(), options.WithDefaults());
 
-        public static Output<GetNameServersConfigResult> Invoke(GetNameServersConfigInvokeArgs args, InvokeOptions? options = null)
-            => global::Pulumi.Deployment.Instance.Invoke<GetNameServersConfigResult>("tailscale-native:tailnet:getNameServersConfig", args ?? new GetNameServersConfigInvokeArgs(), options.WithDefaults());
+        public static Output<Outputs.NameServers> Invoke(GetNameServersConfigInvokeArgs args, InvokeOptions? options = null)
+            => global::Pulumi.Deployment.Instance.Invoke<Outputs.NameServers>("tailscale-native:tailnet:getNameServersConfig", args ?? new GetNameServersConfigInvokeArgs(), options.WithDefaults());
     }
 
 
@@ -45,18 +45,5 @@ namespace Pulumi.TailscaleNative.Tailnet
         {
         }
         public static new GetNameServersConfigInvokeArgs Empty => new GetNameServersConfigInvokeArgs();
-    }
-
-
-    [OutputType]
-    public sealed class GetNameServersConfigResult
-    {
-        public readonly Outputs.NameServers Items;
-
-        [OutputConstructor]
-        private GetNameServersConfigResult(Outputs.NameServers items)
-        {
-            Items = items;
-        }
     }
 }

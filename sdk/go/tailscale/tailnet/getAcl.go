@@ -27,7 +27,14 @@ type LookupAclArgs struct {
 }
 
 type LookupAclResult struct {
-	Items AclType `pulumi:"items"`
+	Acls          []AclRule   `pulumi:"acls"`
+	AutoApprovers interface{} `pulumi:"autoApprovers"`
+	Groups        interface{} `pulumi:"groups"`
+	Hosts         interface{} `pulumi:"hosts"`
+	NodeAttrs     []NodeAttrs `pulumi:"nodeAttrs"`
+	Ssh           []SshRule   `pulumi:"ssh"`
+	TagOwners     interface{} `pulumi:"tagOwners"`
+	Tests         string      `pulumi:"tests"`
 }
 
 func LookupAclOutput(ctx *pulumi.Context, args LookupAclOutputArgs, opts ...pulumi.InvokeOption) LookupAclResultOutput {
@@ -66,8 +73,36 @@ func (o LookupAclResultOutput) ToLookupAclResultOutputWithContext(ctx context.Co
 	return o
 }
 
-func (o LookupAclResultOutput) Items() AclTypeOutput {
-	return o.ApplyT(func(v LookupAclResult) AclType { return v.Items }).(AclTypeOutput)
+func (o LookupAclResultOutput) Acls() AclRuleArrayOutput {
+	return o.ApplyT(func(v LookupAclResult) []AclRule { return v.Acls }).(AclRuleArrayOutput)
+}
+
+func (o LookupAclResultOutput) AutoApprovers() pulumi.AnyOutput {
+	return o.ApplyT(func(v LookupAclResult) interface{} { return v.AutoApprovers }).(pulumi.AnyOutput)
+}
+
+func (o LookupAclResultOutput) Groups() pulumi.AnyOutput {
+	return o.ApplyT(func(v LookupAclResult) interface{} { return v.Groups }).(pulumi.AnyOutput)
+}
+
+func (o LookupAclResultOutput) Hosts() pulumi.AnyOutput {
+	return o.ApplyT(func(v LookupAclResult) interface{} { return v.Hosts }).(pulumi.AnyOutput)
+}
+
+func (o LookupAclResultOutput) NodeAttrs() NodeAttrsArrayOutput {
+	return o.ApplyT(func(v LookupAclResult) []NodeAttrs { return v.NodeAttrs }).(NodeAttrsArrayOutput)
+}
+
+func (o LookupAclResultOutput) Ssh() SshRuleArrayOutput {
+	return o.ApplyT(func(v LookupAclResult) []SshRule { return v.Ssh }).(SshRuleArrayOutput)
+}
+
+func (o LookupAclResultOutput) TagOwners() pulumi.AnyOutput {
+	return o.ApplyT(func(v LookupAclResult) interface{} { return v.TagOwners }).(pulumi.AnyOutput)
+}
+
+func (o LookupAclResultOutput) Tests() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupAclResult) string { return v.Tests }).(pulumi.StringOutput)
 }
 
 func init() {
