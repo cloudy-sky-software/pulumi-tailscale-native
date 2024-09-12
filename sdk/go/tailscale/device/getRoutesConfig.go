@@ -32,14 +32,20 @@ type LookupRoutesConfigResult struct {
 
 func LookupRoutesConfigOutput(ctx *pulumi.Context, args LookupRoutesConfigOutputArgs, opts ...pulumi.InvokeOption) LookupRoutesConfigResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (LookupRoutesConfigResult, error) {
+		ApplyT(func(v interface{}) (LookupRoutesConfigResultOutput, error) {
 			args := v.(LookupRoutesConfigArgs)
-			r, err := LookupRoutesConfig(ctx, &args, opts...)
-			var s LookupRoutesConfigResult
-			if r != nil {
-				s = *r
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv LookupRoutesConfigResult
+			secret, err := ctx.InvokePackageRaw("tailscale-native:device:getRoutesConfig", args, &rv, "", opts...)
+			if err != nil {
+				return LookupRoutesConfigResultOutput{}, err
 			}
-			return s, err
+
+			output := pulumi.ToOutput(rv).(LookupRoutesConfigResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(LookupRoutesConfigResultOutput), nil
+			}
+			return output, nil
 		}).(LookupRoutesConfigResultOutput)
 }
 
