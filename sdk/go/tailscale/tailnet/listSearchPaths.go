@@ -32,14 +32,20 @@ type ListSearchPathsResult struct {
 
 func ListSearchPathsOutput(ctx *pulumi.Context, args ListSearchPathsOutputArgs, opts ...pulumi.InvokeOption) ListSearchPathsResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (ListSearchPathsResult, error) {
+		ApplyT(func(v interface{}) (ListSearchPathsResultOutput, error) {
 			args := v.(ListSearchPathsArgs)
-			r, err := ListSearchPaths(ctx, &args, opts...)
-			var s ListSearchPathsResult
-			if r != nil {
-				s = *r
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv ListSearchPathsResult
+			secret, err := ctx.InvokePackageRaw("tailscale-native:tailnet:listSearchPaths", args, &rv, "", opts...)
+			if err != nil {
+				return ListSearchPathsResultOutput{}, err
 			}
-			return s, err
+
+			output := pulumi.ToOutput(rv).(ListSearchPathsResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(ListSearchPathsResultOutput), nil
+			}
+			return output, nil
 		}).(ListSearchPathsResultOutput)
 }
 
