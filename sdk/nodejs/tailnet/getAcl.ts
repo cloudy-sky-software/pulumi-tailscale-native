@@ -8,7 +8,6 @@ import * as enums from "../types/enums";
 import * as utilities from "../utilities";
 
 export function getAcl(args: GetAclArgs, opts?: pulumi.InvokeOptions): Promise<outputs.tailnet.Acl> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("tailscale-native:tailnet:getAcl", {
         "tailnet": args.tailnet,
@@ -22,7 +21,10 @@ export interface GetAclArgs {
     tailnet: string;
 }
 export function getAclOutput(args: GetAclOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<outputs.tailnet.Acl> {
-    return pulumi.output(args).apply((a: any) => getAcl(a, opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("tailscale-native:tailnet:getAcl", {
+        "tailnet": args.tailnet,
+    }, opts);
 }
 
 export interface GetAclOutputArgs {
