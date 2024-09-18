@@ -8,7 +8,6 @@ import * as enums from "../types/enums";
 import * as utilities from "../utilities";
 
 export function listKeys(args: ListKeysArgs, opts?: pulumi.InvokeOptions): Promise<ListKeysResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("tailscale-native:tailnet:listKeys", {
         "tailnet": args.tailnet,
@@ -26,7 +25,10 @@ export interface ListKeysResult {
     readonly items: outputs.tailnet.AuthKey[];
 }
 export function listKeysOutput(args: ListKeysOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<ListKeysResult> {
-    return pulumi.output(args).apply((a: any) => listKeys(a, opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("tailscale-native:tailnet:listKeys", {
+        "tailnet": args.tailnet,
+    }, opts);
 }
 
 export interface ListKeysOutputArgs {

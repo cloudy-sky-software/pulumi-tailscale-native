@@ -8,7 +8,6 @@ import * as enums from "../types/enums";
 import * as utilities from "../utilities";
 
 export function getRoutesConfig(args: GetRoutesConfigArgs, opts?: pulumi.InvokeOptions): Promise<outputs.device.DeviceRoutes> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("tailscale-native:device:getRoutesConfig", {
         "id": args.id,
@@ -19,7 +18,10 @@ export interface GetRoutesConfigArgs {
     id: string;
 }
 export function getRoutesConfigOutput(args: GetRoutesConfigOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<outputs.device.DeviceRoutes> {
-    return pulumi.output(args).apply((a: any) => getRoutesConfig(a, opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("tailscale-native:device:getRoutesConfig", {
+        "id": args.id,
+    }, opts);
 }
 
 export interface GetRoutesConfigOutputArgs {

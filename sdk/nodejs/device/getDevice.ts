@@ -8,7 +8,6 @@ import * as enums from "../types/enums";
 import * as utilities from "../utilities";
 
 export function getDevice(args: GetDeviceArgs, opts?: pulumi.InvokeOptions): Promise<outputs.device.Device> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("tailscale-native:device:getDevice", {
         "id": args.id,
@@ -19,7 +18,10 @@ export interface GetDeviceArgs {
     id: string;
 }
 export function getDeviceOutput(args: GetDeviceOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<outputs.device.Device> {
-    return pulumi.output(args).apply((a: any) => getDevice(a, opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("tailscale-native:device:getDevice", {
+        "id": args.id,
+    }, opts);
 }
 
 export interface GetDeviceOutputArgs {
