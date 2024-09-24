@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload, Awaitable
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from .. import _utilities
 
 __all__ = [
@@ -74,9 +79,6 @@ def get_key(id: Optional[str] = None,
         created=pulumi.get(__ret__, 'created'),
         expires=pulumi.get(__ret__, 'expires'),
         key=pulumi.get(__ret__, 'key'))
-
-
-@_utilities.lift_output_func(get_key)
 def get_key_output(id: Optional[pulumi.Input[str]] = None,
                    tailnet: Optional[pulumi.Input[str]] = None,
                    opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[AuthKey]:
@@ -85,4 +87,12 @@ def get_key_output(id: Optional[pulumi.Input[str]] = None,
 
     :param str tailnet: For paid plans, your domain is your tailnet. For solo plans, the tailnet is the email you signed up with. So `alice@gmail.com` has the tailnet `alice@gmail.com` since `@gmail.com` is a shared email host. Alternatively, you can specify the value "-" to refer to the default tailnet of the authenticated user making the API call.
     """
-    ...
+    __args__ = dict()
+    __args__['id'] = id
+    __args__['tailnet'] = tailnet
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('tailscale-native:tailnet:getKey', __args__, opts=opts, typ=AuthKey)
+    return __ret__.apply(lambda __response__: AuthKey(
+        created=pulumi.get(__response__, 'created'),
+        expires=pulumi.get(__response__, 'expires'),
+        key=pulumi.get(__response__, 'key')))

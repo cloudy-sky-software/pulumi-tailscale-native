@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload, Awaitable
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from .. import _utilities
 from . import outputs
 from ._enums import *
@@ -124,9 +129,6 @@ def get_acl(tailnet: Optional[str] = None,
         ssh=pulumi.get(__ret__, 'ssh'),
         tag_owners=pulumi.get(__ret__, 'tag_owners'),
         tests=pulumi.get(__ret__, 'tests'))
-
-
-@_utilities.lift_output_func(get_acl)
 def get_acl_output(tailnet: Optional[pulumi.Input[str]] = None,
                    opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[Acl]:
     """
@@ -134,4 +136,16 @@ def get_acl_output(tailnet: Optional[pulumi.Input[str]] = None,
 
     :param str tailnet: For paid plans, your domain is your tailnet. For solo plans, the tailnet is the email you signed up with. So `alice@gmail.com` has the tailnet `alice@gmail.com` since `@gmail.com` is a shared email host. Alternatively, you can specify the value "-" to refer to the default tailnet of the authenticated user making the API call.
     """
-    ...
+    __args__ = dict()
+    __args__['tailnet'] = tailnet
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('tailscale-native:tailnet:getAcl', __args__, opts=opts, typ=Acl)
+    return __ret__.apply(lambda __response__: Acl(
+        acls=pulumi.get(__response__, 'acls'),
+        auto_approvers=pulumi.get(__response__, 'auto_approvers'),
+        groups=pulumi.get(__response__, 'groups'),
+        hosts=pulumi.get(__response__, 'hosts'),
+        node_attrs=pulumi.get(__response__, 'node_attrs'),
+        ssh=pulumi.get(__response__, 'ssh'),
+        tag_owners=pulumi.get(__response__, 'tag_owners'),
+        tests=pulumi.get(__response__, 'tests')))

@@ -4,20 +4,46 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from .. import _utilities
 from ._enums import *
 
 __all__ = [
     'AclRuleArgs',
+    'AclRuleArgsDict',
     'CreateKeyArgs',
+    'CreateKeyArgsDict',
     'DeviceKeyCapabilitiesArgs',
+    'DeviceKeyCapabilitiesArgsDict',
     'KeyCapabilitiesArgs',
+    'KeyCapabilitiesArgsDict',
     'NodeAttrsArgs',
+    'NodeAttrsArgsDict',
     'SshRuleArgs',
+    'SshRuleArgsDict',
 ]
+
+MYPY = False
+
+if not MYPY:
+    class AclRuleArgsDict(TypedDict):
+        action: pulumi.Input['AclRuleAction']
+        """
+        Tailscale ACL rules are "default deny".
+        So the only possible value for an ACL
+        rule is `accept`.
+        """
+        ports: pulumi.Input[Sequence[pulumi.Input[str]]]
+        users: pulumi.Input[Sequence[pulumi.Input[str]]]
+elif False:
+    AclRuleArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class AclRuleArgs:
@@ -66,6 +92,15 @@ class AclRuleArgs:
     def users(self, value: pulumi.Input[Sequence[pulumi.Input[str]]]):
         pulumi.set(self, "users", value)
 
+
+if not MYPY:
+    class CreateKeyArgsDict(TypedDict):
+        ephemeral: pulumi.Input[bool]
+        preauthorized: pulumi.Input[bool]
+        reusable: pulumi.Input[bool]
+        tags: pulumi.Input[Sequence[pulumi.Input[str]]]
+elif False:
+    CreateKeyArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class CreateKeyArgs:
@@ -116,6 +151,12 @@ class CreateKeyArgs:
         pulumi.set(self, "tags", value)
 
 
+if not MYPY:
+    class DeviceKeyCapabilitiesArgsDict(TypedDict):
+        create: pulumi.Input['CreateKeyArgsDict']
+elif False:
+    DeviceKeyCapabilitiesArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class DeviceKeyCapabilitiesArgs:
     def __init__(__self__, *,
@@ -132,6 +173,12 @@ class DeviceKeyCapabilitiesArgs:
         pulumi.set(self, "create", value)
 
 
+if not MYPY:
+    class KeyCapabilitiesArgsDict(TypedDict):
+        devices: pulumi.Input['DeviceKeyCapabilitiesArgsDict']
+elif False:
+    KeyCapabilitiesArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class KeyCapabilitiesArgs:
     def __init__(__self__, *,
@@ -147,6 +194,13 @@ class KeyCapabilitiesArgs:
     def devices(self, value: pulumi.Input['DeviceKeyCapabilitiesArgs']):
         pulumi.set(self, "devices", value)
 
+
+if not MYPY:
+    class NodeAttrsArgsDict(TypedDict):
+        attr: pulumi.Input[Sequence[pulumi.Input[str]]]
+        target: pulumi.Input[Sequence[pulumi.Input[str]]]
+elif False:
+    NodeAttrsArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class NodeAttrsArgs:
@@ -174,6 +228,16 @@ class NodeAttrsArgs:
     def target(self, value: pulumi.Input[Sequence[pulumi.Input[str]]]):
         pulumi.set(self, "target", value)
 
+
+if not MYPY:
+    class SshRuleArgsDict(TypedDict):
+        action: pulumi.Input['SshRuleAction']
+        check_period: pulumi.Input[str]
+        dst: pulumi.Input[Sequence[pulumi.Input[str]]]
+        src: pulumi.Input[Sequence[pulumi.Input[str]]]
+        users: pulumi.Input[Sequence[pulumi.Input[str]]]
+elif False:
+    SshRuleArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class SshRuleArgs:

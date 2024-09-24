@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload, Awaitable
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from .. import _utilities
 from . import outputs
 
@@ -241,12 +246,33 @@ def get_device(id: Optional[str] = None,
         os=pulumi.get(__ret__, 'os'),
         update_available=pulumi.get(__ret__, 'update_available'),
         user=pulumi.get(__ret__, 'user'))
-
-
-@_utilities.lift_output_func(get_device)
 def get_device_output(id: Optional[pulumi.Input[str]] = None,
                       opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[Device]:
     """
     Use this data source to access information about an existing resource.
     """
-    ...
+    __args__ = dict()
+    __args__['id'] = id
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('tailscale-native:device:getDevice', __args__, opts=opts, typ=Device)
+    return __ret__.apply(lambda __response__: Device(
+        addresses=pulumi.get(__response__, 'addresses'),
+        advertised_routes=pulumi.get(__response__, 'advertised_routes'),
+        authorized=pulumi.get(__response__, 'authorized'),
+        blocks_incoming_connections=pulumi.get(__response__, 'blocks_incoming_connections'),
+        client_connectivity=pulumi.get(__response__, 'client_connectivity'),
+        client_version=pulumi.get(__response__, 'client_version'),
+        created=pulumi.get(__response__, 'created'),
+        enabled_routes=pulumi.get(__response__, 'enabled_routes'),
+        expires=pulumi.get(__response__, 'expires'),
+        hostname=pulumi.get(__response__, 'hostname'),
+        id=pulumi.get(__response__, 'id'),
+        is_external=pulumi.get(__response__, 'is_external'),
+        key_expiry_disabled=pulumi.get(__response__, 'key_expiry_disabled'),
+        last_seen=pulumi.get(__response__, 'last_seen'),
+        machine_key=pulumi.get(__response__, 'machine_key'),
+        name=pulumi.get(__response__, 'name'),
+        node_key=pulumi.get(__response__, 'node_key'),
+        os=pulumi.get(__response__, 'os'),
+        update_available=pulumi.get(__response__, 'update_available'),
+        user=pulumi.get(__response__, 'user')))
