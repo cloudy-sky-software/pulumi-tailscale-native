@@ -20,7 +20,7 @@ export interface GetDNSPreferencesConfigArgs {
      */
     tailnet: string;
 }
-export function getDNSPreferencesConfigOutput(args: GetDNSPreferencesConfigOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<outputs.tailnet.NameServersPreference> {
+export function getDNSPreferencesConfigOutput(args: GetDNSPreferencesConfigOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<outputs.tailnet.NameServersPreference> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("tailscale-native:tailnet:getDNSPreferencesConfig", {
         "tailnet": args.tailnet,

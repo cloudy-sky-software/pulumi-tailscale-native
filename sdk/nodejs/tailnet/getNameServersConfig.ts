@@ -20,7 +20,7 @@ export interface GetNameServersConfigArgs {
      */
     tailnet: string;
 }
-export function getNameServersConfigOutput(args: GetNameServersConfigOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<outputs.tailnet.NameServers> {
+export function getNameServersConfigOutput(args: GetNameServersConfigOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<outputs.tailnet.NameServers> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("tailscale-native:tailnet:getNameServersConfig", {
         "tailnet": args.tailnet,

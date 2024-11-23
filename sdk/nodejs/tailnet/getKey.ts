@@ -22,7 +22,7 @@ export interface GetKeyArgs {
      */
     tailnet: string;
 }
-export function getKeyOutput(args: GetKeyOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<outputs.tailnet.AuthKey> {
+export function getKeyOutput(args: GetKeyOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<outputs.tailnet.AuthKey> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("tailscale-native:tailnet:getKey", {
         "id": args.id,

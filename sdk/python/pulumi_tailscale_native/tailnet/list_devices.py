@@ -59,7 +59,7 @@ def list_devices(tailnet: Optional[str] = None,
     return AwaitableListDevicesProperties(
         devices=pulumi.get(__ret__, 'devices'))
 def list_devices_output(tailnet: Optional[pulumi.Input[str]] = None,
-                        opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[ListDevicesProperties]:
+                        opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[ListDevicesProperties]:
     """
     Use this data source to access information about an existing resource.
 
@@ -67,7 +67,7 @@ def list_devices_output(tailnet: Optional[pulumi.Input[str]] = None,
     """
     __args__ = dict()
     __args__['tailnet'] = tailnet
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('tailscale-native:tailnet:listDevices', __args__, opts=opts, typ=ListDevicesProperties)
     return __ret__.apply(lambda __response__: ListDevicesProperties(
         devices=pulumi.get(__response__, 'devices')))

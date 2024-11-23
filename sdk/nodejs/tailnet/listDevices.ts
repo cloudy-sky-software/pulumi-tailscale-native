@@ -20,7 +20,7 @@ export interface ListDevicesArgs {
      */
     tailnet: string;
 }
-export function listDevicesOutput(args: ListDevicesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<outputs.tailnet.ListDevicesProperties> {
+export function listDevicesOutput(args: ListDevicesOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<outputs.tailnet.ListDevicesProperties> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("tailscale-native:tailnet:listDevices", {
         "tailnet": args.tailnet,

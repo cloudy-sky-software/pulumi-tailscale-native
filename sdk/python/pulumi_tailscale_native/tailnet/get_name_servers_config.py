@@ -68,7 +68,7 @@ def get_name_servers_config(tailnet: Optional[str] = None,
         dns=pulumi.get(__ret__, 'dns'),
         magic_dns=pulumi.get(__ret__, 'magic_dns'))
 def get_name_servers_config_output(tailnet: Optional[pulumi.Input[str]] = None,
-                                   opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[NameServers]:
+                                   opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[NameServers]:
     """
     Use this data source to access information about an existing resource.
 
@@ -76,7 +76,7 @@ def get_name_servers_config_output(tailnet: Optional[pulumi.Input[str]] = None,
     """
     __args__ = dict()
     __args__['tailnet'] = tailnet
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('tailscale-native:tailnet:getNameServersConfig', __args__, opts=opts, typ=NameServers)
     return __ret__.apply(lambda __response__: NameServers(
         dns=pulumi.get(__response__, 'dns'),

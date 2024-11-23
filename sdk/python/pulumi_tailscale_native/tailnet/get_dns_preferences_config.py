@@ -58,7 +58,7 @@ def get_dns_preferences_config(tailnet: Optional[str] = None,
     return AwaitableNameServersPreference(
         magic_dns=pulumi.get(__ret__, 'magic_dns'))
 def get_dns_preferences_config_output(tailnet: Optional[pulumi.Input[str]] = None,
-                                      opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[NameServersPreference]:
+                                      opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[NameServersPreference]:
     """
     Use this data source to access information about an existing resource.
 
@@ -66,7 +66,7 @@ def get_dns_preferences_config_output(tailnet: Optional[pulumi.Input[str]] = Non
     """
     __args__ = dict()
     __args__['tailnet'] = tailnet
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('tailscale-native:tailnet:getDNSPreferencesConfig', __args__, opts=opts, typ=NameServersPreference)
     return __ret__.apply(lambda __response__: NameServersPreference(
         magic_dns=pulumi.get(__response__, 'magic_dns')))

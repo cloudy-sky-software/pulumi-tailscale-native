@@ -24,7 +24,7 @@ export interface ListKeysArgs {
 export interface ListKeysResult {
     readonly items: outputs.tailnet.AuthKey[];
 }
-export function listKeysOutput(args: ListKeysOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<ListKeysResult> {
+export function listKeysOutput(args: ListKeysOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<ListKeysResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("tailscale-native:tailnet:listKeys", {
         "tailnet": args.tailnet,
