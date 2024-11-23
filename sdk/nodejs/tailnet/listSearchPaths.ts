@@ -20,7 +20,7 @@ export interface ListSearchPathsArgs {
      */
     tailnet: string;
 }
-export function listSearchPathsOutput(args: ListSearchPathsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<outputs.tailnet.DnsSearchPaths> {
+export function listSearchPathsOutput(args: ListSearchPathsOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<outputs.tailnet.DnsSearchPaths> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("tailscale-native:tailnet:listSearchPaths", {
         "tailnet": args.tailnet,

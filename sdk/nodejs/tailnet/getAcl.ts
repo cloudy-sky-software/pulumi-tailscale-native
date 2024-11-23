@@ -20,7 +20,7 @@ export interface GetAclArgs {
      */
     tailnet: string;
 }
-export function getAclOutput(args: GetAclOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<outputs.tailnet.Acl> {
+export function getAclOutput(args: GetAclOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<outputs.tailnet.Acl> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("tailscale-native:tailnet:getAcl", {
         "tailnet": args.tailnet,

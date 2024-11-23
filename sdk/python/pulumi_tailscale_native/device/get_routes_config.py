@@ -66,13 +66,13 @@ def get_routes_config(id: Optional[str] = None,
         advertised_routes=pulumi.get(__ret__, 'advertised_routes'),
         enabled_routes=pulumi.get(__ret__, 'enabled_routes'))
 def get_routes_config_output(id: Optional[pulumi.Input[str]] = None,
-                             opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[DeviceRoutes]:
+                             opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[DeviceRoutes]:
     """
     Use this data source to access information about an existing resource.
     """
     __args__ = dict()
     __args__['id'] = id
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('tailscale-native:device:getRoutesConfig', __args__, opts=opts, typ=DeviceRoutes)
     return __ret__.apply(lambda __response__: DeviceRoutes(
         advertised_routes=pulumi.get(__response__, 'advertised_routes'),

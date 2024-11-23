@@ -17,7 +17,7 @@ export function getRoutesConfig(args: GetRoutesConfigArgs, opts?: pulumi.InvokeO
 export interface GetRoutesConfigArgs {
     id: string;
 }
-export function getRoutesConfigOutput(args: GetRoutesConfigOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<outputs.device.DeviceRoutes> {
+export function getRoutesConfigOutput(args: GetRoutesConfigOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<outputs.device.DeviceRoutes> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("tailscale-native:device:getRoutesConfig", {
         "id": args.id,
