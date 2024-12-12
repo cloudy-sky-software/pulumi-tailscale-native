@@ -16,6 +16,9 @@ namespace Pulumi.TailscaleNative.Device
 
         public static Output<Outputs.DeviceRoutes> Invoke(GetRoutesConfigInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<Outputs.DeviceRoutes>("tailscale-native:device:getRoutesConfig", args ?? new GetRoutesConfigInvokeArgs(), options.WithDefaults());
+
+        public static Output<Outputs.DeviceRoutes> Invoke(GetRoutesConfigInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<Outputs.DeviceRoutes>("tailscale-native:device:getRoutesConfig", args ?? new GetRoutesConfigInvokeArgs(), options.WithDefaults());
     }
 
 

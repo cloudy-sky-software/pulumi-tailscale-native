@@ -16,6 +16,9 @@ namespace Pulumi.TailscaleNative.Device
 
         public static Output<Outputs.Device> Invoke(GetDeviceInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<Outputs.Device>("tailscale-native:device:getDevice", args ?? new GetDeviceInvokeArgs(), options.WithDefaults());
+
+        public static Output<Outputs.Device> Invoke(GetDeviceInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<Outputs.Device>("tailscale-native:device:getDevice", args ?? new GetDeviceInvokeArgs(), options.WithDefaults());
     }
 
 

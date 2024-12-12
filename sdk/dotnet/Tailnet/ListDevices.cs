@@ -16,6 +16,9 @@ namespace Pulumi.TailscaleNative.Tailnet
 
         public static Output<Outputs.ListDevicesProperties> Invoke(ListDevicesInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<Outputs.ListDevicesProperties>("tailscale-native:tailnet:listDevices", args ?? new ListDevicesInvokeArgs(), options.WithDefaults());
+
+        public static Output<Outputs.ListDevicesProperties> Invoke(ListDevicesInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<Outputs.ListDevicesProperties>("tailscale-native:tailnet:listDevices", args ?? new ListDevicesInvokeArgs(), options.WithDefaults());
     }
 
 

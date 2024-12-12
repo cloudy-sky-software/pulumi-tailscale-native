@@ -16,6 +16,9 @@ namespace Pulumi.TailscaleNative.Tailnet
 
         public static Output<Outputs.Acl> Invoke(GetAclInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<Outputs.Acl>("tailscale-native:tailnet:getAcl", args ?? new GetAclInvokeArgs(), options.WithDefaults());
+
+        public static Output<Outputs.Acl> Invoke(GetAclInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<Outputs.Acl>("tailscale-native:tailnet:getAcl", args ?? new GetAclInvokeArgs(), options.WithDefaults());
     }
 
 

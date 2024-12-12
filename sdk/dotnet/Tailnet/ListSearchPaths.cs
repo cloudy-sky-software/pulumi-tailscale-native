@@ -16,6 +16,9 @@ namespace Pulumi.TailscaleNative.Tailnet
 
         public static Output<Outputs.DnsSearchPaths> Invoke(ListSearchPathsInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<Outputs.DnsSearchPaths>("tailscale-native:tailnet:listSearchPaths", args ?? new ListSearchPathsInvokeArgs(), options.WithDefaults());
+
+        public static Output<Outputs.DnsSearchPaths> Invoke(ListSearchPathsInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<Outputs.DnsSearchPaths>("tailscale-native:tailnet:listSearchPaths", args ?? new ListSearchPathsInvokeArgs(), options.WithDefaults());
     }
 
 

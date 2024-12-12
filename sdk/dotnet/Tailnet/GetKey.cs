@@ -16,6 +16,9 @@ namespace Pulumi.TailscaleNative.Tailnet
 
         public static Output<Outputs.AuthKey> Invoke(GetKeyInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<Outputs.AuthKey>("tailscale-native:tailnet:getKey", args ?? new GetKeyInvokeArgs(), options.WithDefaults());
+
+        public static Output<Outputs.AuthKey> Invoke(GetKeyInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<Outputs.AuthKey>("tailscale-native:tailnet:getKey", args ?? new GetKeyInvokeArgs(), options.WithDefaults());
     }
 
 
