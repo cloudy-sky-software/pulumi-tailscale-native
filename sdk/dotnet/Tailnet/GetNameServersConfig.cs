@@ -16,6 +16,9 @@ namespace Pulumi.TailscaleNative.Tailnet
 
         public static Output<Outputs.NameServers> Invoke(GetNameServersConfigInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<Outputs.NameServers>("tailscale-native:tailnet:getNameServersConfig", args ?? new GetNameServersConfigInvokeArgs(), options.WithDefaults());
+
+        public static Output<Outputs.NameServers> Invoke(GetNameServersConfigInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<Outputs.NameServers>("tailscale-native:tailnet:getNameServersConfig", args ?? new GetNameServersConfigInvokeArgs(), options.WithDefaults());
     }
 
 

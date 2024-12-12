@@ -16,6 +16,9 @@ namespace Pulumi.TailscaleNative.Tailnet
 
         public static Output<ListKeysResult> Invoke(ListKeysInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<ListKeysResult>("tailscale-native:tailnet:listKeys", args ?? new ListKeysInvokeArgs(), options.WithDefaults());
+
+        public static Output<ListKeysResult> Invoke(ListKeysInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<ListKeysResult>("tailscale-native:tailnet:listKeys", args ?? new ListKeysInvokeArgs(), options.WithDefaults());
     }
 
 

@@ -31,21 +31,11 @@ type ListSearchPathsResult struct {
 }
 
 func ListSearchPathsOutput(ctx *pulumi.Context, args ListSearchPathsOutputArgs, opts ...pulumi.InvokeOption) ListSearchPathsResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
+	return pulumi.ToOutputWithContext(ctx.Context(), args).
 		ApplyT(func(v interface{}) (ListSearchPathsResultOutput, error) {
 			args := v.(ListSearchPathsArgs)
-			opts = internal.PkgInvokeDefaultOpts(opts)
-			var rv ListSearchPathsResult
-			secret, err := ctx.InvokePackageRaw("tailscale-native:tailnet:listSearchPaths", args, &rv, "", opts...)
-			if err != nil {
-				return ListSearchPathsResultOutput{}, err
-			}
-
-			output := pulumi.ToOutput(rv).(ListSearchPathsResultOutput)
-			if secret {
-				return pulumi.ToSecret(output).(ListSearchPathsResultOutput), nil
-			}
-			return output, nil
+			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+			return ctx.InvokeOutput("tailscale-native:tailnet:listSearchPaths", args, ListSearchPathsResultOutput{}, options).(ListSearchPathsResultOutput), nil
 		}).(ListSearchPathsResultOutput)
 }
 

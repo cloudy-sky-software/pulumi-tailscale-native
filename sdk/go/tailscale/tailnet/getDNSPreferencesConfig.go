@@ -31,21 +31,11 @@ type LookupDNSPreferencesConfigResult struct {
 }
 
 func LookupDNSPreferencesConfigOutput(ctx *pulumi.Context, args LookupDNSPreferencesConfigOutputArgs, opts ...pulumi.InvokeOption) LookupDNSPreferencesConfigResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
+	return pulumi.ToOutputWithContext(ctx.Context(), args).
 		ApplyT(func(v interface{}) (LookupDNSPreferencesConfigResultOutput, error) {
 			args := v.(LookupDNSPreferencesConfigArgs)
-			opts = internal.PkgInvokeDefaultOpts(opts)
-			var rv LookupDNSPreferencesConfigResult
-			secret, err := ctx.InvokePackageRaw("tailscale-native:tailnet:getDNSPreferencesConfig", args, &rv, "", opts...)
-			if err != nil {
-				return LookupDNSPreferencesConfigResultOutput{}, err
-			}
-
-			output := pulumi.ToOutput(rv).(LookupDNSPreferencesConfigResultOutput)
-			if secret {
-				return pulumi.ToSecret(output).(LookupDNSPreferencesConfigResultOutput), nil
-			}
-			return output, nil
+			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+			return ctx.InvokeOutput("tailscale-native:tailnet:getDNSPreferencesConfig", args, LookupDNSPreferencesConfigResultOutput{}, options).(LookupDNSPreferencesConfigResultOutput), nil
 		}).(LookupDNSPreferencesConfigResultOutput)
 }
 

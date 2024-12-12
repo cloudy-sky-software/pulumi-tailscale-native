@@ -16,6 +16,9 @@ namespace Pulumi.TailscaleNative.Tailnet
 
         public static Output<Outputs.NameServersPreference> Invoke(GetDNSPreferencesConfigInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<Outputs.NameServersPreference>("tailscale-native:tailnet:getDNSPreferencesConfig", args ?? new GetDNSPreferencesConfigInvokeArgs(), options.WithDefaults());
+
+        public static Output<Outputs.NameServersPreference> Invoke(GetDNSPreferencesConfigInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<Outputs.NameServersPreference>("tailscale-native:tailnet:getDNSPreferencesConfig", args ?? new GetDNSPreferencesConfigInvokeArgs(), options.WithDefaults());
     }
 
 
