@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   title: Tailscale API
-  version: 2023-01-01
+  version: '2023-01-01'
   description: This namespace contains operations that can be performed on a Tailscale-connected device.
 tags: []
 paths:

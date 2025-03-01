@@ -415,7 +415,7 @@ components:
 info:
   description: This namespace contains operations that can be performed on a Tailscale-connected device.
   title: Tailscale API
-  version: "2023-01-01T00:00:00Z"
+  version: "2023-01-01"
 paths:
   /device/{id}:
     delete:
