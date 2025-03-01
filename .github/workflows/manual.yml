@@ -23,7 +23,7 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: 18.x
+          node-version: 22.x
 
       - name: Install @typespec/compiler
         run: npm i -g @typespec/compiler
@@ -53,4 +53,4 @@ jobs:
       fail-fast: true
       matrix:
         goversion:
-          - 1.21.x
+          - 1.24.x

@@ -5,7 +5,7 @@ on:
       - v*.*.*
       - "!v*.*.*-**"
 env:
-  GOLANG_CI_LINT_VERSION: v1.61.0
+  GOLANG_CI_LINT_VERSION: v1.64.5
   PROVIDER: "tailscale-native"
   NPM_TOKEN: ${{ secrets.NPM_AUTOMATION_TOKEN }}
   PUBLISH_NPM: true
@@ -29,7 +29,7 @@ jobs:
       - name: Install Go
         uses: actions/setup-go@v5
         with:
-          go-version: 1.21.x
+          go-version: 1.24.x
 
       - name: Lint
         run: |
@@ -53,7 +53,7 @@ jobs:
       - name: Install Go
         uses: actions/setup-go@v5
         with:
-          go-version: 1.21.x
+          go-version: 1.24.x
 
       - name: Install pulumictl
         uses: jaxxstorm/action-install-gh-release@v1.14.0
@@ -66,7 +66,7 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: 18.x
+          node-version: 22.x
 
       - name: Install @typespec/compiler
         run: |
@@ -190,13 +190,13 @@ jobs:
         dotnetversion:
           - 6.0.x
         goversion:
-          - 1.21.x
+          - 1.24.x
         language:
           - nodejs
           - python
           - dotnet
           - go
         nodeversion:
-          - 20.x
+          - 22.x
         pythonversion:
           - "3.11"
