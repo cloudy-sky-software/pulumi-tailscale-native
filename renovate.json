@@ -3,13 +3,5 @@
   "extends": ["config:recommended"],
   "ignoreDeps": ["github.com/mattn/go-ieproxy"],
   "ignorePaths": ["sdk/**", "examples/**"],
-  "packageRules": [
-    {
-      "matchPackageNames": ["@typespec{/,}**"]
-    }
-  ],
-  "customEnvVariables": {
-    "GOPRIVATE": "github.com/cloudy-sky-software/*"
-  },
   "postUpdateOptions": ["gomodTidy"]
 }
