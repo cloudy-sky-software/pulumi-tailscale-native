@@ -1,5 +1,5 @@
 {
   "devDependencies": {
-    "@typespec/compiler": "^0.65.3"
+    "@typespec/compiler": "^0.67.0"
   }
 }
