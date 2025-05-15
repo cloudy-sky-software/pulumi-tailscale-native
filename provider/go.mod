@@ -8,8 +8,8 @@ require (
 	github.com/cloudy-sky-software/pulschema v0.0.0-20250403050721-b17b77aafab2
 	github.com/cloudy-sky-software/pulumi-provider-framework v0.0.0-20250406052306-10a860736c63
 	github.com/getkin/kin-openapi v0.131.0
-	github.com/pulumi/pulumi/pkg/v3 v3.160.0
-	github.com/pulumi/pulumi/sdk/v3 v3.160.0
+	github.com/pulumi/pulumi/pkg/v3 v3.170.0
+	github.com/pulumi/pulumi/sdk/v3 v3.170.0
 )
 
 require github.com/stretchr/testify v1.10.0
@@ -109,13 +109,13 @@ require (
 	github.com/xo/terminfo v0.0.0-20220910002029-abceb7e1c41e // indirect
 	github.com/zclconf/go-cty v1.16.2 // indirect
 	go.uber.org/atomic v1.11.0 // indirect
-	golang.org/x/crypto v0.36.0 // indirect
+	golang.org/x/crypto v0.37.0 // indirect
 	golang.org/x/exp v0.0.0-20250305212735-054e65f0b394 // indirect
 	golang.org/x/mod v0.24.0 // indirect
-	golang.org/x/net v0.38.0 // indirect
+	golang.org/x/net v0.39.0 // indirect
 	golang.org/x/sync v0.13.0 // indirect
-	golang.org/x/sys v0.31.0 // indirect
-	golang.org/x/term v0.30.0 // indirect
+	golang.org/x/sys v0.32.0 // indirect
+	golang.org/x/term v0.31.0 // indirect
 	golang.org/x/text v0.24.0 // indirect
 	golang.org/x/tools v0.31.0 // indirect
 	google.golang.org/genproto/googleapis/rpc v0.0.0-20250324211829-b45e905df463 // indirect
