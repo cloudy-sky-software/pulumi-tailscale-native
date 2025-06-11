@@ -10,6 +10,6 @@
     "@typespec/compiler": "^0.65.3",
     "@typespec/openapi": "^0.65.0",
     "@typespec/openapi3": "^0.65.0",
-    "@typespec/rest": "^0.65.0"
+    "@typespec/rest": "^0.71.0"
   }
 }
