@@ -32,9 +32,22 @@ model TailscaleOAuthFlow {
   ];
 }
 
+// The out-of-box BasicAuth type's
+// casing of scheme doesn't match
+// with getkin's validator, so
+// this type mirrors the default
+// type with the expected casing.
+model CustomBasicAuth {
+  @doc("Http authentication")
+  type: AuthType.http;
+
+  @doc("basic auth scheme")
+  scheme: "basic";
+}
+
 @service(#{ title: "Tailscale API" })
 @server("https://api.tailscale.com/api/v2", "Tailscale API")
-@useAuth(BasicAuth | OAuth2Auth<[TailscaleOAuthFlow]>)
+@useAuth(CustomBasicAuth | OAuth2Auth<[TailscaleOAuthFlow]>)
 @doc("This namespace contains operations that can be performed on a Tailscale-connected device.")
 namespace Operations {
   @error

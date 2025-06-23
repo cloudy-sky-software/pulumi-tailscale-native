@@ -341,7 +341,7 @@ paths:
         '200':
           description: The request has succeeded.
 security:
-  - BasicAuth: []
+  - CustomBasicAuth: []
   - OAuth2Auth:
       - all
       - all:read
@@ -747,9 +747,9 @@ components:
         - check
         - accept
   securitySchemes:
-    BasicAuth:
+    CustomBasicAuth:
       type: http
-      scheme: Basic
+      scheme: basic
     OAuth2Auth:
       type: oauth2
       flows:
