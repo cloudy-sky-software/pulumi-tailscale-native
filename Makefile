@@ -34,7 +34,7 @@ gen:: gen_openapi
 
 generate_schema::
 	echo "Generating Pulumi schema..."
-	$(WORKING_DIR)/bin/$(CODEGEN) -v=3 --logtostderr schema $(SCHEMA_FILE) $(CURDIR)
+	$(WORKING_DIR)/bin/$(CODEGEN) -v=3 --logtostderr schema
 	echo "Finished generating schema."
 
 provider::
@@ -49,35 +49,34 @@ test_provider::
 dotnet_sdk:: DOTNET_VERSION := $(shell pulumictl get version --language dotnet)
 dotnet_sdk::
 	rm -rf sdk/dotnet
-	$(WORKING_DIR)/bin/$(CODEGEN) -version=${DOTNET_VERSION} dotnet $(SCHEMA_FILE) $(CURDIR)
+	pulumi package gen-sdk --language dotnet --version "${DOTNET_VERSION}" $(SCHEMA_FILE)
 	cd ${PACKDIR}/dotnet/&& \
 		echo "${DOTNET_VERSION}" >version.txt && \
 		dotnet build /p:Version=${DOTNET_VERSION}
 
 go_sdk::
 	rm -rf sdk/go
-	$(WORKING_DIR)/bin/$(CODEGEN) -version=${VERSION} go $(SCHEMA_FILE) $(CURDIR)
+	pulumi package gen-sdk --language go --version "${VERSION}" $(SCHEMA_FILE)
 
-nodejs_sdk:: VERSION := $(shell pulumictl get version --language javascript)
+nodejs_sdk:: NODEJS_VERSION := $(shell pulumictl convert-version --language generic --version "$(VERSION)")
 nodejs_sdk::
 	rm -rf sdk/nodejs
-	$(WORKING_DIR)/bin/$(CODEGEN) -version=${VERSION} nodejs $(SCHEMA_FILE) $(CURDIR)
+	pulumi package gen-sdk --language nodejs --version "${NODEJS_VERSION}" $(SCHEMA_FILE)
 	cd ${PACKDIR}/nodejs/ && \
 		yarn install && \
-		yarn run tsc && \
+		yarn run build && \
 		cp ../../README.md ../../LICENSE package.json yarn.lock bin/ && \
-		sed -i.bak 's/$${VERSION}/$(VERSION)/g' bin/package.json
+		sed -i.bak 's/$${VERSION}/v$(NODEJS_VERSION)/g' bin/package.json && \
+		rm ./bin/package.json.bak
 
-python_sdk:: PYPI_VERSION := $(shell pulumictl get version --language python)
+python_sdk:: PYPI_VERSION := $(shell pulumictl convert-version --language generic --version "$(VERSION)")
 python_sdk::
 	rm -rf sdk/python
-	$(WORKING_DIR)/bin/$(CODEGEN) -version=${VERSION} python $(SCHEMA_FILE) $(CURDIR)
+	pulumi package gen-sdk --language python --version "${PYPI_VERSION}" $(SCHEMA_FILE)
 
 	cp README.md ${PACKDIR}/python/
 	cd ${PACKDIR}/python/ && \
 		rm -rf ./bin/ ../python.bin/ && cp -R . ../python.bin && mv ../python.bin ./bin && \
-		sed -i.bak -e 's/^  version = .*/  version = "$(PYPI_VERSION)"/g' ./bin/pyproject.toml && \
-        rm ./bin/pyproject.toml.bak && \
 		python3 -m venv venv && \
 		./venv/bin/python -m pip install build && \
 		cd ./bin && \
