@@ -393,7 +393,7 @@ components:
         - accept
       type: string
   securitySchemes:
-    BasicAuth:
+    CustomBasicAuth:
       scheme: basic
       type: http
     OAuth2Auth:
@@ -415,7 +415,7 @@ components:
 info:
   description: This namespace contains operations that can be performed on a Tailscale-connected device.
   title: Tailscale API
-  version: "2023-01-01"
+  version: 0.0.0
 paths:
   /device/{id}:
     delete:
@@ -753,7 +753,7 @@ paths:
                 $ref: '#/components/schemas/AuthKey'
           description: The request has succeeded.
 security:
-  - BasicAuth: []
+  - CustomBasicAuth: []
   - OAuth2Auth:
       - all
       - all:read

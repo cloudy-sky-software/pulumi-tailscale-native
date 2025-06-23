@@ -1,22 +1,22 @@
 model CreateKey {
-    reusable: boolean;
-    ephemeral: boolean;
-    preauthorized: boolean;
-    tags: string[];
+  reusable: boolean;
+  ephemeral: boolean;
+  preauthorized: boolean;
+  tags: string[];
 }
 
 model DeviceKeyCapabilities {
-    create: CreateKey;
+  create: CreateKey;
 }
 
 model KeyCapabilities {
-    devices: DeviceKeyCapabilities;
+  devices: DeviceKeyCapabilities;
 }
 
 model AuthKey {
-    @visibility("read") key: string;
-    @visibility("read") created?: string;
-    @visibility("read") expires: string;
-    @visibility("create") capabilities: KeyCapabilities;
-    @visibility("create") expirySeconds: int64;
+  @visibility(Lifecycle.Read) key: string;
+  @visibility(Lifecycle.Read) created?: string;
+  @visibility(Lifecycle.Read) expires: string;
+  @visibility(Lifecycle.Create) capabilities: KeyCapabilities;
+  @visibility(Lifecycle.Create) expirySeconds: int64;
 }
