@@ -1,20 +1,20 @@
 model DeviceRoutes {
-    advertisedRoutes: string[];
-    enabledRoutes: string[];
+  advertisedRoutes: string[];
+  enabledRoutes: string[];
 }
 
 model SetAuthorized {
-    authorized: boolean;
+  authorized: boolean;
 }
 
 model SetDeviceRoutes {
-    routes: string[];
+  routes: string[];
 }
 
 model SetTags {
-    tags: string[];
+  tags: string[];
 }
 
 model SetKeyExpiry {
-    keyExpiryDisabled: boolean;
+  keyExpiryDisabled: boolean;
 }

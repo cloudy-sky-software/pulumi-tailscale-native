@@ -1,8 +1,8 @@
 openapi: 3.0.0
 info:
   title: Tailscale API
-  version: '2023-01-01'
   description: This namespace contains operations that can be performed on a Tailscale-connected device.
+  version: 0.0.0
 tags: []
 paths:
   /device/{id}:
@@ -749,7 +749,7 @@ components:
   securitySchemes:
     BasicAuth:
       type: http
-      scheme: basic
+      scheme: Basic
     OAuth2Auth:
       type: oauth2
       flows:
