@@ -5,15 +5,11 @@ import (
 	"encoding/base64"
 	"errors"
 	"fmt"
-	"net/http"
 	"os"
 	"strings"
 
-	"github.com/getkin/kin-openapi/openapi3"
-
 	"github.com/pulumi/pulumi/pkg/v3/resource/provider"
 
-	"github.com/pulumi/pulumi/sdk/v3/go/common/resource"
 	"github.com/pulumi/pulumi/sdk/v3/go/common/util/logging"
 	pulumirpc "github.com/pulumi/pulumi/sdk/v3/proto/go"
 
@@ -24,6 +20,8 @@ import (
 )
 
 type tailscaleProvider struct {
+	fwCallback.UnimplementedProviderCallback
+
 	name    string
 	version string
 
@@ -94,14 +92,6 @@ func (p *tailscaleProvider) GetAuthorizationHeader() string {
 	return ""
 }
 
-func (p *tailscaleProvider) OnPreInvoke(_ context.Context, _ *pulumirpc.InvokeRequest, _ *http.Request) error {
-	return nil
-}
-
-func (p *tailscaleProvider) OnPostInvoke(_ context.Context, _ *pulumirpc.InvokeRequest, _ interface{}) (map[string]interface{}, error) {
-	return nil, nil
-}
-
 // OnConfigure is called by the provider framework when Pulumi calls Configure on
 // the resource provider server.
 func (p *tailscaleProvider) OnConfigure(_ context.Context, req *pulumirpc.ConfigureRequest) (*pulumirpc.ConfigureResponse, error) {
@@ -162,42 +152,4 @@ func (p *tailscaleProvider) OnConfigure(_ context.Context, req *pulumirpc.Config
 	return &pulumirpc.ConfigureResponse{
 		AcceptSecrets: true,
 	}, nil
-}
-
-// OnDiff checks what impacts a hypothetical update will have on the resource's properties.
-func (p *tailscaleProvider) OnDiff(_ context.Context, _ *pulumirpc.DiffRequest, _ string, _ *resource.ObjectDiff, _ *openapi3.MediaType) (*pulumirpc.DiffResponse, error) {
-	return nil, nil
-}
-
-func (p *tailscaleProvider) OnPreCreate(_ context.Context, _ *pulumirpc.CreateRequest, _ *http.Request) error {
-	return nil
-}
-
-// OnPostCreate allocates a new instance of the provided resource and returns its unique ID afterwards.
-func (p *tailscaleProvider) OnPostCreate(_ context.Context, _ *pulumirpc.CreateRequest, outputs interface{}) (map[string]interface{}, error) {
-	return outputs.(map[string]interface{}), nil
-}
-
-func (p *tailscaleProvider) OnPreRead(_ context.Context, _ *pulumirpc.ReadRequest, _ *http.Request) error {
-	return nil
-}
-
-func (p *tailscaleProvider) OnPostRead(_ context.Context, _ *pulumirpc.ReadRequest, outputs interface{}) (map[string]interface{}, error) {
-	return outputs.(map[string]interface{}), nil
-}
-
-func (p *tailscaleProvider) OnPreUpdate(_ context.Context, _ *pulumirpc.UpdateRequest, _ *http.Request) error {
-	return nil
-}
-
-func (p *tailscaleProvider) OnPostUpdate(_ context.Context, _ *pulumirpc.UpdateRequest, _ http.Request, outputs interface{}) (map[string]interface{}, error) {
-	return outputs.(map[string]interface{}), nil
-}
-
-func (p *tailscaleProvider) OnPreDelete(_ context.Context, _ *pulumirpc.DeleteRequest, _ *http.Request) error {
-	return nil
-}
-
-func (p *tailscaleProvider) OnPostDelete(_ context.Context, _ *pulumirpc.DeleteRequest) error {
-	return nil
 }
