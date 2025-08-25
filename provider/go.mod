@@ -5,14 +5,14 @@ go 1.23.11
 toolchain go1.24.6
 
 require (
-	github.com/cloudy-sky-software/pulschema v0.0.0-20250814170500-c35c76db6afc
+	github.com/cloudy-sky-software/pulschema v0.0.0-20250824215724-d08f3502036d
 	github.com/cloudy-sky-software/pulumi-provider-framework v0.0.0-20250814210024-220d3873a4e7
 	github.com/getkin/kin-openapi v0.132.0
-	github.com/pulumi/pulumi/pkg/v3 v3.189.0
-	github.com/pulumi/pulumi/sdk/v3 v3.189.0
+	github.com/pulumi/pulumi/pkg/v3 v3.191.0
+	github.com/pulumi/pulumi/sdk/v3 v3.191.0
 )
 
-require github.com/stretchr/testify v1.10.0
+require github.com/stretchr/testify v1.11.0
 
 require (
 	github.com/pkg/errors v0.9.1
