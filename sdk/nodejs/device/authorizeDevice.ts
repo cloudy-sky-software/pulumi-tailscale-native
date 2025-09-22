@@ -31,7 +31,7 @@ export class AuthorizeDevice extends pulumi.CustomResource {
         return obj['__pulumiType'] === AuthorizeDevice.__pulumiType;
     }
 
-    public readonly authorized!: pulumi.Output<boolean>;
+    declare public readonly authorized: pulumi.Output<boolean>;
 
     /**
      * Create a AuthorizeDevice resource with the given unique name, arguments, and options.
@@ -44,11 +44,11 @@ export class AuthorizeDevice extends pulumi.CustomResource {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (!opts.id) {
-            if ((!args || args.authorized === undefined) && !opts.urn) {
+            if (args?.authorized === undefined && !opts.urn) {
                 throw new Error("Missing required property 'authorized'");
             }
-            resourceInputs["authorized"] = args ? args.authorized : undefined;
-            resourceInputs["id"] = args ? args.id : undefined;
+            resourceInputs["authorized"] = args?.authorized;
+            resourceInputs["id"] = args?.id;
         } else {
             resourceInputs["authorized"] = undefined /*out*/;
         }

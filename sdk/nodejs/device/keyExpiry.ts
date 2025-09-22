@@ -31,7 +31,7 @@ export class KeyExpiry extends pulumi.CustomResource {
         return obj['__pulumiType'] === KeyExpiry.__pulumiType;
     }
 
-    public readonly keyExpiryDisabled!: pulumi.Output<boolean>;
+    declare public readonly keyExpiryDisabled: pulumi.Output<boolean>;
 
     /**
      * Create a KeyExpiry resource with the given unique name, arguments, and options.
@@ -44,11 +44,11 @@ export class KeyExpiry extends pulumi.CustomResource {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (!opts.id) {
-            if ((!args || args.keyExpiryDisabled === undefined) && !opts.urn) {
+            if (args?.keyExpiryDisabled === undefined && !opts.urn) {
                 throw new Error("Missing required property 'keyExpiryDisabled'");
             }
-            resourceInputs["id"] = args ? args.id : undefined;
-            resourceInputs["keyExpiryDisabled"] = args ? args.keyExpiryDisabled : undefined;
+            resourceInputs["id"] = args?.id;
+            resourceInputs["keyExpiryDisabled"] = args?.keyExpiryDisabled;
         } else {
             resourceInputs["keyExpiryDisabled"] = undefined /*out*/;
         }

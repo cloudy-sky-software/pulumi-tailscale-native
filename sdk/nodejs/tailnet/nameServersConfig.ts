@@ -31,8 +31,8 @@ export class NameServersConfig extends pulumi.CustomResource {
         return obj['__pulumiType'] === NameServersConfig.__pulumiType;
     }
 
-    public readonly dns!: pulumi.Output<string[]>;
-    public readonly magicDNS!: pulumi.Output<boolean>;
+    declare public readonly dns: pulumi.Output<string[]>;
+    declare public readonly magicDNS: pulumi.Output<boolean>;
 
     /**
      * Create a NameServersConfig resource with the given unique name, arguments, and options.
@@ -45,15 +45,15 @@ export class NameServersConfig extends pulumi.CustomResource {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (!opts.id) {
-            if ((!args || args.dns === undefined) && !opts.urn) {
+            if (args?.dns === undefined && !opts.urn) {
                 throw new Error("Missing required property 'dns'");
             }
-            if ((!args || args.magicDNS === undefined) && !opts.urn) {
+            if (args?.magicDNS === undefined && !opts.urn) {
                 throw new Error("Missing required property 'magicDNS'");
             }
-            resourceInputs["dns"] = args ? args.dns : undefined;
-            resourceInputs["magicDNS"] = args ? args.magicDNS : undefined;
-            resourceInputs["tailnet"] = args ? args.tailnet : undefined;
+            resourceInputs["dns"] = args?.dns;
+            resourceInputs["magicDNS"] = args?.magicDNS;
+            resourceInputs["tailnet"] = args?.tailnet;
         } else {
             resourceInputs["dns"] = undefined /*out*/;
             resourceInputs["magicDNS"] = undefined /*out*/;

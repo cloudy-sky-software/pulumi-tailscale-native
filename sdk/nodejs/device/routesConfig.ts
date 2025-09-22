@@ -31,9 +31,9 @@ export class RoutesConfig extends pulumi.CustomResource {
         return obj['__pulumiType'] === RoutesConfig.__pulumiType;
     }
 
-    public /*out*/ readonly advertisedRoutes!: pulumi.Output<string[]>;
-    public /*out*/ readonly enabledRoutes!: pulumi.Output<string[]>;
-    public readonly routes!: pulumi.Output<string[]>;
+    declare public /*out*/ readonly advertisedRoutes: pulumi.Output<string[]>;
+    declare public /*out*/ readonly enabledRoutes: pulumi.Output<string[]>;
+    declare public readonly routes: pulumi.Output<string[]>;
 
     /**
      * Create a RoutesConfig resource with the given unique name, arguments, and options.
@@ -46,11 +46,11 @@ export class RoutesConfig extends pulumi.CustomResource {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (!opts.id) {
-            if ((!args || args.routes === undefined) && !opts.urn) {
+            if (args?.routes === undefined && !opts.urn) {
                 throw new Error("Missing required property 'routes'");
             }
-            resourceInputs["id"] = args ? args.id : undefined;
-            resourceInputs["routes"] = args ? args.routes : undefined;
+            resourceInputs["id"] = args?.id;
+            resourceInputs["routes"] = args?.routes;
             resourceInputs["advertisedRoutes"] = undefined /*out*/;
             resourceInputs["enabledRoutes"] = undefined /*out*/;
         } else {

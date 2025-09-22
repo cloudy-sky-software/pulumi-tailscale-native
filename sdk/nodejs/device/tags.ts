@@ -31,7 +31,7 @@ export class Tags extends pulumi.CustomResource {
         return obj['__pulumiType'] === Tags.__pulumiType;
     }
 
-    public readonly tags!: pulumi.Output<string[]>;
+    declare public readonly tags: pulumi.Output<string[]>;
 
     /**
      * Create a Tags resource with the given unique name, arguments, and options.
@@ -44,11 +44,11 @@ export class Tags extends pulumi.CustomResource {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (!opts.id) {
-            if ((!args || args.tags === undefined) && !opts.urn) {
+            if (args?.tags === undefined && !opts.urn) {
                 throw new Error("Missing required property 'tags'");
             }
-            resourceInputs["id"] = args ? args.id : undefined;
-            resourceInputs["tags"] = args ? args.tags : undefined;
+            resourceInputs["id"] = args?.id;
+            resourceInputs["tags"] = args?.tags;
         } else {
             resourceInputs["tags"] = undefined /*out*/;
         }

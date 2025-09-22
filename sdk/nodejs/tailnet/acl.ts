@@ -34,14 +34,14 @@ export class Acl extends pulumi.CustomResource {
         return obj['__pulumiType'] === Acl.__pulumiType;
     }
 
-    public readonly acls!: pulumi.Output<outputs.tailnet.AclRule[]>;
-    public readonly autoApprovers!: pulumi.Output<any>;
-    public readonly groups!: pulumi.Output<any>;
-    public readonly hosts!: pulumi.Output<any>;
-    public readonly nodeAttrs!: pulumi.Output<outputs.tailnet.NodeAttrs[]>;
-    public readonly ssh!: pulumi.Output<outputs.tailnet.SshRule[]>;
-    public readonly tagOwners!: pulumi.Output<any>;
-    public readonly tests!: pulumi.Output<string>;
+    declare public readonly acls: pulumi.Output<outputs.tailnet.AclRule[]>;
+    declare public readonly autoApprovers: pulumi.Output<any>;
+    declare public readonly groups: pulumi.Output<any>;
+    declare public readonly hosts: pulumi.Output<any>;
+    declare public readonly nodeAttrs: pulumi.Output<outputs.tailnet.NodeAttrs[]>;
+    declare public readonly ssh: pulumi.Output<outputs.tailnet.SshRule[]>;
+    declare public readonly tagOwners: pulumi.Output<any>;
+    declare public readonly tests: pulumi.Output<string>;
 
     /**
      * Create a Acl resource with the given unique name, arguments, and options.
@@ -54,39 +54,39 @@ export class Acl extends pulumi.CustomResource {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (!opts.id) {
-            if ((!args || args.acls === undefined) && !opts.urn) {
+            if (args?.acls === undefined && !opts.urn) {
                 throw new Error("Missing required property 'acls'");
             }
-            if ((!args || args.autoApprovers === undefined) && !opts.urn) {
+            if (args?.autoApprovers === undefined && !opts.urn) {
                 throw new Error("Missing required property 'autoApprovers'");
             }
-            if ((!args || args.groups === undefined) && !opts.urn) {
+            if (args?.groups === undefined && !opts.urn) {
                 throw new Error("Missing required property 'groups'");
             }
-            if ((!args || args.hosts === undefined) && !opts.urn) {
+            if (args?.hosts === undefined && !opts.urn) {
                 throw new Error("Missing required property 'hosts'");
             }
-            if ((!args || args.nodeAttrs === undefined) && !opts.urn) {
+            if (args?.nodeAttrs === undefined && !opts.urn) {
                 throw new Error("Missing required property 'nodeAttrs'");
             }
-            if ((!args || args.ssh === undefined) && !opts.urn) {
+            if (args?.ssh === undefined && !opts.urn) {
                 throw new Error("Missing required property 'ssh'");
             }
-            if ((!args || args.tagOwners === undefined) && !opts.urn) {
+            if (args?.tagOwners === undefined && !opts.urn) {
                 throw new Error("Missing required property 'tagOwners'");
             }
-            if ((!args || args.tests === undefined) && !opts.urn) {
+            if (args?.tests === undefined && !opts.urn) {
                 throw new Error("Missing required property 'tests'");
             }
-            resourceInputs["acls"] = args ? args.acls : undefined;
-            resourceInputs["autoApprovers"] = args ? args.autoApprovers : undefined;
-            resourceInputs["groups"] = args ? args.groups : undefined;
-            resourceInputs["hosts"] = args ? args.hosts : undefined;
-            resourceInputs["nodeAttrs"] = args ? args.nodeAttrs : undefined;
-            resourceInputs["ssh"] = args ? args.ssh : undefined;
-            resourceInputs["tagOwners"] = args ? args.tagOwners : undefined;
-            resourceInputs["tailnet"] = args ? args.tailnet : undefined;
-            resourceInputs["tests"] = args ? args.tests : undefined;
+            resourceInputs["acls"] = args?.acls;
+            resourceInputs["autoApprovers"] = args?.autoApprovers;
+            resourceInputs["groups"] = args?.groups;
+            resourceInputs["hosts"] = args?.hosts;
+            resourceInputs["nodeAttrs"] = args?.nodeAttrs;
+            resourceInputs["ssh"] = args?.ssh;
+            resourceInputs["tagOwners"] = args?.tagOwners;
+            resourceInputs["tailnet"] = args?.tailnet;
+            resourceInputs["tests"] = args?.tests;
         } else {
             resourceInputs["acls"] = undefined /*out*/;
             resourceInputs["autoApprovers"] = undefined /*out*/;
