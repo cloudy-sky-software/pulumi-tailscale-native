@@ -34,11 +34,11 @@ export class Key extends pulumi.CustomResource {
         return obj['__pulumiType'] === Key.__pulumiType;
     }
 
-    public readonly capabilities!: pulumi.Output<outputs.tailnet.KeyCapabilities>;
-    public /*out*/ readonly created!: pulumi.Output<string | undefined>;
-    public /*out*/ readonly expires!: pulumi.Output<string>;
-    public readonly expirySeconds!: pulumi.Output<number>;
-    public /*out*/ readonly key!: pulumi.Output<string>;
+    declare public readonly capabilities: pulumi.Output<outputs.tailnet.KeyCapabilities>;
+    declare public /*out*/ readonly created: pulumi.Output<string | undefined>;
+    declare public /*out*/ readonly expires: pulumi.Output<string>;
+    declare public readonly expirySeconds: pulumi.Output<number>;
+    declare public /*out*/ readonly key: pulumi.Output<string>;
 
     /**
      * Create a Key resource with the given unique name, arguments, and options.
@@ -51,15 +51,15 @@ export class Key extends pulumi.CustomResource {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (!opts.id) {
-            if ((!args || args.capabilities === undefined) && !opts.urn) {
+            if (args?.capabilities === undefined && !opts.urn) {
                 throw new Error("Missing required property 'capabilities'");
             }
-            if ((!args || args.expirySeconds === undefined) && !opts.urn) {
+            if (args?.expirySeconds === undefined && !opts.urn) {
                 throw new Error("Missing required property 'expirySeconds'");
             }
-            resourceInputs["capabilities"] = args ? args.capabilities : undefined;
-            resourceInputs["expirySeconds"] = args ? args.expirySeconds : undefined;
-            resourceInputs["tailnet"] = args ? args.tailnet : undefined;
+            resourceInputs["capabilities"] = args?.capabilities;
+            resourceInputs["expirySeconds"] = args?.expirySeconds;
+            resourceInputs["tailnet"] = args?.tailnet;
             resourceInputs["created"] = undefined /*out*/;
             resourceInputs["expires"] = undefined /*out*/;
             resourceInputs["key"] = undefined /*out*/;

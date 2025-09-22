@@ -31,7 +31,7 @@ export class DNSPreferencesConfig extends pulumi.CustomResource {
         return obj['__pulumiType'] === DNSPreferencesConfig.__pulumiType;
     }
 
-    public readonly magicDNS!: pulumi.Output<boolean>;
+    declare public readonly magicDNS: pulumi.Output<boolean>;
 
     /**
      * Create a DNSPreferencesConfig resource with the given unique name, arguments, and options.
@@ -44,11 +44,11 @@ export class DNSPreferencesConfig extends pulumi.CustomResource {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (!opts.id) {
-            if ((!args || args.magicDNS === undefined) && !opts.urn) {
+            if (args?.magicDNS === undefined && !opts.urn) {
                 throw new Error("Missing required property 'magicDNS'");
             }
-            resourceInputs["magicDNS"] = args ? args.magicDNS : undefined;
-            resourceInputs["tailnet"] = args ? args.tailnet : undefined;
+            resourceInputs["magicDNS"] = args?.magicDNS;
+            resourceInputs["tailnet"] = args?.tailnet;
         } else {
             resourceInputs["magicDNS"] = undefined /*out*/;
         }

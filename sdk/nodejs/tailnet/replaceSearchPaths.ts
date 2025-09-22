@@ -31,7 +31,7 @@ export class ReplaceSearchPaths extends pulumi.CustomResource {
         return obj['__pulumiType'] === ReplaceSearchPaths.__pulumiType;
     }
 
-    public readonly searchPaths!: pulumi.Output<string[]>;
+    declare public readonly searchPaths: pulumi.Output<string[]>;
 
     /**
      * Create a ReplaceSearchPaths resource with the given unique name, arguments, and options.
@@ -44,11 +44,11 @@ export class ReplaceSearchPaths extends pulumi.CustomResource {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (!opts.id) {
-            if ((!args || args.searchPaths === undefined) && !opts.urn) {
+            if (args?.searchPaths === undefined && !opts.urn) {
                 throw new Error("Missing required property 'searchPaths'");
             }
-            resourceInputs["searchPaths"] = args ? args.searchPaths : undefined;
-            resourceInputs["tailnet"] = args ? args.tailnet : undefined;
+            resourceInputs["searchPaths"] = args?.searchPaths;
+            resourceInputs["tailnet"] = args?.tailnet;
         } else {
             resourceInputs["searchPaths"] = undefined /*out*/;
         }
