@@ -16,7 +16,7 @@ require github.com/stretchr/testify v1.11.1
 
 require (
 	github.com/pkg/errors v0.9.1
-	golang.org/x/oauth2 v0.31.0
+	golang.org/x/oauth2 v0.32.0
 	gopkg.in/yaml.v3 v3.0.1
 )
 
