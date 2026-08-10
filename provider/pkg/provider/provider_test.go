@@ -79,17 +79,17 @@ func TestDiff(t *testing.T) {
 
 	p := makeTestProvider(ctx, t)
 
-	original := make(map[string]interface{})
-	original["expirySeconds"] = 300
-	outputs := map[string]interface{}{"expirySeconds": 300, "key": "somesecretkey"}
-	oldsStruct, _ := plugin.MarshalProperties(state.GetResourceState(outputs, resource.NewPropertyMapFromMap(original)), state.DefaultMarshalOpts)
+	original := map[string]interface{}{"expirySeconds": 300, "tailnet": "faketailnet"}
+	oldInputs, _ := plugin.MarshalProperties(resource.NewPropertyMapFromMap(original), state.DefaultMarshalOpts)
 
-	news := make(map[string]interface{})
+	outputs := map[string]interface{}{"expirySeconds": 300, "key": "somesecretkey"}
+	oldsStruct, _ := plugin.MarshalProperties(resource.NewPropertyMapFromMap(outputs), state.DefaultMarshalOpts)
+
 	// Now update the input property.
-	news["expirySeconds"] = 400
+	news := map[string]interface{}{"expirySeconds": 400, "tailnet": "faketailnet"}
 	newsStruct, _ := plugin.MarshalProperties(resource.NewPropertyMapFromMap(news), state.DefaultMarshalOpts)
 
-	resp, err := p.Diff(ctx, &pulumirpc.DiffRequest{Id: "", Urn: "urn:pulumi:some-stack::some-project::tailscale-native:tailnet:Key::myAuthKey", Olds: oldsStruct, News: newsStruct})
+	resp, err := p.Diff(ctx, &pulumirpc.DiffRequest{Id: "", Urn: "urn:pulumi:some-stack::some-project::tailscale-native:tailnet:Key::myAuthKey", Olds: oldsStruct, News: newsStruct, OldInputs: oldInputs})
 	assert.Nil(t, err)
 	assert.Equal(t, pulumirpc.DiffResponse_DIFF_SOME, resp.Changes)
 	assert.NotEmpty(t, resp.Diffs)
