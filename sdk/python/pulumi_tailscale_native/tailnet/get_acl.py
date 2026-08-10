@@ -129,7 +129,7 @@ def get_acl(tailnet: Optional[_builtins.str] = None,
         ssh=pulumi.get(__ret__, 'ssh'),
         tag_owners=pulumi.get(__ret__, 'tag_owners'),
         tests=pulumi.get(__ret__, 'tests'))
-def get_acl_output(tailnet: Optional[pulumi.Input[_builtins.str]] = None,
+def get_acl_output(tailnet: pulumi.Input[Optional[_builtins.str]] = None,
                    opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetAclResult]:
     """
     Use this data source to access information about an existing resource.

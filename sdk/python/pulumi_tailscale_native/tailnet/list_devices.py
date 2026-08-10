@@ -58,7 +58,7 @@ def list_devices(tailnet: Optional[_builtins.str] = None,
 
     return AwaitableListDevicesResult(
         devices=pulumi.get(__ret__, 'devices'))
-def list_devices_output(tailnet: Optional[pulumi.Input[_builtins.str]] = None,
+def list_devices_output(tailnet: pulumi.Input[Optional[_builtins.str]] = None,
                         opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[ListDevicesResult]:
     """
     Use this data source to access information about an existing resource.

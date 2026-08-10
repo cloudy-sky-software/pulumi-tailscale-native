@@ -65,7 +65,7 @@ def get_routes_config(id: Optional[_builtins.str] = None,
     return AwaitableGetRoutesConfigResult(
         advertised_routes=pulumi.get(__ret__, 'advertised_routes'),
         enabled_routes=pulumi.get(__ret__, 'enabled_routes'))
-def get_routes_config_output(id: Optional[pulumi.Input[_builtins.str]] = None,
+def get_routes_config_output(id: pulumi.Input[Optional[_builtins.str]] = None,
                              opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetRoutesConfigResult]:
     """
     Use this data source to access information about an existing resource.

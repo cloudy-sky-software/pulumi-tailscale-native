@@ -8,9 +8,8 @@ import (
 	"os"
 	"strings"
 
-	"github.com/pulumi/pulumi/pkg/v3/resource/provider"
-
 	"github.com/pulumi/pulumi/sdk/v3/go/common/util/logging"
+	pulumiProvider "github.com/pulumi/pulumi/sdk/v3/go/pulumi/provider"
 	pulumirpc "github.com/pulumi/pulumi/sdk/v3/proto/go"
 
 	fwCallback "github.com/cloudy-sky-software/pulumi-provider-framework/callback"
@@ -35,7 +34,7 @@ var (
 	callback fwCallback.ProviderCallback
 )
 
-func makeProvider(host *provider.HostClient, name, version string, pulumiSchemaBytes, openapiDocBytes, metadataBytes []byte) (pulumirpc.ResourceProviderServer, error) {
+func makeProvider(host *pulumiProvider.HostClient, name, version string, pulumiSchemaBytes, openapiDocBytes, metadataBytes []byte) (pulumirpc.ResourceProviderServer, error) {
 	p := &tailscaleProvider{
 		name:    name,
 		version: version,

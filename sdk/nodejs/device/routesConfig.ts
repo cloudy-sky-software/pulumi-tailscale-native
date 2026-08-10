@@ -67,6 +67,6 @@ export class RoutesConfig extends pulumi.CustomResource {
  * The set of arguments for constructing a RoutesConfig resource.
  */
 export interface RoutesConfigArgs {
-    id?: pulumi.Input<string>;
+    id?: pulumi.Input<string | undefined>;
     routes: pulumi.Input<pulumi.Input<string>[]>;
 }

@@ -8,6 +8,10 @@ import (
 
 	"github.com/getkin/kin-openapi/openapi3"
 
+	dotnetgen "github.com/pulumi/pulumi-dotnet/pulumi-language-dotnet/v3/codegen"
+	gogen "github.com/pulumi/pulumi/pkg/v3/codegen/go"
+	nodejsgen "github.com/pulumi/pulumi/pkg/v3/codegen/nodejs"
+	pythongen "github.com/pulumi/pulumi/pkg/v3/codegen/python"
 	pschema "github.com/pulumi/pulumi/pkg/v3/codegen/schema"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/common/util/contract"
@@ -40,8 +44,9 @@ func PulumiSchema(openapiDoc openapi3.T) (pschema.PackageSpec, openapigen.Provid
 			Variables: map[string]pschema.PropertySpec{
 				"apiKey": {
 					Description: "The API key",
-					TypeSpec:    pschema.TypeSpec{Type: "string"},
+					TypeSpec:    pschema.TypeSpec{Type: pschema.StringType.String()},
 					Language: map[string]pschema.RawMessage{
+						//nolint: goconst
 						"csharp": rawMessage(map[string]interface{}{
 							"name": "ApiKey",
 						}),
@@ -50,8 +55,9 @@ func PulumiSchema(openapiDoc openapi3.T) (pschema.PackageSpec, openapigen.Provid
 				},
 				"clientId": {
 					Description: "The OAuth client ID",
-					TypeSpec:    pschema.TypeSpec{Type: "string"},
+					TypeSpec:    pschema.TypeSpec{Type: pschema.StringType.String()},
 					Language: map[string]pschema.RawMessage{
+						//nolint: goconst
 						"csharp": rawMessage(map[string]interface{}{
 							"name": "ClientId",
 						}),
@@ -60,8 +66,9 @@ func PulumiSchema(openapiDoc openapi3.T) (pschema.PackageSpec, openapigen.Provid
 				},
 				"clientSecret": {
 					Description: "The OAuth client secret",
-					TypeSpec:    pschema.TypeSpec{Type: "string"},
+					TypeSpec:    pschema.TypeSpec{Type: pschema.StringType.String()},
 					Language: map[string]pschema.RawMessage{
+						//nolint: goconst
 						"csharp": rawMessage(map[string]interface{}{
 							"name": "ClientSecret",
 						}),
@@ -71,7 +78,7 @@ func PulumiSchema(openapiDoc openapi3.T) (pschema.PackageSpec, openapigen.Provid
 			},
 		},
 
-		Provider: pschema.ResourceSpec{
+		Provider: &pschema.ResourceSpec{
 			ObjectTypeSpec: pschema.ObjectTypeSpec{
 				Description: "The provider type for the Tailscale package.",
 				Type:        "object",
@@ -85,7 +92,7 @@ func PulumiSchema(openapiDoc openapi3.T) (pschema.PackageSpec, openapigen.Provid
 						},
 					},
 					Description: "The Tailscale API key.",
-					TypeSpec:    pschema.TypeSpec{Type: "string"},
+					TypeSpec:    pschema.TypeSpec{Type: pschema.StringType.String()},
 					Language: map[string]pschema.RawMessage{
 						"csharp": rawMessage(map[string]interface{}{
 							"name": "ApiKey",
@@ -163,33 +170,32 @@ func PulumiSchema(openapiDoc openapi3.T) (pschema.PackageSpec, openapigen.Provid
 		}
 	}
 
-	pkg.Language["csharp"] = rawMessage(map[string]interface{}{
-		"rootNamespace": "Pulumi",
-		"packageReferences": map[string]string{
+	//nolint: goconst
+	pkg.Language["csharp"] = rawMessage(dotnetgen.CSharpPackageInfo{
+		Namespaces: csharpNamespaces,
+		PackageReferences: map[string]string{
 			"Pulumi": "3.*",
 		},
-		"namespaces": csharpNamespaces,
-		// TODO: What does this enable?
-		// "dictionaryConstructors": true,
+		RootNamespace: "Pulumi",
 	})
 
-	pkg.Language["go"] = rawMessage(map[string]interface{}{
-		"importBasePath": "github.com/cloudy-sky-software/pulumi-tailscale-native/sdk/go/tailscale",
-		"packageImportAliases": map[string]string{
+	pkg.Language["go"] = rawMessage(gogen.GoPackageInfo{
+		ImportBasePath: "github.com/cloudy-sky-software/pulumi-tailscale-native/sdk/go/tailscale",
+		ModuleToPackage: map[string]string{
 			"github.com/cloudy-sky-software/pulumi-tailscale-native/sdk/go/tailscale": "tailscale",
 		},
 	})
-	pkg.Language["nodejs"] = rawMessage(map[string]interface{}{
-		"packageName": "@cloudyskysoftware/pulumi-tailscale-native",
+	pkg.Language["nodejs"] = rawMessage(nodejsgen.NodePackageInfo{
+		PackageName: "@cloudyskysoftware/pulumi-tailscale-native",
 	})
-	pkg.Language["python"] = rawMessage(map[string]interface{}{
-		"packageName": "pulumi_tailscale_native",
-		"requires": map[string]string{
+	pkg.Language["python"] = rawMessage(pythongen.PackageInfo{
+		PackageName: "pulumi_tailscale_native",
+		Requires: map[string]string{
 			"pulumi": ">=3.0.0,<4.0.0",
 		},
-		"pyproject": map[string]bool{
-			"enabled": true,
-		},
+		PyProject: struct {
+			Enabled bool `json:"enabled,omitempty"`
+		}{Enabled: true},
 	})
 
 	metadata := openapigen.ProviderMetadata{

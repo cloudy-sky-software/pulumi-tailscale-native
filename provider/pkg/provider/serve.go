@@ -3,7 +3,7 @@
 package provider
 
 import (
-	"github.com/pulumi/pulumi/pkg/v3/resource/provider"
+	pulumiProvider "github.com/pulumi/pulumi/sdk/v3/go/pulumi/provider"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/common/util/cmdutil"
 	rpc "github.com/pulumi/pulumi/sdk/v3/proto/go"
@@ -12,7 +12,7 @@ import (
 // Serve launches the gRPC server for the resource provider.
 func Serve(providerName, version string, pulumiSchema, openapiDocBytes, metadataBytes []byte) {
 	// Start gRPC service.
-	err := provider.Main(providerName, func(host *provider.HostClient) (rpc.ResourceProviderServer, error) {
+	err := pulumiProvider.Main(providerName, func(host *pulumiProvider.HostClient) (rpc.ResourceProviderServer, error) {
 		return makeProvider(host, providerName, version, pulumiSchema, openapiDocBytes, metadataBytes)
 	})
 	if err != nil {

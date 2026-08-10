@@ -58,7 +58,7 @@ def list_keys(tailnet: Optional[_builtins.str] = None,
 
     return AwaitableListKeysResult(
         items=pulumi.get(__ret__, 'items'))
-def list_keys_output(tailnet: Optional[pulumi.Input[_builtins.str]] = None,
+def list_keys_output(tailnet: pulumi.Input[Optional[_builtins.str]] = None,
                      opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[ListKeysResult]:
     """
     Use this data source to access information about an existing resource.

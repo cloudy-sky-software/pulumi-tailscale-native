@@ -67,7 +67,7 @@ def get_name_servers_config(tailnet: Optional[_builtins.str] = None,
     return AwaitableGetNameServersConfigResult(
         dns=pulumi.get(__ret__, 'dns'),
         magic_dns=pulumi.get(__ret__, 'magic_dns'))
-def get_name_servers_config_output(tailnet: Optional[pulumi.Input[_builtins.str]] = None,
+def get_name_servers_config_output(tailnet: pulumi.Input[Optional[_builtins.str]] = None,
                                    opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetNameServersConfigResult]:
     """
     Use this data source to access information about an existing resource.

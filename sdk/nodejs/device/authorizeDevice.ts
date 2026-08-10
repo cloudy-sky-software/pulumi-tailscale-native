@@ -62,5 +62,5 @@ export class AuthorizeDevice extends pulumi.CustomResource {
  */
 export interface AuthorizeDeviceArgs {
     authorized: pulumi.Input<boolean>;
-    id?: pulumi.Input<string>;
+    id?: pulumi.Input<string | undefined>;
 }

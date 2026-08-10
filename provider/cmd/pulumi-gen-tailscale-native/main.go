@@ -38,18 +38,12 @@ var BaseDir string
 // Language is the SDK language.
 type Language string
 
-const (
-	DotNet Language = "dotnet"
-	Go     Language = "go"
-	NodeJS Language = "nodejs"
-	Python Language = "python"
-	Schema Language = "schema"
-)
+const Schema Language = "schema"
 
 func main() {
 	flag.Usage = func() {
 		const usageFormat = "Usage: <language>"
-		_, err := fmt.Fprint(flag.CommandLine.Output(), usageFormat, os.Args[0])
+		_, err := fmt.Fprint(flag.CommandLine.Output(), usageFormat)
 		contract.IgnoreError(err)
 		flag.PrintDefaults()
 	}
