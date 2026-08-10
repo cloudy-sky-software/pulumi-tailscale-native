@@ -71,6 +71,12 @@ jobs:
         with:
           python-version: ${{ env.PYTHON_VERSION }}
 
+      - name: Install @typespec/compiler
+        run: |
+          npm i -g @typespec/compiler
+          cd api
+          npm ci
+
       - name: Install pulumictl
         uses: jaxxstorm/action-install-gh-release@25e24d2d23ae098373794ef1d6faecb48ee52da8
         with:
