@@ -57,7 +57,7 @@ def get_dns_preferences_config(tailnet: Optional[_builtins.str] = None,
 
     return AwaitableGetDNSPreferencesConfigResult(
         magic_dns=pulumi.get(__ret__, 'magic_dns'))
-def get_dns_preferences_config_output(tailnet: Optional[pulumi.Input[_builtins.str]] = None,
+def get_dns_preferences_config_output(tailnet: pulumi.Input[Optional[_builtins.str]] = None,
                                       opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetDNSPreferencesConfigResult]:
     """
     Use this data source to access information about an existing resource.

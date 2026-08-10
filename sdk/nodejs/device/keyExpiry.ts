@@ -61,6 +61,6 @@ export class KeyExpiry extends pulumi.CustomResource {
  * The set of arguments for constructing a KeyExpiry resource.
  */
 export interface KeyExpiryArgs {
-    id?: pulumi.Input<string>;
+    id?: pulumi.Input<string | undefined>;
     keyExpiryDisabled: pulumi.Input<boolean>;
 }

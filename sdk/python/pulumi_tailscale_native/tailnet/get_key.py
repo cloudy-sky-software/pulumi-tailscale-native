@@ -79,8 +79,8 @@ def get_key(id: Optional[_builtins.str] = None,
         created=pulumi.get(__ret__, 'created'),
         expires=pulumi.get(__ret__, 'expires'),
         key=pulumi.get(__ret__, 'key'))
-def get_key_output(id: Optional[pulumi.Input[_builtins.str]] = None,
-                   tailnet: Optional[pulumi.Input[_builtins.str]] = None,
+def get_key_output(id: pulumi.Input[Optional[_builtins.str]] = None,
+                   tailnet: pulumi.Input[Optional[_builtins.str]] = None,
                    opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetKeyResult]:
     """
     Use this data source to access information about an existing resource.

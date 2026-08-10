@@ -61,6 +61,6 @@ export class Tags extends pulumi.CustomResource {
  * The set of arguments for constructing a Tags resource.
  */
 export interface TagsArgs {
-    id?: pulumi.Input<string>;
+    id?: pulumi.Input<string | undefined>;
     tags: pulumi.Input<pulumi.Input<string>[]>;
 }

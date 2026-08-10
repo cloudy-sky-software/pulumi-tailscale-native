@@ -20,9 +20,10 @@ __all__ = ['ReplaceSearchPathsArgs', 'ReplaceSearchPaths']
 class ReplaceSearchPathsArgs:
     def __init__(__self__, *,
                  search_paths: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]],
-                 tailnet: Optional[pulumi.Input[_builtins.str]] = None):
+                 tailnet: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a ReplaceSearchPaths resource.
+
         :param pulumi.Input[_builtins.str] tailnet: For paid plans, your domain is your tailnet. For solo plans, the tailnet is the email you signed up with. So `alice@gmail.com` has the tailnet `alice@gmail.com` since `@gmail.com` is a shared email host. Alternatively, you can specify the value "-" to refer to the default tailnet of the authenticated user making the API call.
         """
         pulumi.set(__self__, "search_paths", search_paths)
@@ -40,14 +41,14 @@ class ReplaceSearchPathsArgs:
 
     @_builtins.property
     @pulumi.getter
-    def tailnet(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def tailnet(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         For paid plans, your domain is your tailnet. For solo plans, the tailnet is the email you signed up with. So `alice@gmail.com` has the tailnet `alice@gmail.com` since `@gmail.com` is a shared email host. Alternatively, you can specify the value "-" to refer to the default tailnet of the authenticated user making the API call.
         """
         return pulumi.get(self, "tailnet")
 
     @tailnet.setter
-    def tailnet(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def tailnet(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "tailnet", value)
 
 
@@ -57,11 +58,12 @@ class ReplaceSearchPaths(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 search_paths: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 tailnet: Optional[pulumi.Input[_builtins.str]] = None,
+                 search_paths: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 tailnet: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         Create a ReplaceSearchPaths resource with the given unique name, props, and options.
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] tailnet: For paid plans, your domain is your tailnet. For solo plans, the tailnet is the email you signed up with. So `alice@gmail.com` has the tailnet `alice@gmail.com` since `@gmail.com` is a shared email host. Alternatively, you can specify the value "-" to refer to the default tailnet of the authenticated user making the API call.
@@ -74,6 +76,7 @@ class ReplaceSearchPaths(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Create a ReplaceSearchPaths resource with the given unique name, props, and options.
+
         :param str resource_name: The name of the resource.
         :param ReplaceSearchPathsArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -89,8 +92,8 @@ class ReplaceSearchPaths(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 search_paths: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 tailnet: Optional[pulumi.Input[_builtins.str]] = None,
+                 search_paths: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 tailnet: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):

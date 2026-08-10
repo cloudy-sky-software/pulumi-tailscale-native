@@ -246,7 +246,7 @@ def get_device(id: Optional[_builtins.str] = None,
         os=pulumi.get(__ret__, 'os'),
         update_available=pulumi.get(__ret__, 'update_available'),
         user=pulumi.get(__ret__, 'user'))
-def get_device_output(id: Optional[pulumi.Input[_builtins.str]] = None,
+def get_device_output(id: pulumi.Input[Optional[_builtins.str]] = None,
                       opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetDeviceResult]:
     """
     Use this data source to access information about an existing resource.

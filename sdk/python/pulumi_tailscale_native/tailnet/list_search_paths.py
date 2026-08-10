@@ -57,7 +57,7 @@ def list_search_paths(tailnet: Optional[_builtins.str] = None,
 
     return AwaitableListSearchPathsResult(
         search_paths=pulumi.get(__ret__, 'search_paths'))
-def list_search_paths_output(tailnet: Optional[pulumi.Input[_builtins.str]] = None,
+def list_search_paths_output(tailnet: pulumi.Input[Optional[_builtins.str]] = None,
                              opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[ListSearchPathsResult]:
     """
     Use this data source to access information about an existing resource.

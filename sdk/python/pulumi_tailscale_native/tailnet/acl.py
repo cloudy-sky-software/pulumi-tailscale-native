@@ -30,9 +30,10 @@ class AclArgs:
                  ssh: pulumi.Input[Sequence[pulumi.Input['SshRuleArgs']]],
                  tag_owners: Any,
                  tests: pulumi.Input[_builtins.str],
-                 tailnet: Optional[pulumi.Input[_builtins.str]] = None):
+                 tailnet: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a Acl resource.
+
         :param pulumi.Input[_builtins.str] tailnet: For paid plans, your domain is your tailnet. For solo plans, the tailnet is the email you signed up with. So `alice@gmail.com` has the tailnet `alice@gmail.com` since `@gmail.com` is a shared email host. Alternatively, you can specify the value "-" to refer to the default tailnet of the authenticated user making the API call.
         """
         pulumi.set(__self__, "acls", acls)
@@ -120,14 +121,14 @@ class AclArgs:
 
     @_builtins.property
     @pulumi.getter
-    def tailnet(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def tailnet(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         For paid plans, your domain is your tailnet. For solo plans, the tailnet is the email you signed up with. So `alice@gmail.com` has the tailnet `alice@gmail.com` since `@gmail.com` is a shared email host. Alternatively, you can specify the value "-" to refer to the default tailnet of the authenticated user making the API call.
         """
         return pulumi.get(self, "tailnet")
 
     @tailnet.setter
-    def tailnet(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def tailnet(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "tailnet", value)
 
 
@@ -137,18 +138,19 @@ class Acl(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 acls: Optional[pulumi.Input[Sequence[pulumi.Input[Union['AclRuleArgs', 'AclRuleArgsDict']]]]] = None,
+                 acls: pulumi.Input[Optional[Sequence[pulumi.Input[Union['AclRuleArgs', 'AclRuleArgsDict']]]]] = None,
                  auto_approvers: Optional[Any] = None,
                  groups: Optional[Any] = None,
                  hosts: Optional[Any] = None,
-                 node_attrs: Optional[pulumi.Input[Sequence[pulumi.Input[Union['NodeAttrsArgs', 'NodeAttrsArgsDict']]]]] = None,
-                 ssh: Optional[pulumi.Input[Sequence[pulumi.Input[Union['SshRuleArgs', 'SshRuleArgsDict']]]]] = None,
+                 node_attrs: pulumi.Input[Optional[Sequence[pulumi.Input[Union['NodeAttrsArgs', 'NodeAttrsArgsDict']]]]] = None,
+                 ssh: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SshRuleArgs', 'SshRuleArgsDict']]]]] = None,
                  tag_owners: Optional[Any] = None,
-                 tailnet: Optional[pulumi.Input[_builtins.str]] = None,
-                 tests: Optional[pulumi.Input[_builtins.str]] = None,
+                 tailnet: pulumi.Input[Optional[_builtins.str]] = None,
+                 tests: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         Create a Acl resource with the given unique name, props, and options.
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] tailnet: For paid plans, your domain is your tailnet. For solo plans, the tailnet is the email you signed up with. So `alice@gmail.com` has the tailnet `alice@gmail.com` since `@gmail.com` is a shared email host. Alternatively, you can specify the value "-" to refer to the default tailnet of the authenticated user making the API call.
@@ -161,6 +163,7 @@ class Acl(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Create a Acl resource with the given unique name, props, and options.
+
         :param str resource_name: The name of the resource.
         :param AclArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -176,15 +179,15 @@ class Acl(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 acls: Optional[pulumi.Input[Sequence[pulumi.Input[Union['AclRuleArgs', 'AclRuleArgsDict']]]]] = None,
+                 acls: pulumi.Input[Optional[Sequence[pulumi.Input[Union['AclRuleArgs', 'AclRuleArgsDict']]]]] = None,
                  auto_approvers: Optional[Any] = None,
                  groups: Optional[Any] = None,
                  hosts: Optional[Any] = None,
-                 node_attrs: Optional[pulumi.Input[Sequence[pulumi.Input[Union['NodeAttrsArgs', 'NodeAttrsArgsDict']]]]] = None,
-                 ssh: Optional[pulumi.Input[Sequence[pulumi.Input[Union['SshRuleArgs', 'SshRuleArgsDict']]]]] = None,
+                 node_attrs: pulumi.Input[Optional[Sequence[pulumi.Input[Union['NodeAttrsArgs', 'NodeAttrsArgsDict']]]]] = None,
+                 ssh: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SshRuleArgs', 'SshRuleArgsDict']]]]] = None,
                  tag_owners: Optional[Any] = None,
-                 tailnet: Optional[pulumi.Input[_builtins.str]] = None,
-                 tests: Optional[pulumi.Input[_builtins.str]] = None,
+                 tailnet: pulumi.Input[Optional[_builtins.str]] = None,
+                 tests: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
