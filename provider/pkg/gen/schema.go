@@ -71,7 +71,7 @@ func PulumiSchema(openapiDoc openapi3.T) (pschema.PackageSpec, openapigen.Provid
 			},
 		},
 
-		Provider: pschema.ResourceSpec{
+		Provider: &pschema.ResourceSpec{
 			ObjectTypeSpec: pschema.ObjectTypeSpec{
 				Description: "The provider type for the Tailscale package.",
 				Type:        "object",

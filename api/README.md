@@ -18,7 +18,9 @@ auto-generated API spec becomes better at some point.
 
 ## Development
 
-- [Install](https://typespec.io/docs/) the TypeSpec compiler.
+- [Install](https://typespec.io/docs/) the TypeSpec
+  compiler globally or run `make ensure` at the root
+  of this repo.
 - Install the TypeSpec language server for your IDE.
 - Run `npm i` in this directory.
 
