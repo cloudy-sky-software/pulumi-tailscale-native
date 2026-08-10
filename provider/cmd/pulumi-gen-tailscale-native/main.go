@@ -43,7 +43,7 @@ const Schema Language = "schema"
 func main() {
 	flag.Usage = func() {
 		const usageFormat = "Usage: <language>"
-		_, err := fmt.Fprint(flag.CommandLine.Output(), usageFormat, os.Args[0])
+		_, err := fmt.Fprint(flag.CommandLine.Output(), usageFormat)
 		contract.IgnoreError(err)
 		flag.PrintDefaults()
 	}
