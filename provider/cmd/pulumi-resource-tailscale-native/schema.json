@@ -15,20 +15,20 @@
     "publisher": "Cloudy Sky Software",
     "language": {
         "csharp": {
+            "packageReferences": {
+                "Pulumi": "3.*"
+            },
             "namespaces": {
                 "": "Provider",
                 "device": "Device",
                 "tailnet": "Tailnet",
                 "tailscale-native": "TailscaleNative"
             },
-            "packageReferences": {
-                "Pulumi": "3.*"
-            },
             "rootNamespace": "Pulumi"
         },
         "go": {
             "importBasePath": "github.com/cloudy-sky-software/pulumi-tailscale-native/sdk/go/tailscale",
-            "packageImportAliases": {
+            "moduleToPackage": {
                 "github.com/cloudy-sky-software/pulumi-tailscale-native/sdk/go/tailscale": "tailscale"
             }
         },
@@ -37,11 +37,11 @@
         },
         "python": {
             "packageName": "pulumi_tailscale_native",
-            "pyproject": {
-                "enabled": true
-            },
             "requires": {
                 "pulumi": "\u003e=3.0.0,\u003c4.0.0"
+            },
+            "pyproject": {
+                "enabled": true
             }
         }
     },
