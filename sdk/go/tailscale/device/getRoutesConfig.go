@@ -31,12 +31,8 @@ type LookupRoutesConfigResult struct {
 }
 
 func LookupRoutesConfigOutput(ctx *pulumi.Context, args LookupRoutesConfigOutputArgs, opts ...pulumi.InvokeOption) LookupRoutesConfigResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupRoutesConfigResultOutput, error) {
-			args := v.(LookupRoutesConfigArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("tailscale-native:device:getRoutesConfig", args, LookupRoutesConfigResultOutput{}, options).(LookupRoutesConfigResultOutput), nil
-		}).(LookupRoutesConfigResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("tailscale-native:device:getRoutesConfig", args, LookupRoutesConfigResultOutput{}, options).(LookupRoutesConfigResultOutput)
 }
 
 type LookupRoutesConfigOutputArgs struct {

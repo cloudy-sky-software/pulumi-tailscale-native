@@ -32,12 +32,8 @@ type LookupNameServersConfigResult struct {
 }
 
 func LookupNameServersConfigOutput(ctx *pulumi.Context, args LookupNameServersConfigOutputArgs, opts ...pulumi.InvokeOption) LookupNameServersConfigResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupNameServersConfigResultOutput, error) {
-			args := v.(LookupNameServersConfigArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("tailscale-native:tailnet:getNameServersConfig", args, LookupNameServersConfigResultOutput{}, options).(LookupNameServersConfigResultOutput), nil
-		}).(LookupNameServersConfigResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("tailscale-native:tailnet:getNameServersConfig", args, LookupNameServersConfigResultOutput{}, options).(LookupNameServersConfigResultOutput)
 }
 
 type LookupNameServersConfigOutputArgs struct {
