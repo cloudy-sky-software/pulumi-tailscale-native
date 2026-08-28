@@ -31,12 +31,8 @@ type ListDevicesResult struct {
 }
 
 func ListDevicesOutput(ctx *pulumi.Context, args ListDevicesOutputArgs, opts ...pulumi.InvokeOption) ListDevicesResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (ListDevicesResultOutput, error) {
-			args := v.(ListDevicesArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("tailscale-native:tailnet:listDevices", args, ListDevicesResultOutput{}, options).(ListDevicesResultOutput), nil
-		}).(ListDevicesResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("tailscale-native:tailnet:listDevices", args, ListDevicesResultOutput{}, options).(ListDevicesResultOutput)
 }
 
 type ListDevicesOutputArgs struct {
