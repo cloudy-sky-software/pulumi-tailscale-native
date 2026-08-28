@@ -31,12 +31,8 @@ type ListKeysResult struct {
 }
 
 func ListKeysOutput(ctx *pulumi.Context, args ListKeysOutputArgs, opts ...pulumi.InvokeOption) ListKeysResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (ListKeysResultOutput, error) {
-			args := v.(ListKeysArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("tailscale-native:tailnet:listKeys", args, ListKeysResultOutput{}, options).(ListKeysResultOutput), nil
-		}).(ListKeysResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("tailscale-native:tailnet:listKeys", args, ListKeysResultOutput{}, options).(ListKeysResultOutput)
 }
 
 type ListKeysOutputArgs struct {
