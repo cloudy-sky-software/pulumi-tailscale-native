@@ -6,16 +6,8 @@ on:
       - "!v*.*.*-**"
 env:
   PROVIDER: "tailscale-native"
-  NPM_TOKEN: ${{ secrets.NPM_AUTOMATION_TOKEN }}
-  PUBLISH_NPM: true
   NPM_REGISTRY_URL: https://registry.npmjs.org
-  NUGET_PUBLISH_KEY: ${{ secrets.NUGET_API_KEY }}
   NUGET_FEED_URL: https://api.nuget.org/v3/index.json
-  PUBLISH_NUGET: true
-  PYPI_PASSWORD: ${{ secrets.PYPI_API_TOKEN }}
-  # PYPI usernames for API tokens is literally __token__.
-  PYPI_USERNAME: "__token__"
-  PUBLISH_PYPI: true
 
 jobs:
   lint:
@@ -30,11 +22,11 @@ jobs:
       - name: Install Go
         uses: actions/setup-go@v7
         with:
-          go-version: ${{ env.GO_VERSION }}
+          go-version-file: go.work
 
       # Use a commit hash from https://github.com/golangci/golangci-lint/commits/main.
       - run: |
-          go install github.com/golangci/golangci-lint/v2/cmd/golangci-lint@2e484ee1089a13d51500f5d1961c1313cbea8ffe
+          go install github.com/golangci/golangci-lint/v2/cmd/golangci-lint@5e7d0c42ef205fc7a738753a8126511290b42d66
           make lint
 
       - name: Test
@@ -44,6 +36,9 @@ jobs:
     name: Publish binary
     runs-on: ${{ matrix.agent-os }}
     needs: lint
+    permissions:
+      # To allow goreleaser to create a GH release.
+      contents: write
     steps:
       - name: Checkout Repo
         uses: actions/checkout@v7
@@ -56,7 +51,7 @@ jobs:
       - name: Install Go
         uses: actions/setup-go@v7
         with:
-          go-version: ${{ env.GO_VERSION }}
+          go-version-file: go.work
 
       - name: Install Pulumi CLI
         uses: pulumi/actions@v7
@@ -71,8 +66,13 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Install Pulumi CLI
+        uses: pulumi/actions@598b17045ce608f3af1f68e06c04649a0ab4a829
+        with:
+          pulumi-version: latest
+
       - name: Run GoReleaser
-        uses: goreleaser/goreleaser-action@fdcf0b9df926c8dd93d4e7f15c508dd346e09eb1
+        uses: goreleaser/goreleaser-action@01cbe076be10ba0af7b0b9319ac490a93d3d2fcd
         with:
           args: -f ${{ matrix.goreleaser }} -p 1 release --clean --timeout 90m0s
           version: latest
@@ -94,6 +94,11 @@ jobs:
     name: Publish SDKs
     runs-on: ubuntu-latest
     needs: publish-binary
+    permissions:
+      contents: read
+      # Needed for OIDC token exchange with language registries
+      # for Trusted Publishing.
+      id-token: write
     steps:
       - name: Checkout Repo
         uses: actions/checkout@v7
@@ -106,7 +111,7 @@ jobs:
       - name: Install Go
         uses: actions/setup-go@v7
         with:
-          go-version: ${{ env.GO_VERSION }}
+          go-version-file: go.work
 
       - name: Install @typespec/compiler
         run: |
@@ -123,7 +128,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Install Pulumi CLI
-        uses: pulumi/actions@85a185baea80a1ab120237e362612233003f2e29
+        uses: pulumi/actions@598b17045ce608f3af1f68e06c04649a0ab4a829
         with:
           pulumi-version: latest
 
@@ -145,6 +150,11 @@ jobs:
 
       - name: Generate SDK
         run: make gen ${{ matrix.language }}_sdk
+        env:
+          # The setup-node action creates an .npmrc file
+          # referencing `NODE_AUTH_TOKEN`.
+          # https://docs.github.com/en/actions/tutorials/publish-packages/publish-nodejs-packages
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_AUTOMATION_TOKEN }}
 
       - name: Check worktree clean
         run: |
@@ -166,25 +176,37 @@ jobs:
           name: ${{ matrix.language  }}-sdk.tar.gz
           path: ${{ github.workspace}}/sdk/${{ matrix.language }}.tar.gz
 
-      - if: ${{ matrix.language == 'python' && env.PUBLISH_PYPI == 'true' }}
+      # Publish to PyPI using trusted publishing.
+      # https://docs.pypi.org/trusted-publishers/using-a-publisher/
+      - if: ${{ matrix.language == 'python' }}
         name: Publish package to PyPI
-        uses: pypa/gh-action-pypi-publish@cef221092ed1bacb1cc03d23a2d87d1d172e277b
+        uses: pypa/gh-action-pypi-publish@c0d6f8e4af2ad8247a7da213b199ea78dac8395e
         with:
-          user: ${{ env.PYPI_USERNAME }}
-          password: ${{ env.PYPI_PASSWORD }}
-          packages-dir: ${{github.workspace}}/sdk/python/bin/dist
+          packages_dir: ${{github.workspace}}/sdk/python/bin/dist
 
-      - if: ${{ matrix.language == 'nodejs' && env.PUBLISH_NPM == 'true' }}
-        uses: JS-DevTools/npm-publish@c4e381f155a91d401de91613040dd5fbca20c015
+      # The npm package will be staged.
+      # A maintainer with access to the npm account
+      # will need to approve it have it published.
+      - if: ${{ matrix.language == 'nodejs' }}
+        run: npm stage publish --access public --provenance
+        working-directory: ${{github.workspace}}/sdk/nodejs/bin
+        env:
+          # The setup-node action creates an .npmrc file
+          # referencing `NODE_AUTH_TOKEN`.
+          # https://docs.github.com/en/actions/tutorials/publish-packages/publish-nodejs-packages
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_AUTOMATION_TOKEN }}
+
+      - name: NuGet login (OIDC → temp API key)
+        uses: NuGet/login@v1.2.0
+        if: ${{ matrix.language == 'dotnet' }}
+        id: login
         with:
-          access: "public"
-          token: ${{ env.NPM_TOKEN }}
-          package: ${{github.workspace}}/sdk/nodejs/bin/package.json
+          user: ${{ secrets.NUGET_PUBLISHER_USER }}
 
-      - if: ${{ matrix.language == 'dotnet' && env.PUBLISH_NUGET == 'true' }}
+      - if: ${{ matrix.language == 'dotnet' }}
         name: publish nuget package
         run: |
-          dotnet nuget push ${{github.workspace}}/sdk/dotnet/bin/Debug/*.nupkg -s ${{ env.NUGET_FEED_URL }} -k ${{ env.NUGET_PUBLISH_KEY }}
+          dotnet nuget push ${{github.workspace}}/sdk/dotnet/bin/Debug/*.nupkg -s ${{ env.NUGET_FEED_URL }} --api-key ${{steps.login.outputs.NUGET_API_KEY}}
           echo "done publishing packages"
     strategy:
       fail-fast: true
@@ -194,3 +216,18 @@ jobs:
           - python
           - dotnet
           - go
+
+  publish-release:
+    runs-on: ubuntu-latest
+    needs: publish-binary
+    permissions:
+      # To allow GH CLI to edit the GH release.
+      contents: write
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v7
+
+      - name: Publish GH release
+        run: gh release edit ${{ github.ref_name }} --draft=false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
