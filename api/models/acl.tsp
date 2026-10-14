@@ -32,8 +32,8 @@ model NodeAttrs {
 }
 
 model AutoApprovers {
-  routes: Record<string[]>;
-  exitNode: string[];
+  routes?: Record<string[]>;
+  exitNode?: string[];
 }
 
 model Acl {

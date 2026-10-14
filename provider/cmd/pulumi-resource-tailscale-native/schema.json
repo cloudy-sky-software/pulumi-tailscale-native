@@ -416,15 +416,15 @@
                     }
                 },
                 "autoApprovers": {
-                    "type": "object",
-                    "additionalProperties": {
-                        "type": "array"
-                    }
+                    "$ref": "#/types/tailscale-native:tailnet:AutoApprovers"
                 },
                 "groups": {
                     "type": "object",
                     "additionalProperties": {
-                        "type": "array"
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
                     }
                 },
                 "hosts": {
@@ -448,7 +448,10 @@
                 "tagOwners": {
                     "type": "object",
                     "additionalProperties": {
-                        "type": "array"
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
                     }
                 },
                 "tests": {
@@ -560,6 +563,26 @@
                 "expires",
                 "key"
             ]
+        },
+        "tailscale-native:tailnet:AutoApprovers": {
+            "properties": {
+                "exitNode": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "routes": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    }
+                }
+            },
+            "type": "object"
         },
         "tailscale-native:tailnet:ClientConnectivity": {
             "properties": {
@@ -1379,15 +1402,15 @@
                     }
                 },
                 "autoApprovers": {
-                    "type": "object",
-                    "additionalProperties": {
-                        "type": "array"
-                    }
+                    "$ref": "#/types/tailscale-native:tailnet:AutoApprovers"
                 },
                 "groups": {
                     "type": "object",
                     "additionalProperties": {
-                        "type": "array"
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
                     }
                 },
                 "hosts": {
@@ -1415,7 +1438,10 @@
                 "tagOwners": {
                     "type": "object",
                     "additionalProperties": {
-                        "type": "array"
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
                     }
                 },
                 "tests": {
@@ -1441,15 +1467,15 @@
                     }
                 },
                 "autoApprovers": {
-                    "type": "object",
-                    "additionalProperties": {
-                        "type": "array"
-                    }
+                    "$ref": "#/types/tailscale-native:tailnet:AutoApprovers"
                 },
                 "groups": {
                     "type": "object",
                     "additionalProperties": {
-                        "type": "array"
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
                     }
                 },
                 "hosts": {
@@ -1477,7 +1503,10 @@
                 "tagOwners": {
                     "type": "object",
                     "additionalProperties": {
-                        "type": "array"
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
                     }
                 },
                 "tailnet": {

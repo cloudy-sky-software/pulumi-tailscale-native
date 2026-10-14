@@ -464,9 +464,6 @@ components:
           format: int64
     AutoApprovers:
       type: object
-      required:
-        - routes
-        - exitNode
       properties:
         routes:
           type: object
