@@ -31,9 +31,14 @@ model NodeAttrs {
   attr: string[];
 }
 
+model AutoApprovers {
+  routes: Record<string[]>;
+  exitNode: string[];
+}
+
 model Acl {
   acls: AclRule[];
-  autoApprovers: Record<string[]>;
+  autoApprovers: AutoApprovers;
   groups: Record<string[]>;
   hosts: Record<string>;
   nodeAttrs: NodeAttrs[];

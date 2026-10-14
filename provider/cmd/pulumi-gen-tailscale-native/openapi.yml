@@ -384,11 +384,7 @@ components:
           items:
             $ref: '#/components/schemas/AclRule'
         autoApprovers:
-          type: object
-          additionalProperties:
-            type: array
-            items:
-              type: string
+          $ref: '#/components/schemas/AutoApprovers'
         groups:
           type: object
           additionalProperties:
@@ -466,6 +462,22 @@ components:
         expirySeconds:
           type: integer
           format: int64
+    AutoApprovers:
+      type: object
+      required:
+        - routes
+        - exitNode
+      properties:
+        routes:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+        exitNode:
+          type: array
+          items:
+            type: string
     ClientConnectivity:
       type: object
       required:
