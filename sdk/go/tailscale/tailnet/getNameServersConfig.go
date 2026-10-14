@@ -22,6 +22,8 @@ func LookupNameServersConfig(ctx *pulumi.Context, args *LookupNameServersConfigA
 }
 
 type LookupNameServersConfigArgs struct {
+	// Query params to send with the API request.
+	QueryParams *GetNameServersConfigQueryParams `pulumi:"queryParams"`
 	// For paid plans, your domain is your tailnet. For solo plans, the tailnet is the email you signed up with. So `alice@gmail.com` has the tailnet `alice@gmail.com` since `@gmail.com` is a shared email host. Alternatively, you can specify the value "-" to refer to the default tailnet of the authenticated user making the API call.
 	Tailnet string `pulumi:"tailnet"`
 }
@@ -37,6 +39,8 @@ func LookupNameServersConfigOutput(ctx *pulumi.Context, args LookupNameServersCo
 }
 
 type LookupNameServersConfigOutputArgs struct {
+	// Query params to send with the API request.
+	QueryParams GetNameServersConfigQueryParamsPtrInput `pulumi:"queryParams"`
 	// For paid plans, your domain is your tailnet. For solo plans, the tailnet is the email you signed up with. So `alice@gmail.com` has the tailnet `alice@gmail.com` since `@gmail.com` is a shared email host. Alternatively, you can specify the value "-" to refer to the default tailnet of the authenticated user making the API call.
 	Tailnet pulumi.StringInput `pulumi:"tailnet"`
 }

@@ -16,6 +16,8 @@ type KeyExpiry struct {
 	pulumi.CustomResourceState
 
 	KeyExpiryDisabled pulumi.BoolOutput `pulumi:"keyExpiryDisabled"`
+	// Query params to send with the API requests for this resource.
+	QueryParams KeyExpiryQueryParamsPtrOutput `pulumi:"queryParams"`
 }
 
 // NewKeyExpiry registers a new resource with the given unique name, arguments, and options.
@@ -63,12 +65,16 @@ func (KeyExpiryState) ElementType() reflect.Type {
 type keyExpiryArgs struct {
 	Id                *string `pulumi:"id"`
 	KeyExpiryDisabled bool    `pulumi:"keyExpiryDisabled"`
+	// Query params to send with the API requests for this resource.
+	QueryParams *KeyExpiryQueryParams `pulumi:"queryParams"`
 }
 
 // The set of arguments for constructing a KeyExpiry resource.
 type KeyExpiryArgs struct {
 	Id                pulumi.StringPtrInput
 	KeyExpiryDisabled pulumi.BoolInput
+	// Query params to send with the API requests for this resource.
+	QueryParams KeyExpiryQueryParamsPtrInput
 }
 
 func (KeyExpiryArgs) ElementType() reflect.Type {
@@ -110,6 +116,11 @@ func (o KeyExpiryOutput) ToKeyExpiryOutputWithContext(ctx context.Context) KeyEx
 
 func (o KeyExpiryOutput) KeyExpiryDisabled() pulumi.BoolOutput {
 	return o.ApplyT(func(v *KeyExpiry) pulumi.BoolOutput { return v.KeyExpiryDisabled }).(pulumi.BoolOutput)
+}
+
+// Query params to send with the API requests for this resource.
+func (o KeyExpiryOutput) QueryParams() KeyExpiryQueryParamsPtrOutput {
+	return o.ApplyT(func(v *KeyExpiry) KeyExpiryQueryParamsPtrOutput { return v.QueryParams }).(KeyExpiryQueryParamsPtrOutput)
 }
 
 func init() {

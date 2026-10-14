@@ -20,11 +20,7 @@ components:
             $ref: '#/components/schemas/AclRule'
           type: array
         autoApprovers:
-          additionalProperties:
-            items:
-              type: string
-            type: array
-          type: object
+          $ref: '#/components/schemas/AutoApprovers'
         groups:
           additionalProperties:
             items:
@@ -111,6 +107,19 @@ components:
       required:
         - capabilities
         - expirySeconds
+      type: object
+    AutoApprovers:
+      properties:
+        exitNode:
+          items:
+            type: string
+          type: array
+        routes:
+          additionalProperties:
+            items:
+              type: string
+            type: array
+          type: object
       type: object
     ClientConnectivity:
       properties:

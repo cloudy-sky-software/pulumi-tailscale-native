@@ -10,11 +10,16 @@ import * as utilities from "../utilities";
 export function getAcl(args: GetAclArgs, opts?: pulumi.InvokeOptions): Promise<GetAclResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("tailscale-native:tailnet:getAcl", {
+        "queryParams": args.queryParams,
         "tailnet": args.tailnet,
     }, opts);
 }
 
 export interface GetAclArgs {
+    /**
+     * Query params to send with the API request.
+     */
+    queryParams?: inputs.tailnet.GetAclQueryParams;
     /**
      * For paid plans, your domain is your tailnet. For solo plans, the tailnet is the email you signed up with. So `alice@gmail.com` has the tailnet `alice@gmail.com` since `@gmail.com` is a shared email host. Alternatively, you can specify the value "-" to refer to the default tailnet of the authenticated user making the API call.
      */
@@ -23,22 +28,27 @@ export interface GetAclArgs {
 
 export interface GetAclResult {
     readonly acls: outputs.tailnet.AclRule[];
-    readonly autoApprovers: any;
-    readonly groups: any;
-    readonly hosts: any;
+    readonly autoApprovers: outputs.tailnet.AutoApprovers;
+    readonly groups: {[key: string]: string[]};
+    readonly hosts: {[key: string]: string};
     readonly nodeAttrs: outputs.tailnet.NodeAttrs[];
     readonly ssh: outputs.tailnet.SshRule[];
-    readonly tagOwners: any;
+    readonly tagOwners: {[key: string]: string[]};
     readonly tests: string;
 }
 export function getAclOutput(args: GetAclOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetAclResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("tailscale-native:tailnet:getAcl", {
+        "queryParams": args.queryParams,
         "tailnet": args.tailnet,
     }, opts);
 }
 
 export interface GetAclOutputArgs {
+    /**
+     * Query params to send with the API request.
+     */
+    queryParams?: pulumi.Input<inputs.tailnet.GetAclQueryParamsArgs | undefined>;
     /**
      * For paid plans, your domain is your tailnet. For solo plans, the tailnet is the email you signed up with. So `alice@gmail.com` has the tailnet `alice@gmail.com` since `@gmail.com` is a shared email host. Alternatively, you can specify the value "-" to refer to the default tailnet of the authenticated user making the API call.
      */

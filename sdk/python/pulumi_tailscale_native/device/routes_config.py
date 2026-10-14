@@ -13,6 +13,8 @@ if sys.version_info >= (3, 11):
 else:
     from typing_extensions import NotRequired, TypedDict, TypeAlias
 from .. import _utilities
+from . import outputs
+from ._inputs import *
 
 __all__ = ['RoutesConfigArgs', 'RoutesConfig']
 
@@ -20,13 +22,18 @@ __all__ = ['RoutesConfigArgs', 'RoutesConfig']
 class RoutesConfigArgs:
     def __init__(__self__, *,
                  routes: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]],
-                 id: pulumi.Input[Optional[_builtins.str]] = None):
+                 id: pulumi.Input[Optional[_builtins.str]] = None,
+                 query_params: pulumi.Input[Optional['RoutesConfigQueryParamsArgs']] = None):
         """
         The set of arguments for constructing a RoutesConfig resource.
+
+        :param pulumi.Input['RoutesConfigQueryParamsArgs'] query_params: Query params to send with the API requests for this resource.
         """
         pulumi.set(__self__, "routes", routes)
         if id is not None:
             pulumi.set(__self__, "id", id)
+        if query_params is not None:
+            pulumi.set(__self__, "query_params", query_params)
 
     @_builtins.property
     @pulumi.getter
@@ -46,6 +53,18 @@ class RoutesConfigArgs:
     def id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "id", value)
 
+    @_builtins.property
+    @pulumi.getter(name="queryParams")
+    def query_params(self) -> pulumi.Input[Optional['RoutesConfigQueryParamsArgs']]:
+        """
+        Query params to send with the API requests for this resource.
+        """
+        return pulumi.get(self, "query_params")
+
+    @query_params.setter
+    def query_params(self, value: pulumi.Input[Optional['RoutesConfigQueryParamsArgs']]):
+        pulumi.set(self, "query_params", value)
+
 
 @pulumi.type_token("tailscale-native:device:RoutesConfig")
 class RoutesConfig(pulumi.CustomResource):
@@ -54,6 +73,7 @@ class RoutesConfig(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  id: pulumi.Input[Optional[_builtins.str]] = None,
+                 query_params: pulumi.Input[Optional[Union['RoutesConfigQueryParamsArgs', 'RoutesConfigQueryParamsArgsDict', 'outputs.RoutesConfigQueryParams']]] = None,
                  routes: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  __props__=None):
         """
@@ -61,6 +81,7 @@ class RoutesConfig(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[Union['RoutesConfigQueryParamsArgs', 'RoutesConfigQueryParamsArgsDict', 'outputs.RoutesConfigQueryParams']] query_params: Query params to send with the API requests for this resource.
         """
         ...
     @overload
@@ -87,6 +108,7 @@ class RoutesConfig(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  id: pulumi.Input[Optional[_builtins.str]] = None,
+                 query_params: pulumi.Input[Optional[Union['RoutesConfigQueryParamsArgs', 'RoutesConfigQueryParamsArgsDict', 'outputs.RoutesConfigQueryParams']]] = None,
                  routes: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -98,6 +120,7 @@ class RoutesConfig(pulumi.CustomResource):
             __props__ = RoutesConfigArgs.__new__(RoutesConfigArgs)
 
             __props__.__dict__["id"] = id
+            __props__.__dict__["query_params"] = query_params
             if routes is None and not opts.urn:
                 raise TypeError("Missing required property 'routes'")
             __props__.__dict__["routes"] = routes
@@ -127,6 +150,7 @@ class RoutesConfig(pulumi.CustomResource):
 
         __props__.__dict__["advertised_routes"] = None
         __props__.__dict__["enabled_routes"] = None
+        __props__.__dict__["query_params"] = None
         __props__.__dict__["routes"] = None
         return RoutesConfig(resource_name, opts=opts, __props__=__props__)
 
@@ -139,6 +163,14 @@ class RoutesConfig(pulumi.CustomResource):
     @pulumi.getter(name="enabledRoutes")
     def enabled_routes(self) -> pulumi.Output[Sequence[_builtins.str]]:
         return pulumi.get(self, "enabled_routes")
+
+    @_builtins.property
+    @pulumi.getter(name="queryParams")
+    def query_params(self) -> pulumi.Output[Optional['outputs.RoutesConfigQueryParams']]:
+        """
+        Query params to send with the API requests for this resource.
+        """
+        return pulumi.get(self, "query_params")
 
     @_builtins.property
     @pulumi.getter

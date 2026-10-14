@@ -13,6 +13,8 @@ if sys.version_info >= (3, 11):
 else:
     from typing_extensions import NotRequired, TypedDict, TypeAlias
 from .. import _utilities
+from . import outputs
+from ._inputs import *
 
 __all__ = ['DNSPreferencesConfigArgs', 'DNSPreferencesConfig']
 
@@ -20,13 +22,17 @@ __all__ = ['DNSPreferencesConfigArgs', 'DNSPreferencesConfig']
 class DNSPreferencesConfigArgs:
     def __init__(__self__, *,
                  magic_dns: pulumi.Input[_builtins.bool],
+                 query_params: pulumi.Input[Optional['DNSPreferencesConfigQueryParamsArgs']] = None,
                  tailnet: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a DNSPreferencesConfig resource.
 
+        :param pulumi.Input['DNSPreferencesConfigQueryParamsArgs'] query_params: Query params to send with the API requests for this resource.
         :param pulumi.Input[_builtins.str] tailnet: For paid plans, your domain is your tailnet. For solo plans, the tailnet is the email you signed up with. So `alice@gmail.com` has the tailnet `alice@gmail.com` since `@gmail.com` is a shared email host. Alternatively, you can specify the value "-" to refer to the default tailnet of the authenticated user making the API call.
         """
         pulumi.set(__self__, "magic_dns", magic_dns)
+        if query_params is not None:
+            pulumi.set(__self__, "query_params", query_params)
         if tailnet is not None:
             pulumi.set(__self__, "tailnet", tailnet)
 
@@ -38,6 +44,18 @@ class DNSPreferencesConfigArgs:
     @magic_dns.setter
     def magic_dns(self, value: pulumi.Input[_builtins.bool]):
         pulumi.set(self, "magic_dns", value)
+
+    @_builtins.property
+    @pulumi.getter(name="queryParams")
+    def query_params(self) -> pulumi.Input[Optional['DNSPreferencesConfigQueryParamsArgs']]:
+        """
+        Query params to send with the API requests for this resource.
+        """
+        return pulumi.get(self, "query_params")
+
+    @query_params.setter
+    def query_params(self, value: pulumi.Input[Optional['DNSPreferencesConfigQueryParamsArgs']]):
+        pulumi.set(self, "query_params", value)
 
     @_builtins.property
     @pulumi.getter
@@ -59,6 +77,7 @@ class DNSPreferencesConfig(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  magic_dns: pulumi.Input[Optional[_builtins.bool]] = None,
+                 query_params: pulumi.Input[Optional[Union['DNSPreferencesConfigQueryParamsArgs', 'DNSPreferencesConfigQueryParamsArgsDict', 'outputs.DNSPreferencesConfigQueryParams']]] = None,
                  tailnet: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
@@ -66,6 +85,7 @@ class DNSPreferencesConfig(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[Union['DNSPreferencesConfigQueryParamsArgs', 'DNSPreferencesConfigQueryParamsArgsDict', 'outputs.DNSPreferencesConfigQueryParams']] query_params: Query params to send with the API requests for this resource.
         :param pulumi.Input[_builtins.str] tailnet: For paid plans, your domain is your tailnet. For solo plans, the tailnet is the email you signed up with. So `alice@gmail.com` has the tailnet `alice@gmail.com` since `@gmail.com` is a shared email host. Alternatively, you can specify the value "-" to refer to the default tailnet of the authenticated user making the API call.
         """
         ...
@@ -93,6 +113,7 @@ class DNSPreferencesConfig(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  magic_dns: pulumi.Input[Optional[_builtins.bool]] = None,
+                 query_params: pulumi.Input[Optional[Union['DNSPreferencesConfigQueryParamsArgs', 'DNSPreferencesConfigQueryParamsArgsDict', 'outputs.DNSPreferencesConfigQueryParams']]] = None,
                  tailnet: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -106,6 +127,7 @@ class DNSPreferencesConfig(pulumi.CustomResource):
             if magic_dns is None and not opts.urn:
                 raise TypeError("Missing required property 'magic_dns'")
             __props__.__dict__["magic_dns"] = magic_dns
+            __props__.__dict__["query_params"] = query_params
             __props__.__dict__["tailnet"] = tailnet
         super(DNSPreferencesConfig, __self__).__init__(
             'tailscale-native:tailnet:DNSPreferencesConfig',
@@ -130,10 +152,19 @@ class DNSPreferencesConfig(pulumi.CustomResource):
         __props__ = DNSPreferencesConfigArgs.__new__(DNSPreferencesConfigArgs)
 
         __props__.__dict__["magic_dns"] = None
+        __props__.__dict__["query_params"] = None
         return DNSPreferencesConfig(resource_name, opts=opts, __props__=__props__)
 
     @_builtins.property
     @pulumi.getter(name="magicDNS")
     def magic_dns(self) -> pulumi.Output[_builtins.bool]:
         return pulumi.get(self, "magic_dns")
+
+    @_builtins.property
+    @pulumi.getter(name="queryParams")
+    def query_params(self) -> pulumi.Output[Optional['outputs.DNSPreferencesConfigQueryParams']]:
+        """
+        Query params to send with the API requests for this resource.
+        """
+        return pulumi.get(self, "query_params")
 

@@ -14,6 +14,7 @@ else:
     from typing_extensions import NotRequired, TypedDict, TypeAlias
 from .. import _utilities
 from . import outputs
+from ._inputs import *
 
 __all__ = [
     'GetDeviceResult',
@@ -216,12 +217,16 @@ class AwaitableGetDeviceResult(GetDeviceResult):
 
 
 def get_device(id: Optional[_builtins.str] = None,
+               query_params: Optional[Union['GetDeviceQueryParams', 'GetDeviceQueryParamsDict']] = None,
                opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetDeviceResult:
     """
     Use this data source to access information about an existing resource.
+
+    :param Union['GetDeviceQueryParams', 'GetDeviceQueryParamsDict'] query_params: Query params to send with the API request.
     """
     __args__ = dict()
     __args__['id'] = id
+    __args__['queryParams'] = query_params
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('tailscale-native:device:getDevice', __args__, opts=opts, typ=GetDeviceResult).value
 
@@ -247,12 +252,16 @@ def get_device(id: Optional[_builtins.str] = None,
         update_available=pulumi.get(__ret__, 'update_available'),
         user=pulumi.get(__ret__, 'user'))
 def get_device_output(id: pulumi.Input[Optional[_builtins.str]] = None,
+                      query_params: pulumi.Input[Optional[Optional[Union['GetDeviceQueryParams', 'GetDeviceQueryParamsDict']]]] = None,
                       opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetDeviceResult]:
     """
     Use this data source to access information about an existing resource.
+
+    :param Union['GetDeviceQueryParams', 'GetDeviceQueryParamsDict'] query_params: Query params to send with the API request.
     """
     __args__ = dict()
     __args__['id'] = id
+    __args__['queryParams'] = query_params
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('tailscale-native:device:getDevice', __args__, opts=opts, typ=GetDeviceResult)
     return __ret__.apply(lambda __response__: GetDeviceResult(

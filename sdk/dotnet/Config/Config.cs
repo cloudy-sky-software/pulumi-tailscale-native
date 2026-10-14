@@ -4,7 +4,7 @@
 using System;
 using System.Collections.Immutable;
 
-namespace Pulumi.TailscaleNative
+namespace CloudySkySoftware.Pulumi.TailscaleNative
 {
     public static class Config
     {

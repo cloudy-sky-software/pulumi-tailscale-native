@@ -2,6 +2,9 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
+import * as enums from "../types/enums";
 import * as utilities from "../utilities";
 
 export class AuthorizeDevice extends pulumi.CustomResource {
@@ -32,6 +35,10 @@ export class AuthorizeDevice extends pulumi.CustomResource {
     }
 
     declare public readonly authorized: pulumi.Output<boolean>;
+    /**
+     * Query params to send with the API requests for this resource.
+     */
+    declare public readonly queryParams: pulumi.Output<outputs.device.AuthorizeDeviceQueryParams | undefined>;
 
     /**
      * Create a AuthorizeDevice resource with the given unique name, arguments, and options.
@@ -49,8 +56,10 @@ export class AuthorizeDevice extends pulumi.CustomResource {
             }
             resourceInputs["authorized"] = args?.authorized;
             resourceInputs["id"] = args?.id;
+            resourceInputs["queryParams"] = args?.queryParams;
         } else {
             resourceInputs["authorized"] = undefined /*out*/;
+            resourceInputs["queryParams"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(AuthorizeDevice.__pulumiType, name, resourceInputs, opts);
@@ -63,4 +72,8 @@ export class AuthorizeDevice extends pulumi.CustomResource {
 export interface AuthorizeDeviceArgs {
     authorized: pulumi.Input<boolean>;
     id?: pulumi.Input<string | undefined>;
+    /**
+     * Query params to send with the API requests for this resource.
+     */
+    queryParams?: pulumi.Input<inputs.device.AuthorizeDeviceQueryParamsArgs | undefined>;
 }

@@ -13,6 +13,8 @@ if sys.version_info >= (3, 11):
 else:
     from typing_extensions import NotRequired, TypedDict, TypeAlias
 from .. import _utilities
+from . import outputs
+from ._inputs import *
 
 __all__ = ['ReplaceSearchPathsArgs', 'ReplaceSearchPaths']
 
@@ -20,13 +22,17 @@ __all__ = ['ReplaceSearchPathsArgs', 'ReplaceSearchPaths']
 class ReplaceSearchPathsArgs:
     def __init__(__self__, *,
                  search_paths: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]],
+                 query_params: pulumi.Input[Optional['ReplaceSearchPathsQueryParamsArgs']] = None,
                  tailnet: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a ReplaceSearchPaths resource.
 
+        :param pulumi.Input['ReplaceSearchPathsQueryParamsArgs'] query_params: Query params to send with the API requests for this resource.
         :param pulumi.Input[_builtins.str] tailnet: For paid plans, your domain is your tailnet. For solo plans, the tailnet is the email you signed up with. So `alice@gmail.com` has the tailnet `alice@gmail.com` since `@gmail.com` is a shared email host. Alternatively, you can specify the value "-" to refer to the default tailnet of the authenticated user making the API call.
         """
         pulumi.set(__self__, "search_paths", search_paths)
+        if query_params is not None:
+            pulumi.set(__self__, "query_params", query_params)
         if tailnet is not None:
             pulumi.set(__self__, "tailnet", tailnet)
 
@@ -38,6 +44,18 @@ class ReplaceSearchPathsArgs:
     @search_paths.setter
     def search_paths(self, value: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]):
         pulumi.set(self, "search_paths", value)
+
+    @_builtins.property
+    @pulumi.getter(name="queryParams")
+    def query_params(self) -> pulumi.Input[Optional['ReplaceSearchPathsQueryParamsArgs']]:
+        """
+        Query params to send with the API requests for this resource.
+        """
+        return pulumi.get(self, "query_params")
+
+    @query_params.setter
+    def query_params(self, value: pulumi.Input[Optional['ReplaceSearchPathsQueryParamsArgs']]):
+        pulumi.set(self, "query_params", value)
 
     @_builtins.property
     @pulumi.getter
@@ -58,6 +76,7 @@ class ReplaceSearchPaths(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 query_params: pulumi.Input[Optional[Union['ReplaceSearchPathsQueryParamsArgs', 'ReplaceSearchPathsQueryParamsArgsDict', 'outputs.ReplaceSearchPathsQueryParams']]] = None,
                  search_paths: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  tailnet: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
@@ -66,6 +85,7 @@ class ReplaceSearchPaths(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[Union['ReplaceSearchPathsQueryParamsArgs', 'ReplaceSearchPathsQueryParamsArgsDict', 'outputs.ReplaceSearchPathsQueryParams']] query_params: Query params to send with the API requests for this resource.
         :param pulumi.Input[_builtins.str] tailnet: For paid plans, your domain is your tailnet. For solo plans, the tailnet is the email you signed up with. So `alice@gmail.com` has the tailnet `alice@gmail.com` since `@gmail.com` is a shared email host. Alternatively, you can specify the value "-" to refer to the default tailnet of the authenticated user making the API call.
         """
         ...
@@ -92,6 +112,7 @@ class ReplaceSearchPaths(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 query_params: pulumi.Input[Optional[Union['ReplaceSearchPathsQueryParamsArgs', 'ReplaceSearchPathsQueryParamsArgsDict', 'outputs.ReplaceSearchPathsQueryParams']]] = None,
                  search_paths: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  tailnet: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
@@ -103,6 +124,7 @@ class ReplaceSearchPaths(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = ReplaceSearchPathsArgs.__new__(ReplaceSearchPathsArgs)
 
+            __props__.__dict__["query_params"] = query_params
             if search_paths is None and not opts.urn:
                 raise TypeError("Missing required property 'search_paths'")
             __props__.__dict__["search_paths"] = search_paths
@@ -129,8 +151,17 @@ class ReplaceSearchPaths(pulumi.CustomResource):
 
         __props__ = ReplaceSearchPathsArgs.__new__(ReplaceSearchPathsArgs)
 
+        __props__.__dict__["query_params"] = None
         __props__.__dict__["search_paths"] = None
         return ReplaceSearchPaths(resource_name, opts=opts, __props__=__props__)
+
+    @_builtins.property
+    @pulumi.getter(name="queryParams")
+    def query_params(self) -> pulumi.Output[Optional['outputs.ReplaceSearchPathsQueryParams']]:
+        """
+        Query params to send with the API requests for this resource.
+        """
+        return pulumi.get(self, "query_params")
 
     @_builtins.property
     @pulumi.getter(name="searchPaths")

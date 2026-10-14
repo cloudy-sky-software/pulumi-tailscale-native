@@ -24,7 +24,7 @@
                 "tailnet": "Tailnet",
                 "tailscale-native": "TailscaleNative"
             },
-            "rootNamespace": "Pulumi"
+            "rootNamespace": "CloudySkySoftware.Pulumi"
         },
         "go": {
             "importBasePath": "github.com/cloudy-sky-software/pulumi-tailscale-native/sdk/go/tailscale",
@@ -79,6 +79,29 @@
         }
     },
     "types": {
+        "tailscale-native:device:AuthorizeDeviceCreateQueryParams": {
+            "description": "Query params for the API request.",
+            "properties": {
+                "additionalParams": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "Additional query params to send with the request that are not defined in the API spec."
+                }
+            },
+            "type": "object"
+        },
+        "tailscale-native:device:AuthorizeDeviceQueryParams": {
+            "description": "Query params for each of the operations of the resource.",
+            "properties": {
+                "create": {
+                    "$ref": "#/types/tailscale-native:device:AuthorizeDeviceCreateQueryParams",
+                    "description": "Query params for the create operation."
+                }
+            },
+            "type": "object"
+        },
         "tailscale-native:device:ClientConnectivity": {
             "properties": {
                 "clientSupports": {
@@ -91,7 +114,10 @@
                     "type": "string"
                 },
                 "latency": {
-                    "$ref": "pulumi.json#/Any"
+                    "type": "object",
+                    "additionalProperties": {
+                        "$ref": "#/types/tailscale-native:device:ClientConnectivityLatencyProperties"
+                    }
                 },
                 "mappingVariesByDestIP": {
                     "type": "boolean"
@@ -104,6 +130,21 @@
                 "endpoints",
                 "latency",
                 "mappingVariesByDestIP"
+            ]
+        },
+        "tailscale-native:device:ClientConnectivityLatencyProperties": {
+            "properties": {
+                "latencyMs": {
+                    "type": "number"
+                },
+                "preferred": {
+                    "type": "boolean"
+                }
+            },
+            "type": "object",
+            "required": [
+                "latencyMs",
+                "preferred"
             ]
         },
         "tailscale-native:device:ClientSupports": {
@@ -254,6 +295,118 @@
                 "enabledRoutes"
             ]
         },
+        "tailscale-native:device:GetDeviceQueryParams": {
+            "description": "Query params for the API request.",
+            "properties": {
+                "additionalParams": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "Additional query params to send with the request that are not defined in the API spec."
+                }
+            },
+            "type": "object"
+        },
+        "tailscale-native:device:GetRoutesConfigQueryParams": {
+            "description": "Query params for the API request.",
+            "properties": {
+                "additionalParams": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "Additional query params to send with the request that are not defined in the API spec."
+                }
+            },
+            "type": "object"
+        },
+        "tailscale-native:device:KeyExpiryCreateQueryParams": {
+            "description": "Query params for the API request.",
+            "properties": {
+                "additionalParams": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "Additional query params to send with the request that are not defined in the API spec."
+                }
+            },
+            "type": "object"
+        },
+        "tailscale-native:device:KeyExpiryQueryParams": {
+            "description": "Query params for each of the operations of the resource.",
+            "properties": {
+                "create": {
+                    "$ref": "#/types/tailscale-native:device:KeyExpiryCreateQueryParams",
+                    "description": "Query params for the create operation."
+                }
+            },
+            "type": "object"
+        },
+        "tailscale-native:device:RoutesConfigCreateQueryParams": {
+            "description": "Query params for the API request.",
+            "properties": {
+                "additionalParams": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "Additional query params to send with the request that are not defined in the API spec."
+                }
+            },
+            "type": "object"
+        },
+        "tailscale-native:device:RoutesConfigQueryParams": {
+            "description": "Query params for each of the operations of the resource.",
+            "properties": {
+                "create": {
+                    "$ref": "#/types/tailscale-native:device:RoutesConfigCreateQueryParams",
+                    "description": "Query params for the create operation."
+                },
+                "read": {
+                    "$ref": "#/types/tailscale-native:device:RoutesConfigReadQueryParams",
+                    "description": "Query params for the read operation."
+                }
+            },
+            "type": "object"
+        },
+        "tailscale-native:device:RoutesConfigReadQueryParams": {
+            "description": "Query params for the API request.",
+            "properties": {
+                "additionalParams": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "Additional query params to send with the request that are not defined in the API spec."
+                }
+            },
+            "type": "object"
+        },
+        "tailscale-native:device:TagsCreateQueryParams": {
+            "description": "Query params for the API request.",
+            "properties": {
+                "additionalParams": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "Additional query params to send with the request that are not defined in the API spec."
+                }
+            },
+            "type": "object"
+        },
+        "tailscale-native:device:TagsQueryParams": {
+            "description": "Query params for each of the operations of the resource.",
+            "properties": {
+                "create": {
+                    "$ref": "#/types/tailscale-native:device:TagsCreateQueryParams",
+                    "description": "Query params for the create operation."
+                }
+            },
+            "type": "object"
+        },
         "tailscale-native:tailnet:Acl": {
             "properties": {
                 "acls": {
@@ -263,13 +416,22 @@
                     }
                 },
                 "autoApprovers": {
-                    "$ref": "pulumi.json#/Any"
+                    "$ref": "#/types/tailscale-native:tailnet:AutoApprovers"
                 },
                 "groups": {
-                    "$ref": "pulumi.json#/Any"
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    }
                 },
                 "hosts": {
-                    "$ref": "pulumi.json#/Any"
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    }
                 },
                 "nodeAttrs": {
                     "type": "array",
@@ -284,7 +446,13 @@
                     }
                 },
                 "tagOwners": {
-                    "$ref": "pulumi.json#/Any"
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    }
                 },
                 "tests": {
                     "type": "string"
@@ -301,6 +469,46 @@
                 "tagOwners",
                 "tests"
             ]
+        },
+        "tailscale-native:tailnet:AclCreateQueryParams": {
+            "description": "Query params for the API request.",
+            "properties": {
+                "additionalParams": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "Additional query params to send with the request that are not defined in the API spec."
+                }
+            },
+            "type": "object"
+        },
+        "tailscale-native:tailnet:AclQueryParams": {
+            "description": "Query params for each of the operations of the resource.",
+            "properties": {
+                "create": {
+                    "$ref": "#/types/tailscale-native:tailnet:AclCreateQueryParams",
+                    "description": "Query params for the create operation."
+                },
+                "read": {
+                    "$ref": "#/types/tailscale-native:tailnet:AclReadQueryParams",
+                    "description": "Query params for the read operation."
+                }
+            },
+            "type": "object"
+        },
+        "tailscale-native:tailnet:AclReadQueryParams": {
+            "description": "Query params for the API request.",
+            "properties": {
+                "additionalParams": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "Additional query params to send with the request that are not defined in the API spec."
+                }
+            },
+            "type": "object"
         },
         "tailscale-native:tailnet:AclRule": {
             "properties": {
@@ -356,6 +564,26 @@
                 "key"
             ]
         },
+        "tailscale-native:tailnet:AutoApprovers": {
+            "properties": {
+                "exitNode": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "routes": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    }
+                }
+            },
+            "type": "object"
+        },
         "tailscale-native:tailnet:ClientConnectivity": {
             "properties": {
                 "clientSupports": {
@@ -368,7 +596,10 @@
                     "type": "string"
                 },
                 "latency": {
-                    "$ref": "pulumi.json#/Any"
+                    "type": "object",
+                    "additionalProperties": {
+                        "$ref": "#/types/tailscale-native:tailnet:ClientConnectivityLatencyProperties"
+                    }
                 },
                 "mappingVariesByDestIP": {
                     "type": "boolean"
@@ -381,6 +612,21 @@
                 "endpoints",
                 "latency",
                 "mappingVariesByDestIP"
+            ]
+        },
+        "tailscale-native:tailnet:ClientConnectivityLatencyProperties": {
+            "properties": {
+                "latencyMs": {
+                    "type": "number"
+                },
+                "preferred": {
+                    "type": "boolean"
+                }
+            },
+            "type": "object",
+            "required": [
+                "latencyMs",
+                "preferred"
             ]
         },
         "tailscale-native:tailnet:ClientSupports": {
@@ -439,6 +685,46 @@
                 "reusable",
                 "tags"
             ]
+        },
+        "tailscale-native:tailnet:DNSPreferencesConfigCreateQueryParams": {
+            "description": "Query params for the API request.",
+            "properties": {
+                "additionalParams": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "Additional query params to send with the request that are not defined in the API spec."
+                }
+            },
+            "type": "object"
+        },
+        "tailscale-native:tailnet:DNSPreferencesConfigQueryParams": {
+            "description": "Query params for each of the operations of the resource.",
+            "properties": {
+                "create": {
+                    "$ref": "#/types/tailscale-native:tailnet:DNSPreferencesConfigCreateQueryParams",
+                    "description": "Query params for the create operation."
+                },
+                "read": {
+                    "$ref": "#/types/tailscale-native:tailnet:DNSPreferencesConfigReadQueryParams",
+                    "description": "Query params for the read operation."
+                }
+            },
+            "type": "object"
+        },
+        "tailscale-native:tailnet:DNSPreferencesConfigReadQueryParams": {
+            "description": "Query params for the API request.",
+            "properties": {
+                "additionalParams": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "Additional query params to send with the request that are not defined in the API spec."
+                }
+            },
+            "type": "object"
         },
         "tailscale-native:tailnet:Device": {
             "properties": {
@@ -561,6 +847,58 @@
                 "searchPaths"
             ]
         },
+        "tailscale-native:tailnet:GetAclQueryParams": {
+            "description": "Query params for the API request.",
+            "properties": {
+                "additionalParams": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "Additional query params to send with the request that are not defined in the API spec."
+                }
+            },
+            "type": "object"
+        },
+        "tailscale-native:tailnet:GetDNSPreferencesConfigQueryParams": {
+            "description": "Query params for the API request.",
+            "properties": {
+                "additionalParams": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "Additional query params to send with the request that are not defined in the API spec."
+                }
+            },
+            "type": "object"
+        },
+        "tailscale-native:tailnet:GetKeyQueryParams": {
+            "description": "Query params for the API request.",
+            "properties": {
+                "additionalParams": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "Additional query params to send with the request that are not defined in the API spec."
+                }
+            },
+            "type": "object"
+        },
+        "tailscale-native:tailnet:GetNameServersConfigQueryParams": {
+            "description": "Query params for the API request.",
+            "properties": {
+                "additionalParams": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "Additional query params to send with the request that are not defined in the API spec."
+                }
+            },
+            "type": "object"
+        },
         "tailscale-native:tailnet:KeyCapabilities": {
             "properties": {
                 "devices": {
@@ -571,6 +909,63 @@
             "required": [
                 "devices"
             ]
+        },
+        "tailscale-native:tailnet:KeyCreateQueryParams": {
+            "description": "Query params for the API request.",
+            "properties": {
+                "additionalParams": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "Additional query params to send with the request that are not defined in the API spec."
+                }
+            },
+            "type": "object"
+        },
+        "tailscale-native:tailnet:KeyDeleteQueryParams": {
+            "description": "Query params for the API request.",
+            "properties": {
+                "additionalParams": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "Additional query params to send with the request that are not defined in the API spec."
+                }
+            },
+            "type": "object"
+        },
+        "tailscale-native:tailnet:KeyQueryParams": {
+            "description": "Query params for each of the operations of the resource.",
+            "properties": {
+                "create": {
+                    "$ref": "#/types/tailscale-native:tailnet:KeyCreateQueryParams",
+                    "description": "Query params for the create operation."
+                },
+                "delete": {
+                    "$ref": "#/types/tailscale-native:tailnet:KeyDeleteQueryParams",
+                    "description": "Query params for the delete operation."
+                },
+                "read": {
+                    "$ref": "#/types/tailscale-native:tailnet:KeyReadQueryParams",
+                    "description": "Query params for the read operation."
+                }
+            },
+            "type": "object"
+        },
+        "tailscale-native:tailnet:KeyReadQueryParams": {
+            "description": "Query params for the API request.",
+            "properties": {
+                "additionalParams": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "Additional query params to send with the request that are not defined in the API spec."
+                }
+            },
+            "type": "object"
         },
         "tailscale-native:tailnet:ListDevicesProperties": {
             "properties": {
@@ -585,6 +980,45 @@
             "required": [
                 "devices"
             ]
+        },
+        "tailscale-native:tailnet:ListDevicesQueryParams": {
+            "description": "Query params for the API request.",
+            "properties": {
+                "additionalParams": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "Additional query params to send with the request that are not defined in the API spec."
+                }
+            },
+            "type": "object"
+        },
+        "tailscale-native:tailnet:ListKeysQueryParams": {
+            "description": "Query params for the API request.",
+            "properties": {
+                "additionalParams": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "Additional query params to send with the request that are not defined in the API spec."
+                }
+            },
+            "type": "object"
+        },
+        "tailscale-native:tailnet:ListSearchPathsQueryParams": {
+            "description": "Query params for the API request.",
+            "properties": {
+                "additionalParams": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "Additional query params to send with the request that are not defined in the API spec."
+                }
+            },
+            "type": "object"
         },
         "tailscale-native:tailnet:NameServers": {
             "properties": {
@@ -603,6 +1037,46 @@
                 "dns",
                 "magicDNS"
             ]
+        },
+        "tailscale-native:tailnet:NameServersConfigCreateQueryParams": {
+            "description": "Query params for the API request.",
+            "properties": {
+                "additionalParams": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "Additional query params to send with the request that are not defined in the API spec."
+                }
+            },
+            "type": "object"
+        },
+        "tailscale-native:tailnet:NameServersConfigQueryParams": {
+            "description": "Query params for each of the operations of the resource.",
+            "properties": {
+                "create": {
+                    "$ref": "#/types/tailscale-native:tailnet:NameServersConfigCreateQueryParams",
+                    "description": "Query params for the create operation."
+                },
+                "read": {
+                    "$ref": "#/types/tailscale-native:tailnet:NameServersConfigReadQueryParams",
+                    "description": "Query params for the read operation."
+                }
+            },
+            "type": "object"
+        },
+        "tailscale-native:tailnet:NameServersConfigReadQueryParams": {
+            "description": "Query params for the API request.",
+            "properties": {
+                "additionalParams": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "Additional query params to send with the request that are not defined in the API spec."
+                }
+            },
+            "type": "object"
         },
         "tailscale-native:tailnet:NameServersPreference": {
             "properties": {
@@ -635,6 +1109,29 @@
                 "attr",
                 "target"
             ]
+        },
+        "tailscale-native:tailnet:ReplaceSearchPathsCreateQueryParams": {
+            "description": "Query params for the API request.",
+            "properties": {
+                "additionalParams": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "Additional query params to send with the request that are not defined in the API spec."
+                }
+            },
+            "type": "object"
+        },
+        "tailscale-native:tailnet:ReplaceSearchPathsQueryParams": {
+            "description": "Query params for each of the operations of the resource.",
+            "properties": {
+                "create": {
+                    "$ref": "#/types/tailscale-native:tailnet:ReplaceSearchPathsCreateQueryParams",
+                    "description": "Query params for the create operation."
+                }
+            },
+            "type": "object"
         },
         "tailscale-native:tailnet:SshRule": {
             "properties": {
@@ -744,6 +1241,10 @@
             "properties": {
                 "authorized": {
                     "type": "boolean"
+                },
+                "queryParams": {
+                    "$ref": "#/types/tailscale-native:device:AuthorizeDeviceQueryParams",
+                    "description": "Query params to send with the API requests for this resource."
                 }
             },
             "type": "object",
@@ -756,6 +1257,10 @@
                 },
                 "id": {
                     "type": "string"
+                },
+                "queryParams": {
+                    "$ref": "#/types/tailscale-native:device:AuthorizeDeviceQueryParams",
+                    "description": "Query params to send with the API requests for this resource."
                 }
             },
             "requiredInputs": [
@@ -766,6 +1271,10 @@
             "properties": {
                 "keyExpiryDisabled": {
                     "type": "boolean"
+                },
+                "queryParams": {
+                    "$ref": "#/types/tailscale-native:device:KeyExpiryQueryParams",
+                    "description": "Query params to send with the API requests for this resource."
                 }
             },
             "type": "object",
@@ -778,6 +1287,10 @@
                 },
                 "keyExpiryDisabled": {
                     "type": "boolean"
+                },
+                "queryParams": {
+                    "$ref": "#/types/tailscale-native:device:KeyExpiryQueryParams",
+                    "description": "Query params to send with the API requests for this resource."
                 }
             },
             "requiredInputs": [
@@ -798,6 +1311,10 @@
                         "type": "string"
                     }
                 },
+                "queryParams": {
+                    "$ref": "#/types/tailscale-native:device:RoutesConfigQueryParams",
+                    "description": "Query params to send with the API requests for this resource."
+                },
                 "routes": {
                     "type": "array",
                     "items": {
@@ -815,6 +1332,10 @@
                 "id": {
                     "type": "string"
                 },
+                "queryParams": {
+                    "$ref": "#/types/tailscale-native:device:RoutesConfigQueryParams",
+                    "description": "Query params to send with the API requests for this resource."
+                },
                 "routes": {
                     "type": "array",
                     "items": {
@@ -828,6 +1349,10 @@
         },
         "tailscale-native:device:Tags": {
             "properties": {
+                "queryParams": {
+                    "$ref": "#/types/tailscale-native:device:TagsQueryParams",
+                    "description": "Query params to send with the API requests for this resource."
+                },
                 "tags": {
                     "type": "array",
                     "items": {
@@ -847,6 +1372,10 @@
             "inputProperties": {
                 "id": {
                     "type": "string"
+                },
+                "queryParams": {
+                    "$ref": "#/types/tailscale-native:device:TagsQueryParams",
+                    "description": "Query params to send with the API requests for this resource."
                 },
                 "tags": {
                     "type": "array",
@@ -873,19 +1402,32 @@
                     }
                 },
                 "autoApprovers": {
-                    "$ref": "pulumi.json#/Any"
+                    "$ref": "#/types/tailscale-native:tailnet:AutoApprovers"
                 },
                 "groups": {
-                    "$ref": "pulumi.json#/Any"
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    }
                 },
                 "hosts": {
-                    "$ref": "pulumi.json#/Any"
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    }
                 },
                 "nodeAttrs": {
                     "type": "array",
                     "items": {
                         "$ref": "#/types/tailscale-native:tailnet:NodeAttrs"
                     }
+                },
+                "queryParams": {
+                    "$ref": "#/types/tailscale-native:tailnet:AclQueryParams",
+                    "description": "Query params to send with the API requests for this resource."
                 },
                 "ssh": {
                     "type": "array",
@@ -894,7 +1436,13 @@
                     }
                 },
                 "tagOwners": {
-                    "$ref": "pulumi.json#/Any"
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    }
                 },
                 "tests": {
                     "type": "string"
@@ -919,19 +1467,32 @@
                     }
                 },
                 "autoApprovers": {
-                    "$ref": "pulumi.json#/Any"
+                    "$ref": "#/types/tailscale-native:tailnet:AutoApprovers"
                 },
                 "groups": {
-                    "$ref": "pulumi.json#/Any"
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    }
                 },
                 "hosts": {
-                    "$ref": "pulumi.json#/Any"
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    }
                 },
                 "nodeAttrs": {
                     "type": "array",
                     "items": {
                         "$ref": "#/types/tailscale-native:tailnet:NodeAttrs"
                     }
+                },
+                "queryParams": {
+                    "$ref": "#/types/tailscale-native:tailnet:AclQueryParams",
+                    "description": "Query params to send with the API requests for this resource."
                 },
                 "ssh": {
                     "type": "array",
@@ -940,7 +1501,13 @@
                     }
                 },
                 "tagOwners": {
-                    "$ref": "pulumi.json#/Any"
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    }
                 },
                 "tailnet": {
                     "type": "string",
@@ -965,6 +1532,10 @@
             "properties": {
                 "magicDNS": {
                     "type": "boolean"
+                },
+                "queryParams": {
+                    "$ref": "#/types/tailscale-native:tailnet:DNSPreferencesConfigQueryParams",
+                    "description": "Query params to send with the API requests for this resource."
                 }
             },
             "type": "object",
@@ -974,6 +1545,10 @@
             "inputProperties": {
                 "magicDNS": {
                     "type": "boolean"
+                },
+                "queryParams": {
+                    "$ref": "#/types/tailscale-native:tailnet:DNSPreferencesConfigQueryParams",
+                    "description": "Query params to send with the API requests for this resource."
                 },
                 "tailnet": {
                     "type": "string",
@@ -1005,6 +1580,10 @@
                             "name": "KeyValue"
                         }
                     }
+                },
+                "queryParams": {
+                    "$ref": "#/types/tailscale-native:tailnet:KeyQueryParams",
+                    "description": "Query params to send with the API requests for this resource."
                 }
             },
             "type": "object",
@@ -1020,6 +1599,10 @@
                 },
                 "expirySeconds": {
                     "type": "integer"
+                },
+                "queryParams": {
+                    "$ref": "#/types/tailscale-native:tailnet:KeyQueryParams",
+                    "description": "Query params to send with the API requests for this resource."
                 },
                 "tailnet": {
                     "type": "string",
@@ -1041,6 +1624,10 @@
                 },
                 "magicDNS": {
                     "type": "boolean"
+                },
+                "queryParams": {
+                    "$ref": "#/types/tailscale-native:tailnet:NameServersConfigQueryParams",
+                    "description": "Query params to send with the API requests for this resource."
                 }
             },
             "type": "object",
@@ -1058,6 +1645,10 @@
                 "magicDNS": {
                     "type": "boolean"
                 },
+                "queryParams": {
+                    "$ref": "#/types/tailscale-native:tailnet:NameServersConfigQueryParams",
+                    "description": "Query params to send with the API requests for this resource."
+                },
                 "tailnet": {
                     "type": "string",
                     "description": "For paid plans, your domain is your tailnet. For solo plans, the tailnet is the email you signed up with. So `alice@gmail.com` has the tailnet `alice@gmail.com` since `@gmail.com` is a shared email host. Alternatively, you can specify the value \"-\" to refer to the default tailnet of the authenticated user making the API call."
@@ -1070,6 +1661,10 @@
         },
         "tailscale-native:tailnet:ReplaceSearchPaths": {
             "properties": {
+                "queryParams": {
+                    "$ref": "#/types/tailscale-native:tailnet:ReplaceSearchPathsQueryParams",
+                    "description": "Query params to send with the API requests for this resource."
+                },
                 "searchPaths": {
                     "type": "array",
                     "items": {
@@ -1082,6 +1677,10 @@
                 "searchPaths"
             ],
             "inputProperties": {
+                "queryParams": {
+                    "$ref": "#/types/tailscale-native:tailnet:ReplaceSearchPathsQueryParams",
+                    "description": "Query params to send with the API requests for this resource."
+                },
                 "searchPaths": {
                     "type": "array",
                     "items": {
@@ -1104,6 +1703,10 @@
                 "properties": {
                     "id": {
                         "type": "string"
+                    },
+                    "queryParams": {
+                        "$ref": "#/types/tailscale-native:device:GetDeviceQueryParams",
+                        "description": "Query params to send with the API request."
                     }
                 },
                 "required": [
@@ -1119,6 +1722,10 @@
                 "properties": {
                     "id": {
                         "type": "string"
+                    },
+                    "queryParams": {
+                        "$ref": "#/types/tailscale-native:device:GetRoutesConfigQueryParams",
+                        "description": "Query params to send with the API request."
                     }
                 },
                 "required": [
@@ -1132,6 +1739,10 @@
         "tailscale-native:tailnet:getAcl": {
             "inputs": {
                 "properties": {
+                    "queryParams": {
+                        "$ref": "#/types/tailscale-native:tailnet:GetAclQueryParams",
+                        "description": "Query params to send with the API request."
+                    },
                     "tailnet": {
                         "type": "string",
                         "description": "For paid plans, your domain is your tailnet. For solo plans, the tailnet is the email you signed up with. So `alice@gmail.com` has the tailnet `alice@gmail.com` since `@gmail.com` is a shared email host. Alternatively, you can specify the value \"-\" to refer to the default tailnet of the authenticated user making the API call."
@@ -1148,6 +1759,10 @@
         "tailscale-native:tailnet:getDNSPreferencesConfig": {
             "inputs": {
                 "properties": {
+                    "queryParams": {
+                        "$ref": "#/types/tailscale-native:tailnet:GetDNSPreferencesConfigQueryParams",
+                        "description": "Query params to send with the API request."
+                    },
                     "tailnet": {
                         "type": "string",
                         "description": "For paid plans, your domain is your tailnet. For solo plans, the tailnet is the email you signed up with. So `alice@gmail.com` has the tailnet `alice@gmail.com` since `@gmail.com` is a shared email host. Alternatively, you can specify the value \"-\" to refer to the default tailnet of the authenticated user making the API call."
@@ -1167,6 +1782,10 @@
                     "id": {
                         "type": "string"
                     },
+                    "queryParams": {
+                        "$ref": "#/types/tailscale-native:tailnet:GetKeyQueryParams",
+                        "description": "Query params to send with the API request."
+                    },
                     "tailnet": {
                         "type": "string",
                         "description": "For paid plans, your domain is your tailnet. For solo plans, the tailnet is the email you signed up with. So `alice@gmail.com` has the tailnet `alice@gmail.com` since `@gmail.com` is a shared email host. Alternatively, you can specify the value \"-\" to refer to the default tailnet of the authenticated user making the API call."
@@ -1184,6 +1803,10 @@
         "tailscale-native:tailnet:getNameServersConfig": {
             "inputs": {
                 "properties": {
+                    "queryParams": {
+                        "$ref": "#/types/tailscale-native:tailnet:GetNameServersConfigQueryParams",
+                        "description": "Query params to send with the API request."
+                    },
                     "tailnet": {
                         "type": "string",
                         "description": "For paid plans, your domain is your tailnet. For solo plans, the tailnet is the email you signed up with. So `alice@gmail.com` has the tailnet `alice@gmail.com` since `@gmail.com` is a shared email host. Alternatively, you can specify the value \"-\" to refer to the default tailnet of the authenticated user making the API call."
@@ -1200,6 +1823,10 @@
         "tailscale-native:tailnet:listDevices": {
             "inputs": {
                 "properties": {
+                    "queryParams": {
+                        "$ref": "#/types/tailscale-native:tailnet:ListDevicesQueryParams",
+                        "description": "Query params to send with the API request."
+                    },
                     "tailnet": {
                         "type": "string",
                         "description": "For paid plans, your domain is your tailnet. For solo plans, the tailnet is the email you signed up with. So `alice@gmail.com` has the tailnet `alice@gmail.com` since `@gmail.com` is a shared email host. Alternatively, you can specify the value \"-\" to refer to the default tailnet of the authenticated user making the API call."
@@ -1216,6 +1843,10 @@
         "tailscale-native:tailnet:listKeys": {
             "inputs": {
                 "properties": {
+                    "queryParams": {
+                        "$ref": "#/types/tailscale-native:tailnet:ListKeysQueryParams",
+                        "description": "Query params to send with the API request."
+                    },
                     "tailnet": {
                         "type": "string",
                         "description": "For paid plans, your domain is your tailnet. For solo plans, the tailnet is the email you signed up with. So `alice@gmail.com` has the tailnet `alice@gmail.com` since `@gmail.com` is a shared email host. Alternatively, you can specify the value \"-\" to refer to the default tailnet of the authenticated user making the API call."
@@ -1242,6 +1873,10 @@
         "tailscale-native:tailnet:listSearchPaths": {
             "inputs": {
                 "properties": {
+                    "queryParams": {
+                        "$ref": "#/types/tailscale-native:tailnet:ListSearchPathsQueryParams",
+                        "description": "Query params to send with the API request."
+                    },
                     "tailnet": {
                         "type": "string",
                         "description": "For paid plans, your domain is your tailnet. For solo plans, the tailnet is the email you signed up with. So `alice@gmail.com` has the tailnet `alice@gmail.com` since `@gmail.com` is a shared email host. Alternatively, you can specify the value \"-\" to refer to the default tailnet of the authenticated user making the API call."

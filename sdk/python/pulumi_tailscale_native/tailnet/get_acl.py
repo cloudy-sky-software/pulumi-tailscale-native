@@ -15,6 +15,7 @@ else:
 from .. import _utilities
 from . import outputs
 from ._enums import *
+from ._inputs import *
 
 __all__ = [
     'GetAclResult',
@@ -58,17 +59,17 @@ class GetAclResult:
 
     @_builtins.property
     @pulumi.getter(name="autoApprovers")
-    def auto_approvers(self) -> Any:
+    def auto_approvers(self) -> 'outputs.AutoApprovers':
         return pulumi.get(self, "auto_approvers")
 
     @_builtins.property
     @pulumi.getter
-    def groups(self) -> Any:
+    def groups(self) -> Mapping[str, Sequence[_builtins.str]]:
         return pulumi.get(self, "groups")
 
     @_builtins.property
     @pulumi.getter
-    def hosts(self) -> Any:
+    def hosts(self) -> Mapping[str, _builtins.str]:
         return pulumi.get(self, "hosts")
 
     @_builtins.property
@@ -83,7 +84,7 @@ class GetAclResult:
 
     @_builtins.property
     @pulumi.getter(name="tagOwners")
-    def tag_owners(self) -> Any:
+    def tag_owners(self) -> Mapping[str, Sequence[_builtins.str]]:
         return pulumi.get(self, "tag_owners")
 
     @_builtins.property
@@ -108,14 +109,17 @@ class AwaitableGetAclResult(GetAclResult):
             tests=self.tests)
 
 
-def get_acl(tailnet: Optional[_builtins.str] = None,
+def get_acl(query_params: Optional[Union['GetAclQueryParams', 'GetAclQueryParamsDict']] = None,
+            tailnet: Optional[_builtins.str] = None,
             opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetAclResult:
     """
     Use this data source to access information about an existing resource.
 
+    :param Union['GetAclQueryParams', 'GetAclQueryParamsDict'] query_params: Query params to send with the API request.
     :param _builtins.str tailnet: For paid plans, your domain is your tailnet. For solo plans, the tailnet is the email you signed up with. So `alice@gmail.com` has the tailnet `alice@gmail.com` since `@gmail.com` is a shared email host. Alternatively, you can specify the value "-" to refer to the default tailnet of the authenticated user making the API call.
     """
     __args__ = dict()
+    __args__['queryParams'] = query_params
     __args__['tailnet'] = tailnet
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('tailscale-native:tailnet:getAcl', __args__, opts=opts, typ=GetAclResult).value
@@ -129,14 +133,17 @@ def get_acl(tailnet: Optional[_builtins.str] = None,
         ssh=pulumi.get(__ret__, 'ssh'),
         tag_owners=pulumi.get(__ret__, 'tag_owners'),
         tests=pulumi.get(__ret__, 'tests'))
-def get_acl_output(tailnet: pulumi.Input[Optional[_builtins.str]] = None,
+def get_acl_output(query_params: pulumi.Input[Optional[Optional[Union['GetAclQueryParams', 'GetAclQueryParamsDict']]]] = None,
+                   tailnet: pulumi.Input[Optional[_builtins.str]] = None,
                    opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetAclResult]:
     """
     Use this data source to access information about an existing resource.
 
+    :param Union['GetAclQueryParams', 'GetAclQueryParamsDict'] query_params: Query params to send with the API request.
     :param _builtins.str tailnet: For paid plans, your domain is your tailnet. For solo plans, the tailnet is the email you signed up with. So `alice@gmail.com` has the tailnet `alice@gmail.com` since `@gmail.com` is a shared email host. Alternatively, you can specify the value "-" to refer to the default tailnet of the authenticated user making the API call.
     """
     __args__ = dict()
+    __args__['queryParams'] = query_params
     __args__['tailnet'] = tailnet
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('tailscale-native:tailnet:getAcl', __args__, opts=opts, typ=GetAclResult)

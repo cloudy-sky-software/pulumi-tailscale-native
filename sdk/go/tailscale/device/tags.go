@@ -15,7 +15,9 @@ import (
 type Tags struct {
 	pulumi.CustomResourceState
 
-	Tags pulumi.StringArrayOutput `pulumi:"tags"`
+	// Query params to send with the API requests for this resource.
+	QueryParams TagsQueryParamsPtrOutput `pulumi:"queryParams"`
+	Tags        pulumi.StringArrayOutput `pulumi:"tags"`
 }
 
 // NewTags registers a new resource with the given unique name, arguments, and options.
@@ -61,14 +63,18 @@ func (TagsState) ElementType() reflect.Type {
 }
 
 type tagsArgs struct {
-	Id   *string  `pulumi:"id"`
-	Tags []string `pulumi:"tags"`
+	Id *string `pulumi:"id"`
+	// Query params to send with the API requests for this resource.
+	QueryParams *TagsQueryParams `pulumi:"queryParams"`
+	Tags        []string         `pulumi:"tags"`
 }
 
 // The set of arguments for constructing a Tags resource.
 type TagsArgs struct {
-	Id   pulumi.StringPtrInput
-	Tags pulumi.StringArrayInput
+	Id pulumi.StringPtrInput
+	// Query params to send with the API requests for this resource.
+	QueryParams TagsQueryParamsPtrInput
+	Tags        pulumi.StringArrayInput
 }
 
 func (TagsArgs) ElementType() reflect.Type {
@@ -106,6 +112,11 @@ func (o TagsOutput) ToTagsOutput() TagsOutput {
 
 func (o TagsOutput) ToTagsOutputWithContext(ctx context.Context) TagsOutput {
 	return o
+}
+
+// Query params to send with the API requests for this resource.
+func (o TagsOutput) QueryParams() TagsQueryParamsPtrOutput {
+	return o.ApplyT(func(v *Tags) TagsQueryParamsPtrOutput { return v.QueryParams }).(TagsQueryParamsPtrOutput)
 }
 
 func (o TagsOutput) Tags() pulumi.StringArrayOutput {

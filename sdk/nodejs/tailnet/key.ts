@@ -39,6 +39,10 @@ export class Key extends pulumi.CustomResource {
     declare public /*out*/ readonly expires: pulumi.Output<string>;
     declare public readonly expirySeconds: pulumi.Output<number>;
     declare public /*out*/ readonly key: pulumi.Output<string>;
+    /**
+     * Query params to send with the API requests for this resource.
+     */
+    declare public readonly queryParams: pulumi.Output<outputs.tailnet.KeyQueryParams | undefined>;
 
     /**
      * Create a Key resource with the given unique name, arguments, and options.
@@ -59,6 +63,7 @@ export class Key extends pulumi.CustomResource {
             }
             resourceInputs["capabilities"] = args?.capabilities;
             resourceInputs["expirySeconds"] = args?.expirySeconds;
+            resourceInputs["queryParams"] = args?.queryParams;
             resourceInputs["tailnet"] = args?.tailnet;
             resourceInputs["created"] = undefined /*out*/;
             resourceInputs["expires"] = undefined /*out*/;
@@ -69,6 +74,7 @@ export class Key extends pulumi.CustomResource {
             resourceInputs["expires"] = undefined /*out*/;
             resourceInputs["expirySeconds"] = undefined /*out*/;
             resourceInputs["key"] = undefined /*out*/;
+            resourceInputs["queryParams"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(Key.__pulumiType, name, resourceInputs, opts);
@@ -81,6 +87,10 @@ export class Key extends pulumi.CustomResource {
 export interface KeyArgs {
     capabilities: pulumi.Input<inputs.tailnet.KeyCapabilitiesArgs>;
     expirySeconds: pulumi.Input<number>;
+    /**
+     * Query params to send with the API requests for this resource.
+     */
+    queryParams?: pulumi.Input<inputs.tailnet.KeyQueryParamsArgs | undefined>;
     /**
      * For paid plans, your domain is your tailnet. For solo plans, the tailnet is the email you signed up with. So `alice@gmail.com` has the tailnet `alice@gmail.com` since `@gmail.com` is a shared email host. Alternatively, you can specify the value "-" to refer to the default tailnet of the authenticated user making the API call.
      */

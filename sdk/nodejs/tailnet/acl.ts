@@ -35,12 +35,16 @@ export class Acl extends pulumi.CustomResource {
     }
 
     declare public readonly acls: pulumi.Output<outputs.tailnet.AclRule[]>;
-    declare public readonly autoApprovers: pulumi.Output<any>;
-    declare public readonly groups: pulumi.Output<any>;
-    declare public readonly hosts: pulumi.Output<any>;
+    declare public readonly autoApprovers: pulumi.Output<outputs.tailnet.AutoApprovers>;
+    declare public readonly groups: pulumi.Output<{[key: string]: string[]}>;
+    declare public readonly hosts: pulumi.Output<{[key: string]: string}>;
     declare public readonly nodeAttrs: pulumi.Output<outputs.tailnet.NodeAttrs[]>;
+    /**
+     * Query params to send with the API requests for this resource.
+     */
+    declare public readonly queryParams: pulumi.Output<outputs.tailnet.AclQueryParams | undefined>;
     declare public readonly ssh: pulumi.Output<outputs.tailnet.SshRule[]>;
-    declare public readonly tagOwners: pulumi.Output<any>;
+    declare public readonly tagOwners: pulumi.Output<{[key: string]: string[]}>;
     declare public readonly tests: pulumi.Output<string>;
 
     /**
@@ -83,6 +87,7 @@ export class Acl extends pulumi.CustomResource {
             resourceInputs["groups"] = args?.groups;
             resourceInputs["hosts"] = args?.hosts;
             resourceInputs["nodeAttrs"] = args?.nodeAttrs;
+            resourceInputs["queryParams"] = args?.queryParams;
             resourceInputs["ssh"] = args?.ssh;
             resourceInputs["tagOwners"] = args?.tagOwners;
             resourceInputs["tailnet"] = args?.tailnet;
@@ -93,6 +98,7 @@ export class Acl extends pulumi.CustomResource {
             resourceInputs["groups"] = undefined /*out*/;
             resourceInputs["hosts"] = undefined /*out*/;
             resourceInputs["nodeAttrs"] = undefined /*out*/;
+            resourceInputs["queryParams"] = undefined /*out*/;
             resourceInputs["ssh"] = undefined /*out*/;
             resourceInputs["tagOwners"] = undefined /*out*/;
             resourceInputs["tests"] = undefined /*out*/;
@@ -107,12 +113,16 @@ export class Acl extends pulumi.CustomResource {
  */
 export interface AclArgs {
     acls: pulumi.Input<pulumi.Input<inputs.tailnet.AclRuleArgs>[]>;
-    autoApprovers: any;
-    groups: any;
-    hosts: any;
+    autoApprovers: pulumi.Input<inputs.tailnet.AutoApproversArgs>;
+    groups: pulumi.Input<{[key: string]: pulumi.Input<pulumi.Input<string>[]>}>;
+    hosts: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     nodeAttrs: pulumi.Input<pulumi.Input<inputs.tailnet.NodeAttrsArgs>[]>;
+    /**
+     * Query params to send with the API requests for this resource.
+     */
+    queryParams?: pulumi.Input<inputs.tailnet.AclQueryParamsArgs | undefined>;
     ssh: pulumi.Input<pulumi.Input<inputs.tailnet.SshRuleArgs>[]>;
-    tagOwners: any;
+    tagOwners: pulumi.Input<{[key: string]: pulumi.Input<pulumi.Input<string>[]>}>;
     /**
      * For paid plans, your domain is your tailnet. For solo plans, the tailnet is the email you signed up with. So `alice@gmail.com` has the tailnet `alice@gmail.com` since `@gmail.com` is a shared email host. Alternatively, you can specify the value "-" to refer to the default tailnet of the authenticated user making the API call.
      */

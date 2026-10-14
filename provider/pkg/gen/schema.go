@@ -176,7 +176,7 @@ func PulumiSchema(openapiDoc openapi3.T) (pschema.PackageSpec, openapigen.Provid
 		PackageReferences: map[string]string{
 			"Pulumi": "3.*",
 		},
-		RootNamespace: "Pulumi",
+		RootNamespace: "CloudySkySoftware.Pulumi",
 	})
 
 	pkg.Language["go"] = rawMessage(gogen.GoPackageInfo{
@@ -199,11 +199,12 @@ func PulumiSchema(openapiDoc openapi3.T) (pschema.PackageSpec, openapigen.Provid
 	})
 
 	metadata := openapigen.ProviderMetadata{
-		ResourceCRUDMap:  providerMetadata.ResourceCRUDMap,
-		AutoNameMap:      providerMetadata.AutoNameMap,
-		SDKToAPINameMap:  providerMetadata.SDKToAPINameMap,
-		APIToSDKNameMap:  providerMetadata.APIToSDKNameMap,
-		PathParamNameMap: providerMetadata.PathParamNameMap,
+		AllowedResourcesWithoutReadEndpoint: providerMetadata.AllowedResourcesWithoutReadEndpoint,
+		ResourceCRUDMap:                     providerMetadata.ResourceCRUDMap,
+		AutoNameMap:                         providerMetadata.AutoNameMap,
+		SDKToAPINameMap:                     providerMetadata.SDKToAPINameMap,
+		APIToSDKNameMap:                     providerMetadata.APIToSDKNameMap,
+		PathParamNameMap:                    providerMetadata.PathParamNameMap,
 	}
 	return pkg, metadata, updatedOpenAPIDoc
 }

@@ -2,16 +2,24 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
+import * as enums from "../types/enums";
 import * as utilities from "../utilities";
 
 export function getDNSPreferencesConfig(args: GetDNSPreferencesConfigArgs, opts?: pulumi.InvokeOptions): Promise<GetDNSPreferencesConfigResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("tailscale-native:tailnet:getDNSPreferencesConfig", {
+        "queryParams": args.queryParams,
         "tailnet": args.tailnet,
     }, opts);
 }
 
 export interface GetDNSPreferencesConfigArgs {
+    /**
+     * Query params to send with the API request.
+     */
+    queryParams?: inputs.tailnet.GetDNSPreferencesConfigQueryParams;
     /**
      * For paid plans, your domain is your tailnet. For solo plans, the tailnet is the email you signed up with. So `alice@gmail.com` has the tailnet `alice@gmail.com` since `@gmail.com` is a shared email host. Alternatively, you can specify the value "-" to refer to the default tailnet of the authenticated user making the API call.
      */
@@ -24,11 +32,16 @@ export interface GetDNSPreferencesConfigResult {
 export function getDNSPreferencesConfigOutput(args: GetDNSPreferencesConfigOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetDNSPreferencesConfigResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("tailscale-native:tailnet:getDNSPreferencesConfig", {
+        "queryParams": args.queryParams,
         "tailnet": args.tailnet,
     }, opts);
 }
 
 export interface GetDNSPreferencesConfigOutputArgs {
+    /**
+     * Query params to send with the API request.
+     */
+    queryParams?: pulumi.Input<inputs.tailnet.GetDNSPreferencesConfigQueryParamsArgs | undefined>;
     /**
      * For paid plans, your domain is your tailnet. For solo plans, the tailnet is the email you signed up with. So `alice@gmail.com` has the tailnet `alice@gmail.com` since `@gmail.com` is a shared email host. Alternatively, you can specify the value "-" to refer to the default tailnet of the authenticated user making the API call.
      */

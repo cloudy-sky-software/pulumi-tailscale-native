@@ -13,6 +13,7 @@ if sys.version_info >= (3, 11):
 else:
     from typing_extensions import NotRequired, TypedDict, TypeAlias
 from .. import _utilities
+from ._inputs import *
 
 __all__ = [
     'GetNameServersConfigResult',
@@ -52,14 +53,17 @@ class AwaitableGetNameServersConfigResult(GetNameServersConfigResult):
             magic_dns=self.magic_dns)
 
 
-def get_name_servers_config(tailnet: Optional[_builtins.str] = None,
+def get_name_servers_config(query_params: Optional[Union['GetNameServersConfigQueryParams', 'GetNameServersConfigQueryParamsDict']] = None,
+                            tailnet: Optional[_builtins.str] = None,
                             opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetNameServersConfigResult:
     """
     Use this data source to access information about an existing resource.
 
+    :param Union['GetNameServersConfigQueryParams', 'GetNameServersConfigQueryParamsDict'] query_params: Query params to send with the API request.
     :param _builtins.str tailnet: For paid plans, your domain is your tailnet. For solo plans, the tailnet is the email you signed up with. So `alice@gmail.com` has the tailnet `alice@gmail.com` since `@gmail.com` is a shared email host. Alternatively, you can specify the value "-" to refer to the default tailnet of the authenticated user making the API call.
     """
     __args__ = dict()
+    __args__['queryParams'] = query_params
     __args__['tailnet'] = tailnet
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('tailscale-native:tailnet:getNameServersConfig', __args__, opts=opts, typ=GetNameServersConfigResult).value
@@ -67,14 +71,17 @@ def get_name_servers_config(tailnet: Optional[_builtins.str] = None,
     return AwaitableGetNameServersConfigResult(
         dns=pulumi.get(__ret__, 'dns'),
         magic_dns=pulumi.get(__ret__, 'magic_dns'))
-def get_name_servers_config_output(tailnet: pulumi.Input[Optional[_builtins.str]] = None,
+def get_name_servers_config_output(query_params: pulumi.Input[Optional[Optional[Union['GetNameServersConfigQueryParams', 'GetNameServersConfigQueryParamsDict']]]] = None,
+                                   tailnet: pulumi.Input[Optional[_builtins.str]] = None,
                                    opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetNameServersConfigResult]:
     """
     Use this data source to access information about an existing resource.
 
+    :param Union['GetNameServersConfigQueryParams', 'GetNameServersConfigQueryParamsDict'] query_params: Query params to send with the API request.
     :param _builtins.str tailnet: For paid plans, your domain is your tailnet. For solo plans, the tailnet is the email you signed up with. So `alice@gmail.com` has the tailnet `alice@gmail.com` since `@gmail.com` is a shared email host. Alternatively, you can specify the value "-" to refer to the default tailnet of the authenticated user making the API call.
     """
     __args__ = dict()
+    __args__['queryParams'] = query_params
     __args__['tailnet'] = tailnet
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('tailscale-native:tailnet:getNameServersConfig', __args__, opts=opts, typ=GetNameServersConfigResult)

@@ -15,7 +15,9 @@ import (
 type ReplaceSearchPaths struct {
 	pulumi.CustomResourceState
 
-	SearchPaths pulumi.StringArrayOutput `pulumi:"searchPaths"`
+	// Query params to send with the API requests for this resource.
+	QueryParams ReplaceSearchPathsQueryParamsPtrOutput `pulumi:"queryParams"`
+	SearchPaths pulumi.StringArrayOutput               `pulumi:"searchPaths"`
 }
 
 // NewReplaceSearchPaths registers a new resource with the given unique name, arguments, and options.
@@ -61,13 +63,17 @@ func (ReplaceSearchPathsState) ElementType() reflect.Type {
 }
 
 type replaceSearchPathsArgs struct {
-	SearchPaths []string `pulumi:"searchPaths"`
+	// Query params to send with the API requests for this resource.
+	QueryParams *ReplaceSearchPathsQueryParams `pulumi:"queryParams"`
+	SearchPaths []string                       `pulumi:"searchPaths"`
 	// For paid plans, your domain is your tailnet. For solo plans, the tailnet is the email you signed up with. So `alice@gmail.com` has the tailnet `alice@gmail.com` since `@gmail.com` is a shared email host. Alternatively, you can specify the value "-" to refer to the default tailnet of the authenticated user making the API call.
 	Tailnet *string `pulumi:"tailnet"`
 }
 
 // The set of arguments for constructing a ReplaceSearchPaths resource.
 type ReplaceSearchPathsArgs struct {
+	// Query params to send with the API requests for this resource.
+	QueryParams ReplaceSearchPathsQueryParamsPtrInput
 	SearchPaths pulumi.StringArrayInput
 	// For paid plans, your domain is your tailnet. For solo plans, the tailnet is the email you signed up with. So `alice@gmail.com` has the tailnet `alice@gmail.com` since `@gmail.com` is a shared email host. Alternatively, you can specify the value "-" to refer to the default tailnet of the authenticated user making the API call.
 	Tailnet pulumi.StringPtrInput
@@ -108,6 +114,11 @@ func (o ReplaceSearchPathsOutput) ToReplaceSearchPathsOutput() ReplaceSearchPath
 
 func (o ReplaceSearchPathsOutput) ToReplaceSearchPathsOutputWithContext(ctx context.Context) ReplaceSearchPathsOutput {
 	return o
+}
+
+// Query params to send with the API requests for this resource.
+func (o ReplaceSearchPathsOutput) QueryParams() ReplaceSearchPathsQueryParamsPtrOutput {
+	return o.ApplyT(func(v *ReplaceSearchPaths) ReplaceSearchPathsQueryParamsPtrOutput { return v.QueryParams }).(ReplaceSearchPathsQueryParamsPtrOutput)
 }
 
 func (o ReplaceSearchPathsOutput) SearchPaths() pulumi.StringArrayOutput {

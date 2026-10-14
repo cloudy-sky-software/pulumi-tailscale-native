@@ -23,6 +23,8 @@ func LookupRoutesConfig(ctx *pulumi.Context, args *LookupRoutesConfigArgs, opts 
 
 type LookupRoutesConfigArgs struct {
 	Id string `pulumi:"id"`
+	// Query params to send with the API request.
+	QueryParams *GetRoutesConfigQueryParams `pulumi:"queryParams"`
 }
 
 type LookupRoutesConfigResult struct {
@@ -37,6 +39,8 @@ func LookupRoutesConfigOutput(ctx *pulumi.Context, args LookupRoutesConfigOutput
 
 type LookupRoutesConfigOutputArgs struct {
 	Id pulumi.StringInput `pulumi:"id"`
+	// Query params to send with the API request.
+	QueryParams GetRoutesConfigQueryParamsPtrInput `pulumi:"queryParams"`
 }
 
 func (LookupRoutesConfigOutputArgs) ElementType() reflect.Type {

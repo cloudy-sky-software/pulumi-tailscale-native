@@ -23,17 +23,19 @@ __all__ = ['AclArgs', 'Acl']
 class AclArgs:
     def __init__(__self__, *,
                  acls: pulumi.Input[Sequence[pulumi.Input['AclRuleArgs']]],
-                 auto_approvers: Any,
-                 groups: Any,
-                 hosts: Any,
+                 auto_approvers: pulumi.Input['AutoApproversArgs'],
+                 groups: pulumi.Input[Mapping[str, pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]],
+                 hosts: pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]],
                  node_attrs: pulumi.Input[Sequence[pulumi.Input['NodeAttrsArgs']]],
                  ssh: pulumi.Input[Sequence[pulumi.Input['SshRuleArgs']]],
-                 tag_owners: Any,
+                 tag_owners: pulumi.Input[Mapping[str, pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]],
                  tests: pulumi.Input[_builtins.str],
+                 query_params: pulumi.Input[Optional['AclQueryParamsArgs']] = None,
                  tailnet: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a Acl resource.
 
+        :param pulumi.Input['AclQueryParamsArgs'] query_params: Query params to send with the API requests for this resource.
         :param pulumi.Input[_builtins.str] tailnet: For paid plans, your domain is your tailnet. For solo plans, the tailnet is the email you signed up with. So `alice@gmail.com` has the tailnet `alice@gmail.com` since `@gmail.com` is a shared email host. Alternatively, you can specify the value "-" to refer to the default tailnet of the authenticated user making the API call.
         """
         pulumi.set(__self__, "acls", acls)
@@ -44,6 +46,8 @@ class AclArgs:
         pulumi.set(__self__, "ssh", ssh)
         pulumi.set(__self__, "tag_owners", tag_owners)
         pulumi.set(__self__, "tests", tests)
+        if query_params is not None:
+            pulumi.set(__self__, "query_params", query_params)
         if tailnet is not None:
             pulumi.set(__self__, "tailnet", tailnet)
 
@@ -58,29 +62,29 @@ class AclArgs:
 
     @_builtins.property
     @pulumi.getter(name="autoApprovers")
-    def auto_approvers(self) -> Any:
+    def auto_approvers(self) -> pulumi.Input['AutoApproversArgs']:
         return pulumi.get(self, "auto_approvers")
 
     @auto_approvers.setter
-    def auto_approvers(self, value: Any):
+    def auto_approvers(self, value: pulumi.Input['AutoApproversArgs']):
         pulumi.set(self, "auto_approvers", value)
 
     @_builtins.property
     @pulumi.getter
-    def groups(self) -> Any:
+    def groups(self) -> pulumi.Input[Mapping[str, pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]]:
         return pulumi.get(self, "groups")
 
     @groups.setter
-    def groups(self, value: Any):
+    def groups(self, value: pulumi.Input[Mapping[str, pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]]):
         pulumi.set(self, "groups", value)
 
     @_builtins.property
     @pulumi.getter
-    def hosts(self) -> Any:
+    def hosts(self) -> pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]:
         return pulumi.get(self, "hosts")
 
     @hosts.setter
-    def hosts(self, value: Any):
+    def hosts(self, value: pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]):
         pulumi.set(self, "hosts", value)
 
     @_builtins.property
@@ -103,11 +107,11 @@ class AclArgs:
 
     @_builtins.property
     @pulumi.getter(name="tagOwners")
-    def tag_owners(self) -> Any:
+    def tag_owners(self) -> pulumi.Input[Mapping[str, pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]]:
         return pulumi.get(self, "tag_owners")
 
     @tag_owners.setter
-    def tag_owners(self, value: Any):
+    def tag_owners(self, value: pulumi.Input[Mapping[str, pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]]):
         pulumi.set(self, "tag_owners", value)
 
     @_builtins.property
@@ -118,6 +122,18 @@ class AclArgs:
     @tests.setter
     def tests(self, value: pulumi.Input[_builtins.str]):
         pulumi.set(self, "tests", value)
+
+    @_builtins.property
+    @pulumi.getter(name="queryParams")
+    def query_params(self) -> pulumi.Input[Optional['AclQueryParamsArgs']]:
+        """
+        Query params to send with the API requests for this resource.
+        """
+        return pulumi.get(self, "query_params")
+
+    @query_params.setter
+    def query_params(self, value: pulumi.Input[Optional['AclQueryParamsArgs']]):
+        pulumi.set(self, "query_params", value)
 
     @_builtins.property
     @pulumi.getter
@@ -138,13 +154,14 @@ class Acl(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 acls: pulumi.Input[Optional[Sequence[pulumi.Input[Union['AclRuleArgs', 'AclRuleArgsDict']]]]] = None,
-                 auto_approvers: Optional[Any] = None,
-                 groups: Optional[Any] = None,
-                 hosts: Optional[Any] = None,
-                 node_attrs: pulumi.Input[Optional[Sequence[pulumi.Input[Union['NodeAttrsArgs', 'NodeAttrsArgsDict']]]]] = None,
-                 ssh: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SshRuleArgs', 'SshRuleArgsDict']]]]] = None,
-                 tag_owners: Optional[Any] = None,
+                 acls: pulumi.Input[Optional[Sequence[pulumi.Input[Union['AclRuleArgs', 'AclRuleArgsDict', 'outputs.AclRule']]]]] = None,
+                 auto_approvers: pulumi.Input[Optional[Union['AutoApproversArgs', 'AutoApproversArgsDict', 'outputs.AutoApprovers']]] = None,
+                 groups: pulumi.Input[Optional[Mapping[str, pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]]] = None,
+                 hosts: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 node_attrs: pulumi.Input[Optional[Sequence[pulumi.Input[Union['NodeAttrsArgs', 'NodeAttrsArgsDict', 'outputs.NodeAttrs']]]]] = None,
+                 query_params: pulumi.Input[Optional[Union['AclQueryParamsArgs', 'AclQueryParamsArgsDict', 'outputs.AclQueryParams']]] = None,
+                 ssh: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SshRuleArgs', 'SshRuleArgsDict', 'outputs.SshRule']]]]] = None,
+                 tag_owners: pulumi.Input[Optional[Mapping[str, pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]]] = None,
                  tailnet: pulumi.Input[Optional[_builtins.str]] = None,
                  tests: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
@@ -153,6 +170,7 @@ class Acl(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[Union['AclQueryParamsArgs', 'AclQueryParamsArgsDict', 'outputs.AclQueryParams']] query_params: Query params to send with the API requests for this resource.
         :param pulumi.Input[_builtins.str] tailnet: For paid plans, your domain is your tailnet. For solo plans, the tailnet is the email you signed up with. So `alice@gmail.com` has the tailnet `alice@gmail.com` since `@gmail.com` is a shared email host. Alternatively, you can specify the value "-" to refer to the default tailnet of the authenticated user making the API call.
         """
         ...
@@ -179,13 +197,14 @@ class Acl(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 acls: pulumi.Input[Optional[Sequence[pulumi.Input[Union['AclRuleArgs', 'AclRuleArgsDict']]]]] = None,
-                 auto_approvers: Optional[Any] = None,
-                 groups: Optional[Any] = None,
-                 hosts: Optional[Any] = None,
-                 node_attrs: pulumi.Input[Optional[Sequence[pulumi.Input[Union['NodeAttrsArgs', 'NodeAttrsArgsDict']]]]] = None,
-                 ssh: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SshRuleArgs', 'SshRuleArgsDict']]]]] = None,
-                 tag_owners: Optional[Any] = None,
+                 acls: pulumi.Input[Optional[Sequence[pulumi.Input[Union['AclRuleArgs', 'AclRuleArgsDict', 'outputs.AclRule']]]]] = None,
+                 auto_approvers: pulumi.Input[Optional[Union['AutoApproversArgs', 'AutoApproversArgsDict', 'outputs.AutoApprovers']]] = None,
+                 groups: pulumi.Input[Optional[Mapping[str, pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]]] = None,
+                 hosts: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 node_attrs: pulumi.Input[Optional[Sequence[pulumi.Input[Union['NodeAttrsArgs', 'NodeAttrsArgsDict', 'outputs.NodeAttrs']]]]] = None,
+                 query_params: pulumi.Input[Optional[Union['AclQueryParamsArgs', 'AclQueryParamsArgsDict', 'outputs.AclQueryParams']]] = None,
+                 ssh: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SshRuleArgs', 'SshRuleArgsDict', 'outputs.SshRule']]]]] = None,
+                 tag_owners: pulumi.Input[Optional[Mapping[str, pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]]] = None,
                  tailnet: pulumi.Input[Optional[_builtins.str]] = None,
                  tests: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
@@ -212,6 +231,7 @@ class Acl(pulumi.CustomResource):
             if node_attrs is None and not opts.urn:
                 raise TypeError("Missing required property 'node_attrs'")
             __props__.__dict__["node_attrs"] = node_attrs
+            __props__.__dict__["query_params"] = query_params
             if ssh is None and not opts.urn:
                 raise TypeError("Missing required property 'ssh'")
             __props__.__dict__["ssh"] = ssh
@@ -249,6 +269,7 @@ class Acl(pulumi.CustomResource):
         __props__.__dict__["groups"] = None
         __props__.__dict__["hosts"] = None
         __props__.__dict__["node_attrs"] = None
+        __props__.__dict__["query_params"] = None
         __props__.__dict__["ssh"] = None
         __props__.__dict__["tag_owners"] = None
         __props__.__dict__["tests"] = None
@@ -261,17 +282,17 @@ class Acl(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter(name="autoApprovers")
-    def auto_approvers(self) -> pulumi.Output[Any]:
+    def auto_approvers(self) -> pulumi.Output['outputs.AutoApprovers']:
         return pulumi.get(self, "auto_approvers")
 
     @_builtins.property
     @pulumi.getter
-    def groups(self) -> pulumi.Output[Any]:
+    def groups(self) -> pulumi.Output[Mapping[str, Sequence[_builtins.str]]]:
         return pulumi.get(self, "groups")
 
     @_builtins.property
     @pulumi.getter
-    def hosts(self) -> pulumi.Output[Any]:
+    def hosts(self) -> pulumi.Output[Mapping[str, _builtins.str]]:
         return pulumi.get(self, "hosts")
 
     @_builtins.property
@@ -280,13 +301,21 @@ class Acl(pulumi.CustomResource):
         return pulumi.get(self, "node_attrs")
 
     @_builtins.property
+    @pulumi.getter(name="queryParams")
+    def query_params(self) -> pulumi.Output[Optional['outputs.AclQueryParams']]:
+        """
+        Query params to send with the API requests for this resource.
+        """
+        return pulumi.get(self, "query_params")
+
+    @_builtins.property
     @pulumi.getter
     def ssh(self) -> pulumi.Output[Sequence['outputs.SshRule']]:
         return pulumi.get(self, "ssh")
 
     @_builtins.property
     @pulumi.getter(name="tagOwners")
-    def tag_owners(self) -> pulumi.Output[Any]:
+    def tag_owners(self) -> pulumi.Output[Mapping[str, Sequence[_builtins.str]]]:
         return pulumi.get(self, "tag_owners")
 
     @_builtins.property

@@ -22,6 +22,8 @@ func ListDevices(ctx *pulumi.Context, args *ListDevicesArgs, opts ...pulumi.Invo
 }
 
 type ListDevicesArgs struct {
+	// Query params to send with the API request.
+	QueryParams *ListDevicesQueryParams `pulumi:"queryParams"`
 	// For paid plans, your domain is your tailnet. For solo plans, the tailnet is the email you signed up with. So `alice@gmail.com` has the tailnet `alice@gmail.com` since `@gmail.com` is a shared email host. Alternatively, you can specify the value "-" to refer to the default tailnet of the authenticated user making the API call.
 	Tailnet string `pulumi:"tailnet"`
 }
@@ -36,6 +38,8 @@ func ListDevicesOutput(ctx *pulumi.Context, args ListDevicesOutputArgs, opts ...
 }
 
 type ListDevicesOutputArgs struct {
+	// Query params to send with the API request.
+	QueryParams ListDevicesQueryParamsPtrInput `pulumi:"queryParams"`
 	// For paid plans, your domain is your tailnet. For solo plans, the tailnet is the email you signed up with. So `alice@gmail.com` has the tailnet `alice@gmail.com` since `@gmail.com` is a shared email host. Alternatively, you can specify the value "-" to refer to the default tailnet of the authenticated user making the API call.
 	Tailnet pulumi.StringInput `pulumi:"tailnet"`
 }
