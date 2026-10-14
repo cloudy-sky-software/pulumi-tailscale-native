@@ -1,4 +1,5 @@
 {
+  "name": "pulumi-tailscale-native",
   "devDependencies": {
     "@typespec/compiler": "^1.17.0"
   }
