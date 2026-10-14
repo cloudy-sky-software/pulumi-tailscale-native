@@ -2,6 +2,9 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
+import * as enums from "../types/enums";
 import * as utilities from "../utilities";
 
 export class Tags extends pulumi.CustomResource {
@@ -31,6 +34,10 @@ export class Tags extends pulumi.CustomResource {
         return obj['__pulumiType'] === Tags.__pulumiType;
     }
 
+    /**
+     * Query params to send with the API requests for this resource.
+     */
+    declare public readonly queryParams: pulumi.Output<outputs.device.TagsQueryParams | undefined>;
     declare public readonly tags: pulumi.Output<string[]>;
 
     /**
@@ -48,8 +55,10 @@ export class Tags extends pulumi.CustomResource {
                 throw new Error("Missing required property 'tags'");
             }
             resourceInputs["id"] = args?.id;
+            resourceInputs["queryParams"] = args?.queryParams;
             resourceInputs["tags"] = args?.tags;
         } else {
+            resourceInputs["queryParams"] = undefined /*out*/;
             resourceInputs["tags"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -62,5 +71,9 @@ export class Tags extends pulumi.CustomResource {
  */
 export interface TagsArgs {
     id?: pulumi.Input<string | undefined>;
+    /**
+     * Query params to send with the API requests for this resource.
+     */
+    queryParams?: pulumi.Input<inputs.device.TagsQueryParamsArgs | undefined>;
     tags: pulumi.Input<pulumi.Input<string>[]>;
 }

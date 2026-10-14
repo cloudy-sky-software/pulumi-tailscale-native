@@ -13,6 +13,7 @@ if sys.version_info >= (3, 11):
 else:
     from typing_extensions import NotRequired, TypedDict, TypeAlias
 from .. import _utilities
+from ._inputs import *
 
 __all__ = [
     'GetRoutesConfigResult',
@@ -53,12 +54,16 @@ class AwaitableGetRoutesConfigResult(GetRoutesConfigResult):
 
 
 def get_routes_config(id: Optional[_builtins.str] = None,
+                      query_params: Optional[Union['GetRoutesConfigQueryParams', 'GetRoutesConfigQueryParamsDict']] = None,
                       opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetRoutesConfigResult:
     """
     Use this data source to access information about an existing resource.
+
+    :param Union['GetRoutesConfigQueryParams', 'GetRoutesConfigQueryParamsDict'] query_params: Query params to send with the API request.
     """
     __args__ = dict()
     __args__['id'] = id
+    __args__['queryParams'] = query_params
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('tailscale-native:device:getRoutesConfig', __args__, opts=opts, typ=GetRoutesConfigResult).value
 
@@ -66,12 +71,16 @@ def get_routes_config(id: Optional[_builtins.str] = None,
         advertised_routes=pulumi.get(__ret__, 'advertised_routes'),
         enabled_routes=pulumi.get(__ret__, 'enabled_routes'))
 def get_routes_config_output(id: pulumi.Input[Optional[_builtins.str]] = None,
+                             query_params: pulumi.Input[Optional[Optional[Union['GetRoutesConfigQueryParams', 'GetRoutesConfigQueryParamsDict']]]] = None,
                              opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetRoutesConfigResult]:
     """
     Use this data source to access information about an existing resource.
+
+    :param Union['GetRoutesConfigQueryParams', 'GetRoutesConfigQueryParamsDict'] query_params: Query params to send with the API request.
     """
     __args__ = dict()
     __args__['id'] = id
+    __args__['queryParams'] = query_params
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('tailscale-native:device:getRoutesConfig', __args__, opts=opts, typ=GetRoutesConfigResult)
     return __ret__.apply(lambda __response__: GetRoutesConfigResult(

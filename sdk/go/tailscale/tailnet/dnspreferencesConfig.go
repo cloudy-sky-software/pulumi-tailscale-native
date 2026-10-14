@@ -16,6 +16,8 @@ type DNSPreferencesConfig struct {
 	pulumi.CustomResourceState
 
 	MagicDNS pulumi.BoolOutput `pulumi:"magicDNS"`
+	// Query params to send with the API requests for this resource.
+	QueryParams DNSPreferencesConfigQueryParamsPtrOutput `pulumi:"queryParams"`
 }
 
 // NewDNSPreferencesConfig registers a new resource with the given unique name, arguments, and options.
@@ -62,6 +64,8 @@ func (DNSPreferencesConfigState) ElementType() reflect.Type {
 
 type dnspreferencesConfigArgs struct {
 	MagicDNS bool `pulumi:"magicDNS"`
+	// Query params to send with the API requests for this resource.
+	QueryParams *DNSPreferencesConfigQueryParams `pulumi:"queryParams"`
 	// For paid plans, your domain is your tailnet. For solo plans, the tailnet is the email you signed up with. So `alice@gmail.com` has the tailnet `alice@gmail.com` since `@gmail.com` is a shared email host. Alternatively, you can specify the value "-" to refer to the default tailnet of the authenticated user making the API call.
 	Tailnet *string `pulumi:"tailnet"`
 }
@@ -69,6 +73,8 @@ type dnspreferencesConfigArgs struct {
 // The set of arguments for constructing a DNSPreferencesConfig resource.
 type DNSPreferencesConfigArgs struct {
 	MagicDNS pulumi.BoolInput
+	// Query params to send with the API requests for this resource.
+	QueryParams DNSPreferencesConfigQueryParamsPtrInput
 	// For paid plans, your domain is your tailnet. For solo plans, the tailnet is the email you signed up with. So `alice@gmail.com` has the tailnet `alice@gmail.com` since `@gmail.com` is a shared email host. Alternatively, you can specify the value "-" to refer to the default tailnet of the authenticated user making the API call.
 	Tailnet pulumi.StringPtrInput
 }
@@ -112,6 +118,11 @@ func (o DNSPreferencesConfigOutput) ToDNSPreferencesConfigOutputWithContext(ctx 
 
 func (o DNSPreferencesConfigOutput) MagicDNS() pulumi.BoolOutput {
 	return o.ApplyT(func(v *DNSPreferencesConfig) pulumi.BoolOutput { return v.MagicDNS }).(pulumi.BoolOutput)
+}
+
+// Query params to send with the API requests for this resource.
+func (o DNSPreferencesConfigOutput) QueryParams() DNSPreferencesConfigQueryParamsPtrOutput {
+	return o.ApplyT(func(v *DNSPreferencesConfig) DNSPreferencesConfigQueryParamsPtrOutput { return v.QueryParams }).(DNSPreferencesConfigQueryParamsPtrOutput)
 }
 
 func init() {

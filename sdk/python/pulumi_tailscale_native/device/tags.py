@@ -13,6 +13,8 @@ if sys.version_info >= (3, 11):
 else:
     from typing_extensions import NotRequired, TypedDict, TypeAlias
 from .. import _utilities
+from . import outputs
+from ._inputs import *
 
 __all__ = ['TagsArgs', 'Tags']
 
@@ -20,13 +22,18 @@ __all__ = ['TagsArgs', 'Tags']
 class TagsArgs:
     def __init__(__self__, *,
                  tags: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]],
-                 id: pulumi.Input[Optional[_builtins.str]] = None):
+                 id: pulumi.Input[Optional[_builtins.str]] = None,
+                 query_params: pulumi.Input[Optional['TagsQueryParamsArgs']] = None):
         """
         The set of arguments for constructing a Tags resource.
+
+        :param pulumi.Input['TagsQueryParamsArgs'] query_params: Query params to send with the API requests for this resource.
         """
         pulumi.set(__self__, "tags", tags)
         if id is not None:
             pulumi.set(__self__, "id", id)
+        if query_params is not None:
+            pulumi.set(__self__, "query_params", query_params)
 
     @_builtins.property
     @pulumi.getter
@@ -46,6 +53,18 @@ class TagsArgs:
     def id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "id", value)
 
+    @_builtins.property
+    @pulumi.getter(name="queryParams")
+    def query_params(self) -> pulumi.Input[Optional['TagsQueryParamsArgs']]:
+        """
+        Query params to send with the API requests for this resource.
+        """
+        return pulumi.get(self, "query_params")
+
+    @query_params.setter
+    def query_params(self, value: pulumi.Input[Optional['TagsQueryParamsArgs']]):
+        pulumi.set(self, "query_params", value)
+
 
 @pulumi.type_token("tailscale-native:device:Tags")
 class Tags(pulumi.CustomResource):
@@ -54,6 +73,7 @@ class Tags(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  id: pulumi.Input[Optional[_builtins.str]] = None,
+                 query_params: pulumi.Input[Optional[Union['TagsQueryParamsArgs', 'TagsQueryParamsArgsDict', 'outputs.TagsQueryParams']]] = None,
                  tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  __props__=None):
         """
@@ -61,6 +81,7 @@ class Tags(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[Union['TagsQueryParamsArgs', 'TagsQueryParamsArgsDict', 'outputs.TagsQueryParams']] query_params: Query params to send with the API requests for this resource.
         """
         ...
     @overload
@@ -87,6 +108,7 @@ class Tags(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  id: pulumi.Input[Optional[_builtins.str]] = None,
+                 query_params: pulumi.Input[Optional[Union['TagsQueryParamsArgs', 'TagsQueryParamsArgsDict', 'outputs.TagsQueryParams']]] = None,
                  tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -98,6 +120,7 @@ class Tags(pulumi.CustomResource):
             __props__ = TagsArgs.__new__(TagsArgs)
 
             __props__.__dict__["id"] = id
+            __props__.__dict__["query_params"] = query_params
             if tags is None and not opts.urn:
                 raise TypeError("Missing required property 'tags'")
             __props__.__dict__["tags"] = tags
@@ -123,8 +146,17 @@ class Tags(pulumi.CustomResource):
 
         __props__ = TagsArgs.__new__(TagsArgs)
 
+        __props__.__dict__["query_params"] = None
         __props__.__dict__["tags"] = None
         return Tags(resource_name, opts=opts, __props__=__props__)
+
+    @_builtins.property
+    @pulumi.getter(name="queryParams")
+    def query_params(self) -> pulumi.Output[Optional['outputs.TagsQueryParams']]:
+        """
+        Query params to send with the API requests for this resource.
+        """
+        return pulumi.get(self, "query_params")
 
     @_builtins.property
     @pulumi.getter

@@ -16,6 +16,8 @@ type AuthorizeDevice struct {
 	pulumi.CustomResourceState
 
 	Authorized pulumi.BoolOutput `pulumi:"authorized"`
+	// Query params to send with the API requests for this resource.
+	QueryParams AuthorizeDeviceQueryParamsPtrOutput `pulumi:"queryParams"`
 }
 
 // NewAuthorizeDevice registers a new resource with the given unique name, arguments, and options.
@@ -63,12 +65,16 @@ func (AuthorizeDeviceState) ElementType() reflect.Type {
 type authorizeDeviceArgs struct {
 	Authorized bool    `pulumi:"authorized"`
 	Id         *string `pulumi:"id"`
+	// Query params to send with the API requests for this resource.
+	QueryParams *AuthorizeDeviceQueryParams `pulumi:"queryParams"`
 }
 
 // The set of arguments for constructing a AuthorizeDevice resource.
 type AuthorizeDeviceArgs struct {
 	Authorized pulumi.BoolInput
 	Id         pulumi.StringPtrInput
+	// Query params to send with the API requests for this resource.
+	QueryParams AuthorizeDeviceQueryParamsPtrInput
 }
 
 func (AuthorizeDeviceArgs) ElementType() reflect.Type {
@@ -110,6 +116,11 @@ func (o AuthorizeDeviceOutput) ToAuthorizeDeviceOutputWithContext(ctx context.Co
 
 func (o AuthorizeDeviceOutput) Authorized() pulumi.BoolOutput {
 	return o.ApplyT(func(v *AuthorizeDevice) pulumi.BoolOutput { return v.Authorized }).(pulumi.BoolOutput)
+}
+
+// Query params to send with the API requests for this resource.
+func (o AuthorizeDeviceOutput) QueryParams() AuthorizeDeviceQueryParamsPtrOutput {
+	return o.ApplyT(func(v *AuthorizeDevice) AuthorizeDeviceQueryParamsPtrOutput { return v.QueryParams }).(AuthorizeDeviceQueryParamsPtrOutput)
 }
 
 func init() {

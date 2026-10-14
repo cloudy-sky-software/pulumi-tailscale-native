@@ -11,11 +11,16 @@ export function getDevice(args: GetDeviceArgs, opts?: pulumi.InvokeOptions): Pro
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("tailscale-native:device:getDevice", {
         "id": args.id,
+        "queryParams": args.queryParams,
     }, opts);
 }
 
 export interface GetDeviceArgs {
     id: string;
+    /**
+     * Query params to send with the API request.
+     */
+    queryParams?: inputs.device.GetDeviceQueryParams;
 }
 
 export interface GetDeviceResult {
@@ -44,9 +49,14 @@ export function getDeviceOutput(args: GetDeviceOutputArgs, opts?: pulumi.InvokeO
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("tailscale-native:device:getDevice", {
         "id": args.id,
+        "queryParams": args.queryParams,
     }, opts);
 }
 
 export interface GetDeviceOutputArgs {
     id: pulumi.Input<string>;
+    /**
+     * Query params to send with the API request.
+     */
+    queryParams?: pulumi.Input<inputs.device.GetDeviceQueryParamsArgs | undefined>;
 }

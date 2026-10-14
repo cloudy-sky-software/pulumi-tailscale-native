@@ -23,6 +23,8 @@ func GetDevice(ctx *pulumi.Context, args *GetDeviceArgs, opts ...pulumi.InvokeOp
 
 type GetDeviceArgs struct {
 	Id string `pulumi:"id"`
+	// Query params to send with the API request.
+	QueryParams *GetDeviceQueryParams `pulumi:"queryParams"`
 }
 
 type GetDeviceResult struct {
@@ -55,6 +57,8 @@ func GetDeviceOutput(ctx *pulumi.Context, args GetDeviceOutputArgs, opts ...pulu
 
 type GetDeviceOutputArgs struct {
 	Id pulumi.StringInput `pulumi:"id"`
+	// Query params to send with the API request.
+	QueryParams GetDeviceQueryParamsPtrInput `pulumi:"queryParams"`
 }
 
 func (GetDeviceOutputArgs) ElementType() reflect.Type {

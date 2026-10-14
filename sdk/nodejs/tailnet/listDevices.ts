@@ -10,11 +10,16 @@ import * as utilities from "../utilities";
 export function listDevices(args: ListDevicesArgs, opts?: pulumi.InvokeOptions): Promise<ListDevicesResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("tailscale-native:tailnet:listDevices", {
+        "queryParams": args.queryParams,
         "tailnet": args.tailnet,
     }, opts);
 }
 
 export interface ListDevicesArgs {
+    /**
+     * Query params to send with the API request.
+     */
+    queryParams?: inputs.tailnet.ListDevicesQueryParams;
     /**
      * For paid plans, your domain is your tailnet. For solo plans, the tailnet is the email you signed up with. So `alice@gmail.com` has the tailnet `alice@gmail.com` since `@gmail.com` is a shared email host. Alternatively, you can specify the value "-" to refer to the default tailnet of the authenticated user making the API call.
      */
@@ -27,11 +32,16 @@ export interface ListDevicesResult {
 export function listDevicesOutput(args: ListDevicesOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<ListDevicesResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("tailscale-native:tailnet:listDevices", {
+        "queryParams": args.queryParams,
         "tailnet": args.tailnet,
     }, opts);
 }
 
 export interface ListDevicesOutputArgs {
+    /**
+     * Query params to send with the API request.
+     */
+    queryParams?: pulumi.Input<inputs.tailnet.ListDevicesQueryParamsArgs | undefined>;
     /**
      * For paid plans, your domain is your tailnet. For solo plans, the tailnet is the email you signed up with. So `alice@gmail.com` has the tailnet `alice@gmail.com` since `@gmail.com` is a shared email host. Alternatively, you can specify the value "-" to refer to the default tailnet of the authenticated user making the API call.
      */

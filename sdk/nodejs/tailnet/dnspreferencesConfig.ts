@@ -2,6 +2,9 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
+import * as enums from "../types/enums";
 import * as utilities from "../utilities";
 
 export class DNSPreferencesConfig extends pulumi.CustomResource {
@@ -32,6 +35,10 @@ export class DNSPreferencesConfig extends pulumi.CustomResource {
     }
 
     declare public readonly magicDNS: pulumi.Output<boolean>;
+    /**
+     * Query params to send with the API requests for this resource.
+     */
+    declare public readonly queryParams: pulumi.Output<outputs.tailnet.DNSPreferencesConfigQueryParams | undefined>;
 
     /**
      * Create a DNSPreferencesConfig resource with the given unique name, arguments, and options.
@@ -48,9 +55,11 @@ export class DNSPreferencesConfig extends pulumi.CustomResource {
                 throw new Error("Missing required property 'magicDNS'");
             }
             resourceInputs["magicDNS"] = args?.magicDNS;
+            resourceInputs["queryParams"] = args?.queryParams;
             resourceInputs["tailnet"] = args?.tailnet;
         } else {
             resourceInputs["magicDNS"] = undefined /*out*/;
+            resourceInputs["queryParams"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(DNSPreferencesConfig.__pulumiType, name, resourceInputs, opts);
@@ -62,6 +71,10 @@ export class DNSPreferencesConfig extends pulumi.CustomResource {
  */
 export interface DNSPreferencesConfigArgs {
     magicDNS: pulumi.Input<boolean>;
+    /**
+     * Query params to send with the API requests for this resource.
+     */
+    queryParams?: pulumi.Input<inputs.tailnet.DNSPreferencesConfigQueryParamsArgs | undefined>;
     /**
      * For paid plans, your domain is your tailnet. For solo plans, the tailnet is the email you signed up with. So `alice@gmail.com` has the tailnet `alice@gmail.com` since `@gmail.com` is a shared email host. Alternatively, you can specify the value "-" to refer to the default tailnet of the authenticated user making the API call.
      */

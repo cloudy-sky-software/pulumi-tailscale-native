@@ -17,6 +17,8 @@ type NameServersConfig struct {
 
 	Dns      pulumi.StringArrayOutput `pulumi:"dns"`
 	MagicDNS pulumi.BoolOutput        `pulumi:"magicDNS"`
+	// Query params to send with the API requests for this resource.
+	QueryParams NameServersConfigQueryParamsPtrOutput `pulumi:"queryParams"`
 }
 
 // NewNameServersConfig registers a new resource with the given unique name, arguments, and options.
@@ -67,6 +69,8 @@ func (NameServersConfigState) ElementType() reflect.Type {
 type nameServersConfigArgs struct {
 	Dns      []string `pulumi:"dns"`
 	MagicDNS bool     `pulumi:"magicDNS"`
+	// Query params to send with the API requests for this resource.
+	QueryParams *NameServersConfigQueryParams `pulumi:"queryParams"`
 	// For paid plans, your domain is your tailnet. For solo plans, the tailnet is the email you signed up with. So `alice@gmail.com` has the tailnet `alice@gmail.com` since `@gmail.com` is a shared email host. Alternatively, you can specify the value "-" to refer to the default tailnet of the authenticated user making the API call.
 	Tailnet *string `pulumi:"tailnet"`
 }
@@ -75,6 +79,8 @@ type nameServersConfigArgs struct {
 type NameServersConfigArgs struct {
 	Dns      pulumi.StringArrayInput
 	MagicDNS pulumi.BoolInput
+	// Query params to send with the API requests for this resource.
+	QueryParams NameServersConfigQueryParamsPtrInput
 	// For paid plans, your domain is your tailnet. For solo plans, the tailnet is the email you signed up with. So `alice@gmail.com` has the tailnet `alice@gmail.com` since `@gmail.com` is a shared email host. Alternatively, you can specify the value "-" to refer to the default tailnet of the authenticated user making the API call.
 	Tailnet pulumi.StringPtrInput
 }
@@ -122,6 +128,11 @@ func (o NameServersConfigOutput) Dns() pulumi.StringArrayOutput {
 
 func (o NameServersConfigOutput) MagicDNS() pulumi.BoolOutput {
 	return o.ApplyT(func(v *NameServersConfig) pulumi.BoolOutput { return v.MagicDNS }).(pulumi.BoolOutput)
+}
+
+// Query params to send with the API requests for this resource.
+func (o NameServersConfigOutput) QueryParams() NameServersConfigQueryParamsPtrOutput {
+	return o.ApplyT(func(v *NameServersConfig) NameServersConfigQueryParamsPtrOutput { return v.QueryParams }).(NameServersConfigQueryParamsPtrOutput)
 }
 
 func init() {

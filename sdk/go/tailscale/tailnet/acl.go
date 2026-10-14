@@ -15,14 +15,16 @@ import (
 type Acl struct {
 	pulumi.CustomResourceState
 
-	Acls          AclRuleArrayOutput   `pulumi:"acls"`
-	AutoApprovers pulumi.AnyOutput     `pulumi:"autoApprovers"`
-	Groups        pulumi.AnyOutput     `pulumi:"groups"`
-	Hosts         pulumi.AnyOutput     `pulumi:"hosts"`
-	NodeAttrs     NodeAttrsArrayOutput `pulumi:"nodeAttrs"`
-	Ssh           SshRuleArrayOutput   `pulumi:"ssh"`
-	TagOwners     pulumi.AnyOutput     `pulumi:"tagOwners"`
-	Tests         pulumi.StringOutput  `pulumi:"tests"`
+	Acls          AclRuleArrayOutput          `pulumi:"acls"`
+	AutoApprovers AutoApproversOutput         `pulumi:"autoApprovers"`
+	Groups        pulumi.StringArrayMapOutput `pulumi:"groups"`
+	Hosts         pulumi.StringMapOutput      `pulumi:"hosts"`
+	NodeAttrs     NodeAttrsArrayOutput        `pulumi:"nodeAttrs"`
+	// Query params to send with the API requests for this resource.
+	QueryParams AclQueryParamsPtrOutput     `pulumi:"queryParams"`
+	Ssh         SshRuleArrayOutput          `pulumi:"ssh"`
+	TagOwners   pulumi.StringArrayMapOutput `pulumi:"tagOwners"`
+	Tests       pulumi.StringOutput         `pulumi:"tests"`
 }
 
 // NewAcl registers a new resource with the given unique name, arguments, and options.
@@ -89,13 +91,15 @@ func (AclState) ElementType() reflect.Type {
 }
 
 type aclArgs struct {
-	Acls          []AclRule   `pulumi:"acls"`
-	AutoApprovers interface{} `pulumi:"autoApprovers"`
-	Groups        interface{} `pulumi:"groups"`
-	Hosts         interface{} `pulumi:"hosts"`
-	NodeAttrs     []NodeAttrs `pulumi:"nodeAttrs"`
-	Ssh           []SshRule   `pulumi:"ssh"`
-	TagOwners     interface{} `pulumi:"tagOwners"`
+	Acls          []AclRule           `pulumi:"acls"`
+	AutoApprovers AutoApprovers       `pulumi:"autoApprovers"`
+	Groups        map[string][]string `pulumi:"groups"`
+	Hosts         map[string]string   `pulumi:"hosts"`
+	NodeAttrs     []NodeAttrs         `pulumi:"nodeAttrs"`
+	// Query params to send with the API requests for this resource.
+	QueryParams *AclQueryParams     `pulumi:"queryParams"`
+	Ssh         []SshRule           `pulumi:"ssh"`
+	TagOwners   map[string][]string `pulumi:"tagOwners"`
 	// For paid plans, your domain is your tailnet. For solo plans, the tailnet is the email you signed up with. So `alice@gmail.com` has the tailnet `alice@gmail.com` since `@gmail.com` is a shared email host. Alternatively, you can specify the value "-" to refer to the default tailnet of the authenticated user making the API call.
 	Tailnet *string `pulumi:"tailnet"`
 	Tests   string  `pulumi:"tests"`
@@ -104,12 +108,14 @@ type aclArgs struct {
 // The set of arguments for constructing a Acl resource.
 type AclArgs struct {
 	Acls          AclRuleArrayInput
-	AutoApprovers pulumi.Input
-	Groups        pulumi.Input
-	Hosts         pulumi.Input
+	AutoApprovers AutoApproversInput
+	Groups        pulumi.StringArrayMapInput
+	Hosts         pulumi.StringMapInput
 	NodeAttrs     NodeAttrsArrayInput
-	Ssh           SshRuleArrayInput
-	TagOwners     pulumi.Input
+	// Query params to send with the API requests for this resource.
+	QueryParams AclQueryParamsPtrInput
+	Ssh         SshRuleArrayInput
+	TagOwners   pulumi.StringArrayMapInput
 	// For paid plans, your domain is your tailnet. For solo plans, the tailnet is the email you signed up with. So `alice@gmail.com` has the tailnet `alice@gmail.com` since `@gmail.com` is a shared email host. Alternatively, you can specify the value "-" to refer to the default tailnet of the authenticated user making the API call.
 	Tailnet pulumi.StringPtrInput
 	Tests   pulumi.StringInput
@@ -156,28 +162,33 @@ func (o AclOutput) Acls() AclRuleArrayOutput {
 	return o.ApplyT(func(v *Acl) AclRuleArrayOutput { return v.Acls }).(AclRuleArrayOutput)
 }
 
-func (o AclOutput) AutoApprovers() pulumi.AnyOutput {
-	return o.ApplyT(func(v *Acl) pulumi.AnyOutput { return v.AutoApprovers }).(pulumi.AnyOutput)
+func (o AclOutput) AutoApprovers() AutoApproversOutput {
+	return o.ApplyT(func(v *Acl) AutoApproversOutput { return v.AutoApprovers }).(AutoApproversOutput)
 }
 
-func (o AclOutput) Groups() pulumi.AnyOutput {
-	return o.ApplyT(func(v *Acl) pulumi.AnyOutput { return v.Groups }).(pulumi.AnyOutput)
+func (o AclOutput) Groups() pulumi.StringArrayMapOutput {
+	return o.ApplyT(func(v *Acl) pulumi.StringArrayMapOutput { return v.Groups }).(pulumi.StringArrayMapOutput)
 }
 
-func (o AclOutput) Hosts() pulumi.AnyOutput {
-	return o.ApplyT(func(v *Acl) pulumi.AnyOutput { return v.Hosts }).(pulumi.AnyOutput)
+func (o AclOutput) Hosts() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *Acl) pulumi.StringMapOutput { return v.Hosts }).(pulumi.StringMapOutput)
 }
 
 func (o AclOutput) NodeAttrs() NodeAttrsArrayOutput {
 	return o.ApplyT(func(v *Acl) NodeAttrsArrayOutput { return v.NodeAttrs }).(NodeAttrsArrayOutput)
 }
 
+// Query params to send with the API requests for this resource.
+func (o AclOutput) QueryParams() AclQueryParamsPtrOutput {
+	return o.ApplyT(func(v *Acl) AclQueryParamsPtrOutput { return v.QueryParams }).(AclQueryParamsPtrOutput)
+}
+
 func (o AclOutput) Ssh() SshRuleArrayOutput {
 	return o.ApplyT(func(v *Acl) SshRuleArrayOutput { return v.Ssh }).(SshRuleArrayOutput)
 }
 
-func (o AclOutput) TagOwners() pulumi.AnyOutput {
-	return o.ApplyT(func(v *Acl) pulumi.AnyOutput { return v.TagOwners }).(pulumi.AnyOutput)
+func (o AclOutput) TagOwners() pulumi.StringArrayMapOutput {
+	return o.ApplyT(func(v *Acl) pulumi.StringArrayMapOutput { return v.TagOwners }).(pulumi.StringArrayMapOutput)
 }
 
 func (o AclOutput) Tests() pulumi.StringOutput {

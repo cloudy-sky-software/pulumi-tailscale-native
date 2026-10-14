@@ -20,6 +20,8 @@ type Key struct {
 	Expires       pulumi.StringOutput    `pulumi:"expires"`
 	ExpirySeconds pulumi.IntOutput       `pulumi:"expirySeconds"`
 	Key           pulumi.StringOutput    `pulumi:"key"`
+	// Query params to send with the API requests for this resource.
+	QueryParams KeyQueryParamsPtrOutput `pulumi:"queryParams"`
 }
 
 // NewKey registers a new resource with the given unique name, arguments, and options.
@@ -70,6 +72,8 @@ func (KeyState) ElementType() reflect.Type {
 type keyArgs struct {
 	Capabilities  KeyCapabilities `pulumi:"capabilities"`
 	ExpirySeconds int             `pulumi:"expirySeconds"`
+	// Query params to send with the API requests for this resource.
+	QueryParams *KeyQueryParams `pulumi:"queryParams"`
 	// For paid plans, your domain is your tailnet. For solo plans, the tailnet is the email you signed up with. So `alice@gmail.com` has the tailnet `alice@gmail.com` since `@gmail.com` is a shared email host. Alternatively, you can specify the value "-" to refer to the default tailnet of the authenticated user making the API call.
 	Tailnet *string `pulumi:"tailnet"`
 }
@@ -78,6 +82,8 @@ type keyArgs struct {
 type KeyArgs struct {
 	Capabilities  KeyCapabilitiesInput
 	ExpirySeconds pulumi.IntInput
+	// Query params to send with the API requests for this resource.
+	QueryParams KeyQueryParamsPtrInput
 	// For paid plans, your domain is your tailnet. For solo plans, the tailnet is the email you signed up with. So `alice@gmail.com` has the tailnet `alice@gmail.com` since `@gmail.com` is a shared email host. Alternatively, you can specify the value "-" to refer to the default tailnet of the authenticated user making the API call.
 	Tailnet pulumi.StringPtrInput
 }
@@ -137,6 +143,11 @@ func (o KeyOutput) ExpirySeconds() pulumi.IntOutput {
 
 func (o KeyOutput) Key() pulumi.StringOutput {
 	return o.ApplyT(func(v *Key) pulumi.StringOutput { return v.Key }).(pulumi.StringOutput)
+}
+
+// Query params to send with the API requests for this resource.
+func (o KeyOutput) QueryParams() KeyQueryParamsPtrOutput {
+	return o.ApplyT(func(v *Key) KeyQueryParamsPtrOutput { return v.QueryParams }).(KeyQueryParamsPtrOutput)
 }
 
 func init() {

@@ -12,4 +12,5 @@ from .get_routes_config import *
 from .key_expiry import *
 from .routes_config import *
 from .tags import *
+from ._inputs import *
 from . import outputs

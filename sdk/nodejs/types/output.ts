@@ -7,12 +7,37 @@ import * as outputs from "../types/output";
 import * as enums from "../types/enums";
 
 export namespace device {
+    /**
+     * Query params for the API request.
+     */
+    export interface AuthorizeDeviceCreateQueryParams {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: {[key: string]: string};
+    }
+
+    /**
+     * Query params for each of the operations of the resource.
+     */
+    export interface AuthorizeDeviceQueryParams {
+        /**
+         * Query params for the create operation.
+         */
+        create?: outputs.device.AuthorizeDeviceCreateQueryParams;
+    }
+
     export interface ClientConnectivity {
         clientSupports: outputs.device.ClientSupports;
         derp: string;
         endpoints: string;
-        latency: any;
+        latency: {[key: string]: outputs.device.ClientConnectivityLatencyProperties};
         mappingVariesByDestIP: boolean;
+    }
+
+    export interface ClientConnectivityLatencyProperties {
+        latencyMs: number;
+        preferred: boolean;
     }
 
     export interface ClientSupports {
@@ -24,9 +49,117 @@ export namespace device {
         upnp: boolean;
     }
 
+    /**
+     * Query params for the API request.
+     */
+    export interface KeyExpiryCreateQueryParams {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: {[key: string]: string};
+    }
+
+    /**
+     * Query params for each of the operations of the resource.
+     */
+    export interface KeyExpiryQueryParams {
+        /**
+         * Query params for the create operation.
+         */
+        create?: outputs.device.KeyExpiryCreateQueryParams;
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface RoutesConfigCreateQueryParams {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: {[key: string]: string};
+    }
+
+    /**
+     * Query params for each of the operations of the resource.
+     */
+    export interface RoutesConfigQueryParams {
+        /**
+         * Query params for the create operation.
+         */
+        create?: outputs.device.RoutesConfigCreateQueryParams;
+        /**
+         * Query params for the read operation.
+         */
+        read?: outputs.device.RoutesConfigReadQueryParams;
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface RoutesConfigReadQueryParams {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: {[key: string]: string};
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface TagsCreateQueryParams {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: {[key: string]: string};
+    }
+
+    /**
+     * Query params for each of the operations of the resource.
+     */
+    export interface TagsQueryParams {
+        /**
+         * Query params for the create operation.
+         */
+        create?: outputs.device.TagsCreateQueryParams;
+    }
+
 }
 
 export namespace tailnet {
+    /**
+     * Query params for the API request.
+     */
+    export interface AclCreateQueryParams {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: {[key: string]: string};
+    }
+
+    /**
+     * Query params for each of the operations of the resource.
+     */
+    export interface AclQueryParams {
+        /**
+         * Query params for the create operation.
+         */
+        create?: outputs.tailnet.AclCreateQueryParams;
+        /**
+         * Query params for the read operation.
+         */
+        read?: outputs.tailnet.AclReadQueryParams;
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface AclReadQueryParams {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: {[key: string]: string};
+    }
+
     export interface AclRule {
         /**
          * Tailscale ACL rules are "default deny".
@@ -44,12 +177,22 @@ export namespace tailnet {
         key: string;
     }
 
+    export interface AutoApprovers {
+        exitNode?: string[];
+        routes?: {[key: string]: string[]};
+    }
+
     export interface ClientConnectivity {
         clientSupports: outputs.tailnet.ClientSupports;
         derp: string;
         endpoints: string;
-        latency: any;
+        latency: {[key: string]: outputs.tailnet.ClientConnectivityLatencyProperties};
         mappingVariesByDestIP: boolean;
+    }
+
+    export interface ClientConnectivityLatencyProperties {
+        latencyMs: number;
+        preferred: boolean;
     }
 
     export interface ClientSupports {
@@ -66,6 +209,40 @@ export namespace tailnet {
         preauthorized: boolean;
         reusable: boolean;
         tags: string[];
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface DNSPreferencesConfigCreateQueryParams {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: {[key: string]: string};
+    }
+
+    /**
+     * Query params for each of the operations of the resource.
+     */
+    export interface DNSPreferencesConfigQueryParams {
+        /**
+         * Query params for the create operation.
+         */
+        create?: outputs.tailnet.DNSPreferencesConfigCreateQueryParams;
+        /**
+         * Query params for the read operation.
+         */
+        read?: outputs.tailnet.DNSPreferencesConfigReadQueryParams;
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface DNSPreferencesConfigReadQueryParams {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: {[key: string]: string};
     }
 
     export interface Device {
@@ -99,9 +276,111 @@ export namespace tailnet {
         devices: outputs.tailnet.DeviceKeyCapabilities;
     }
 
+    /**
+     * Query params for the API request.
+     */
+    export interface KeyCreateQueryParams {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: {[key: string]: string};
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface KeyDeleteQueryParams {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: {[key: string]: string};
+    }
+
+    /**
+     * Query params for each of the operations of the resource.
+     */
+    export interface KeyQueryParams {
+        /**
+         * Query params for the create operation.
+         */
+        create?: outputs.tailnet.KeyCreateQueryParams;
+        /**
+         * Query params for the delete operation.
+         */
+        delete?: outputs.tailnet.KeyDeleteQueryParams;
+        /**
+         * Query params for the read operation.
+         */
+        read?: outputs.tailnet.KeyReadQueryParams;
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface KeyReadQueryParams {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: {[key: string]: string};
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface NameServersConfigCreateQueryParams {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: {[key: string]: string};
+    }
+
+    /**
+     * Query params for each of the operations of the resource.
+     */
+    export interface NameServersConfigQueryParams {
+        /**
+         * Query params for the create operation.
+         */
+        create?: outputs.tailnet.NameServersConfigCreateQueryParams;
+        /**
+         * Query params for the read operation.
+         */
+        read?: outputs.tailnet.NameServersConfigReadQueryParams;
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface NameServersConfigReadQueryParams {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: {[key: string]: string};
+    }
+
     export interface NodeAttrs {
         attr: string[];
         target: string[];
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface ReplaceSearchPathsCreateQueryParams {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: {[key: string]: string};
+    }
+
+    /**
+     * Query params for each of the operations of the resource.
+     */
+    export interface ReplaceSearchPathsQueryParams {
+        /**
+         * Query params for the create operation.
+         */
+        create?: outputs.tailnet.ReplaceSearchPathsCreateQueryParams;
     }
 
     export interface SshRule {

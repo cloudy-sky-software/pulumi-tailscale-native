@@ -2,18 +2,26 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
+import * as enums from "../types/enums";
 import * as utilities from "../utilities";
 
 export function getKey(args: GetKeyArgs, opts?: pulumi.InvokeOptions): Promise<GetKeyResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("tailscale-native:tailnet:getKey", {
         "id": args.id,
+        "queryParams": args.queryParams,
         "tailnet": args.tailnet,
     }, opts);
 }
 
 export interface GetKeyArgs {
     id: string;
+    /**
+     * Query params to send with the API request.
+     */
+    queryParams?: inputs.tailnet.GetKeyQueryParams;
     /**
      * For paid plans, your domain is your tailnet. For solo plans, the tailnet is the email you signed up with. So `alice@gmail.com` has the tailnet `alice@gmail.com` since `@gmail.com` is a shared email host. Alternatively, you can specify the value "-" to refer to the default tailnet of the authenticated user making the API call.
      */
@@ -29,12 +37,17 @@ export function getKeyOutput(args: GetKeyOutputArgs, opts?: pulumi.InvokeOutputO
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("tailscale-native:tailnet:getKey", {
         "id": args.id,
+        "queryParams": args.queryParams,
         "tailnet": args.tailnet,
     }, opts);
 }
 
 export interface GetKeyOutputArgs {
     id: pulumi.Input<string>;
+    /**
+     * Query params to send with the API request.
+     */
+    queryParams?: pulumi.Input<inputs.tailnet.GetKeyQueryParamsArgs | undefined>;
     /**
      * For paid plans, your domain is your tailnet. For solo plans, the tailnet is the email you signed up with. So `alice@gmail.com` has the tailnet `alice@gmail.com` since `@gmail.com` is a shared email host. Alternatively, you can specify the value "-" to refer to the default tailnet of the authenticated user making the API call.
      */

@@ -22,19 +22,21 @@ func LookupAcl(ctx *pulumi.Context, args *LookupAclArgs, opts ...pulumi.InvokeOp
 }
 
 type LookupAclArgs struct {
+	// Query params to send with the API request.
+	QueryParams *GetAclQueryParams `pulumi:"queryParams"`
 	// For paid plans, your domain is your tailnet. For solo plans, the tailnet is the email you signed up with. So `alice@gmail.com` has the tailnet `alice@gmail.com` since `@gmail.com` is a shared email host. Alternatively, you can specify the value "-" to refer to the default tailnet of the authenticated user making the API call.
 	Tailnet string `pulumi:"tailnet"`
 }
 
 type LookupAclResult struct {
-	Acls          []AclRule   `pulumi:"acls"`
-	AutoApprovers interface{} `pulumi:"autoApprovers"`
-	Groups        interface{} `pulumi:"groups"`
-	Hosts         interface{} `pulumi:"hosts"`
-	NodeAttrs     []NodeAttrs `pulumi:"nodeAttrs"`
-	Ssh           []SshRule   `pulumi:"ssh"`
-	TagOwners     interface{} `pulumi:"tagOwners"`
-	Tests         string      `pulumi:"tests"`
+	Acls          []AclRule           `pulumi:"acls"`
+	AutoApprovers AutoApprovers       `pulumi:"autoApprovers"`
+	Groups        map[string][]string `pulumi:"groups"`
+	Hosts         map[string]string   `pulumi:"hosts"`
+	NodeAttrs     []NodeAttrs         `pulumi:"nodeAttrs"`
+	Ssh           []SshRule           `pulumi:"ssh"`
+	TagOwners     map[string][]string `pulumi:"tagOwners"`
+	Tests         string              `pulumi:"tests"`
 }
 
 func LookupAclOutput(ctx *pulumi.Context, args LookupAclOutputArgs, opts ...pulumi.InvokeOption) LookupAclResultOutput {
@@ -43,6 +45,8 @@ func LookupAclOutput(ctx *pulumi.Context, args LookupAclOutputArgs, opts ...pulu
 }
 
 type LookupAclOutputArgs struct {
+	// Query params to send with the API request.
+	QueryParams GetAclQueryParamsPtrInput `pulumi:"queryParams"`
 	// For paid plans, your domain is your tailnet. For solo plans, the tailnet is the email you signed up with. So `alice@gmail.com` has the tailnet `alice@gmail.com` since `@gmail.com` is a shared email host. Alternatively, you can specify the value "-" to refer to the default tailnet of the authenticated user making the API call.
 	Tailnet pulumi.StringInput `pulumi:"tailnet"`
 }
@@ -69,16 +73,16 @@ func (o LookupAclResultOutput) Acls() AclRuleArrayOutput {
 	return o.ApplyT(func(v LookupAclResult) []AclRule { return v.Acls }).(AclRuleArrayOutput)
 }
 
-func (o LookupAclResultOutput) AutoApprovers() pulumi.AnyOutput {
-	return o.ApplyT(func(v LookupAclResult) interface{} { return v.AutoApprovers }).(pulumi.AnyOutput)
+func (o LookupAclResultOutput) AutoApprovers() AutoApproversOutput {
+	return o.ApplyT(func(v LookupAclResult) AutoApprovers { return v.AutoApprovers }).(AutoApproversOutput)
 }
 
-func (o LookupAclResultOutput) Groups() pulumi.AnyOutput {
-	return o.ApplyT(func(v LookupAclResult) interface{} { return v.Groups }).(pulumi.AnyOutput)
+func (o LookupAclResultOutput) Groups() pulumi.StringArrayMapOutput {
+	return o.ApplyT(func(v LookupAclResult) map[string][]string { return v.Groups }).(pulumi.StringArrayMapOutput)
 }
 
-func (o LookupAclResultOutput) Hosts() pulumi.AnyOutput {
-	return o.ApplyT(func(v LookupAclResult) interface{} { return v.Hosts }).(pulumi.AnyOutput)
+func (o LookupAclResultOutput) Hosts() pulumi.StringMapOutput {
+	return o.ApplyT(func(v LookupAclResult) map[string]string { return v.Hosts }).(pulumi.StringMapOutput)
 }
 
 func (o LookupAclResultOutput) NodeAttrs() NodeAttrsArrayOutput {
@@ -89,8 +93,8 @@ func (o LookupAclResultOutput) Ssh() SshRuleArrayOutput {
 	return o.ApplyT(func(v LookupAclResult) []SshRule { return v.Ssh }).(SshRuleArrayOutput)
 }
 
-func (o LookupAclResultOutput) TagOwners() pulumi.AnyOutput {
-	return o.ApplyT(func(v LookupAclResult) interface{} { return v.TagOwners }).(pulumi.AnyOutput)
+func (o LookupAclResultOutput) TagOwners() pulumi.StringArrayMapOutput {
+	return o.ApplyT(func(v LookupAclResult) map[string][]string { return v.TagOwners }).(pulumi.StringArrayMapOutput)
 }
 
 func (o LookupAclResultOutput) Tests() pulumi.StringOutput {

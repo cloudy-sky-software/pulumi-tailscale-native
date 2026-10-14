@@ -23,6 +23,8 @@ func LookupKey(ctx *pulumi.Context, args *LookupKeyArgs, opts ...pulumi.InvokeOp
 
 type LookupKeyArgs struct {
 	Id string `pulumi:"id"`
+	// Query params to send with the API request.
+	QueryParams *GetKeyQueryParams `pulumi:"queryParams"`
 	// For paid plans, your domain is your tailnet. For solo plans, the tailnet is the email you signed up with. So `alice@gmail.com` has the tailnet `alice@gmail.com` since `@gmail.com` is a shared email host. Alternatively, you can specify the value "-" to refer to the default tailnet of the authenticated user making the API call.
 	Tailnet string `pulumi:"tailnet"`
 }
@@ -40,6 +42,8 @@ func LookupKeyOutput(ctx *pulumi.Context, args LookupKeyOutputArgs, opts ...pulu
 
 type LookupKeyOutputArgs struct {
 	Id pulumi.StringInput `pulumi:"id"`
+	// Query params to send with the API request.
+	QueryParams GetKeyQueryParamsPtrInput `pulumi:"queryParams"`
 	// For paid plans, your domain is your tailnet. For solo plans, the tailnet is the email you signed up with. So `alice@gmail.com` has the tailnet `alice@gmail.com` since `@gmail.com` is a shared email host. Alternatively, you can specify the value "-" to refer to the default tailnet of the authenticated user making the API call.
 	Tailnet pulumi.StringInput `pulumi:"tailnet"`
 }

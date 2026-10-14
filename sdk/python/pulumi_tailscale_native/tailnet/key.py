@@ -23,14 +23,18 @@ class KeyArgs:
     def __init__(__self__, *,
                  capabilities: pulumi.Input['KeyCapabilitiesArgs'],
                  expiry_seconds: pulumi.Input[_builtins.int],
+                 query_params: pulumi.Input[Optional['KeyQueryParamsArgs']] = None,
                  tailnet: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a Key resource.
 
+        :param pulumi.Input['KeyQueryParamsArgs'] query_params: Query params to send with the API requests for this resource.
         :param pulumi.Input[_builtins.str] tailnet: For paid plans, your domain is your tailnet. For solo plans, the tailnet is the email you signed up with. So `alice@gmail.com` has the tailnet `alice@gmail.com` since `@gmail.com` is a shared email host. Alternatively, you can specify the value "-" to refer to the default tailnet of the authenticated user making the API call.
         """
         pulumi.set(__self__, "capabilities", capabilities)
         pulumi.set(__self__, "expiry_seconds", expiry_seconds)
+        if query_params is not None:
+            pulumi.set(__self__, "query_params", query_params)
         if tailnet is not None:
             pulumi.set(__self__, "tailnet", tailnet)
 
@@ -53,6 +57,18 @@ class KeyArgs:
         pulumi.set(self, "expiry_seconds", value)
 
     @_builtins.property
+    @pulumi.getter(name="queryParams")
+    def query_params(self) -> pulumi.Input[Optional['KeyQueryParamsArgs']]:
+        """
+        Query params to send with the API requests for this resource.
+        """
+        return pulumi.get(self, "query_params")
+
+    @query_params.setter
+    def query_params(self, value: pulumi.Input[Optional['KeyQueryParamsArgs']]):
+        pulumi.set(self, "query_params", value)
+
+    @_builtins.property
     @pulumi.getter
     def tailnet(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
@@ -71,8 +87,9 @@ class Key(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 capabilities: pulumi.Input[Optional[Union['KeyCapabilitiesArgs', 'KeyCapabilitiesArgsDict']]] = None,
+                 capabilities: pulumi.Input[Optional[Union['KeyCapabilitiesArgs', 'KeyCapabilitiesArgsDict', 'outputs.KeyCapabilities']]] = None,
                  expiry_seconds: pulumi.Input[Optional[_builtins.int]] = None,
+                 query_params: pulumi.Input[Optional[Union['KeyQueryParamsArgs', 'KeyQueryParamsArgsDict', 'outputs.KeyQueryParams']]] = None,
                  tailnet: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
@@ -80,6 +97,7 @@ class Key(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[Union['KeyQueryParamsArgs', 'KeyQueryParamsArgsDict', 'outputs.KeyQueryParams']] query_params: Query params to send with the API requests for this resource.
         :param pulumi.Input[_builtins.str] tailnet: For paid plans, your domain is your tailnet. For solo plans, the tailnet is the email you signed up with. So `alice@gmail.com` has the tailnet `alice@gmail.com` since `@gmail.com` is a shared email host. Alternatively, you can specify the value "-" to refer to the default tailnet of the authenticated user making the API call.
         """
         ...
@@ -106,8 +124,9 @@ class Key(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 capabilities: pulumi.Input[Optional[Union['KeyCapabilitiesArgs', 'KeyCapabilitiesArgsDict']]] = None,
+                 capabilities: pulumi.Input[Optional[Union['KeyCapabilitiesArgs', 'KeyCapabilitiesArgsDict', 'outputs.KeyCapabilities']]] = None,
                  expiry_seconds: pulumi.Input[Optional[_builtins.int]] = None,
+                 query_params: pulumi.Input[Optional[Union['KeyQueryParamsArgs', 'KeyQueryParamsArgsDict', 'outputs.KeyQueryParams']]] = None,
                  tailnet: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -124,6 +143,7 @@ class Key(pulumi.CustomResource):
             if expiry_seconds is None and not opts.urn:
                 raise TypeError("Missing required property 'expiry_seconds'")
             __props__.__dict__["expiry_seconds"] = expiry_seconds
+            __props__.__dict__["query_params"] = query_params
             __props__.__dict__["tailnet"] = tailnet
             __props__.__dict__["created"] = None
             __props__.__dict__["expires"] = None
@@ -155,6 +175,7 @@ class Key(pulumi.CustomResource):
         __props__.__dict__["expires"] = None
         __props__.__dict__["expiry_seconds"] = None
         __props__.__dict__["key"] = None
+        __props__.__dict__["query_params"] = None
         return Key(resource_name, opts=opts, __props__=__props__)
 
     @_builtins.property
@@ -181,4 +202,12 @@ class Key(pulumi.CustomResource):
     @pulumi.getter
     def key(self) -> pulumi.Output[_builtins.str]:
         return pulumi.get(self, "key")
+
+    @_builtins.property
+    @pulumi.getter(name="queryParams")
+    def query_params(self) -> pulumi.Output[Optional['outputs.KeyQueryParams']]:
+        """
+        Query params to send with the API requests for this resource.
+        """
+        return pulumi.get(self, "query_params")
 

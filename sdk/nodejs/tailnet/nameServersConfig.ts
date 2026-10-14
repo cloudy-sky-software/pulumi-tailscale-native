@@ -2,6 +2,9 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
+import * as enums from "../types/enums";
 import * as utilities from "../utilities";
 
 export class NameServersConfig extends pulumi.CustomResource {
@@ -33,6 +36,10 @@ export class NameServersConfig extends pulumi.CustomResource {
 
     declare public readonly dns: pulumi.Output<string[]>;
     declare public readonly magicDNS: pulumi.Output<boolean>;
+    /**
+     * Query params to send with the API requests for this resource.
+     */
+    declare public readonly queryParams: pulumi.Output<outputs.tailnet.NameServersConfigQueryParams | undefined>;
 
     /**
      * Create a NameServersConfig resource with the given unique name, arguments, and options.
@@ -53,10 +60,12 @@ export class NameServersConfig extends pulumi.CustomResource {
             }
             resourceInputs["dns"] = args?.dns;
             resourceInputs["magicDNS"] = args?.magicDNS;
+            resourceInputs["queryParams"] = args?.queryParams;
             resourceInputs["tailnet"] = args?.tailnet;
         } else {
             resourceInputs["dns"] = undefined /*out*/;
             resourceInputs["magicDNS"] = undefined /*out*/;
+            resourceInputs["queryParams"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(NameServersConfig.__pulumiType, name, resourceInputs, opts);
@@ -69,6 +78,10 @@ export class NameServersConfig extends pulumi.CustomResource {
 export interface NameServersConfigArgs {
     dns: pulumi.Input<pulumi.Input<string>[]>;
     magicDNS: pulumi.Input<boolean>;
+    /**
+     * Query params to send with the API requests for this resource.
+     */
+    queryParams?: pulumi.Input<inputs.tailnet.NameServersConfigQueryParamsArgs | undefined>;
     /**
      * For paid plans, your domain is your tailnet. For solo plans, the tailnet is the email you signed up with. So `alice@gmail.com` has the tailnet `alice@gmail.com` since `@gmail.com` is a shared email host. Alternatively, you can specify the value "-" to refer to the default tailnet of the authenticated user making the API call.
      */

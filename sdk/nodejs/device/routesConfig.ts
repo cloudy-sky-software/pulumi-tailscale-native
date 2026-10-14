@@ -2,6 +2,9 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
+import * as enums from "../types/enums";
 import * as utilities from "../utilities";
 
 export class RoutesConfig extends pulumi.CustomResource {
@@ -33,6 +36,10 @@ export class RoutesConfig extends pulumi.CustomResource {
 
     declare public /*out*/ readonly advertisedRoutes: pulumi.Output<string[]>;
     declare public /*out*/ readonly enabledRoutes: pulumi.Output<string[]>;
+    /**
+     * Query params to send with the API requests for this resource.
+     */
+    declare public readonly queryParams: pulumi.Output<outputs.device.RoutesConfigQueryParams | undefined>;
     declare public readonly routes: pulumi.Output<string[]>;
 
     /**
@@ -50,12 +57,14 @@ export class RoutesConfig extends pulumi.CustomResource {
                 throw new Error("Missing required property 'routes'");
             }
             resourceInputs["id"] = args?.id;
+            resourceInputs["queryParams"] = args?.queryParams;
             resourceInputs["routes"] = args?.routes;
             resourceInputs["advertisedRoutes"] = undefined /*out*/;
             resourceInputs["enabledRoutes"] = undefined /*out*/;
         } else {
             resourceInputs["advertisedRoutes"] = undefined /*out*/;
             resourceInputs["enabledRoutes"] = undefined /*out*/;
+            resourceInputs["queryParams"] = undefined /*out*/;
             resourceInputs["routes"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -68,5 +77,9 @@ export class RoutesConfig extends pulumi.CustomResource {
  */
 export interface RoutesConfigArgs {
     id?: pulumi.Input<string | undefined>;
+    /**
+     * Query params to send with the API requests for this resource.
+     */
+    queryParams?: pulumi.Input<inputs.device.RoutesConfigQueryParamsArgs | undefined>;
     routes: pulumi.Input<pulumi.Input<string>[]>;
 }

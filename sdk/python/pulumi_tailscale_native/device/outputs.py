@@ -16,9 +16,84 @@ from .. import _utilities
 from . import outputs
 
 __all__ = [
+    'AuthorizeDeviceCreateQueryParams',
+    'AuthorizeDeviceQueryParams',
     'ClientConnectivity',
+    'ClientConnectivityLatencyProperties',
     'ClientSupports',
+    'KeyExpiryCreateQueryParams',
+    'KeyExpiryQueryParams',
+    'RoutesConfigCreateQueryParams',
+    'RoutesConfigQueryParams',
+    'RoutesConfigReadQueryParams',
+    'TagsCreateQueryParams',
+    'TagsQueryParams',
 ]
+
+@pulumi.output_type
+class AuthorizeDeviceCreateQueryParams(dict):
+    """
+    Query params for the API request.
+    """
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "additionalParams":
+            suggest = "additional_params"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in AuthorizeDeviceCreateQueryParams. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        AuthorizeDeviceCreateQueryParams.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        AuthorizeDeviceCreateQueryParams.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 additional_params: Optional[Mapping[str, _builtins.str]] = None):
+        """
+        Query params for the API request.
+
+        :param Mapping[str, _builtins.str] additional_params: Additional query params to send with the request that are not defined in the API spec.
+        """
+        if additional_params is not None:
+            pulumi.set(__self__, "additional_params", additional_params)
+
+    @_builtins.property
+    @pulumi.getter(name="additionalParams")
+    def additional_params(self) -> Optional[Mapping[str, _builtins.str]]:
+        """
+        Additional query params to send with the request that are not defined in the API spec.
+        """
+        return pulumi.get(self, "additional_params")
+
+
+@pulumi.output_type
+class AuthorizeDeviceQueryParams(dict):
+    """
+    Query params for each of the operations of the resource.
+    """
+    def __init__(__self__, *,
+                 create: Optional['outputs.AuthorizeDeviceCreateQueryParams'] = None):
+        """
+        Query params for each of the operations of the resource.
+
+        :param 'AuthorizeDeviceCreateQueryParams' create: Query params for the create operation.
+        """
+        if create is not None:
+            pulumi.set(__self__, "create", create)
+
+    @_builtins.property
+    @pulumi.getter
+    def create(self) -> Optional['outputs.AuthorizeDeviceCreateQueryParams']:
+        """
+        Query params for the create operation.
+        """
+        return pulumi.get(self, "create")
+
 
 @pulumi.output_type
 class ClientConnectivity(dict):
@@ -26,7 +101,7 @@ class ClientConnectivity(dict):
                  client_supports: 'outputs.ClientSupports',
                  derp: _builtins.str,
                  endpoints: _builtins.str,
-                 latency: Any,
+                 latency: Mapping[str, 'outputs.ClientConnectivityLatencyProperties'],
                  mapping_varies_by_dest_ip: _builtins.bool):
         pulumi.set(__self__, "client_supports", client_supports)
         pulumi.set(__self__, "derp", derp)
@@ -51,13 +126,32 @@ class ClientConnectivity(dict):
 
     @_builtins.property
     @pulumi.getter
-    def latency(self) -> Any:
+    def latency(self) -> Mapping[str, 'outputs.ClientConnectivityLatencyProperties']:
         return pulumi.get(self, "latency")
 
     @_builtins.property
     @pulumi.getter(name="mappingVariesByDestIP")
     def mapping_varies_by_dest_ip(self) -> _builtins.bool:
         return pulumi.get(self, "mapping_varies_by_dest_ip")
+
+
+@pulumi.output_type
+class ClientConnectivityLatencyProperties(dict):
+    def __init__(__self__, *,
+                 latency_ms: _builtins.float,
+                 preferred: _builtins.bool):
+        pulumi.set(__self__, "latency_ms", latency_ms)
+        pulumi.set(__self__, "preferred", preferred)
+
+    @_builtins.property
+    @pulumi.getter(name="latencyMs")
+    def latency_ms(self) -> _builtins.float:
+        return pulumi.get(self, "latency_ms")
+
+    @_builtins.property
+    @pulumi.getter
+    def preferred(self) -> _builtins.bool:
+        return pulumi.get(self, "preferred")
 
 
 @pulumi.output_type
@@ -105,5 +199,253 @@ class ClientSupports(dict):
     @pulumi.getter
     def upnp(self) -> _builtins.bool:
         return pulumi.get(self, "upnp")
+
+
+@pulumi.output_type
+class KeyExpiryCreateQueryParams(dict):
+    """
+    Query params for the API request.
+    """
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "additionalParams":
+            suggest = "additional_params"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in KeyExpiryCreateQueryParams. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        KeyExpiryCreateQueryParams.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        KeyExpiryCreateQueryParams.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 additional_params: Optional[Mapping[str, _builtins.str]] = None):
+        """
+        Query params for the API request.
+
+        :param Mapping[str, _builtins.str] additional_params: Additional query params to send with the request that are not defined in the API spec.
+        """
+        if additional_params is not None:
+            pulumi.set(__self__, "additional_params", additional_params)
+
+    @_builtins.property
+    @pulumi.getter(name="additionalParams")
+    def additional_params(self) -> Optional[Mapping[str, _builtins.str]]:
+        """
+        Additional query params to send with the request that are not defined in the API spec.
+        """
+        return pulumi.get(self, "additional_params")
+
+
+@pulumi.output_type
+class KeyExpiryQueryParams(dict):
+    """
+    Query params for each of the operations of the resource.
+    """
+    def __init__(__self__, *,
+                 create: Optional['outputs.KeyExpiryCreateQueryParams'] = None):
+        """
+        Query params for each of the operations of the resource.
+
+        :param 'KeyExpiryCreateQueryParams' create: Query params for the create operation.
+        """
+        if create is not None:
+            pulumi.set(__self__, "create", create)
+
+    @_builtins.property
+    @pulumi.getter
+    def create(self) -> Optional['outputs.KeyExpiryCreateQueryParams']:
+        """
+        Query params for the create operation.
+        """
+        return pulumi.get(self, "create")
+
+
+@pulumi.output_type
+class RoutesConfigCreateQueryParams(dict):
+    """
+    Query params for the API request.
+    """
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "additionalParams":
+            suggest = "additional_params"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in RoutesConfigCreateQueryParams. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        RoutesConfigCreateQueryParams.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        RoutesConfigCreateQueryParams.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 additional_params: Optional[Mapping[str, _builtins.str]] = None):
+        """
+        Query params for the API request.
+
+        :param Mapping[str, _builtins.str] additional_params: Additional query params to send with the request that are not defined in the API spec.
+        """
+        if additional_params is not None:
+            pulumi.set(__self__, "additional_params", additional_params)
+
+    @_builtins.property
+    @pulumi.getter(name="additionalParams")
+    def additional_params(self) -> Optional[Mapping[str, _builtins.str]]:
+        """
+        Additional query params to send with the request that are not defined in the API spec.
+        """
+        return pulumi.get(self, "additional_params")
+
+
+@pulumi.output_type
+class RoutesConfigQueryParams(dict):
+    """
+    Query params for each of the operations of the resource.
+    """
+    def __init__(__self__, *,
+                 create: Optional['outputs.RoutesConfigCreateQueryParams'] = None,
+                 read: Optional['outputs.RoutesConfigReadQueryParams'] = None):
+        """
+        Query params for each of the operations of the resource.
+
+        :param 'RoutesConfigCreateQueryParams' create: Query params for the create operation.
+        :param 'RoutesConfigReadQueryParams' read: Query params for the read operation.
+        """
+        if create is not None:
+            pulumi.set(__self__, "create", create)
+        if read is not None:
+            pulumi.set(__self__, "read", read)
+
+    @_builtins.property
+    @pulumi.getter
+    def create(self) -> Optional['outputs.RoutesConfigCreateQueryParams']:
+        """
+        Query params for the create operation.
+        """
+        return pulumi.get(self, "create")
+
+    @_builtins.property
+    @pulumi.getter
+    def read(self) -> Optional['outputs.RoutesConfigReadQueryParams']:
+        """
+        Query params for the read operation.
+        """
+        return pulumi.get(self, "read")
+
+
+@pulumi.output_type
+class RoutesConfigReadQueryParams(dict):
+    """
+    Query params for the API request.
+    """
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "additionalParams":
+            suggest = "additional_params"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in RoutesConfigReadQueryParams. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        RoutesConfigReadQueryParams.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        RoutesConfigReadQueryParams.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 additional_params: Optional[Mapping[str, _builtins.str]] = None):
+        """
+        Query params for the API request.
+
+        :param Mapping[str, _builtins.str] additional_params: Additional query params to send with the request that are not defined in the API spec.
+        """
+        if additional_params is not None:
+            pulumi.set(__self__, "additional_params", additional_params)
+
+    @_builtins.property
+    @pulumi.getter(name="additionalParams")
+    def additional_params(self) -> Optional[Mapping[str, _builtins.str]]:
+        """
+        Additional query params to send with the request that are not defined in the API spec.
+        """
+        return pulumi.get(self, "additional_params")
+
+
+@pulumi.output_type
+class TagsCreateQueryParams(dict):
+    """
+    Query params for the API request.
+    """
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "additionalParams":
+            suggest = "additional_params"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in TagsCreateQueryParams. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        TagsCreateQueryParams.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        TagsCreateQueryParams.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 additional_params: Optional[Mapping[str, _builtins.str]] = None):
+        """
+        Query params for the API request.
+
+        :param Mapping[str, _builtins.str] additional_params: Additional query params to send with the request that are not defined in the API spec.
+        """
+        if additional_params is not None:
+            pulumi.set(__self__, "additional_params", additional_params)
+
+    @_builtins.property
+    @pulumi.getter(name="additionalParams")
+    def additional_params(self) -> Optional[Mapping[str, _builtins.str]]:
+        """
+        Additional query params to send with the request that are not defined in the API spec.
+        """
+        return pulumi.get(self, "additional_params")
+
+
+@pulumi.output_type
+class TagsQueryParams(dict):
+    """
+    Query params for each of the operations of the resource.
+    """
+    def __init__(__self__, *,
+                 create: Optional['outputs.TagsCreateQueryParams'] = None):
+        """
+        Query params for each of the operations of the resource.
+
+        :param 'TagsCreateQueryParams' create: Query params for the create operation.
+        """
+        if create is not None:
+            pulumi.set(__self__, "create", create)
+
+    @_builtins.property
+    @pulumi.getter
+    def create(self) -> Optional['outputs.TagsCreateQueryParams']:
+        """
+        Query params for the create operation.
+        """
+        return pulumi.get(self, "create")
 
 

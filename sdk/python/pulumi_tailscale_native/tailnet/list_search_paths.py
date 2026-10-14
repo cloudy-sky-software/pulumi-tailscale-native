@@ -13,6 +13,7 @@ if sys.version_info >= (3, 11):
 else:
     from typing_extensions import NotRequired, TypedDict, TypeAlias
 from .. import _utilities
+from ._inputs import *
 
 __all__ = [
     'ListSearchPathsResult',
@@ -43,28 +44,34 @@ class AwaitableListSearchPathsResult(ListSearchPathsResult):
             search_paths=self.search_paths)
 
 
-def list_search_paths(tailnet: Optional[_builtins.str] = None,
+def list_search_paths(query_params: Optional[Union['ListSearchPathsQueryParams', 'ListSearchPathsQueryParamsDict']] = None,
+                      tailnet: Optional[_builtins.str] = None,
                       opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableListSearchPathsResult:
     """
     Use this data source to access information about an existing resource.
 
+    :param Union['ListSearchPathsQueryParams', 'ListSearchPathsQueryParamsDict'] query_params: Query params to send with the API request.
     :param _builtins.str tailnet: For paid plans, your domain is your tailnet. For solo plans, the tailnet is the email you signed up with. So `alice@gmail.com` has the tailnet `alice@gmail.com` since `@gmail.com` is a shared email host. Alternatively, you can specify the value "-" to refer to the default tailnet of the authenticated user making the API call.
     """
     __args__ = dict()
+    __args__['queryParams'] = query_params
     __args__['tailnet'] = tailnet
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('tailscale-native:tailnet:listSearchPaths', __args__, opts=opts, typ=ListSearchPathsResult).value
 
     return AwaitableListSearchPathsResult(
         search_paths=pulumi.get(__ret__, 'search_paths'))
-def list_search_paths_output(tailnet: pulumi.Input[Optional[_builtins.str]] = None,
+def list_search_paths_output(query_params: pulumi.Input[Optional[Optional[Union['ListSearchPathsQueryParams', 'ListSearchPathsQueryParamsDict']]]] = None,
+                             tailnet: pulumi.Input[Optional[_builtins.str]] = None,
                              opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[ListSearchPathsResult]:
     """
     Use this data source to access information about an existing resource.
 
+    :param Union['ListSearchPathsQueryParams', 'ListSearchPathsQueryParamsDict'] query_params: Query params to send with the API request.
     :param _builtins.str tailnet: For paid plans, your domain is your tailnet. For solo plans, the tailnet is the email you signed up with. So `alice@gmail.com` has the tailnet `alice@gmail.com` since `@gmail.com` is a shared email host. Alternatively, you can specify the value "-" to refer to the default tailnet of the authenticated user making the API call.
     """
     __args__ = dict()
+    __args__['queryParams'] = query_params
     __args__['tailnet'] = tailnet
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('tailscale-native:tailnet:listSearchPaths', __args__, opts=opts, typ=ListSearchPathsResult)

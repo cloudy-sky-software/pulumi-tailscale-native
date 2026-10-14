@@ -13,6 +13,7 @@ if sys.version_info >= (3, 11):
 else:
     from typing_extensions import NotRequired, TypedDict, TypeAlias
 from .. import _utilities
+from ._inputs import *
 
 __all__ = [
     'GetKeyResult',
@@ -62,15 +63,18 @@ class AwaitableGetKeyResult(GetKeyResult):
 
 
 def get_key(id: Optional[_builtins.str] = None,
+            query_params: Optional[Union['GetKeyQueryParams', 'GetKeyQueryParamsDict']] = None,
             tailnet: Optional[_builtins.str] = None,
             opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetKeyResult:
     """
     Use this data source to access information about an existing resource.
 
+    :param Union['GetKeyQueryParams', 'GetKeyQueryParamsDict'] query_params: Query params to send with the API request.
     :param _builtins.str tailnet: For paid plans, your domain is your tailnet. For solo plans, the tailnet is the email you signed up with. So `alice@gmail.com` has the tailnet `alice@gmail.com` since `@gmail.com` is a shared email host. Alternatively, you can specify the value "-" to refer to the default tailnet of the authenticated user making the API call.
     """
     __args__ = dict()
     __args__['id'] = id
+    __args__['queryParams'] = query_params
     __args__['tailnet'] = tailnet
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('tailscale-native:tailnet:getKey', __args__, opts=opts, typ=GetKeyResult).value
@@ -80,15 +84,18 @@ def get_key(id: Optional[_builtins.str] = None,
         expires=pulumi.get(__ret__, 'expires'),
         key=pulumi.get(__ret__, 'key'))
 def get_key_output(id: pulumi.Input[Optional[_builtins.str]] = None,
+                   query_params: pulumi.Input[Optional[Optional[Union['GetKeyQueryParams', 'GetKeyQueryParamsDict']]]] = None,
                    tailnet: pulumi.Input[Optional[_builtins.str]] = None,
                    opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetKeyResult]:
     """
     Use this data source to access information about an existing resource.
 
+    :param Union['GetKeyQueryParams', 'GetKeyQueryParamsDict'] query_params: Query params to send with the API request.
     :param _builtins.str tailnet: For paid plans, your domain is your tailnet. For solo plans, the tailnet is the email you signed up with. So `alice@gmail.com` has the tailnet `alice@gmail.com` since `@gmail.com` is a shared email host. Alternatively, you can specify the value "-" to refer to the default tailnet of the authenticated user making the API call.
     """
     __args__ = dict()
     __args__['id'] = id
+    __args__['queryParams'] = query_params
     __args__['tailnet'] = tailnet
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('tailscale-native:tailnet:getKey', __args__, opts=opts, typ=GetKeyResult)

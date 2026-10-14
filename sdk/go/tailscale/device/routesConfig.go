@@ -17,7 +17,9 @@ type RoutesConfig struct {
 
 	AdvertisedRoutes pulumi.StringArrayOutput `pulumi:"advertisedRoutes"`
 	EnabledRoutes    pulumi.StringArrayOutput `pulumi:"enabledRoutes"`
-	Routes           pulumi.StringArrayOutput `pulumi:"routes"`
+	// Query params to send with the API requests for this resource.
+	QueryParams RoutesConfigQueryParamsPtrOutput `pulumi:"queryParams"`
+	Routes      pulumi.StringArrayOutput         `pulumi:"routes"`
 }
 
 // NewRoutesConfig registers a new resource with the given unique name, arguments, and options.
@@ -63,14 +65,18 @@ func (RoutesConfigState) ElementType() reflect.Type {
 }
 
 type routesConfigArgs struct {
-	Id     *string  `pulumi:"id"`
-	Routes []string `pulumi:"routes"`
+	Id *string `pulumi:"id"`
+	// Query params to send with the API requests for this resource.
+	QueryParams *RoutesConfigQueryParams `pulumi:"queryParams"`
+	Routes      []string                 `pulumi:"routes"`
 }
 
 // The set of arguments for constructing a RoutesConfig resource.
 type RoutesConfigArgs struct {
-	Id     pulumi.StringPtrInput
-	Routes pulumi.StringArrayInput
+	Id pulumi.StringPtrInput
+	// Query params to send with the API requests for this resource.
+	QueryParams RoutesConfigQueryParamsPtrInput
+	Routes      pulumi.StringArrayInput
 }
 
 func (RoutesConfigArgs) ElementType() reflect.Type {
@@ -116,6 +122,11 @@ func (o RoutesConfigOutput) AdvertisedRoutes() pulumi.StringArrayOutput {
 
 func (o RoutesConfigOutput) EnabledRoutes() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *RoutesConfig) pulumi.StringArrayOutput { return v.EnabledRoutes }).(pulumi.StringArrayOutput)
+}
+
+// Query params to send with the API requests for this resource.
+func (o RoutesConfigOutput) QueryParams() RoutesConfigQueryParamsPtrOutput {
+	return o.ApplyT(func(v *RoutesConfig) RoutesConfigQueryParamsPtrOutput { return v.QueryParams }).(RoutesConfigQueryParamsPtrOutput)
 }
 
 func (o RoutesConfigOutput) Routes() pulumi.StringArrayOutput {

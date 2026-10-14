@@ -13,6 +13,8 @@ if sys.version_info >= (3, 11):
 else:
     from typing_extensions import NotRequired, TypedDict, TypeAlias
 from .. import _utilities
+from . import outputs
+from ._inputs import *
 
 __all__ = ['KeyExpiryArgs', 'KeyExpiry']
 
@@ -20,13 +22,18 @@ __all__ = ['KeyExpiryArgs', 'KeyExpiry']
 class KeyExpiryArgs:
     def __init__(__self__, *,
                  key_expiry_disabled: pulumi.Input[_builtins.bool],
-                 id: pulumi.Input[Optional[_builtins.str]] = None):
+                 id: pulumi.Input[Optional[_builtins.str]] = None,
+                 query_params: pulumi.Input[Optional['KeyExpiryQueryParamsArgs']] = None):
         """
         The set of arguments for constructing a KeyExpiry resource.
+
+        :param pulumi.Input['KeyExpiryQueryParamsArgs'] query_params: Query params to send with the API requests for this resource.
         """
         pulumi.set(__self__, "key_expiry_disabled", key_expiry_disabled)
         if id is not None:
             pulumi.set(__self__, "id", id)
+        if query_params is not None:
+            pulumi.set(__self__, "query_params", query_params)
 
     @_builtins.property
     @pulumi.getter(name="keyExpiryDisabled")
@@ -46,6 +53,18 @@ class KeyExpiryArgs:
     def id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "id", value)
 
+    @_builtins.property
+    @pulumi.getter(name="queryParams")
+    def query_params(self) -> pulumi.Input[Optional['KeyExpiryQueryParamsArgs']]:
+        """
+        Query params to send with the API requests for this resource.
+        """
+        return pulumi.get(self, "query_params")
+
+    @query_params.setter
+    def query_params(self, value: pulumi.Input[Optional['KeyExpiryQueryParamsArgs']]):
+        pulumi.set(self, "query_params", value)
+
 
 @pulumi.type_token("tailscale-native:device:KeyExpiry")
 class KeyExpiry(pulumi.CustomResource):
@@ -55,12 +74,14 @@ class KeyExpiry(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  id: pulumi.Input[Optional[_builtins.str]] = None,
                  key_expiry_disabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 query_params: pulumi.Input[Optional[Union['KeyExpiryQueryParamsArgs', 'KeyExpiryQueryParamsArgsDict', 'outputs.KeyExpiryQueryParams']]] = None,
                  __props__=None):
         """
         Create a KeyExpiry resource with the given unique name, props, and options.
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[Union['KeyExpiryQueryParamsArgs', 'KeyExpiryQueryParamsArgsDict', 'outputs.KeyExpiryQueryParams']] query_params: Query params to send with the API requests for this resource.
         """
         ...
     @overload
@@ -88,6 +109,7 @@ class KeyExpiry(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  id: pulumi.Input[Optional[_builtins.str]] = None,
                  key_expiry_disabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 query_params: pulumi.Input[Optional[Union['KeyExpiryQueryParamsArgs', 'KeyExpiryQueryParamsArgsDict', 'outputs.KeyExpiryQueryParams']]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -101,6 +123,7 @@ class KeyExpiry(pulumi.CustomResource):
             if key_expiry_disabled is None and not opts.urn:
                 raise TypeError("Missing required property 'key_expiry_disabled'")
             __props__.__dict__["key_expiry_disabled"] = key_expiry_disabled
+            __props__.__dict__["query_params"] = query_params
         super(KeyExpiry, __self__).__init__(
             'tailscale-native:device:KeyExpiry',
             resource_name,
@@ -124,10 +147,19 @@ class KeyExpiry(pulumi.CustomResource):
         __props__ = KeyExpiryArgs.__new__(KeyExpiryArgs)
 
         __props__.__dict__["key_expiry_disabled"] = None
+        __props__.__dict__["query_params"] = None
         return KeyExpiry(resource_name, opts=opts, __props__=__props__)
 
     @_builtins.property
     @pulumi.getter(name="keyExpiryDisabled")
     def key_expiry_disabled(self) -> pulumi.Output[_builtins.bool]:
         return pulumi.get(self, "key_expiry_disabled")
+
+    @_builtins.property
+    @pulumi.getter(name="queryParams")
+    def query_params(self) -> pulumi.Output[Optional['outputs.KeyExpiryQueryParams']]:
+        """
+        Query params to send with the API requests for this resource.
+        """
+        return pulumi.get(self, "query_params")
 

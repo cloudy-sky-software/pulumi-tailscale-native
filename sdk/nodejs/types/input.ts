@@ -7,9 +7,176 @@ import * as outputs from "../types/output";
 import * as enums from "../types/enums";
 
 export namespace device {
+    /**
+     * Query params for the API request.
+     */
+    export interface AuthorizeDeviceCreateQueryParamsArgs {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+    }
+
+    /**
+     * Query params for each of the operations of the resource.
+     */
+    export interface AuthorizeDeviceQueryParamsArgs {
+        /**
+         * Query params for the create operation.
+         */
+        create?: pulumi.Input<inputs.device.AuthorizeDeviceCreateQueryParamsArgs | undefined>;
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface GetDeviceQueryParams {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: {[key: string]: string};
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface GetDeviceQueryParamsArgs {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface GetRoutesConfigQueryParams {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: {[key: string]: string};
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface GetRoutesConfigQueryParamsArgs {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface KeyExpiryCreateQueryParamsArgs {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+    }
+
+    /**
+     * Query params for each of the operations of the resource.
+     */
+    export interface KeyExpiryQueryParamsArgs {
+        /**
+         * Query params for the create operation.
+         */
+        create?: pulumi.Input<inputs.device.KeyExpiryCreateQueryParamsArgs | undefined>;
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface RoutesConfigCreateQueryParamsArgs {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+    }
+
+    /**
+     * Query params for each of the operations of the resource.
+     */
+    export interface RoutesConfigQueryParamsArgs {
+        /**
+         * Query params for the create operation.
+         */
+        create?: pulumi.Input<inputs.device.RoutesConfigCreateQueryParamsArgs | undefined>;
+        /**
+         * Query params for the read operation.
+         */
+        read?: pulumi.Input<inputs.device.RoutesConfigReadQueryParamsArgs | undefined>;
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface RoutesConfigReadQueryParamsArgs {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface TagsCreateQueryParamsArgs {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+    }
+
+    /**
+     * Query params for each of the operations of the resource.
+     */
+    export interface TagsQueryParamsArgs {
+        /**
+         * Query params for the create operation.
+         */
+        create?: pulumi.Input<inputs.device.TagsCreateQueryParamsArgs | undefined>;
+    }
 }
 
 export namespace tailnet {
+    /**
+     * Query params for the API request.
+     */
+    export interface AclCreateQueryParamsArgs {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+    }
+
+    /**
+     * Query params for each of the operations of the resource.
+     */
+    export interface AclQueryParamsArgs {
+        /**
+         * Query params for the create operation.
+         */
+        create?: pulumi.Input<inputs.tailnet.AclCreateQueryParamsArgs | undefined>;
+        /**
+         * Query params for the read operation.
+         */
+        read?: pulumi.Input<inputs.tailnet.AclReadQueryParamsArgs | undefined>;
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface AclReadQueryParamsArgs {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+    }
+
     export interface AclRuleArgs {
         /**
          * Tailscale ACL rules are "default deny".
@@ -21,6 +188,11 @@ export namespace tailnet {
         users: pulumi.Input<pulumi.Input<string>[]>;
     }
 
+    export interface AutoApproversArgs {
+        exitNode?: pulumi.Input<pulumi.Input<string>[] | undefined>;
+        routes?: pulumi.Input<{[key: string]: pulumi.Input<pulumi.Input<string>[]>} | undefined>;
+    }
+
     export interface CreateKeyArgs {
         ephemeral: pulumi.Input<boolean>;
         preauthorized: pulumi.Input<boolean>;
@@ -28,17 +200,293 @@ export namespace tailnet {
         tags: pulumi.Input<pulumi.Input<string>[]>;
     }
 
+    /**
+     * Query params for the API request.
+     */
+    export interface DNSPreferencesConfigCreateQueryParamsArgs {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+    }
+
+    /**
+     * Query params for each of the operations of the resource.
+     */
+    export interface DNSPreferencesConfigQueryParamsArgs {
+        /**
+         * Query params for the create operation.
+         */
+        create?: pulumi.Input<inputs.tailnet.DNSPreferencesConfigCreateQueryParamsArgs | undefined>;
+        /**
+         * Query params for the read operation.
+         */
+        read?: pulumi.Input<inputs.tailnet.DNSPreferencesConfigReadQueryParamsArgs | undefined>;
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface DNSPreferencesConfigReadQueryParamsArgs {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+    }
+
     export interface DeviceKeyCapabilitiesArgs {
         create: pulumi.Input<inputs.tailnet.CreateKeyArgs>;
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface GetAclQueryParams {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: {[key: string]: string};
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface GetAclQueryParamsArgs {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface GetDNSPreferencesConfigQueryParams {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: {[key: string]: string};
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface GetDNSPreferencesConfigQueryParamsArgs {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface GetKeyQueryParams {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: {[key: string]: string};
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface GetKeyQueryParamsArgs {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface GetNameServersConfigQueryParams {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: {[key: string]: string};
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface GetNameServersConfigQueryParamsArgs {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     }
 
     export interface KeyCapabilitiesArgs {
         devices: pulumi.Input<inputs.tailnet.DeviceKeyCapabilitiesArgs>;
     }
 
+    /**
+     * Query params for the API request.
+     */
+    export interface KeyCreateQueryParamsArgs {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface KeyDeleteQueryParamsArgs {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+    }
+
+    /**
+     * Query params for each of the operations of the resource.
+     */
+    export interface KeyQueryParamsArgs {
+        /**
+         * Query params for the create operation.
+         */
+        create?: pulumi.Input<inputs.tailnet.KeyCreateQueryParamsArgs | undefined>;
+        /**
+         * Query params for the delete operation.
+         */
+        delete?: pulumi.Input<inputs.tailnet.KeyDeleteQueryParamsArgs | undefined>;
+        /**
+         * Query params for the read operation.
+         */
+        read?: pulumi.Input<inputs.tailnet.KeyReadQueryParamsArgs | undefined>;
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface KeyReadQueryParamsArgs {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface ListDevicesQueryParams {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: {[key: string]: string};
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface ListDevicesQueryParamsArgs {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface ListKeysQueryParams {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: {[key: string]: string};
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface ListKeysQueryParamsArgs {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface ListSearchPathsQueryParams {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: {[key: string]: string};
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface ListSearchPathsQueryParamsArgs {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface NameServersConfigCreateQueryParamsArgs {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+    }
+
+    /**
+     * Query params for each of the operations of the resource.
+     */
+    export interface NameServersConfigQueryParamsArgs {
+        /**
+         * Query params for the create operation.
+         */
+        create?: pulumi.Input<inputs.tailnet.NameServersConfigCreateQueryParamsArgs | undefined>;
+        /**
+         * Query params for the read operation.
+         */
+        read?: pulumi.Input<inputs.tailnet.NameServersConfigReadQueryParamsArgs | undefined>;
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface NameServersConfigReadQueryParamsArgs {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+    }
+
     export interface NodeAttrsArgs {
         attr: pulumi.Input<pulumi.Input<string>[]>;
         target: pulumi.Input<pulumi.Input<string>[]>;
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface ReplaceSearchPathsCreateQueryParamsArgs {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+    }
+
+    /**
+     * Query params for each of the operations of the resource.
+     */
+    export interface ReplaceSearchPathsQueryParamsArgs {
+        /**
+         * Query params for the create operation.
+         */
+        create?: pulumi.Input<inputs.tailnet.ReplaceSearchPathsCreateQueryParamsArgs | undefined>;
     }
 
     export interface SshRuleArgs {
