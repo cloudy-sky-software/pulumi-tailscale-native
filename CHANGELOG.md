@@ -1,3 +1,11 @@
+## 0.2.0
+
+- Update `pulumi-provider-framework` and `pulschema` to the latest versions
+- :warning: The root namespace for .NET was changed to `CloudySkySoftware.Pulumi` to avoid reserved name collisions.
+  Please update your imports.
+- The types of `groups` and `autoApprovers` properties in the `Acl` resource were
+  updated to correctly reflect what the API expects.
+
 ## 0.1.5, 0.1.6
 
 Fix execution error for list-style invokes.
