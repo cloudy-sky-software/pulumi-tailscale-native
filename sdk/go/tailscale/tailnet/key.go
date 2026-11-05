@@ -69,6 +69,12 @@ func (KeyState) ElementType() reflect.Type {
 	return reflect.TypeOf((*keyState)(nil)).Elem()
 }
 
+// KeyExists checks whether an existing Key resource with the given ID exists.
+func KeyExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *KeyState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("tailscale-native:tailnet:Key", id, state, "", opts...)
+}
+
 type keyArgs struct {
 	Capabilities  KeyCapabilities `pulumi:"capabilities"`
 	ExpirySeconds int             `pulumi:"expirySeconds"`

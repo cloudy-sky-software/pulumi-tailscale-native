@@ -62,6 +62,12 @@ func (AuthorizeDeviceState) ElementType() reflect.Type {
 	return reflect.TypeOf((*authorizeDeviceState)(nil)).Elem()
 }
 
+// AuthorizeDeviceExists checks whether an existing AuthorizeDevice resource with the given ID exists.
+func AuthorizeDeviceExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *AuthorizeDeviceState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("tailscale-native:device:AuthorizeDevice", id, state, "", opts...)
+}
+
 type authorizeDeviceArgs struct {
 	Authorized bool    `pulumi:"authorized"`
 	Id         *string `pulumi:"id"`

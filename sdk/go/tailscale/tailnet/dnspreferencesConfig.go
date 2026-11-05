@@ -62,6 +62,12 @@ func (DNSPreferencesConfigState) ElementType() reflect.Type {
 	return reflect.TypeOf((*dnspreferencesConfigState)(nil)).Elem()
 }
 
+// DNSPreferencesConfigExists checks whether an existing DNSPreferencesConfig resource with the given ID exists.
+func DNSPreferencesConfigExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *DNSPreferencesConfigState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("tailscale-native:tailnet:DNSPreferencesConfig", id, state, "", opts...)
+}
+
 type dnspreferencesConfigArgs struct {
 	MagicDNS bool `pulumi:"magicDNS"`
 	// Query params to send with the API requests for this resource.

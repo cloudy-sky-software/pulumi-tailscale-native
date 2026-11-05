@@ -62,6 +62,12 @@ func (TagsState) ElementType() reflect.Type {
 	return reflect.TypeOf((*tagsState)(nil)).Elem()
 }
 
+// TagsExists checks whether an existing Tags resource with the given ID exists.
+func TagsExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *TagsState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("tailscale-native:device:Tags", id, state, "", opts...)
+}
+
 type tagsArgs struct {
 	Id *string `pulumi:"id"`
 	// Query params to send with the API requests for this resource.
