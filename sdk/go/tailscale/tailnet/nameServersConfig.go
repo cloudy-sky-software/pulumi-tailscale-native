@@ -66,6 +66,12 @@ func (NameServersConfigState) ElementType() reflect.Type {
 	return reflect.TypeOf((*nameServersConfigState)(nil)).Elem()
 }
 
+// NameServersConfigExists checks whether an existing NameServersConfig resource with the given ID exists.
+func NameServersConfigExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *NameServersConfigState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("tailscale-native:tailnet:NameServersConfig", id, state, "", opts...)
+}
+
 type nameServersConfigArgs struct {
 	Dns      []string `pulumi:"dns"`
 	MagicDNS bool     `pulumi:"magicDNS"`

@@ -62,6 +62,12 @@ func (ReplaceSearchPathsState) ElementType() reflect.Type {
 	return reflect.TypeOf((*replaceSearchPathsState)(nil)).Elem()
 }
 
+// ReplaceSearchPathsExists checks whether an existing ReplaceSearchPaths resource with the given ID exists.
+func ReplaceSearchPathsExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *ReplaceSearchPathsState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("tailscale-native:tailnet:ReplaceSearchPaths", id, state, "", opts...)
+}
+
 type replaceSearchPathsArgs struct {
 	// Query params to send with the API requests for this resource.
 	QueryParams *ReplaceSearchPathsQueryParams `pulumi:"queryParams"`

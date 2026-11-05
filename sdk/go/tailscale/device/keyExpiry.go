@@ -62,6 +62,12 @@ func (KeyExpiryState) ElementType() reflect.Type {
 	return reflect.TypeOf((*keyExpiryState)(nil)).Elem()
 }
 
+// KeyExpiryExists checks whether an existing KeyExpiry resource with the given ID exists.
+func KeyExpiryExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *KeyExpiryState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("tailscale-native:device:KeyExpiry", id, state, "", opts...)
+}
+
 type keyExpiryArgs struct {
 	Id                *string `pulumi:"id"`
 	KeyExpiryDisabled bool    `pulumi:"keyExpiryDisabled"`

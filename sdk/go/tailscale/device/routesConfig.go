@@ -64,6 +64,12 @@ func (RoutesConfigState) ElementType() reflect.Type {
 	return reflect.TypeOf((*routesConfigState)(nil)).Elem()
 }
 
+// RoutesConfigExists checks whether an existing RoutesConfig resource with the given ID exists.
+func RoutesConfigExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *RoutesConfigState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("tailscale-native:device:RoutesConfig", id, state, "", opts...)
+}
+
 type routesConfigArgs struct {
 	Id *string `pulumi:"id"`
 	// Query params to send with the API requests for this resource.
